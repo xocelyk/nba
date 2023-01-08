@@ -14,6 +14,7 @@ from sim_season import Season, MarginModel
 TODO list
  - use historic year data to impute pace data into training data composite
  - fix HCA calculation
+ - impute with boxscore data
 '''
 
 # ignore warnings
@@ -282,12 +283,13 @@ def main(update=True):
     df_final['adj_def_eff'] = df_final.apply(lambda x: adj_def_eff.get(x['team'], 0), axis=1)
     df_final['adj_def_eff'] = -df_final['adj_def_eff']
     df_final = df_final[['rank', 'team', 'team_name', 'em_rating', 'wins', 'losses', 'win_pct', 'off_eff', 'def_eff', 'adj_off_eff', 'adj_def_eff', 'pace']]
+    print(df_final.head(30))
             
     # GET MODELS
     training_data = data_loader.load_training_data(update=update)
-    win_prob_model = eval.get_win_probability_model(training_data)
     win_margin_model, mean_margin_model_resid, std_margin_model_resid = eval.get_win_margin_model(training_data)
-    this_week_pred_margin = forecast.predict_margin_this_week_games(training_data, win_margin_model)
+    win_prob_model = eval.get_win_probability_model(training_data, win_margin_model)
+    forecast.predict_margin_and_win_prob_this_week_games(training_data, win_margin_model, win_prob_model)
 
     # SIMULATE SEASON
     # sim_wins_dict, sim_losses_dict = sim_season_experimental(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR)
@@ -297,9 +299,6 @@ def main(update=True):
     predictive_ratings = forecast.get_predictive_ratings_win_margin(win_margin_model, year=YEAR)
     predictive_ratings = predictive_ratings['expected_margin'].to_dict()
 
-    future_games_with_win_probs = forecast.predict_win_prob_future_games(training_data, win_prob_model)
-    future_games_with_win_probs.to_csv('data/future_games_with_win_probs.csv', index=False)
-
     # ADD PREDICTIVE RATINGS and SIM RESULTS TO FINAL DF
     df_final['predictive_rating'] = df_final['team'].apply(lambda x: predictive_ratings[x])
     df_final.sort_values(by='predictive_rating', ascending=False, inplace=True)
@@ -307,10 +306,10 @@ def main(update=True):
     df_final['expected_wins'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'wins'])
     df_final['expected_losses'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'losses'])
     df_final['expected_record'] = df_final.apply(lambda x: str(round(x['expected_wins'], 1)) + '-' + str(round(x['expected_losses'], 1)), axis=1)
-    df_final['Playoffs'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'playoffs'])
-    df_final['Conference Finals'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'conference_finals'])
-    df_final['Finals'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'finals'])
-    df_final['Champion'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'champion'])
+    df_final['Playoffs'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'playoffs'], 2))
+    df_final['Conference Finals'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'conference_finals'], 2))
+    df_final['Finals'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'finals'], 2))
+    df_final['Champion'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'champion'], 2))
     remaining_sos = stats.get_remaining_sos(df_final, future_games)
     df_final['remaining_sos'] = df_final['team'].apply(lambda x: remaining_sos[x])
 
@@ -329,5 +328,5 @@ def main(update=True):
 
 
 if __name__ == '__main__':
-    main(update=False)
+    main(update=True)
 

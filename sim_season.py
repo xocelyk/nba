@@ -39,17 +39,35 @@ class Season:
         self.teams = self.teams()
         self.mean_pace = mean_pace
         self.std_pace = std_pace
-        # something is wrong with the pace imputation -- it is all constant
-        self.future_games['pace'] = np.random.normal(self.mean_pace, self.std_pace, len(self.future_games))
-        self.completed_games['pace'] = np.random.normal(self.mean_pace, self.std_pace, len(self.completed_games))
+        # TODO: fix this
+        self.future_games['pace'] = [np.random.normal(self.mean_pace, self.std_pace) for _ in range(len(self.future_games))]
+        self.completed_games['pace'] = [np.random.normal(self.mean_pace, self.std_pace) for _ in range(len(self.completed_games))]
         self.time = time.time()
         self.win_total_futures = self.get_win_total_futures()
         self.last_year_ratings = self.get_last_year_ratings()
         self.std_drift_dict = self.get_std_drift(['team_rating', 'team_last_10_rating', 'team_last_5_rating', 'team_last_3_rating', 'team_last_1_rating'])
         self.last_game_stats_dict = None
-        self.sim_date_increment = 1
+        self.sim_date_increment = 20
+        self.last_n_games_adj_margins = self.init_last_n_games_adj_margins()
 
-
+    def init_last_n_games_adj_margins(self):
+        # earliest games first, most recent games last
+        completed_games = self.completed_games.copy()
+        res = {}
+        completed_games.sort_values(by='date', ascending=True, inplace=True)
+        for team in list(set(completed_games['team'].unique().tolist() + completed_games['opponent'].unique().tolist())):
+            team_data = completed_games[(completed_games['team'] == team) | (completed_games['opponent'] == team)].sort_values(by='date', ascending=True)
+            team_data = utils.duplicate_games(team_data)
+            team_data = team_data[team_data['team'] == team]
+            team_vals = []
+            team_data['team_adj_margin'] = team_data.apply(lambda x: x['margin'] + x['opponent_rating'] - utils.HCA, axis=1)
+            if len(team_data) == 0:
+                team_adj_margins = []
+            else:
+                team_adj_margins = team_data['team_adj_margin'].tolist()
+            res[team] = team_adj_margins
+        return res
+    
     def get_std_drift(self, features):
         '''
         assuming autocorrelation is normally distributed
@@ -125,7 +143,7 @@ class Season:
             teams_last_games_dict[team] = team_last_game
         return teams_last_games_dict
 
-    def update_data(self, drift=True, games_on_date=None):
+    def update_data(self, drift=False, games_on_date=None):
         '''
         after playing a series of games (e.g. a day), update the ratings for each team
         '''
@@ -140,6 +158,8 @@ class Season:
         for team in self.teams:
             team_freq_dict[team] = team_freq_dict.get(team, 0)
         
+        # PROBLEM with drift: drift in features are treated as independent, but they are not
+        # this reduces variance in team projected records
         if drift:
             drift_features = self.std_drift_dict.keys()
             if not self.last_game_stats_dict:
@@ -160,8 +180,14 @@ class Season:
 
 
         else:
-            last_n_games_dict = utils.get_last_n_games_dict(self.completed_games, [10, 5, 3, 1])
-            last_10_games_dict, last_5_games_dict, last_3_games_dict, last_1_games_dict = last_n_games_dict[10], last_n_games_dict[5], last_n_games_dict[3], last_n_games_dict[1]
+            # this should be an object attribute that is updated with each simulate_game
+            # last_n_games_dict = utils.get_last_n_games_dict(self.completed_games, [10, 5, 3, 1])
+            # last_10_games_dict, last_5_games_dict, last_3_games_dict, last_1_games_dict = last_n_games_dict[10], last_n_games_dict[5], last_n_games_dict[3], last_n_games_dict[1]
+
+            last_10_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][:10]) if len(self.last_n_games_adj_margins[team]) >= 10 else 0 for team in self.teams}
+            last_5_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][:5]) if len(self.last_n_games_adj_margins[team]) >= 5 else 0 for team in self.teams}
+            last_3_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][:3]) if len(self.last_n_games_adj_margins[team]) >= 3 else 0 for team in self.teams}
+            last_1_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][:1]) if len(self.last_n_games_adj_margins[team]) >= 1 else 0 for team in self.teams}
 
             self.future_games['team_last_10_rating'] = self.future_games['team'].map(last_10_games_dict)
             self.future_games['opponent_last_10_rating'] = self.future_games['opponent'].map(last_10_games_dict)
@@ -220,6 +246,10 @@ class Season:
         row['team_win'] = team_win
         row['margin'] = margin
         row['winner_name'] = team if team_win else opponent
+        team_adj_margin = row['margin'] + row['opponent_rating'] - utils.HCA
+        opponent_adj_margin = -row['margin'] + row['team_rating'] + utils.HCA
+        self.last_n_games_adj_margins[team].append(team_adj_margin)
+        self.last_n_games_adj_margins[opponent].append(opponent_adj_margin)
         return row
 
     def get_game_data(self, row):
@@ -269,11 +299,7 @@ class Season:
         for idx, row in wc_standings.iterrows():
             print(f'{rank}. {row["team"]} ({row["wins"]}-{row["losses"]})')
             rank += 1
-        
-        [e1, e_2, e_3, e_4, e_5, e_6, e_7, e_8, e_9, e_10] = ec_standings['team'].values.tolist()[:10]
-        [w1, w_2, w_3, w_4, w_5, w_6, w_7, w_8, w_9, w_10] = wc_standings['team'].values.tolist()[:10]
     
-
         self.future_games['playoff_label'] = None
         self.future_games['winner_name'] = None
 
@@ -281,31 +307,43 @@ class Season:
         self.completed_games['winner_name'] = None
 
         east_seeds, west_seeds = self.play_in(ec_standings, wc_standings)
+        self.seeds = {}
+        for seed, team in east_seeds.items():
+            self.seeds[team] = seed
+        for seed, team in west_seeds.items():
+            self.seeds[team] = seed
 
         east_alive = list(east_seeds.values())
         west_alive = list(west_seeds.values()) 
         playoff_results['playoffs'] = east_alive + west_alive
         
+        for seed, team in east_seeds.items():
+            print('{}. {} (E)'.format(seed, team))
+        print()
+        for seed, team in west_seeds.items():
+            print('{}. {} (W)'.format(seed, team))
+        print()
+
         # simulate first round
         east_seeds, west_seeds = self.first_round(east_seeds, west_seeds)
         east_alive = list(east_seeds.values())
         west_alive = list(west_seeds.values())
         playoff_results['second_round'] = east_alive + west_alive
+        print()
 
         # simulate second round
-        east_seeds_new, west_seeds_new = self.second_round(east_seeds, west_seeds)
+        east_seeds, west_seeds = self.second_round(east_seeds, west_seeds)
         east_alive = list(east_seeds.values())
         west_alive = list(west_seeds.values())
-        east_seeds = east_seeds_new
-        west_seeds = west_seeds_new
         playoff_results['second_round'] = east_alive + west_alive
+        print()
 
         # simulate conference finals
         e1, w1 = self.conference_finals(east_seeds, west_seeds)
         east_alive = list(east_seeds.values())
         west_alive = list(west_seeds.values())
         playoff_results['conference_finals'] = east_alive + west_alive
-
+        print()
 
         from random import choice
         if choice([True, False]):
@@ -325,8 +363,6 @@ class Season:
 
 
     def first_round(self, east_seeds, west_seeds):
-        east_seeds_rev = {v: k for k, v in east_seeds.items()}
-        west_seeds_rev = {v: k for k, v in west_seeds.items()}
 
         game_1_date = self.get_next_date()
         game_2_date = game_1_date + datetime.timedelta(days=1)
@@ -368,15 +404,15 @@ class Season:
         w3 = self.get_series_winner('W_3_6')
         w4 = self.get_series_winner('W_4_5')
 
-        if east_seeds_rev[e1] > east_seeds_rev[e2]:
-            e1, e2 = e2, e1
-        if east_seeds_rev[e3] > east_seeds_rev[e4]:
-            e3, e4 = e4, e3
+        if self.seeds[e1] > self.seeds[e4]:
+            e1, e4 = e4, e1
+        if self.seeds[e2] > self.seeds[e3]:
+            e2, e3 = e3, e2
         
-        if west_seeds_rev[w1] > west_seeds_rev[w2]:
-            w1, w2 = w2, w1
-        if west_seeds_rev[w3] > west_seeds_rev[w4]:
-            w3, w4 = w4, w3
+        if self.seeds[w1] > self.seeds[w4]:
+            w1, w4 = w4, w1
+        if self.seeds[w2] > self.seeds[w3]:
+            w2, w3 = w3, w2
 
         east_seeds = {1: e1, 2: e2, 3: e3, 4: e4}
         west_seeds = {1: w1, 2: w2, 3: w3, 4: w4}
@@ -384,9 +420,6 @@ class Season:
         return east_seeds, west_seeds
 
     def second_round(self, east_seeds, west_seeds):
-        east_seeds_rev = {v: k for k, v in east_seeds.items()}
-        west_seeds_rev = {v: k for k, v in west_seeds.items()}
-
         game_1_date = self.get_next_date()
         game_2_date = game_1_date + datetime.timedelta(days=1)
         game_3_date = game_2_date + datetime.timedelta(days=1)
@@ -395,10 +428,10 @@ class Season:
         game_6_date = game_5_date + datetime.timedelta(days=1)
         game_7_date = game_6_date + datetime.timedelta(days=1)
 
-        matchups = {'E_1_4': [east_seeds[1], east_seeds[4]],
-                    'E_2_3': [east_seeds[2], east_seeds[3]],
-                    'W_1_4': [west_seeds[1], west_seeds[4]],
-                    'W_2_3': [west_seeds[2], west_seeds[3]]}
+        matchups = {'E_1_4': (east_seeds[1], east_seeds[4]),
+                    'E_2_3': (east_seeds[2], east_seeds[3]),
+                    'W_1_4': (west_seeds[1], west_seeds[4]),
+                    'W_2_3': (west_seeds[2], west_seeds[3])}
         
         for label, (team1, team2) in matchups.items():
             self.append_future_game(self.future_games, game_1_date, team1, team2, label)
@@ -418,9 +451,10 @@ class Season:
         w_1 = self.get_series_winner('W_1_4')
         w_2 = self.get_series_winner('W_2_3')
 
-        if east_seeds_rev[e_1] > east_seeds_rev[e_2]:
+    # TODO: fix this for other rounds too
+        if self.seeds[e_1] > self.seeds[e_2]:
             e_1, e_2 = e_2, e_1
-        if west_seeds_rev[w_1] > west_seeds_rev[w_2]:
+        if self.seeds[w_1] > self.seeds[w_2]:
             w_1, w_2 = w_2, w_1
 
         east_seeds = {1: e_1, 2: e_2}
@@ -430,9 +464,6 @@ class Season:
 
     
     def conference_finals(self, east_seeds, west_seeds):
-        east_seeds_rev = {v: k for k, v in east_seeds.items()}
-        west_seeds_rev = {v: k for k, v in west_seeds.items()}
-
         game_1_date = self.get_next_date()
         game_2_date = game_1_date + datetime.timedelta(days=1)
         game_3_date = game_2_date + datetime.timedelta(days=1)
@@ -495,8 +526,11 @@ class Season:
         assert len(series) == 7
         value_counts = series['winner_name'].value_counts().sort_values(ascending=False)
         # get the team with the most wins
+        teams = series.iloc[0][['team', 'opponent']].values.tolist()
         winner = value_counts.index[0]
+        print('{}. {} vs {}. {} ({}. {})'.format(self.seeds[teams[0]], teams[0], self.seeds[teams[1]], teams[1], self.seeds[winner], winner))
         return winner
+            
             
     def play_in(self, ec_standings, wc_standings):
     
