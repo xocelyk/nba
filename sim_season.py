@@ -335,14 +335,12 @@ class Season:
         east_seeds, west_seeds = self.second_round(east_seeds, west_seeds)
         east_alive = list(east_seeds.values())
         west_alive = list(west_seeds.values())
-        playoff_results['second_round'] = east_alive + west_alive
+        playoff_results['conference_finals'] = east_alive + west_alive
         print()
 
         # simulate conference finals
         e1, w1 = self.conference_finals(east_seeds, west_seeds)
-        east_alive = list(east_seeds.values())
-        west_alive = list(west_seeds.values())
-        playoff_results['conference_finals'] = east_alive + west_alive
+        playoff_results['finals'] = [e1, w1]
         print()
 
         from random import choice
@@ -356,7 +354,6 @@ class Season:
         # simulate finals
         champ = self.finals(team1, team2)
         finals = [team1, team2]
-        playoff_results['finals'] = finals
         playoff_results['champion'] = [champ]
         print('Champion: ' + champ)
         return playoff_results
