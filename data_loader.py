@@ -113,7 +113,7 @@ def load_regular_season_win_totals_futures():
                 res[team][header[i]] = float(row[i]) if row[i] != '' else np.nan
     return res
 
-def load_training_data(update=True, reset=True, start_year=2010, stop_year=2023):
+def load_training_data(update=True, reset=False, start_year=2010, stop_year=2023):
     '''
     Loads the data from start_year to stop_year and returns a dataframe with the data
     Data includes each game with data, team rating, opp rating, team last year rating, opp last year rating, and num games into season
@@ -133,6 +133,7 @@ def load_training_data(update=True, reset=True, start_year=2010, stop_year=2023)
     '''
 
     all_data_archive = pd.read_csv(f'data/cumulative_with_cur_year_and_last_year_ratings_{start_year}_{stop_year}.csv')
+    all_data_archive.drop([col for col in all_data_archive.columns if 'Unnamed' in col], axis=1, inplace=True)
     win_totals_futures = load_regular_season_win_totals_futures()
     
     if update == True:
@@ -220,13 +221,18 @@ def load_training_data(update=True, reset=True, start_year=2010, stop_year=2023)
 
         # completed is true if margin is not nan
         all_data = pd.DataFrame(all_data, columns=['team', 'opponent', 'team_rating', 'opponent_rating', 'last_year_team_rating', 'last_year_opponent_rating', 'margin', 'num_games_into_season', 'date', 'year', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'completed', 'team_win_total_future', 'opponent_win_total_future'])
+        all_data.drop([col for col in all_data.columns if col.startswith('Unnamed')], axis=1, inplace=True)
         all_data.to_csv(f'data/cumulative_with_cur_year_and_last_year_ratings_{start_year}_{stop_year}.csv', index=False)
     else:
         all_data = pd.read_csv(f'data/cumulative_with_cur_year_and_last_year_ratings_{start_year}_{stop_year}.csv')
         all_data.drop([col for col in all_data.columns if 'Unnamed' in col], axis=1, inplace=True)
-        print(all_data['year'].describe())
         all_data['team_win_total_future'] = all_data.apply(lambda x: win_totals_futures[str(x['year'])][x['team']], axis=1).astype(float)
         all_data['opponent_win_total_future'] = all_data.apply(lambda x: win_totals_futures[str(x['year'])][x['opponent']], axis=1).astype(float)
         all_data.to_csv(f'data/cumulative_with_cur_year_and_last_year_ratings_{start_year}_{stop_year}.csv')
+    
+    # # start test
+    
+    # all_data = utils.add_days_since_most_recent_game_to_df(all_data)
+    # # end test
     return all_data
 

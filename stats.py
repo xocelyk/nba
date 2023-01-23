@@ -1,5 +1,5 @@
 import numpy as np
-
+from utils import HCA
 
 def get_wins_losses(game_df):
     wins = {}
@@ -53,9 +53,10 @@ def get_defensive_efficiency(data):
         def_eff[team] = np.mean(def_effs)
     return def_eff
 
-def get_adjusted_efficiencies(data, def_eff, off_eff):
+def get_adjusted_efficiencies(data, off_eff, def_eff):
     '''
     gets both adjusted defensive efficiency and adjusted offensive efficiency
+    TODO: use HCA
     '''
     adj_off_eff = off_eff.copy()
     adj_def_eff = def_eff.copy()
@@ -69,16 +70,20 @@ def get_adjusted_efficiencies(data, def_eff, off_eff):
             pace = row['pace']
             home_ppp = home_points / pace
             away_ppp = away_points / pace
-            offensive_effect = 0.65
-            defensive_effect = 0.35
+            offensive_effect = .65
+            defensive_effect = .35
             # TODO: should build out my old model for this
             # using kenpom numbers from https://kenpom.com/blog/offense-vs-defense-the-summary/ (see ppp)
             proj_home_ppp = offensive_effect * adj_off_eff[row['team']] + defensive_effect * adj_def_eff[row['opponent']]
             proj_away_ppp = offensive_effect * adj_off_eff[row['opponent']] + defensive_effect * adj_def_eff[row['team']]
-            off_eff_diffs[row['team']].append((home_ppp - proj_home_ppp) / 2)
-            def_eff_diffs[row['opponent']].append((home_ppp - proj_home_ppp) / 2)
-            off_eff_diffs[row['opponent']].append((away_ppp - proj_away_ppp) / 2)
-            def_eff_diffs[row['team']].append((away_ppp - proj_away_ppp) / 2)
+
+            home_diff = home_ppp - proj_home_ppp
+            away_diff = away_ppp - proj_away_ppp
+
+            off_eff_diffs[row['team']].append(home_diff / 2)
+            def_eff_diffs[row['opponent']].append(home_diff / 2)
+            off_eff_diffs[row['opponent']].append(away_diff / 2)
+            def_eff_diffs[row['team']].append(away_diff / 2)
 
         prev_off_eff = adj_off_eff.copy()
         prev_def_eff = adj_def_eff.copy()
@@ -91,10 +96,10 @@ def get_adjusted_efficiencies(data, def_eff, off_eff):
         # calc l2 norm
         off_eff_diff = 0
         def_eff_diff = 0
-        for team, off_eff in adj_off_eff.items():
-            off_eff_diff += (off_eff - prev_off_eff[team]) ** 2
-        for team, def_eff in adj_def_eff.items():
-            def_eff_diff += (def_eff - prev_def_eff[team]) ** 2
+        for team, oe in adj_off_eff.items():
+            off_eff_diff += (oe - prev_off_eff[team]) ** 2
+        for team, de in adj_def_eff.items():
+            def_eff_diff += (de - prev_def_eff[team]) ** 2
         off_eff_diff = np.sqrt(off_eff_diff)
         def_eff_diff = np.sqrt(def_eff_diff)
         if off_eff_diff < 1e-4 and def_eff_diff < 1e-4:
@@ -142,16 +147,6 @@ def get_adjusted_defensive_efficiency(data, off_eff):
     for team, adj_def_effs in adj_def_eff.items():
         adj_def_eff[team] = np.mean(adj_def_effs)
     return adj_def_eff
-
-def get_adjusted_efficiencies(data, off_eff, def_eff):
-    off_eff_copy = off_eff.copy()
-    def_eff_copy = def_eff.copy()
-    for loop in range(100):
-        adj_off_eff = get_adjusted_offensive_efficiency(data, def_eff_copy)
-        adj_def_eff = get_adjusted_defensive_efficiency(data, off_eff_copy)
-        off_eff_copy = adj_off_eff
-        def_eff_copy = adj_def_eff
-    return off_eff_copy, def_eff_copy
 
 def get_pace(data):
     paces = {}

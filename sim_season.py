@@ -6,10 +6,13 @@ from sklearn.linear_model import LinearRegression
 import utils
 import time
 import data_loader
+from random import choice
 
 # need to import adjust_em_ratings
 
 '''
+
+# TODO: update with days since most recent game
 
 This is the simulation flow:
 for each day:
@@ -45,10 +48,33 @@ class Season:
         self.time = time.time()
         self.win_total_futures = self.get_win_total_futures()
         self.last_year_ratings = self.get_last_year_ratings()
-        self.std_drift_dict = self.get_std_drift(['team_rating', 'team_last_10_rating', 'team_last_5_rating', 'team_last_3_rating', 'team_last_1_rating'])
-        self.last_game_stats_dict = None
-        self.sim_date_increment = 20
         self.last_n_games_adj_margins = self.init_last_n_games_adj_margins()
+        self.team_last_adj_margin_dict = {team: np.mean(self.last_n_games_adj_margins[team][:1]) if len(self.last_n_games_adj_margins[team]) >= 1 else 0 for team in self.teams}
+        self.std_drift_dict = self.get_std_drift(['team_rating', 'team_last_10_rating', 'team_last_5_rating', 'team_last_3_rating', 'team_last_1_rating'])
+        # self.drift_feature_fns = self.get_std_drift(features = ['team_rating', 'team_last_10_rating', 'team_last_5_rating', 'team_last_3_rating', 'team_last_1_rating'], new=True)
+        # self.drift_fns = self.get_drift_fns(['team_rating', 'team_last_10_rating', 'team_last_5_rating', 'team_last_3_rating', 'team_last_1_rating'])
+        self.last_game_stats_dict = None
+        self.sim_date_increment = 3
+
+    def get_drift_fns(self, features):
+        feature_fns_dict = {}
+        completed_games_copy = self.completed_games.copy()
+        completed_games = utils.duplicate_games(completed_games_copy)
+        completed_games['team_adj_margin'] = completed_games.apply(lambda x: x['margin'] + x['opponent_rating'] - utils.HCA, axis=1)
+        for feature in features:
+            # I want to find the average change in rating as a function of team_last_1_game_rating and num_games_into_season
+            completed_games[feature + '_drift'] = completed_games[feature].diff()
+            completed_games[feature + '_drift'] = completed_games[feature + '_drift'].fillna(0)
+            completed_games[feature + '_drift'] = completed_games[feature + '_drift'].apply(lambda x: 0 if x == np.inf else x)
+            feature_lm = LinearRegression()
+            feature_lm.fit(completed_games[['team_last_1_rating', 'num_games_into_season']], completed_games[feature + '_drift'])
+            # find std of residuals
+            feature_drift_resid_std = np.std(completed_games[feature + '_drift'] - feature_lm.predict(completed_games[['team_last_1_rating', 'num_games_into_season']]))
+            feature_fn = lambda x: x[feature] + feature_lm.predict([[x['team_last_1_rating'], x['num_games_into_season']]])[0] + np.random.normal(0, feature_drift_resid_std)
+            feature_fns_dict[feature] = feature_fn
+        return feature_fns_dict
+        
+    
 
     def init_last_n_games_adj_margins(self):
         # earliest games first, most recent games last
@@ -68,25 +94,43 @@ class Season:
             res[team] = team_adj_margins
         return res
     
-    def get_std_drift(self, features):
+    def get_std_drift(self, features, new=False):
         '''
         assuming autocorrelation is normally distributed
         '''
-        team_drifts = {feature: [] for feature in features}
-        for team in self.teams:
-            team_data = utils.duplicate_games(self.completed_games)
-            team_data = team_data.loc[team_data['team'] == team]
-            team_data.sort_values(by='date', inplace=True, ascending=True)
+        if not new:
+            team_drifts = {feature: [] for feature in features}
+            for team in self.teams:
+                team_data = utils.duplicate_games(self.completed_games)
+                team_data = team_data.loc[team_data['team'] == team]
+                team_data.sort_values(by='date', inplace=True, ascending=True)
+                for feature in features:
+                    team_data[feature + '_drift'] = team_data[feature].diff()
+                    team_drifts[feature].append(team_data[feature + '_drift'].mean())
+            team_drifts = {feature: np.std(team_drifts[feature]) for feature in features}
             for feature in features:
-                team_data[feature + '_drift'] = team_data[feature].diff()
-                team_drifts[feature].append(team_data[feature + '_drift'].mean())
-        team_drifts = {feature: np.std(team_drifts[feature]) for feature in features}
-        for feature in features:
-            if feature.startswith('team'):
-                opponent_feature = feature.replace('team', 'opponent')
-                team_drifts[opponent_feature] = team_drifts[feature]
+                if feature.startswith('team'):
+                    opponent_feature = feature.replace('team', 'opponent')
+                    team_drifts[opponent_feature] = team_drifts[feature]
+            
+            return team_drifts
         
-        return team_drifts
+        else:
+            # TODO: hold some out
+            drift_fns = {}
+            train_data = self.completed_games.copy()
+            X = train_data['team_last_1_rating']
+            X = X.values.reshape(-1, 1)
+            for feature in features:
+                y = train_data[feature].diff(1).fillna(0)
+                model = LinearRegression().fit(X, y)
+                pred_y = model.predict(X)
+                resid = pred_y - y
+                std_resid = np.std(resid)
+
+                gen_feature_fn = lambda x: model.predict([[x]])[0] + np.random.normal(0, std_resid)
+                drift_fns[feature] = gen_feature_fn
+        return drift_fns
 
 
     def get_random_pace(self):
@@ -160,17 +204,55 @@ class Season:
         
         # PROBLEM with drift: drift in features are treated as independent, but they are not
         # this reduces variance in team projected records
+        # get all drift features as a function of adjusted game margin and num games into season + random variance
         if drift:
+            # # TODO: broken
+            # for idx, row in games_on_date.sort_values(by='date', ascending=True).iterrows():
+            #     team_adj_margin = row['margin'] + row['opponent_rating'] - utils.HCA
+            #     opponent_adj_margin = -row['margin'] + row['team_rating'] + utils.HCA
+            #     self.team_last_adj_margin_dict[row['team']] = team_adj_margin
+            #     self.team_last_adj_margin_dict[row['opponent']] = opponent_adj_margin
+            
+            # for feature , feature_fn in self.drift_fns.items():
+            #     for team in teams:
+            #         self.future_games['team_last_1_rating'] = self.future_games.apply(lambda row:
+            #          self.team_last_adj_margin_dict.get(row['team'], 0), axis=1)
+            #         self.future_games.apply(lambda row: team_freq_dict[row['team']] * feature_fn(row), axis=1)
+
+
             drift_features = self.std_drift_dict.keys()
+            drift_feature_fns_dict = self.drift_feature_fns
             if not self.last_game_stats_dict:
                 last_game_stats_dict = self.get_team_last_games()
                 self.last_game_stats_dict = last_game_stats_dict
             else:
+                team_last_game_scores = {}
                 last_game_stats_dict = self.last_game_stats_dict
                 for team in teams:
+                    team_data = games_on_date[(games_on_date['team'] == team) | (games_on_date['opponent'] == team)]
+                    team_data = utils.duplicate_games(team_data)
+                    if len(team_data) > 0:
+                        team_last_game_scores[team] = np.mean(team_data['margin'] - utils.HCA + team_data['opponent_rating'])
+
+                    else:
+                        team_last_game_scores[team] = 0
+                    print()
+                    print(team)
+                    print('mean last game scores:', team_last_game_scores[team])
                     for feature in drift_features:
-                        last_game_stats_dict[team][feature] = last_game_stats_dict[team][feature] + team_freq_dict[team] * np.random.normal(0, self.std_drift_dict[feature])
-                        self.last_game_stats_dict = last_game_stats_dict
+                        if feature.startswith('opponent'):
+                            team_feature = feature.replace('opponent', 'team')
+                            if team_feature in last_game_stats_dict[team].keys():
+                                last_game_stats_dict[team][feature] = last_game_stats_dict[team][team_feature]
+                            else:
+                                last_game_stats_dict[team][feature] = last_game_stats_dict[team][team_feature] + drift_feature_fns_dict[team_feature](team_last_game_scores[team])
+                        else:
+                            last_game_stats_dict[team][feature] = last_game_stats_dict[team][feature] + drift_feature_fns_dict[feature](team_last_game_scores[team])
+                        print(feature, ':', last_game_stats_dict[team][feature])
+
+                    # for feature in drift_features:
+                    #     last_game_stats_dict[team][feature] = last_game_stats_dict[team][feature] + team_freq_dict[team] * np.random.normal(0, self.std_drift_dict[feature])
+                    #     self.last_game_stats_dict = last_game_stats_dict
                 for feature in drift_features:
                     # if X has stdev sigma, then c * X has stdev c * sigma
                     if feature.startswith('team'):
@@ -315,6 +397,8 @@ class Season:
 
         east_alive = list(east_seeds.values())
         west_alive = list(west_seeds.values()) 
+        assert len(set(east_alive).intersection(set(west_alive))) == 0
+        assert len(set(west_alive + east_alive)) == len(west_alive + east_alive)
         playoff_results['playoffs'] = east_alive + west_alive
         
         for seed, team in east_seeds.items():
@@ -329,21 +413,17 @@ class Season:
         east_alive = list(east_seeds.values())
         west_alive = list(west_seeds.values())
         playoff_results['second_round'] = east_alive + west_alive
-        print()
 
         # simulate second round
         east_seeds, west_seeds = self.second_round(east_seeds, west_seeds)
         east_alive = list(east_seeds.values())
         west_alive = list(west_seeds.values())
         playoff_results['conference_finals'] = east_alive + west_alive
-        print()
 
         # simulate conference finals
         e1, w1 = self.conference_finals(east_seeds, west_seeds)
         playoff_results['finals'] = [e1, w1]
-        print()
 
-        from random import choice
         if choice([True, False]):
             team1 = e1
             team2 = w1
@@ -537,10 +617,10 @@ class Season:
 
         # simulate play in round 1
         playin_round_1_date = self.get_next_date()
-        self.append_future_game(self.future_games, date=playin_round_1_date, team=e_7, opponent=e_10, playoff_label='E_P_1')
-        self.append_future_game(self.future_games, date=playin_round_1_date, team=e_8, opponent=e_9, playoff_label='E_P_2')
+        self.append_future_game(self.future_games, date=playin_round_1_date, team=e_7, opponent=e_8, playoff_label='E_P_1')
+        self.append_future_game(self.future_games, date=playin_round_1_date, team=e_9, opponent=e_10, playoff_label='E_P_2')
         self.append_future_game(self.future_games, date=playin_round_1_date, team=w_7, opponent=w_8, playoff_label='W_P_1')
-        self.append_future_game(self.future_games, date=playin_round_1_date, team=w_8, opponent=w_9, playoff_label='W_P_2')
+        self.append_future_game(self.future_games, date=playin_round_1_date, team=w_9, opponent=w_10, playoff_label='W_P_2')
         self.update_data(games_on_date=self.future_games[:-4])
         self.simulate_day(playin_round_1_date, playin_round_1_date + datetime.timedelta(days=1), 1)
 
