@@ -152,7 +152,7 @@ def load_training_data(update=True, reset=False, start_year=2010, stop_year=2023
             names = list(set(year_data['team_name']).union(set(year_data['opponent_name'])))
             year_data['margin'] = year_data['team_score'] - year_data['opponent_score']
             games_to_date = year_data[year_data['completed'] == True]
-            year_ratings = utils.get_em_ratings(games_to_date[games_to_date['completed'] == True], depth=100)
+            year_ratings = utils.get_em_ratings(games_to_date[games_to_date['completed'] == True])
             for team, rating in year_ratings.items():
                 end_year_ratings_dct[year][team] = rating
             if first_year:
@@ -192,7 +192,7 @@ def load_training_data(update=True, reset=False, start_year=2010, stop_year=2023
                         games_on_date = year_data[year_data['date'] == date]
                         num_games_into_season = games_on_date.iloc[0]['num_games_into_season']
                         if len(games_to_date) > 100:
-                            cur_ratings = utils.get_em_ratings(games_to_date[games_to_date['completed'] == True], depth=100)
+                            cur_ratings = utils.get_em_ratings(games_to_date[games_to_date['completed'] == True])
                         else:
                             # If not enough data to get EM ratings for every team, ratings default to 0
                             cur_ratings = {team: 0 for team in end_year_ratings_dct[year-1].keys()}

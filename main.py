@@ -15,6 +15,7 @@ TODO list
  - use historic year data to impute pace data into training data composite
  - fix HCA calculation
  - impute with boxscore data
+ - mark playoff games in training data
 '''
 
 # ignore warnings
@@ -24,7 +25,7 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
     teams = data[data['year'] == year]['team'].unique()
     playoff_results_over_sims = {team: {} for team in teams}
     season_results_over_sims = {team: {'wins': [], 'losses': []} for team in teams}
-    num_sims = 200
+    num_sims = 1000
     for sim in range(num_sims):
         start_time = time.time()
         print('Sim: ', sim + 1, '/', num_sims)
@@ -181,7 +182,6 @@ def main(update=True):
     forecast.predict_margin_and_win_prob_this_week_games(training_data, win_margin_model, win_prob_model)
 
     # SIMULATE SEASON
-    # sim_wins_dict, sim_losses_dict = sim_season_experimental(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR)
     sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR)
 
     # PREDICTIVE RATINGS

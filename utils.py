@@ -12,7 +12,7 @@ HCA = 3.13
 def calc_rmse(predictions, targets):
 	return np.sqrt(((predictions - targets) ** 2).mean())
 
-def get_em_ratings(df, cap=30, break_point=1e-10, max_iter=100):
+def get_em_ratings(df, cap=30, break_point=1e-10, max_iter=10):
     # TODO: make pace/efficiency based
     ratings = {team: 0 for team in df['team'].unique()}
 
