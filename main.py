@@ -24,7 +24,7 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
     teams = data[data['year'] == year]['team'].unique()
     playoff_results_over_sims = {team: {} for team in teams}
     season_results_over_sims = {team: {'wins': [], 'losses': []} for team in teams}
-    num_sims = 100
+    num_sims = 200
     for sim in range(num_sims):
         start_time = time.time()
         print('Sim: ', sim + 1, '/', num_sims)
@@ -136,7 +136,7 @@ def main(update=True):
     std_pace = completed_games['pace'].std()
 
     # EM RATINGS
-    em_ratings = utils.get_em_ratings(completed_games, depth=10000)
+    em_ratings = utils.get_em_ratings(completed_games, max_iter=100)
     em_ratings = {k: v for k, v in sorted(em_ratings.items(), key=lambda item: item[1], reverse=True)}
     ratings_lst = []
     for i, (team, rating) in enumerate(em_ratings.items()):
@@ -175,9 +175,7 @@ def main(update=True):
     print(df_final.head(30))
             
     # GET MODELS
-    print('training data')
     training_data = data_loader.load_training_data(update=update)
-    print(training_data.head())
     win_margin_model, mean_margin_model_resid, std_margin_model_resid = eval.get_win_margin_model(training_data)
     win_prob_model = eval.get_win_probability_model(training_data, win_margin_model)
     forecast.predict_margin_and_win_prob_this_week_games(training_data, win_margin_model, win_prob_model)
@@ -219,5 +217,5 @@ def main(update=True):
 
 
 if __name__ == '__main__':
-    main(update=True)
+    main(update=False)
 

@@ -42,6 +42,9 @@ class Season:
         self.teams = self.teams()
         self.mean_pace = mean_pace
         self.std_pace = std_pace
+        self.update_counter = 0
+        self.update_every = 10
+        self.em_ratings = utils.get_em_ratings(self.completed_games, max_iter=5)
         # TODO: fix this
         self.future_games['pace'] = [np.random.normal(self.mean_pace, self.std_pace) for _ in range(len(self.future_games))]
         self.completed_games['pace'] = [np.random.normal(self.mean_pace, self.std_pace) for _ in range(len(self.completed_games))]
@@ -54,7 +57,7 @@ class Season:
         # self.drift_feature_fns = self.get_std_drift(features = ['team_rating', 'team_last_10_rating', 'team_last_5_rating', 'team_last_3_rating', 'team_last_1_rating'], new=True)
         # self.drift_fns = self.get_drift_fns(['team_rating', 'team_last_10_rating', 'team_last_5_rating', 'team_last_3_rating', 'team_last_1_rating'])
         self.last_game_stats_dict = None
-        self.sim_date_increment = 3
+        self.sim_date_increment = 1
 
     def get_drift_fns(self, features):
         feature_fns_dict = {}
@@ -160,7 +163,7 @@ class Season:
     def teams(self):
         return sorted(list(set(self.completed_games['team'].unique().tolist() + self.future_games['team'].unique().tolist())))
 
-    def simulate_season(self, date_increment=1):
+    def simulate_season(self):
         '''
         TODO:
         - make sure games completed and games future are imputed with all the correct features beforehand
@@ -236,9 +239,6 @@ class Season:
 
                     else:
                         team_last_game_scores[team] = 0
-                    print()
-                    print(team)
-                    print('mean last game scores:', team_last_game_scores[team])
                     for feature in drift_features:
                         if feature.startswith('opponent'):
                             team_feature = feature.replace('opponent', 'team')
@@ -248,7 +248,6 @@ class Season:
                                 last_game_stats_dict[team][feature] = last_game_stats_dict[team][team_feature] + drift_feature_fns_dict[team_feature](team_last_game_scores[team])
                         else:
                             last_game_stats_dict[team][feature] = last_game_stats_dict[team][feature] + drift_feature_fns_dict[feature](team_last_game_scores[team])
-                        print(feature, ':', last_game_stats_dict[team][feature])
 
                     # for feature in drift_features:
                     #     last_game_stats_dict[team][feature] = last_game_stats_dict[team][feature] + team_freq_dict[team] * np.random.normal(0, self.std_drift_dict[feature])
@@ -262,10 +261,6 @@ class Season:
 
 
         else:
-            # this should be an object attribute that is updated with each simulate_game
-            # last_n_games_dict = utils.get_last_n_games_dict(self.completed_games, [10, 5, 3, 1])
-            # last_10_games_dict, last_5_games_dict, last_3_games_dict, last_1_games_dict = last_n_games_dict[10], last_n_games_dict[5], last_n_games_dict[3], last_n_games_dict[1]
-
             last_10_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][:10]) if len(self.last_n_games_adj_margins[team]) >= 10 else 0 for team in self.teams}
             last_5_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][:5]) if len(self.last_n_games_adj_margins[team]) >= 5 else 0 for team in self.teams}
             last_3_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][:3]) if len(self.last_n_games_adj_margins[team]) >= 3 else 0 for team in self.teams}
@@ -283,11 +278,15 @@ class Season:
             self.future_games['team_last_1_rating'] = self.future_games['team'].map(last_1_games_dict)
             self.future_games['opponent_last_1_rating'] = self.future_games['opponent'].map(last_1_games_dict)
 
-            em_ratings = utils.get_em_ratings(self.completed_games)
+            if self.update_counter:
+                if self.update_counter % self.update_every == 0:
+                    self.em_ratings = utils.get_em_ratings(self.completed_games, max_iter=5)
+                    self.update_counter += 1
 
-            self.future_games['team_rating'] = self.future_games['team'].map(em_ratings)
-            self.future_games['opponent_rating'] = self.future_games['opponent'].map(em_ratings)
+            self.future_games['team_rating'] = self.future_games['team'].map(self.em_ratings)
+            self.future_games['opponent_rating'] = self.future_games['opponent'].map(self.em_ratings)
 
+        # this is necessary for games that we create, e.g. playoff games
         if self.future_games['last_year_team_rating'].isnull().any():
             self.future_games['last_year_team_rating'] = self.future_games['team'].map(self.last_year_ratings)
             self.future_games['last_year_opponent_rating'] = self.future_games['opponent'].map(self.last_year_ratings)
@@ -708,6 +707,8 @@ class Season:
 
 
         # first, sort by wins
+
+        # HACK: add some noise to the wins to break ties
         ec_df['new_wins'] = ec_df['wins'] + np.random.normal(0, 0.01, len(ec_df))
         wc_df['new_wins'] = wc_df['wins'] + np.random.normal(0, 0.01, len(wc_df))
         ec_df.sort_values(by='new_wins', ascending=False, inplace=True)

@@ -2,65 +2,50 @@ import numpy as np
 import pandas as pd
 from scipy.sparse.linalg import eigs
 from sklearn.linear_model import LinearRegression
+import time
 
 
 # TODO: build out model to retrive this number
-HCA = 3
+# copying from Sagarin 1/25/23
+HCA = 3.13
 
 def calc_rmse(predictions, targets):
 	return np.sqrt(((predictions - targets) ** 2).mean())
 
-def get_em_ratings(df, depth=1000, traditional=True):
-    # TODO: account for pace
-    cap = .2
-    try:
-        seed = get_em_ratings_from_eigenratings(df, eigenrank(df))
-        assert len(seed.keys()) == 30
-    except:
-        seed = {team: 0 for team in df['team'].unique()}
-    adj_em_ratings = seed.copy()
-    for team, rating in adj_em_ratings.items():
-        adj_em_ratings[team] = rating / 100
+def get_em_ratings(df, cap=30, break_point=1e-10, max_iter=100):
+    # TODO: make pace/efficiency based
+    ratings = {team: 0 for team in df['team'].unique()}
 
-    team_list = list(set(list(team for team in df['team'].unique()) + list(team for team in df['opponent'].unique())))
-    for _ in range(depth):
-        prev_ratings = adj_em_ratings.copy()
-        diffs = {team: [] for team in team_list}
+    for _ in range(max_iter):
+        prev_ratings = ratings.copy()
+        ratings_temp = {team: [] for team in ratings.keys()}
         for boxscore_id, row in df.iterrows():
-            pred_home_ppp_margin = (adj_em_ratings[row['team']] - adj_em_ratings[row['opponent']]) + HCA/100 #hack, need a system for predicting pace
-            pred_away_ppp_margin = -pred_home_ppp_margin
-            home_ppp_margin = (row['margin'] + HCA) / row['pace']
-            if home_ppp_margin > cap:
-                home_ppp_margin = cap + np.log(home_ppp_margin - cap + 1)
-            elif home_ppp_margin < -cap:
-                home_ppp_margin = -cap - np.log(-home_ppp_margin - cap + 1)
-            away_ppp_margin = -home_ppp_margin
-            home_diff = home_ppp_margin - pred_home_ppp_margin
-            away_diff = away_ppp_margin - pred_away_ppp_margin
-            diffs[row['team']].append(home_diff/2)
-            diffs[row['opponent']].append(away_diff/2)
-        for team, diff in diffs.items():
-            adj_em_ratings[team] += np.mean(diff)
-
-        # get l2 distance between ratings
-        l2_dist = 0
-        for team, rating in adj_em_ratings.items():
-            l2_dist += (rating - prev_ratings[team]) ** 2
-        l2_dist = np.sqrt(l2_dist)
-        if l2_dist < 1e-6:
-            break
-
-        # get RMSE
-        # errors = []
-        # for team, diffs_list in diffs.items():
-        #     errors += diffs_list
-        # print(_, np.mean(np.mean([err**2 for err in errors])))
+            home_margin = row['margin']
+            if home_margin > cap:
+                home_margin = cap + np.log(home_margin - cap + 1)
+            elif home_margin < -cap:
+                home_margin = -cap - np.log(-home_margin - cap + 1)
+            home_game_score = home_margin + ratings[row['opponent']] - HCA
+            away_game_score = -home_margin + ratings[row['team']] + HCA
+            ratings_temp[row['team']].append(home_game_score)
+            ratings_temp[row['opponent']].append(away_game_score)
+        ratings_temp = {team: np.mean(ratings_temp[team]) for team in ratings_temp.keys()}
+        # print data frame of ratings
+        ratings = ratings_temp.copy()
 
 
-    for team, rating in adj_em_ratings.items():
-        adj_em_ratings[team] = rating * 100
+        # # get l2 distance between ratings
+        # l2_dist = 0
+        # for team, rating in ratings.items():
+        #     l2_dist += (rating - prev_ratings[team]) ** 2
+        # l2_dist = np.sqrt(l2_dist)
+        # print(l2_dist)
+        # if l2_dist < break_point:
+        #     break
+    ratings_df = pd.DataFrame.from_dict(ratings_temp, orient='index', columns=['rating'])
+    ratings_df = ratings_df.sort_values(by='rating', ascending=False)
     
-    return adj_em_ratings
+    return ratings
 
 def get_adjacency_matrix(df):
     '''
