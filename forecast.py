@@ -11,7 +11,7 @@ def predict_margin_today_games(games, win_margin_model):
     games = games[games['date'] == datetime.date.today()]
     if len(games) == 0:
         return None
-    games['margin'] = win_margin_model.predict(games[['team_rating', 'opponent_rating', 'team_win_total_future','opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating']])
+    games['margin'] = win_margin_model.predict(games[['team_rating', 'opponent_rating', 'team_win_total_future','opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game']])
     for date in games['date'].unique():
         print('{} games'.format(date))
         for index, row in games[games['date'] == date].iterrows():
@@ -29,7 +29,7 @@ def predict_margin_this_week_games(games, win_margin_model):
     games = games[games['date'] < datetime.date.today() + datetime.timedelta(days=7)]
     if len(games) == 0:
         return None
-    games['margin'] = win_margin_model.predict(games[['team_rating', 'opponent_rating', 'team_win_total_future','opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating']])
+    games['margin'] = win_margin_model.predict(games[['team_rating', 'opponent_rating', 'team_win_total_future','opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game']])
     for date in games['date'].unique():
         print('{} games'.format(date))
         for index, row in games[games['date'] == date].iterrows():
@@ -53,7 +53,7 @@ def predict_margin_and_win_prob_this_week_games(games, win_margin_model, win_pro
     games = games[games['date'] < datetime.date.today() + datetime.timedelta(days=7)]
     if len(games) == 0:
         return None
-    games['margin'] = win_margin_model.predict(games[['team_rating', 'opponent_rating', 'team_win_total_future','opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating']])
+    games['margin'] = win_margin_model.predict(games[['team_rating', 'opponent_rating', 'team_win_total_future','opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game']])
     games['win_prob'] = win_prob_model.predict_proba(games['margin'].values.reshape(-1, 1))[:, 1]
 
     for date in games['date'].unique():
@@ -116,11 +116,11 @@ def get_predictive_ratings_win_margin(model, year):
             opp_win_total_future = opp_df['team_win_total_future'].iloc[-1] if opp_df['team'].iloc[-1] == opp else opp_df['opponent_win_total_future'].iloc[-1]
 
             # play a home game
-            X_home = pd.DataFrame([[team_rating, opp_rating, team_win_total_future, opp_win_total_future, last_year_ratings[team], last_year_ratings[opp], num_games_into_season, team_last_10_rating, opp_last_10_rating, team_last_5_rating, opp_last_5_rating, team_last_3_rating, opp_last_3_rating, team_last_1_rating_rating, opp_last_1_rating_rating]], columns=['team_rating', 'opponent_rating', 'team_win_total_future', 'opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating'])
+            X_home = pd.DataFrame([[team_rating, opp_rating, team_win_total_future, opp_win_total_future, last_year_ratings[team], last_year_ratings[opp], num_games_into_season, team_last_10_rating, opp_last_10_rating, team_last_5_rating, opp_last_5_rating, team_last_3_rating, opp_last_3_rating, team_last_1_rating_rating, opp_last_1_rating_rating]], columns=['team_rating', 'opponent_rating', 'team_win_total_future', 'opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game'])
             team_home_margins.append(model.predict(X_home)[0])
 
             # play an away game
-            X_away = pd.DataFrame([[opp_rating, team_rating, opp_win_total_future, team_win_total_future, last_year_ratings[opp], last_year_ratings[team], num_games_into_season, opp_last_10_rating, team_last_10_rating, opp_last_5_rating, team_last_5_rating, opp_last_3_rating, team_last_3_rating, opp_last_1_rating_rating, team_last_1_rating_rating]], columns=['team_rating', 'opponent_rating', 'team_win_total_future', 'opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating'])
+            X_away = pd.DataFrame([[opp_rating, team_rating, opp_win_total_future, team_win_total_future, last_year_ratings[opp], last_year_ratings[team], num_games_into_season, opp_last_10_rating, team_last_10_rating, opp_last_5_rating, team_last_5_rating, opp_last_3_rating, team_last_3_rating, opp_last_1_rating_rating, team_last_1_rating_rating]], columns=['team_rating', 'opponent_rating', 'team_win_total_future', 'opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game'])
             team_away_margins.append(-model.predict(X_away)[0])
 
         average_home_margin = np.mean(team_home_margins)

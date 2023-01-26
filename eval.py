@@ -77,7 +77,7 @@ def get_win_margin_model(games):
     # TODO: fine tune this in the ipython notebook
     # just use linear regression for now
     games = games[games['completed'] == True]
-    x_features = ['team_rating', 'opponent_rating', 'team_win_total_future', 'opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating']
+    x_features = ['team_rating', 'opponent_rating', 'team_win_total_future', 'opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game']
     train_df, test_df = train_test_split(games, test_size=0.2, random_state=41)
    
     def duplicate_games(df):
@@ -86,8 +86,8 @@ def get_win_margin_model(games):
         '''
         duplicated_games = []
         for idx, game in df.iterrows():
-            duplicated_games.append([game['team_rating'], game['opponent_rating'], game['team_win_total_future'], game['opponent_win_total_future'], game['last_year_team_rating'], game['last_year_opponent_rating'], game['num_games_into_season'], game['team_last_10_rating'], game['opponent_last_10_rating'], game['team_last_5_rating'], game['opponent_last_5_rating'], game['team_last_3_rating'], game['opponent_last_3_rating'], game['team_last_1_rating'], game['opponent_last_1_rating'], game['margin']])
-            duplicated_games.append([game['opponent_rating'], game['team_rating'], game['opponent_win_total_future'], game['team_win_total_future'], game['last_year_opponent_rating'], game['last_year_team_rating'], game['num_games_into_season'], game['opponent_last_10_rating'], game['team_last_10_rating'], game['opponent_last_5_rating'], game['team_last_5_rating'], game['opponent_last_3_rating'], game['team_last_3_rating'], game['opponent_last_1_rating'], game['team_last_1_rating'], -game['margin']])
+            duplicated_games.append([game['team_rating'], game['opponent_rating'], game['team_win_total_future'], game['opponent_win_total_future'], game['last_year_team_rating'], game['last_year_opponent_rating'], game['num_games_into_season'], game['team_last_10_rating'], game['opponent_last_10_rating'], game['team_last_5_rating'], game['opponent_last_5_rating'], game['team_last_3_rating'], game['opponent_last_3_rating'], game['team_last_1_rating'], game['opponent_last_1_rating'], game['team_days_since_most_recent_game'], game['opponent_days_since_most_recent_game'], game['margin']])
+            duplicated_games.append([game['opponent_rating'], game['team_rating'], game['opponent_win_total_future'], game['team_win_total_future'], game['last_year_opponent_rating'], game['last_year_team_rating'], game['num_games_into_season'], game['opponent_last_10_rating'], game['team_last_10_rating'], game['opponent_last_5_rating'], game['team_last_5_rating'], game['opponent_last_3_rating'], game['team_last_3_rating'], game['opponent_last_1_rating'], game['team_last_1_rating'], game['opponent_days_since_most_recent_game'], game['team_days_since_most_recent_game'], -game['margin']])
         # create the dataframe
         duplicated_games_df = pd.DataFrame(duplicated_games, columns=x_features + ['margin'])
         return duplicated_games_df
@@ -96,7 +96,7 @@ def get_win_margin_model(games):
     # test_df = duplicate_games(test_df)
     X_train, y_train, X_test, y_test = train_df[x_features], train_df['margin'], test_df[x_features], test_df['margin']
     
-    params = {'max_depth': 3, 'learning_rate': 0.017663416491675688, 'n_estimators': 483, 'min_child_weight': 8, 'gamma': 0.2098788215570124, 'subsample': 0.8114787013965323, 'colsample_bytree': 0.776777067348792, 'reg_alpha': 0.409398999830202, 'reg_lambda': 0.5816468426359469, 'random_state': 674}
+    params = {'max_depth': 5, 'learning_rate': 0.017663416491675688, 'n_estimators': 483, 'min_child_weight': 8, 'gamma': 0.2098788215570124, 'subsample': 0.8114787013965323, 'colsample_bytree': 0.776777067348792, 'reg_alpha': 0.409398999830202, 'reg_lambda': 0.5816468426359469, 'random_state': 674}
     model = XGBRegressor(**params)
     model.fit(X_train, y_train)
     preds = model.predict(X_test)
@@ -121,7 +121,7 @@ def get_win_probability_model(games, win_margin_model):
     '''
     from sklearn.linear_model import LogisticRegression
     games = games[games['completed'] == True]
-    games['expected_margin'] = win_margin_model.predict(games[['team_rating', 'opponent_rating', 'team_win_total_future', 'opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating']])
+    games['expected_margin'] = win_margin_model.predict(games[['team_rating', 'opponent_rating', 'team_win_total_future', 'opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game']])
     games['team_win'] = games['margin'] > 0
     model = LogisticRegression()
     model.fit(games[['expected_margin']], games['team_win'])

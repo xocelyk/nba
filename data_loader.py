@@ -220,7 +220,8 @@ def load_training_data(update=True, reset=False, start_year=2010, stop_year=2023
                     all_data += year_data
 
         # completed is true if margin is not nan
-        all_data = pd.DataFrame(all_data, columns=['team', 'opponent', 'team_rating', 'opponent_rating', 'last_year_team_rating', 'last_year_opponent_rating', 'margin', 'num_games_into_season', 'date', 'year', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'completed', 'team_win_total_future', 'opponent_win_total_future'])
+        print(all_data[:5])
+        all_data = pd.DataFrame(all_data, columns=['team', 'opponent', 'team_rating', 'opponent_rating', 'last_year_team_rating', 'last_year_opponent_rating', 'margin', 'num_games_into_season', 'date', 'year', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'completed', 'team_win_total_future', 'opponent_win_total_future', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game'])
         all_data.drop([col for col in all_data.columns if col.startswith('Unnamed')], axis=1, inplace=True)
         all_data.to_csv(f'data/cumulative_with_cur_year_and_last_year_ratings_{start_year}_{stop_year}.csv', index=False)
     else:
@@ -232,7 +233,45 @@ def load_training_data(update=True, reset=False, start_year=2010, stop_year=2023
     
     # # start test
     
-    # all_data = utils.add_days_since_most_recent_game_to_df(all_data)
+    all_data = add_days_since_most_recent_game(all_data)
+    all_data.to_csv(f'data/cumulative_with_cur_year_and_last_year_ratings_{start_year}_{stop_year}.csv', index=False)
     # # end test
     return all_data
+
+def add_days_since_most_recent_game(df, cap=10):
+    # TODO: only apply this to recently completed games
+    df['team_days_since_most_recent_game'] = cap
+    df['opponent_days_since_most_recent_game'] = cap
+    df['date'] = pd.to_datetime(df['date']).dt.date
+    for year in df['year'].unique():
+        year_data = df[df['year'] == year]
+        year_data = year_data.sort_values('date')
+        team_most_recent_game_date = {team: None for team in year_data['team'].unique()}
+        # team_most_recent_game_time_diff = {team: None for team in year_data['team'].unique()}
+        for i, row in year_data.iterrows():
+            team = row['team']
+            if team_most_recent_game_date[team] is None:
+                team_most_recent_game_date[team] = row['date']
+                df.loc[i, 'team_days_since_most_recent_game'] = cap
+            else:
+                print(row['date'], team_most_recent_game_date[team])
+                print((row['date'] - team_most_recent_game_date[team]).days)
+                df.loc[i, 'team_days_since_most_recent_game'] = min((row['date'] - team_most_recent_game_date[team]).days, cap)
+                team_most_recent_game_date[team] = row['date']
+            
+            opponent = row['opponent']
+            if team_most_recent_game_date[opponent] is None:
+                team_most_recent_game_date[opponent] = row['date']
+                df.loc[i, 'opponent_days_since_most_recent_game'] = cap
+            else:
+                df.loc[i, 'opponent_days_since_most_recent_game'] = min((row['date'] - team_most_recent_game_date[opponent]).days, cap)
+                team_most_recent_game_date[opponent] = row['date']
+    return df
+            
+            
+
+            
+
+            
+
 
