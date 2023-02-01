@@ -203,9 +203,11 @@ def load_training_data(update=True, reset=False, start_year=2010, stop_year=2023
                         year_data_temp += games_on_date.values.tolist()
                     
                     year_data = pd.DataFrame(year_data_temp, columns=['team', 'opponent', 'team_rating', 'opponent_rating', 'last_year_team_rating', 'last_year_opponent_rating', 'margin', 'num_games_into_season', 'date', 'year'])
+                    # year_data = utils.last_n_games(year_data, 20)
                     year_data = utils.last_n_games(year_data, 10)
                     year_data = utils.last_n_games(year_data, 5)
                     year_data = utils.last_n_games(year_data, 3)
+                    # year_data = utils.last_n_games(year_data, 2)
                     year_data = utils.last_n_games(year_data, 1)
 
                     year_data['completed'] = year_data['margin'].apply(lambda x: True if not np.isnan(x) else False)
@@ -254,11 +256,8 @@ def add_days_since_most_recent_game(df, cap=10):
                 team_most_recent_game_date[team] = row['date']
                 df.loc[i, 'team_days_since_most_recent_game'] = cap
             else:
-                print(row['date'], team_most_recent_game_date[team])
-                print((row['date'] - team_most_recent_game_date[team]).days)
                 df.loc[i, 'team_days_since_most_recent_game'] = min((row['date'] - team_most_recent_game_date[team]).days, cap)
                 team_most_recent_game_date[team] = row['date']
-            
             opponent = row['opponent']
             if team_most_recent_game_date[opponent] is None:
                 team_most_recent_game_date[opponent] = row['date']

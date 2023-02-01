@@ -217,5 +217,5 @@ def main(update=True):
 
 
 if __name__ == '__main__':
-    main(update=False)
+    main(update=True)
 

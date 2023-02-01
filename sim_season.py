@@ -43,7 +43,7 @@ class Season:
         self.mean_pace = mean_pace
         self.std_pace = std_pace
         self.update_counter = 0
-        self.update_every = 10
+        self.update_every = 3
         self.em_ratings = utils.get_em_ratings(self.completed_games, max_iter=5)
         # TODO: fix this
         self.future_games['pace'] = [np.random.normal(self.mean_pace, self.std_pace) for _ in range(len(self.future_games))]
