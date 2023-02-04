@@ -52,7 +52,6 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
                     playoff_results_over_sims[team][round] = 0
                 playoff_results_over_sims[team][round] += 1
 
-        # start new
         playoff_results_over_sims_df = pd.DataFrame(playoff_results_over_sims)
         playoff_results_over_sims_df = playoff_results_over_sims_df.transpose()
         playoff_results_over_sims_df = playoff_results_over_sims_df.reset_index()
@@ -76,12 +75,13 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
         sim_report_df = sim_report_df.merge(playoff_results_over_sims_df, on='team')
         sim_report_df = sim_report_df.sort_values(by=['champion', 'finals', 'conference_finals', 'second_round', 'playoffs'], ascending=False)
         sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']] = sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']] / (sim + 1)
+        sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']] = sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']].round(2)
         sim_report_df = sim_report_df[['team', 'wins', 'losses', 'champion', 'finals', 'conference_finals', 'second_round', 'playoffs']]
         sim_report_df.set_index('team', inplace=True)
-        # stop new
 
         print(sim_report_df)
-        print('Sim Time: ', time.time() - start_time, 's')
+        sim_time = np.round(time.time() - start_time, 2)
+        print('Sim Time: ', sim_time, 's')
         
     for team, playoff_results in playoff_results_over_sims.items():
         # convert to percentage
@@ -113,8 +113,6 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
     sim_report_df = sim_report_df.sort_values(by=['champion', 'finals', 'conference_finals', 'second_round', 'playoffs'], ascending=False)
     sim_report_df = sim_report_df[['team', 'wins', 'losses', 'champion', 'finals', 'conference_finals', 'second_round', 'playoffs']]
     sim_report_df.set_index('team', inplace=True)
-
-    print(sim_report_df)
 
     return sim_report_df
 
@@ -154,9 +152,21 @@ def main(update=True):
     df_final['rank'] = [i + 1 for i in range(len(abbrs))]
 
     # ADD DATA
+    # TODO: maybe just calculate that for most recent n (30?) days
     off_eff = stats.get_offensive_efficiency(completed_games)
     def_eff = stats.get_defensive_efficiency(completed_games)
     adj_off_eff, adj_def_eff = stats.get_adjusted_efficiencies(completed_games, off_eff, def_eff)
+
+    # TODO: this should be done before
+    completed_games['date'] = pd.to_datetime(completed_games['date'])
+    last_thirty_day_games = completed_games[completed_games['date'] > datetime.datetime.today() - datetime.timedelta(days=30)]
+    last_thirty_day_off_eff = stats.get_offensive_efficiency(last_thirty_day_games)
+    last_thirty_day_def_eff = stats.get_defensive_efficiency(last_thirty_day_games)
+    last_thirty_day_adj_off_eff, last_thirty_day_adj_def_eff = stats.get_adjusted_efficiencies(last_thirty_day_games, last_thirty_day_off_eff, last_thirty_day_def_eff)
+
+    adj_off_eff, adj_def_eff = last_thirty_day_adj_off_eff.copy(), last_thirty_day_adj_def_eff.copy()
+
+
     paces = stats.get_pace(completed_games)
     wins, losses = stats.get_wins_losses(completed_games)
 
@@ -195,10 +205,10 @@ def main(update=True):
     df_final['expected_wins'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'wins'])
     df_final['expected_losses'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'losses'])
     df_final['expected_record'] = df_final.apply(lambda x: str(round(x['expected_wins'], 1)) + '-' + str(round(x['expected_losses'], 1)), axis=1)
-    df_final['Playoffs'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'playoffs'], 2))
-    df_final['Conference Finals'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'conference_finals'], 2))
-    df_final['Finals'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'finals'], 2))
-    df_final['Champion'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'champion'], 2))
+    df_final['Playoffs'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'playoffs'], 3))
+    df_final['Conference Finals'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'conference_finals'], 3))
+    df_final['Finals'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'finals'], 3))
+    df_final['Champion'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'champion'], 3))
     remaining_sos = stats.get_remaining_sos(df_final, future_games)
     df_final['remaining_sos'] = df_final['team'].apply(lambda x: remaining_sos[x])
 
@@ -217,5 +227,5 @@ def main(update=True):
 
 
 if __name__ == '__main__':
-    main(update=True)
+    main(update=False)
 
