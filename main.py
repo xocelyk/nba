@@ -13,7 +13,7 @@ from sim_season import Season, MarginModel
 '''
 TODO list
  - use historic year data to impute pace data into training data composite
- - fix HCA calculation
+ - fix HCA calculationp
  - impute with boxscore data
  - mark playoff games in training data
 '''
@@ -25,7 +25,8 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
     teams = data[data['year'] == year]['team'].unique()
     playoff_results_over_sims = {team: {} for team in teams}
     season_results_over_sims = {team: {'wins': [], 'losses': []} for team in teams}
-    num_sims = 1000
+    seed_results_over_sims = {team: {'seed': []} for team in teams}
+    num_sims = 10000
     for sim in range(num_sims):
         start_time = time.time()
         print('Sim: ', sim + 1, '/', num_sims)
@@ -51,6 +52,9 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
                 if round not in playoff_results_over_sims[team]:
                     playoff_results_over_sims[team][round] = 0
                 playoff_results_over_sims[team][round] += 1
+        seeds = season.end_season_standings
+        for team, seed in seeds.items():
+            seed_results_over_sims[team]['seed'].append(seed)
 
         playoff_results_over_sims_df = pd.DataFrame(playoff_results_over_sims)
         playoff_results_over_sims_df = playoff_results_over_sims_df.transpose()
@@ -59,11 +63,28 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
         playoff_results_over_sims_df = playoff_results_over_sims_df.fillna(0)
         playoff_results_over_sims_df = playoff_results_over_sims_df.sort_values(by=['champion', 'finals', 'conference_finals', 'second_round', 'playoffs'], ascending=False)
         
+        today_date_string = datetime.datetime.today().strftime('%Y-%m-%d')
+
         expected_record_dict = {}
         for team, season_results in season_results_over_sims.items():
             expected_wins = np.mean(season_results['wins'])
             expected_losses = np.mean(season_results['losses'])
             expected_record_dict[team] = {'wins': expected_wins, 'losses': expected_losses}
+        
+        seed_report_data = []
+        for team, seed_results in seed_results_over_sims.items():
+            seed_results_lst = seed_results['seed']
+            seed_results_lst = [int(seed) for seed in seed_results_lst]
+            row = [team]
+            for i in range(1, 16):
+                row.append(seed_results_lst.count(i) / len(seed_results_lst) if i in seed_results_lst else 0)
+            seed_report_data.append(row)
+        
+        seed_report_df = pd.DataFrame(seed_report_data, columns = ['team', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'])
+        seed_report_df = seed_report_df.set_index('team')
+        seed_report_df = seed_report_df.sort_values(by=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'], ascending=False)
+        print(seed_report_df)
+        seed_report_df.to_csv('data/seed_reports/seed_report_' + today_date_string + '.csv')
         
         sim_report_df = pd.DataFrame(expected_record_dict)
         sim_report_df = sim_report_df.transpose()
@@ -78,7 +99,6 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
         sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']] = sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']].round(2)
         sim_report_df = sim_report_df[['team', 'wins', 'losses', 'champion', 'finals', 'conference_finals', 'second_round', 'playoffs']]
         sim_report_df.set_index('team', inplace=True)
-
         print(sim_report_df)
         sim_time = np.round(time.time() - start_time, 2)
         print('Sim Time: ', sim_time, 's')
@@ -193,6 +213,8 @@ def main(update=True):
 
     # SIMULATE SEASON
     sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR)
+    date_string = datetime.datetime.today().strftime('%Y-%m-%d')
+    sim_report.to_csv('data/sim_results/sim_report_' + date_string + '.csv')
 
     # PREDICTIVE RATINGS
     predictive_ratings = forecast.get_predictive_ratings_win_margin(win_margin_model, year=YEAR)

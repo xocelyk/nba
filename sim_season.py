@@ -43,7 +43,7 @@ class Season:
         self.mean_pace = mean_pace
         self.std_pace = std_pace
         self.update_counter = 0
-        self.update_every = 3
+        self.update_every = 10
         self.em_ratings = utils.get_em_ratings(self.completed_games, max_iter=5)
         # TODO: fix this
         self.future_games['pace'] = [np.random.normal(self.mean_pace, self.std_pace) for _ in range(len(self.future_games))]
@@ -60,6 +60,8 @@ class Season:
         self.future_games['opponent_most_recent_game_date'] = self.future_games.apply(lambda row: self.most_recent_game_date_dict[row['opponent']], axis=1)
         self.future_games['team_days_since_most_recent_game'] = self.future_games.apply(lambda row: (row['date'] - row['team_most_recent_game_date']).days, axis=1)
         self.future_games['opponent_days_since_most_recent_game'] = self.future_games.apply(lambda row: (row['date'] - row['opponent_most_recent_game_date']).days, axis=1)
+        self.end_season_standings = None
+        self.regular_season_win_loss_report = None
 
     def get_most_recent_game_date_dict(self, cap=10):
         """Create a dict of team to days since most recent game."""
@@ -272,20 +274,15 @@ class Season:
 
     def playoffs(self):
         playoff_results = {'playoffs': [], 'second_round': [], 'conference_finals': [], 'finals': [], 'champion': []}
-
-        ec_standings, wc_standings = self.get_playoff_standings(self.get_win_loss_report())
-
-        rank = 1
-        print('Eastern Conference Standings')
+        win_loss_report = self.get_win_loss_report()
+        self.regular_season_win_loss_report = win_loss_report
+        ec_standings, wc_standings = self.get_playoff_standings(win_loss_report)
+        self.end_season_standings = {}
         for idx, row in ec_standings.iterrows():
-            print(f'{rank}. {row["team"]} ({row["wins"]}-{row["losses"]})')
-            rank += 1
-        print()
-        rank = 1
-        print('Western Conference Standings')
+            self.end_season_standings[row['team']] = row['seed']
         for idx, row in wc_standings.iterrows():
-            print(f'{rank}. {row["team"]} ({row["wins"]}-{row["losses"]})')
-            rank += 1
+            self.end_season_standings[row['team']] = row['seed']
+        
     
         self.future_games['playoff_label'] = None
         self.future_games['winner_name'] = None
@@ -305,13 +302,6 @@ class Season:
         assert len(set(east_alive).intersection(set(west_alive))) == 0
         assert len(set(west_alive + east_alive)) == len(west_alive + east_alive)
         playoff_results['playoffs'] = east_alive + west_alive
-        
-        for seed, team in east_seeds.items():
-            print('{}. {} (E)'.format(seed, team))
-        print()
-        for seed, team in west_seeds.items():
-            print('{}. {} (W)'.format(seed, team))
-        print()
 
         # simulate first round
         east_seeds, west_seeds = self.first_round(east_seeds, west_seeds)
@@ -341,6 +331,7 @@ class Season:
         finals = [team1, team2]
         playoff_results['champion'] = [champ]
         print('Champion: ' + champ)
+        print()
         return playoff_results
 
 
@@ -484,7 +475,19 @@ class Season:
         game_6_date = game_5_date + datetime.timedelta(days=3)
         game_7_date = game_6_date + datetime.timedelta(days=3)
 
-        matchups = {'E_1_W_1': [e_1, w_1]}
+        import random
+        # randomize home court advantage
+        if self.regular_season_win_loss_report[e_1][0] > self.regular_season_win_loss_report[w_1][0]:
+            team1, team2 = e_1, w_1
+        elif self.regular_season_win_loss_report[e_1][0] < self.regular_season_win_loss_report[w_1][0]:
+            team1, team2 = w_1, e_1
+        else: # if no higher seed, randomize
+            if random.random() > 0.5:
+                team1, team2 = w_1, e_1
+            else:
+                team1, team2 = e_1, w_1
+        
+        matchups = {'Finals': [team1, team2]}
         
         for label, (team1, team2) in matchups.items():
             self.append_future_game(self.future_games, game_1_date, team1, team2, label)
@@ -499,7 +502,7 @@ class Season:
         for date in sorted([game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]):
             self.simulate_day(date, date + datetime.timedelta(days=3), 1)
         
-        winner = self.get_series_winner('E_1_W_1')
+        winner = self.get_series_winner('Finals')
 
         return winner
     
@@ -510,7 +513,6 @@ class Season:
         # get the team with the most wins
         teams = series.iloc[0][['team', 'opponent']].values.tolist()
         winner = value_counts.index[0]
-        print('{}. {} vs {}. {} ({}. {})'.format(self.seeds[teams[0]], teams[0], self.seeds[teams[1]], teams[1], self.seeds[winner], winner))
         return winner
             
             
