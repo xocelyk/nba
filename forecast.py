@@ -66,23 +66,43 @@ def predict_margin_and_win_prob_this_week_games(games, win_margin_model, win_pro
     
     to_csv_data = pd.DataFrame(to_csv_data, columns=['Date', 'Home', 'Away', 'Predicted Home Margin', 'Predicted Home Win Probability'])
     to_csv_data.to_csv('data/predicted_margins_and_win_probs.csv', index=False)
+    to_csv_data.to_csv('data/predicted_margins_and_win_probs_{}.csv'.format(datetime.date.today()), index=False)
     return games
 
-def get_predictive_ratings_win_margin(model, year):
+def get_predictive_ratings_win_margin(teams, model, year):
 
     '''
     win margin model takes these features:
     ['team_rating', 'opponent_rating', 'team_win_total_future', 'opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', \
     'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating'])
     '''
-    filename = 'data/cumulative_with_cur_year_and_last_year_ratings_2010_2023.csv'
+    filename = 'data/train_data.csv'
+    most_recent_games_dict = {} # team to pandas series of most recent game
+    # most recent game is either the most recently played game OR the next game to be played (if no games have been played yet)
     this_year_games = pd.read_csv(filename)[pd.read_csv(filename)['year'] == year]
-    this_year_games = this_year_games[this_year_games['completed'] == True]
+    this_year_games_completed = this_year_games[this_year_games['completed'] == True]
+    this_year_games_completed.sort_values(by='date', ascending=False, inplace=True)
+    this_year_games_future = this_year_games[this_year_games['completed'] == False]
+    this_year_games_future.sort_values(by='date', ascending=True, inplace=True)
+    for team in teams:
+        team_most_recent_game_df = this_year_games_completed[(this_year_games_completed['team'] == team) | (this_year_games_completed['opponent'] == team)]
+        if len(team_most_recent_game_df) > 0:
+            team_most_recent_game = team_most_recent_game_df.iloc[0]
+            most_recent_games_dict[team] = team_most_recent_game
+        else:
+            continue # no games played yet, so we'll get the next game to be played
+
+    for team in teams:
+        if team not in most_recent_games_dict:
+            team_next_game = this_year_games_future[(this_year_games_future['team'] == team) | (this_year_games_future['opponent'] == team)].iloc[0]
+            most_recent_games_dict[team] = team_next_game
+    
+    this_year_games = pd.DataFrame(most_recent_games_dict.values())
     this_year_games.sort_values(by='date', ascending=False)
-    num_games_into_season = len(this_year_games)
+    num_games_into_season = len(this_year_games_completed)
     this_year_ratings = {}
     last_year_ratings = {}
-    for team in this_year_games['team'].unique():
+    for team in teams:
         # get games where team was either the opponent or the team
         this_year_games_for_team = this_year_games[(this_year_games['team'] == team) | (this_year_games['opponent'] == team)]
         this_year_games_for_team.sort_values(by='date', ascending=False)
@@ -94,6 +114,7 @@ def get_predictive_ratings_win_margin(model, year):
             this_year_ratings[team] = most_recent_game['opponent_rating']
             last_year_ratings[team] = most_recent_game['last_year_opponent_rating']
     
+
     teams = list(this_year_ratings.keys())
     team_predictive_em = {}
     for team in teams:

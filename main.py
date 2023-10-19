@@ -26,7 +26,7 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
     playoff_results_over_sims = {team: {} for team in teams}
     season_results_over_sims = {team: {'wins': [], 'losses': []} for team in teams}
     seed_results_over_sims = {team: {'seed': []} for team in teams}
-    num_sims = 10000
+    num_sims = 100
     for sim in range(num_sims):
         start_time = time.time()
         print('Sim: ', sim + 1, '/', num_sims)
@@ -35,7 +35,7 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
         year_games = data[data['year'] == year]
         completed_year_games = year_games[year_games['completed'] == True]
         future_year_games = year_games[year_games['completed'] == False]
-        season = Season(2023, completed_year_games, future_year_games, margin_model, mean_pace, std_pace)
+        season = Season(2024, completed_year_games, future_year_games, margin_model, mean_pace, std_pace)
         season.simulate_season()
         wins_losses_dict = season.get_win_loss_report()
         wins_dict = {team: wins_losses_dict[team][0] for team in wins_losses_dict}
@@ -137,11 +137,18 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
     return sim_report_df
 
 def main(update=True):
-    YEAR = 2023
+    import pickle
+    YEAR = 2024
     if update:
         names_to_abbr = data_loader.get_team_names(year=YEAR)
+        # save to pickle
+        # with open('data/names_to_abbr_{}.pkl'.format(YEAR), 'wb') as f:
+        #     pickle.dump(names_to_abbr, f)
+        # load from pickle
+        with open('data/names_to_abbr_{}.pkl'.format(YEAR), 'rb') as f:
+            names_to_abbr = pickle.load(f)
         abbrs = list(names_to_abbr.values())
-        games = data_loader.update_data(names_to_abbr)
+        games = data_loader.update_data(names_to_abbr, preload=True)
     else:
         games = pd.read_csv('data/games/year_data_{}.csv'.format(YEAR))
         games.rename(columns={'team_abbr': 'team', 'opponent_abbr': 'opponent'}, inplace=True)
@@ -155,7 +162,7 @@ def main(update=True):
     std_pace = completed_games['pace'].std()
 
     # EM RATINGS
-    em_ratings = utils.get_em_ratings(completed_games, max_iter=100)
+    em_ratings = utils.get_em_ratings(completed_games, names=abbr_to_name.keys(), max_iter=100)
     em_ratings = {k: v for k, v in sorted(em_ratings.items(), key=lambda item: item[1], reverse=True)}
     ratings_lst = []
     for i, (team, rating) in enumerate(em_ratings.items()):
@@ -206,7 +213,8 @@ def main(update=True):
     print(df_final.head(30))
             
     # GET MODELS
-    training_data = data_loader.load_training_data(update=update)
+    # training_data = data_loader.load_training_data(names_to_abbr, update=update)
+    training_data = data_loader.load_training_data(names_to_abbr, update=True)
     win_margin_model, mean_margin_model_resid, std_margin_model_resid = eval.get_win_margin_model(training_data)
     win_prob_model = eval.get_win_probability_model(training_data, win_margin_model)
     forecast.predict_margin_and_win_prob_this_week_games(training_data, win_margin_model, win_prob_model)
@@ -217,7 +225,7 @@ def main(update=True):
     sim_report.to_csv('data/sim_results/sim_report_' + date_string + '.csv')
 
     # PREDICTIVE RATINGS
-    predictive_ratings = forecast.get_predictive_ratings_win_margin(win_margin_model, year=YEAR)
+    predictive_ratings = forecast.get_predictive_ratings_win_margin(abbr_to_name.keys(), win_margin_model, year=YEAR)
     predictive_ratings = predictive_ratings['expected_margin'].to_dict()
 
     # ADD PREDICTIVE RATINGS and SIM RESULTS TO FINAL DF
@@ -226,11 +234,15 @@ def main(update=True):
     df_final['rank'] = [i + 1 for i in range(len(abbrs))]
     df_final['expected_wins'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'wins'])
     df_final['expected_losses'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'losses'])
+    # 2024 correction for midseason tournament
+    df_final['expected_wins'] = df_final['expected_wins'] * 82 / 80
+    df_final['expected_losses'] = df_final['expected_losses'] * 82 / 80
+    
     df_final['expected_record'] = df_final.apply(lambda x: str(round(x['expected_wins'], 1)) + '-' + str(round(x['expected_losses'], 1)), axis=1)
-    df_final['Playoffs'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'playoffs'], 3))
-    df_final['Conference Finals'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'conference_finals'], 3))
-    df_final['Finals'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'finals'], 3))
-    df_final['Champion'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'champion'], 3))
+    df_final['Playoffs'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'playoffs'], 2))
+    df_final['Conference Finals'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'conference_finals'], 2))
+    df_final['Finals'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'finals'], 2))
+    df_final['Champion'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'champion'], 2))
     remaining_sos = stats.get_remaining_sos(df_final, future_games)
     df_final['remaining_sos'] = df_final['team'].apply(lambda x: remaining_sos[x])
 
@@ -244,6 +256,9 @@ def main(update=True):
     df_final['AdjD'] = df_final['AdjD'].apply(lambda x: round(x, 2))
     df_final['Pace'] = df_final['Pace'].apply(lambda x: round(x, 2))
     df_final['RSOS'] = df_final['RSOS'].apply(lambda x: round(x, 2))
+    small_df = False
+    if small_df:
+        df_final = df_final[['Rank', 'Team', 'Record', 'EM Rating', 'Predictive Rating', 'AdjO', 'AdjD', 'Pace']]
     df_final.to_csv('data/all_data_' + str(YEAR) + '.csv', index=False)
     print(df_final.head(30))
 

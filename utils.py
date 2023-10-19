@@ -13,9 +13,15 @@ HCA = 3.13
 def calc_rmse(predictions, targets):
 	return np.sqrt(((predictions - targets) ** 2).mean())
 
-def get_em_ratings(df, cap=30, break_point=1e-10, max_iter=10):
+def get_em_ratings(df, cap=30, names=None, break_point=1e-10, max_iter=10):
     # TODO: make pace/efficiency based
-    ratings = {team: 0 for team in df['team'].unique()}
+    if names is None:
+        ratings = {team: 0 for team in df['team'].unique()}
+    else:
+        ratings = {team: 0 for team in names}
+  
+    if len(df) == 0:
+        return ratings
 
     for _ in range(max_iter):
         prev_ratings = ratings.copy()
@@ -33,16 +39,6 @@ def get_em_ratings(df, cap=30, break_point=1e-10, max_iter=10):
         ratings_temp = {team: np.mean(ratings_temp[team]) for team in ratings_temp.keys()}
         # print data frame of ratings
         ratings = ratings_temp.copy()
-
-
-        # # get l2 distance between ratings
-        # l2_dist = 0
-        # for team, rating in ratings.items():
-        #     l2_dist += (rating - prev_ratings[team]) ** 2
-        # l2_dist = np.sqrt(l2_dist)
-        # print(l2_dist)
-        # if l2_dist < break_point:
-        #     break
     ratings_df = pd.DataFrame.from_dict(ratings_temp, orient='index', columns=['rating'])
     ratings_df = ratings_df.sort_values(by='rating', ascending=False)
     

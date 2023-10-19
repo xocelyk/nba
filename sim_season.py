@@ -8,8 +8,6 @@ import time
 import data_loader
 from random import choice
 
-# need to import adjust_em_ratings
-
 '''
 
 # TODO: update with days since most recent game
@@ -44,7 +42,7 @@ class Season:
         self.std_pace = std_pace
         self.update_counter = 0
         self.update_every = 10
-        self.em_ratings = utils.get_em_ratings(self.completed_games, max_iter=5)
+        self.em_ratings = utils.get_em_ratings(self.completed_games, names=self.teams, max_iter=5)
         # TODO: fix this
         self.future_games['pace'] = [np.random.normal(self.mean_pace, self.std_pace) for _ in range(len(self.future_games))]
         self.completed_games['pace'] = [np.random.normal(self.mean_pace, self.std_pace) for _ in range(len(self.completed_games))]
@@ -56,10 +54,11 @@ class Season:
         self.last_game_stats_dict = None
         self.sim_date_increment = 1
         self.most_recent_game_date_dict = self.get_most_recent_game_date_dict()
+
         self.future_games['team_most_recent_game_date'] = self.future_games.apply(lambda row: self.most_recent_game_date_dict[row['team']], axis=1)
         self.future_games['opponent_most_recent_game_date'] = self.future_games.apply(lambda row: self.most_recent_game_date_dict[row['opponent']], axis=1)
-        self.future_games['team_days_since_most_recent_game'] = self.future_games.apply(lambda row: (row['date'] - row['team_most_recent_game_date']).days, axis=1)
-        self.future_games['opponent_days_since_most_recent_game'] = self.future_games.apply(lambda row: (row['date'] - row['opponent_most_recent_game_date']).days, axis=1)
+        self.future_games['team_days_since_most_recent_game'] = self.future_games.apply(lambda row: 10 if row['team_most_recent_game_date'] is None else (row['date'] - row['team_most_recent_game_date']).days, axis=1)
+        self.future_games['opponent_days_since_most_recent_game'] = self.future_games.apply(lambda row: 10 if row['opponent_most_recent_game_date'] is None else (row['date'] - row['opponent_most_recent_game_date']).days, axis=1)
         self.end_season_standings = None
         self.regular_season_win_loss_report = None
 
@@ -84,7 +83,7 @@ class Season:
         completed_games = self.completed_games.copy()
         res = {}
         completed_games.sort_values(by='date', ascending=True, inplace=True)
-        for team in list(set(completed_games['team'].unique().tolist() + completed_games['opponent'].unique().tolist())):
+        for team in self.teams:
             team_data = completed_games[(completed_games['team'] == team) | (completed_games['opponent'] == team)].sort_values(by='date', ascending=True)
             team_data = utils.duplicate_games(team_data)
             team_data = team_data[team_data['team'] == team]
@@ -181,14 +180,14 @@ class Season:
 
         if self.update_counter is not None:
             if self.update_counter % self.update_every == 0:
-                self.em_ratings = utils.get_em_ratings(self.completed_games, max_iter=5)
+                self.em_ratings = utils.get_em_ratings(self.completed_games, names=self.teams, max_iter=5)
             self.update_counter += 1
 
         self.future_games['team_rating'] = self.future_games['team'].map(self.em_ratings)
         self.future_games['opponent_rating'] = self.future_games['opponent'].map(self.em_ratings)
 
-        self.future_games['team_days_since_most_recent_game'] = self.future_games.apply(lambda row: min(int((row['date'] - self.most_recent_game_date_dict[row['team']]).days), 10), axis=1)
-        self.future_games['opponent_days_since_most_recent_game'] = self.future_games.apply(lambda row: min(int((row['date'] - self.most_recent_game_date_dict[row['opponent']]).days), 10), axis=1)
+        self.future_games['team_days_since_most_recent_game'] = self.future_games.apply(lambda row: 10 if self.most_recent_game_date_dict[row['team']] is None else min(int((row['date'] - self.most_recent_game_date_dict[row['team']]).days), 10), axis=1)
+        self.future_games['opponent_days_since_most_recent_game'] = self.future_games.apply(lambda row: 10 if self.most_recent_game_date_dict[row['opponent']] is None else min(int((row['date'] - self.most_recent_game_date_dict[row['opponent']]).days), 10), axis=1)
 
         # this is necessary for games that we create, e.g. playoff games
         if self.future_games['last_year_team_rating'].isnull().any():
@@ -212,7 +211,7 @@ class Season:
         if games_on_date.empty:
             return
         games_on_date = games_on_date.apply(self.simulate_game, axis=1)
-        self.completed_games = self.completed_games.append(games_on_date)
+        self.completed_games = pd.concat([self.completed_games, games_on_date], axis=0)
         self.future_games = self.future_games[~self.future_games.index.isin(self.completed_games.index)]
         if self.future_games.empty:
             return
@@ -568,7 +567,7 @@ class Season:
         W_P_3_winner = self.completed_games[self.completed_games['playoff_label'] == 'W_P_3']['winner_name'].values[0]
         W_P_3_loser = self.completed_games[self.completed_games['playoff_label'] == 'W_P_3']['opponent'].values[0] if W_P_3_winner == self.completed_games[self.completed_games['playoff_label'] == 'W_P_3']['team'].values[0] else self.completed_games[self.completed_games['playoff_label'] == 'W_P_3']['team'].values[0]
 
-        self.completed_games = self.completed_games.append(self.future_games, ignore_index=True)
+        self.completed_games = pd.concat([self.completed_games, self.future_games], ignore_index=True)
         self.future_games = self.future_games.iloc[0:0]
 
         ec_seeds = {1: e_1, 2: e_2, 3: e_3, 4: e_4, 5: e_5, 6: e_6, 7: E_P_1_winner, 8: E_P_3_winner}
@@ -577,7 +576,7 @@ class Season:
         return ec_seeds, wc_seeds
 
     def append_future_game(self, future_games, date, team, opponent, playoff_label=None):
-        self.future_games = future_games.append({'date': date, 'team': team, 'opponent': opponent, 'year': self.year, 'playoff_label': playoff_label}, ignore_index=True)
+        self.future_games = pd.concat([self.future_games, pd.DataFrame({'date': date, 'team': team, 'opponent': opponent, 'year': self.year, 'playoff_label': playoff_label}, index=[0])], ignore_index=True)
        # new index
        # TODO: this is a hack, fix it
         self.completed_games.index = range(len(self.completed_games))
