@@ -65,8 +65,8 @@ def predict_margin_and_win_prob_this_week_games(games, win_margin_model, win_pro
         print()
     
     to_csv_data = pd.DataFrame(to_csv_data, columns=['Date', 'Home', 'Away', 'Predicted Home Margin', 'Predicted Home Win Probability'])
-    to_csv_data.to_csv('data/predicted_margins_and_win_probs.csv', index=False)
-    to_csv_data.to_csv('data/predicted_margins_and_win_probs_{}.csv'.format(datetime.date.today()), index=False)
+    to_csv_data.to_csv('data/predictions/predicted_margins_and_win_probs.csv', index=False)
+    to_csv_data.to_csv('data/predictions/archive/predicted_margins_and_win_probs_{}.csv'.format(datetime.date.today()), index=False)
     return games
 
 def get_predictive_ratings_win_margin(teams, model, year):

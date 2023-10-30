@@ -9,9 +9,7 @@ import data_loader
 from random import choice
 
 '''
-
 # TODO: update with days since most recent game
-
 This is the simulation flow:
 for each day:
     1. Run the get most recent data function over the completed games and impute future games with that data
@@ -19,7 +17,6 @@ for each day:
     2. Run the simulation over the next block of games
         - Games are blocked by day, so we simulate each day
     3. Add simulated games to completed games and remove simulated games from future games
-
 '''
 
 class MarginModel:
@@ -29,7 +26,7 @@ class MarginModel:
         self.resid_mean = margin_model_resid_mean
 
 class Season:
-    def __init__(self, year, completed_games, future_games, margin_model, mean_pace, std_pace):
+    def __init__(self, year, completed_games, future_games, margin_model, mean_pace, std_pace, sim_date_increment=1):
         self.year = year
         self.completed_games = completed_games
         self.completed_games['winner_name'] = self.completed_games.apply(lambda row: row['team'] if row['margin'] > 0 else row['opponent'], axis=1)
@@ -42,17 +39,18 @@ class Season:
         self.std_pace = std_pace
         self.update_counter = 0
         self.update_every = 10
-        self.em_ratings = utils.get_em_ratings(self.completed_games, names=self.teams, max_iter=5)
-        # TODO: fix this
+        # pace of future games is not determnistic, assume gaussian distribution
+        # also assuming that pace is normally distributed for completed games, have not scraped pace for all past games and now rate limited, so more difficult
         self.future_games['pace'] = [np.random.normal(self.mean_pace, self.std_pace) for _ in range(len(self.future_games))]
         self.completed_games['pace'] = [np.random.normal(self.mean_pace, self.std_pace) for _ in range(len(self.completed_games))]
+        self.em_ratings = utils.get_em_ratings(self.completed_games, names=self.teams)
         self.time = time.time()
         self.win_total_futures = self.get_win_total_futures()
         self.last_year_ratings = self.get_last_year_ratings()
         self.last_n_games_adj_margins = self.init_last_n_games_adj_margins()
         self.team_last_adj_margin_dict = {team: np.mean(self.last_n_games_adj_margins[team][:1]) if len(self.last_n_games_adj_margins[team]) >= 1 else 0 for team in self.teams}
         self.last_game_stats_dict = None
-        self.sim_date_increment = 1
+        self.sim_date_increment = sim_date_increment
         self.most_recent_game_date_dict = self.get_most_recent_game_date_dict()
 
         self.future_games['team_most_recent_game_date'] = self.future_games.apply(lambda row: self.most_recent_game_date_dict[row['team']], axis=1)
@@ -63,7 +61,7 @@ class Season:
         self.regular_season_win_loss_report = None
 
     def get_most_recent_game_date_dict(self, cap=10):
-        """Create a dict of team to days since most recent game."""
+        # Create a dict of team to days since most recent game
         most_recent_game_date_dict= {}
         # Concatenate completed games with future games
         for team in self.teams:
@@ -74,9 +72,7 @@ class Season:
                 team_data = team_data.sort_values(by='date', ascending=False)
                 most_recent_game_date = team_data.iloc[0]['date']
                 most_recent_game_date_dict[team] = most_recent_game_date
-        
         return most_recent_game_date_dict
-
 
     def init_last_n_games_adj_margins(self):
         # earliest games first, most recent games last
@@ -87,7 +83,6 @@ class Season:
             team_data = completed_games[(completed_games['team'] == team) | (completed_games['opponent'] == team)].sort_values(by='date', ascending=True)
             team_data = utils.duplicate_games(team_data)
             team_data = team_data[team_data['team'] == team]
-            team_vals = []
             team_data['team_adj_margin'] = team_data.apply(lambda x: x['margin'] + x['opponent_rating'] - utils.HCA, axis=1)
             if len(team_data) == 0:
                 team_adj_margins = []
@@ -95,8 +90,6 @@ class Season:
                 team_adj_margins = team_data['team_adj_margin'].tolist()
             res[team] = team_adj_margins
         return res
-
-
 
     def get_random_pace(self):
         return np.random.normal(self.mean_pace, self.std_pace)
@@ -126,10 +119,6 @@ class Season:
         return sorted(list(set(self.completed_games['team'].unique().tolist() + self.future_games['team'].unique().tolist())))
 
     def simulate_season(self):
-        '''
-        TODO:
-        - make sure games completed and games future are imputed with all the correct features beforehand
-        '''
         date_increment = self.sim_date_increment
         min_date = self.future_games['date'].min()
         max_date = self.future_games['date'].max()
@@ -153,9 +142,7 @@ class Season:
         return teams_last_games_dict
 
     def update_data(self, games_on_date=None):
-        '''
-        after playing a series of games (e.g. a day), update the ratings for each team
-        '''
+        # After playing a series of games (e.g. a day), update the ratings for each team
         if self.future_games.empty:
             return
         if games_on_date is None:
@@ -180,7 +167,7 @@ class Season:
 
         if self.update_counter is not None:
             if self.update_counter % self.update_every == 0:
-                self.em_ratings = utils.get_em_ratings(self.completed_games, names=self.teams, max_iter=5)
+                self.em_ratings = utils.get_em_ratings(self.completed_games, names=self.teams)
             self.update_counter += 1
 
         self.future_games['team_rating'] = self.future_games['team'].map(self.em_ratings)
@@ -218,7 +205,7 @@ class Season:
         self.update_data(games_on_date=games_on_date)
 
     def simulate_game(self, row):
-        # TODO: add simulations of pace, three point percentage, etc
+        # TODO (possibly): add simulations of pace, three point percentage, etc
         # but make sure stats are not independent of each other (otherwise we will regress to mean, decreasing variance)
         team = row['team']
         opponent = row['opponent']
@@ -282,7 +269,6 @@ class Season:
         for idx, row in wc_standings.iterrows():
             self.end_season_standings[row['team']] = row['seed']
         
-    
         self.future_games['playoff_label'] = None
         self.future_games['winner_name'] = None
 
@@ -327,15 +313,12 @@ class Season:
         
         # simulate finals
         champ = self.finals(team1, team2)
-        finals = [team1, team2]
         playoff_results['champion'] = [champ]
         print('Champion: ' + champ)
         print()
         return playoff_results
 
-
     def first_round(self, east_seeds, west_seeds):
-
         game_1_date = self.get_next_date(day_increment=3)
         game_2_date = game_1_date + datetime.timedelta(days=3)
         game_3_date = game_2_date + datetime.timedelta(days=3)
@@ -423,7 +406,6 @@ class Season:
         w_1 = self.get_series_winner('W_1_4')
         w_2 = self.get_series_winner('W_2_3')
 
-    # TODO: fix this for other rounds too
         if self.seeds[e_1] > self.seeds[e_2]:
             e_1, e_2 = e_2, e_1
         if self.seeds[w_1] > self.seeds[w_2]:
@@ -433,7 +415,6 @@ class Season:
         west_seeds = {1: w_1, 2: w_2}
 
         return east_seeds, west_seeds
-
     
     def conference_finals(self, east_seeds, west_seeds):
         game_1_date = self.get_next_date(day_increment=3)
@@ -502,7 +483,6 @@ class Season:
             self.simulate_day(date, date + datetime.timedelta(days=3), 1)
         
         winner = self.get_series_winner('Finals')
-
         return winner
     
     def get_series_winner(self, series_label):
@@ -510,16 +490,12 @@ class Season:
         assert len(series) == 7
         value_counts = series['winner_name'].value_counts().sort_values(ascending=False)
         # get the team with the most wins
-        teams = series.iloc[0][['team', 'opponent']].values.tolist()
         winner = value_counts.index[0]
         return winner
-            
-            
+                
     def play_in(self, ec_standings, wc_standings):
-    
         [e_1, e_2, e_3, e_4, e_5, e_6, e_7, e_8, e_9, e_10] = ec_standings['team'].values.tolist()[:10]
         [w_1, w_2, w_3, w_4, w_5, w_6, w_7, w_8, w_9, w_10] = wc_standings['team'].values.tolist()[:10]
-
 
         # simulate play in round 1
         playin_round_1_date = self.get_next_date(day_increment=3)
@@ -582,13 +558,9 @@ class Season:
         self.completed_games.index = range(len(self.completed_games))
         self.future_games.index = range(max(self.completed_games.index) + 1, max(self.completed_games.index) + len(self.future_games) + 1)
         
-
-
     def get_next_date(self, day_increment=1):
         return self.future_games['date'].min() if len(self.future_games) > 0 else self.completed_games['date'].max() + datetime.timedelta(days=day_increment)
 
-
-    
     def get_playoff_standings(self, record_by_team):
         '''
         takes the end of season results and returns the playoff seeding
@@ -614,13 +586,11 @@ class Season:
 
 
         # first, sort by wins
-
         # HACK: add some noise to the wins to break ties
         ec_df['new_wins'] = ec_df['wins'] + np.random.normal(0, 0.01, len(ec_df))
         wc_df['new_wins'] = wc_df['wins'] + np.random.normal(0, 0.01, len(wc_df))
         ec_df.sort_values(by='new_wins', ascending=False, inplace=True)
         wc_df.sort_values(by='new_wins', ascending=False, inplace=True)
-
 
         # then, sort by head to head
         # ec_df = self.sort_by_head_to_head(ec_df)
@@ -686,7 +656,6 @@ class Season:
             head_to_head[team] = 0
 
         sim_completed_games = utils.duplicate_games(self.completed_games)
-
         # can do this quicker with apply then sum
         for idx, game in sim_completed_games.iterrows():
             if game['team'] in teams and game['opponent'] in teams:
@@ -700,7 +669,6 @@ class Season:
 
         # sort the teams by head to head record
         df.sort_values(by='head_to_head', ascending=False, inplace=True)
-
         return df
 
     def sort_by_division_leader(self, df):
@@ -714,14 +682,12 @@ class Season:
             # check if teams in division are in the dataframe
             if not set(teams).issubset(set(df.index)):
                 continue
-            
             # get the division leader
             division_df = df.loc[teams]
             max_division_wins = division_df['wins'].max()
             division_leaders = division_df[division_df['wins'] == max_division_wins].index
             for team in division_leaders:
                 df.loc[team, 'division_leader'] = 1
-
         return df
 
     def sort_by_conference_record(self, conf_df):
@@ -744,7 +710,6 @@ class Season:
 
     def sort_by_conference_eligible_record(self, conf_df):
         # take the top ten teams in the conference in terms of number of wins
-        
         ten_best_win_counts = sorted(conf_df['wins'].unique(), reverse=True)[:10]
         ten_best_teams = [team for team in conf_df.index if conf_df.loc[team, 'wins'] in ten_best_win_counts]
         ten_best_df = conf_df.loc[ten_best_teams]
@@ -761,4 +726,126 @@ class Season:
         ten_best_df.sort_values(by='conference_eligible_record', ascending=False, inplace=True)
 
         return ten_best_df
+    
+def playoff_results_over_sims_dict_to_df(playoff_results_over_sims):
+    playoff_results_over_sims_df = pd.DataFrame(playoff_results_over_sims).transpose().reset_index()
+    playoff_results_over_sims_df = playoff_results_over_sims_df.rename(columns={'index': 'team'})
+    playoff_results_over_sims_df = playoff_results_over_sims_df.fillna(0)
+    playoff_results_over_sims_df = playoff_results_over_sims_df.sort_values(by=['champion', 'finals', 'conference_finals', 'second_round', 'playoffs'], ascending=False)
+    return playoff_results_over_sims_df
+
+def get_sim_report(season_results_over_sims, playoff_results_over_sims, num_sims):
+    for team, playoff_results in playoff_results_over_sims.items():
+        # convert to percentage
+        for round, num_times in playoff_results.items():
+            playoff_results_over_sims[team][round] = num_times / num_sims
+    
+    # convert to dataframe
+    playoff_results_over_sims_df = pd.DataFrame(playoff_results_over_sims)
+    playoff_results_over_sims_df = playoff_results_over_sims_df.transpose()
+    playoff_results_over_sims_df = playoff_results_over_sims_df.reset_index()
+    playoff_results_over_sims_df = playoff_results_over_sims_df.rename(columns={'index': 'team'})
+    playoff_results_over_sims_df = playoff_results_over_sims_df.fillna(0)
+    playoff_results_over_sims_df = playoff_results_over_sims_df.sort_values(by=['champion', 'finals', 'conference_finals', 'second_round', 'playoffs'], ascending=False)
+    
+    expected_record_dict = {}
+    for team, season_results in season_results_over_sims.items():
+        expected_wins = np.mean(season_results['wins'])
+        expected_losses = np.mean(season_results['losses'])
+        expected_record_dict[team] = {'wins': expected_wins, 'losses': expected_losses}
+    
+    sim_report_df = pd.DataFrame(expected_record_dict)
+    sim_report_df = sim_report_df.transpose()
+    sim_report_df = sim_report_df.reset_index()
+    sim_report_df = sim_report_df.rename(columns={'index': 'team'})
+    sim_report_df = sim_report_df.sort_values(by=['wins'], ascending=False)
+    
+    # merge with playoff results
+    sim_report_df = sim_report_df.merge(playoff_results_over_sims_df, on='team')
+    sim_report_df = sim_report_df.sort_values(by=['champion', 'finals', 'conference_finals', 'second_round', 'playoffs'], ascending=False)
+    sim_report_df = sim_report_df[['team', 'wins', 'losses', 'champion', 'finals', 'conference_finals', 'second_round', 'playoffs']]
+    sim_report_df.set_index('team', inplace=True)
+    return sim_report_df
+
+
+def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_resid_std, mean_pace, std_pace, year, verbose=True):
+    teams = data[data['year'] == year]['team'].unique()
+    data['date'] = pd.to_datetime(data['date']).dt.date
+    playoff_results_over_sims = {team: {} for team in teams}
+    season_results_over_sims = {team: {'wins': [], 'losses': []} for team in teams}
+    seed_results_over_sims = {team: {'seed': []} for team in teams}
+    margin_model = MarginModel(win_margin_model, margin_model_resid_mean, margin_model_resid_std)
+    year_games = data[data['year'] == year]
+    completed_year_games = year_games[year_games['completed'] == True]
+    future_year_games = year_games[year_games['completed'] == False]
+    
+    num_sims = 1000
+    for sim in range(num_sims):
+        start_time = time.time()
+        print('Sim: ', sim + 1, '/', num_sims)
+        season = Season(2024, completed_year_games, future_year_games, margin_model, mean_pace, std_pace)
+        season.simulate_season()
+        wins_losses_dict = season.get_win_loss_report()
+        wins_dict = {team: wins_losses_dict[team][0] for team in wins_losses_dict}
+        losses_dict = {team: wins_losses_dict[team][1] for team in wins_losses_dict}
+        for team, wins in wins_dict.items():
+            season_results_over_sims[team]['wins'].append(wins)
+        for team, losses in losses_dict.items():
+            season_results_over_sims[team]['losses'].append(losses)
+        playoff_results = season.playoffs()
+        for round, team_list in playoff_results.items():
+            for team in team_list:
+                if team not in playoff_results_over_sims:
+                    playoff_results_over_sims[team] = {}
+                if round not in playoff_results_over_sims[team]:
+                    playoff_results_over_sims[team][round] = 0
+                playoff_results_over_sims[team][round] += 1
+        seeds = season.end_season_standings
+        for team, seed in seeds.items():
+            seed_results_over_sims[team]['seed'].append(seed)
+
+        playoff_results_over_sims_df = playoff_results_over_sims_dict_to_df(playoff_results_over_sims)
+        today_date_string = datetime.datetime.today().strftime('%Y-%m-%d')
+
+        expected_record_dict = {}
+        for team, season_results in season_results_over_sims.items():
+            expected_wins = np.mean(season_results['wins'])
+            expected_losses = np.mean(season_results['losses'])
+            expected_record_dict[team] = {'wins': expected_wins, 'losses': expected_losses}
+        
+        seed_report_data = []
+        for team, seed_results in seed_results_over_sims.items():
+            seed_results_lst = seed_results['seed']
+            seed_results_lst = [int(seed) for seed in seed_results_lst]
+            row = [team]
+            for i in range(1, 16):
+                row.append(seed_results_lst.count(i) / len(seed_results_lst) if i in seed_results_lst else 0)
+            seed_report_data.append(row)
+        
+        seed_report_df = pd.DataFrame(seed_report_data, columns = ['team', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'])
+        seed_report_df = seed_report_df.set_index('team')
+        seed_report_df = seed_report_df.sort_values(by=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'], ascending=False)
+        seed_report_df.to_csv('data/seed_reports/seed_report_' + today_date_string + '.csv')
+
+        if verbose:
+            sim_report_df = pd.DataFrame(expected_record_dict)
+            sim_report_df = sim_report_df.transpose()
+            sim_report_df = sim_report_df.reset_index()
+            sim_report_df = sim_report_df.rename(columns={'index': 'team'})
+            sim_report_df = sim_report_df.sort_values(by=['wins'], ascending=False)
+            # merge with playoff results
+            sim_report_df = sim_report_df.merge(playoff_results_over_sims_df, on='team')
+            sim_report_df = sim_report_df.sort_values(by=['champion', 'finals', 'conference_finals', 'second_round', 'playoffs'], ascending=False)
+            sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']] = sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']] / (sim + 1)
+            sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']] = sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']].round(2)
+            sim_report_df = sim_report_df[['team', 'wins', 'losses', 'champion', 'finals', 'conference_finals', 'second_round', 'playoffs']]
+            sim_report_df.set_index('team', inplace=True)
+            sim_report_df[['wins', 'losses']] = sim_report_df[['wins', 'losses']].round(1)
+            print(sim_report_df)
+            sim_time = np.round(time.time() - start_time, 2)
+            print('Sim Time: ', sim_time, 's')
+        
+    sim_report_df = get_sim_report(season_results_over_sims, playoff_results_over_sims, num_sims)
+
+    return sim_report_df
 

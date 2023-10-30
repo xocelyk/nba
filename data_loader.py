@@ -20,7 +20,6 @@ def get_team_names(year=2024):
         game = game.dataframe
         opponent_name = game['opponent_name'].iloc[0]
         if opponent_name not in names_to_abbr:
-            print(opponent_name)
             names_to_abbr[opponent_name] = game['opponent_abbr'].iloc[0]
     return names_to_abbr
 
@@ -80,8 +79,6 @@ def update_data(names_to_abbr, year=2024, preload=True):
                 continue
             row.append(year)
             data.append(row)
-            if row[-1]:
-                print(data[-1])
             boxscore_tracked.append(game.boxscore_index)
 
     # create dataframe
@@ -114,7 +111,7 @@ def load_regular_season_win_totals_futures():
                 res[team][header[i]] = float(row[i]) if row[i] != '' else np.nan
     return res
 
-def load_training_data(names_to_abbr, update=True, reset=False, start_year=2010, stop_year=2024):
+def load_training_data(names, update=True, reset=False, start_year=2010, stop_year=2024):
     '''
     Loads the data from start_year to stop_year and returns a dataframe with the data
     Data includes each game with data, team rating, opp rating, team last year rating, opp last year rating, and num games into season
@@ -145,15 +142,19 @@ def load_training_data(names_to_abbr, update=True, reset=False, start_year=2010,
             print()
             print('Year:', year)
             year_data = pd.read_csv(f'data/games/year_data_{year}.csv')
+            # TODO: sync up formatting
             if 'team_abbr' in year_data.columns:
                 year_data.rename(columns={'team_abbr': 'team', 'opponent_abbr': 'opponent'}, inplace=True)
-            year_data['date'] = pd.to_datetime(year_data['date'])
+            year_data['date'] = pd.to_datetime(year_data['date'], format='mixed')
             end_year_ratings_dct[year] = {}
             abbrs = list(set(year_data['team']).union(set(year_data['opponent'])))
-            names = list(set(year_data['team_name']).union(set(year_data['opponent_name'])))
             year_data['margin'] = year_data['team_score'] - year_data['opponent_score']
             games_to_date = year_data[year_data['completed'] == True]
-            year_ratings = utils.get_em_ratings(games_to_date[games_to_date['completed'] == True])
+            if year == stop_year:
+                year_names = names
+            else:
+                year_names = None
+            year_ratings = utils.get_em_ratings(games_to_date[games_to_date['completed'] == True], names=year_names)
             for team, rating in year_ratings.items():
                 end_year_ratings_dct[year][team] = rating
             if first_year:
@@ -188,45 +189,41 @@ def load_training_data(names_to_abbr, update=True, reset=False, start_year=2010,
 
                     year_data_temp = []
                     for i, date in enumerate(sorted(year_data['date'].unique())):
-                        print('Progress:', i, '/', len(year_data['date'].unique()), end='\r')
+                        print('Progress:', i+1, '/', len(year_data['date'].unique()), end='\r')
                         games_to_date = year_data[year_data['date'] < date]
                         games_on_date = year_data[year_data['date'] == date]
-                        num_games_into_season = games_on_date.iloc[0]['num_games_into_season']
                         if len(games_to_date[games_to_date['completed'] == True]) > 100:
                             cur_ratings = utils.get_em_ratings(games_to_date[games_to_date['completed'] == True])
                         else:
-                            # TODO: I shouldn't have to pass names_to_abbr here
                             # If not enough data to get EM ratings for every team, ratings default to 0
                             cur_ratings = {team: 0 for team in end_year_ratings_dct[year-1].keys()}
 
                         games_on_date['team_rating'] = games_on_date.apply(lambda x: cur_ratings[x['team']], axis=1)
                         games_on_date['opp_rating'] = games_on_date.apply(lambda x: cur_ratings[x['opponent']], axis=1)
-                        games_on_date = games_on_date[['team', 'opponent', 'team_rating', 'opp_rating', 'last_year_team_rating', 'last_year_opp_rating', 'margin', 'num_games_into_season', 'date', 'year']]
+                        games_on_date = games_on_date[['team', 'opponent', 'team_rating', 'opp_rating', 'last_year_team_rating', 'last_year_opp_rating', 'margin', 'pace', 'num_games_into_season', 'date', 'year']]
                         year_data_temp += games_on_date.values.tolist()
                     
-                    year_data = pd.DataFrame(year_data_temp, columns=['team', 'opponent', 'team_rating', 'opponent_rating', 'last_year_team_rating', 'last_year_opponent_rating', 'margin', 'num_games_into_season', 'date', 'year'])
-                    # year_data = utils.last_n_games(year_data, 20)
+                    year_data = pd.DataFrame(year_data_temp, columns=['team', 'opponent', 'team_rating', 'opponent_rating', 'last_year_team_rating', 'last_year_opponent_rating', 'margin', 'pace', 'num_games_into_season', 'date', 'year'])
                     year_data = utils.last_n_games(year_data, 10)
                     year_data = utils.last_n_games(year_data, 5)
                     year_data = utils.last_n_games(year_data, 3)
-                    # year_data = utils.last_n_games(year_data, 2)
                     year_data = utils.last_n_games(year_data, 1)
 
                     year_data['completed'] = year_data['margin'].apply(lambda x: True if not np.isnan(x) else False)
                     year_data['date'] = pd.to_datetime(year_data['date']).dt.date
                     year_data['team_win_total_future'] = year_data.apply(lambda x: win_totals_futures[str(x['year'])][x['team']], axis=1).astype(float)
                     year_data['opponent_win_total_future'] = year_data.apply(lambda x: win_totals_futures[str(x['year'])][x['opponent']], axis=1).astype(float)
-                    all_data += year_data.values.tolist()
+                    # year_data to list of dictionaries
+                    year_data = year_data.to_dict('records')
+                    all_data += year_data
 
                 else:
                     year_data = all_data_archive[all_data_archive['year'] == year]
-                    year_data = year_data.values.tolist()
+                    year_data = year_data.to_dict('records')
                     all_data += year_data
 
-        # completed is true if margin is not nan
-        print(all_data[:5])
-        all_data = pd.DataFrame(all_data, columns=['team', 'opponent', 'team_rating', 'opponent_rating', 'last_year_team_rating', 'last_year_opponent_rating', 'margin', 'num_games_into_season', 'date', 'year', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'completed', 'team_win_total_future', 'opponent_win_total_future', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game'])
-        all_data.drop([col for col in all_data.columns if col.startswith('Unnamed')], axis=1, inplace=True)
+        # all_data = pd.DataFrame(all_data, columns=['team', 'opponent', 'team_rating', 'opponent_rating', 'last_year_team_rating', 'last_year_opponent_rating', 'margin','pace', 'num_games_into_season', 'date', 'year', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'completed', 'team_win_total_future', 'opponent_win_total_future', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game'])
+        all_data = pd.DataFrame(all_data)
         all_data.to_csv(f'data/train_data.csv', index=False)
     else:
         all_data = pd.read_csv(f'data/train_data.csv')
@@ -235,11 +232,8 @@ def load_training_data(names_to_abbr, update=True, reset=False, start_year=2010,
         all_data['opponent_win_total_future'] = all_data.apply(lambda x: win_totals_futures[str(x['year'])][x['opponent']], axis=1).astype(float)
         all_data.to_csv(f'data/train_data.csv')
     
-    # # start test
-    
     all_data = add_days_since_most_recent_game(all_data)
     all_data.to_csv(f'data/train_data.csv', index=False)
-    # # end test
     return all_data
 
 def add_days_since_most_recent_game(df, cap=10):
