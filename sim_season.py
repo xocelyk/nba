@@ -767,8 +767,19 @@ def get_sim_report(season_results_over_sims, playoff_results_over_sims, num_sims
     sim_report_df.set_index('team', inplace=True)
     return sim_report_df
 
+def run_single_simulation(completed_year_games, future_year_games, margin_model, mean_pace, std_pace):
+    season = Season(2024, completed_year_games, future_year_games, margin_model, mean_pace, std_pace)
+    season.simulate_season()
+    wins_losses_dict = season.get_win_loss_report()
+    wins_dict = {team: wins_losses_dict[team][0] for team in wins_losses_dict}
+    losses_dict = {team: wins_losses_dict[team][1] for team in wins_losses_dict}
+    playoff_results = season.playoffs()
+    seeds = season.end_season_standings
+    result_dict = {'wins_dict': wins_dict, 'losses_dict': losses_dict, 'playoff_results': playoff_results, 'seeds': seeds}
+    return result_dict
 
-def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_resid_std, mean_pace, std_pace, year, verbose=True):
+def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_resid_std, mean_pace, std_pace, year, num_sims=1000):
+    import multiprocessing
     teams = data[data['year'] == year]['team'].unique()
     data['date'] = pd.to_datetime(data['date']).dt.date
     playoff_results_over_sims = {team: {} for team in teams}
@@ -779,20 +790,23 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
     completed_year_games = year_games[year_games['completed'] == True]
     future_year_games = year_games[year_games['completed'] == False]
     
-    num_sims = 1000
-    for sim in range(num_sims):
-        start_time = time.time()
-        print('Sim: ', sim + 1, '/', num_sims)
-        season = Season(2024, completed_year_games, future_year_games, margin_model, mean_pace, std_pace)
-        season.simulate_season()
-        wins_losses_dict = season.get_win_loss_report()
-        wins_dict = {team: wins_losses_dict[team][0] for team in wins_losses_dict}
-        losses_dict = {team: wins_losses_dict[team][1] for team in wins_losses_dict}
-        for team, wins in wins_dict.items():
-            season_results_over_sims[team]['wins'].append(wins)
-        for team, losses in losses_dict.items():
-            season_results_over_sims[team]['losses'].append(losses)
-        playoff_results = season.playoffs()
+    start_time = time.time()
+    num_cores = multiprocessing.cpu_count()
+    print('Running {} simulations in parallel on {} cores'.format(num_sims, num_cores))
+    pool = multiprocessing.Pool(num_cores)
+    results = [pool.apply_async(run_single_simulation, args=(completed_year_games, future_year_games, margin_model, mean_pace, std_pace)) for i in range(num_sims)]
+    output = [p.get() for p in results]
+    pool.close()
+    stop_time = time.time()
+    print('Finished {} simulations in {} seconds'.format(num_sims, round(stop_time - start_time, 2)))
+    print('Time per simulation: {} seconds'.format(round((stop_time - start_time) / num_sims, 2)))
+    print()
+
+    playoff_results_over_sims = {team: {} for team in teams}
+    season_results_over_sims = {team: {'wins': [], 'losses': []} for team in teams}
+    seed_results_over_sims = {team: {'seed': []} for team in teams}
+    for result in output:
+        wins_dict, losses_dict, playoff_results, seeds = result['wins_dict'], result['losses_dict'], result['playoff_results'], result['seeds']
         for round, team_list in playoff_results.items():
             for team in team_list:
                 if team not in playoff_results_over_sims:
@@ -800,52 +814,15 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
                 if round not in playoff_results_over_sims[team]:
                     playoff_results_over_sims[team][round] = 0
                 playoff_results_over_sims[team][round] += 1
-        seeds = season.end_season_standings
+                
         for team, seed in seeds.items():
             seed_results_over_sims[team]['seed'].append(seed)
 
-        playoff_results_over_sims_df = playoff_results_over_sims_dict_to_df(playoff_results_over_sims)
-        today_date_string = datetime.datetime.today().strftime('%Y-%m-%d')
+        for team, wins in wins_dict.items():
+            season_results_over_sims[team]['wins'].append(wins)
+        for team, losses in losses_dict.items():
+            season_results_over_sims[team]['losses'].append(losses)
 
-        expected_record_dict = {}
-        for team, season_results in season_results_over_sims.items():
-            expected_wins = np.mean(season_results['wins'])
-            expected_losses = np.mean(season_results['losses'])
-            expected_record_dict[team] = {'wins': expected_wins, 'losses': expected_losses}
-        
-        seed_report_data = []
-        for team, seed_results in seed_results_over_sims.items():
-            seed_results_lst = seed_results['seed']
-            seed_results_lst = [int(seed) for seed in seed_results_lst]
-            row = [team]
-            for i in range(1, 16):
-                row.append(seed_results_lst.count(i) / len(seed_results_lst) if i in seed_results_lst else 0)
-            seed_report_data.append(row)
-        
-        seed_report_df = pd.DataFrame(seed_report_data, columns = ['team', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'])
-        seed_report_df = seed_report_df.set_index('team')
-        seed_report_df = seed_report_df.sort_values(by=['1', '2', '3', '4', '5', '6', '7', '8', '9', '10', '11', '12', '13', '14', '15'], ascending=False)
-        seed_report_df.to_csv('data/seed_reports/seed_report_' + today_date_string + '.csv')
-
-        if verbose:
-            sim_report_df = pd.DataFrame(expected_record_dict)
-            sim_report_df = sim_report_df.transpose()
-            sim_report_df = sim_report_df.reset_index()
-            sim_report_df = sim_report_df.rename(columns={'index': 'team'})
-            sim_report_df = sim_report_df.sort_values(by=['wins'], ascending=False)
-            # merge with playoff results
-            sim_report_df = sim_report_df.merge(playoff_results_over_sims_df, on='team')
-            sim_report_df = sim_report_df.sort_values(by=['champion', 'finals', 'conference_finals', 'second_round', 'playoffs'], ascending=False)
-            sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']] = sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']] / (sim + 1)
-            sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']] = sim_report_df[['champion', 'finals', 'conference_finals', 'second_round', 'playoffs']].round(2)
-            sim_report_df = sim_report_df[['team', 'wins', 'losses', 'champion', 'finals', 'conference_finals', 'second_round', 'playoffs']]
-            sim_report_df.set_index('team', inplace=True)
-            sim_report_df[['wins', 'losses']] = sim_report_df[['wins', 'losses']].round(1)
-            print(sim_report_df)
-            sim_time = np.round(time.time() - start_time, 2)
-            print('Sim Time: ', sim_time, 's')
-        
     sim_report_df = get_sim_report(season_results_over_sims, playoff_results_over_sims, num_sims)
-
     return sim_report_df
 
