@@ -97,13 +97,13 @@ def main(update=True, save_names=False):
     print(df_final.head(30))
     
     # GET MODELS
-    training_data = data_loader.load_training_data(abbrs, update=True, reset=False)
+    training_data = data_loader.load_training_data(abbrs, update=True, reset=True)
     win_margin_model, mean_margin_model_resid, std_margin_model_resid = eval.get_win_margin_model(training_data)
     win_prob_model = eval.get_win_probability_model(training_data, win_margin_model)
     forecast.predict_margin_and_win_prob_this_week_games(training_data, win_margin_model, win_prob_model)
 
     # SIMULATE SEASON
-    sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR)
+    sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR, num_sims=10)
     date_string = datetime.datetime.today().strftime('%Y-%m-%d')
     sim_report.to_csv('data/sim_results/sim_report_' + date_string + '.csv')
 
@@ -147,5 +147,5 @@ def main(update=True, save_names=False):
 
 
 if __name__ == '__main__':
-    main(update=False)
+    main(update=True)
 

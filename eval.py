@@ -35,9 +35,12 @@ def get_win_probability_model_heavy(games):
     model.fit(X, y)
     return model
 
-def get_win_margin_model(games):
+def get_win_margin_model(games, features=None):
     games = games[games['completed'] == True]
-    x_features = env.x_features
+    if not features:
+        x_features = env.x_features
+    else:
+        x_features = features
     params = env.win_margin_model_params
     model = XGBRegressor(**params)
     train_df, test_df = train_test_split(games, test_size=0.2, random_state=41)    
@@ -57,6 +60,11 @@ def get_win_margin_model(games):
     # print('Win Margin Model MAE:')
     # print(np.mean(np.abs(preds - y_test)))
     # print()
+
+    # save model to pickle
+    import pickle
+    filename = 'win_margin_model_heavy.pkl'
+    pickle.dump(model, open(filename, 'wb'))
 
     def prediction_interval_stdev(model, x_test, y_test):
         preds = model.predict(x_test)

@@ -139,22 +139,28 @@ def load_training_data(names, update=True, reset=False, start_year=2010, stop_ye
         end_year_ratings_dct = {}
         first_year = True
         for year in range(start_year, stop_year+1):
-            print()
-            print('Year:', year)
             year_data = pd.read_csv(f'data/games/year_data_{year}.csv')
-            # TODO: sync up formatting
-            if 'team_abbr' in year_data.columns:
+            year_data = year_data.sort_values('date')
+            if 'team_abbr' in year_data.columns and 'team' not in year_data.columns:
+                year_data['team'] = year_data['team_abbr']
+                year_data['opponent'] = year_data['opponent_abbr']
+            year_data['num_games_into_season'] = range(1, len(year_data) + 1)
+            year_data = year_data[year_data['year'] == year]
+            if 'team_abbr' in year_data.columns and 'team' not in year_data.columns:
                 year_data.rename(columns={'team_abbr': 'team', 'opponent_abbr': 'opponent'}, inplace=True)
             year_data['date'] = pd.to_datetime(year_data['date'], format='mixed')
             end_year_ratings_dct[year] = {}
             abbrs = list(set(year_data['team']).union(set(year_data['opponent'])))
-            year_data['margin'] = year_data['team_score'] - year_data['opponent_score']
             games_to_date = year_data[year_data['completed'] == True]
             if year == stop_year:
                 year_names = names
             else:
                 year_names = None
             year_ratings = utils.get_em_ratings(games_to_date[games_to_date['completed'] == True], names=year_names)
+            print(year)
+            print('Year Ratings:', sorted(year_ratings.items(), key=lambda x: x[1], reverse=True))
+            print()
+            print()
             for team, rating in year_ratings.items():
                 end_year_ratings_dct[year][team] = rating
             if first_year:

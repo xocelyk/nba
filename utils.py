@@ -8,24 +8,29 @@ x_features = 'team', 'opponent', 'team_rating', 'opponent_rating', 'last_year_te
 
 # copying from Sagarin 1/25/23
 MEAN_PACE = 100
-HCA = 3.13 / MEAN_PACE
+HCA = 3.13
 
 def calc_rmse(predictions, targets):
 	return np.sqrt(((predictions - targets) ** 2).mean())
 
-def sgd_ratings(games, teams_dict, margin_fn=lambda x:x, lr=.1, epochs=10):
+def sgd_ratings(games, teams_dict, margin_fn=lambda x:x, lr=.1, epochs=100):
+    games = np.array(games)
     ratings = np.zeros(30)
     for _ in range(epochs):
-        for x, y in games:
-            home = teams_dict[x[0]]
-            away = teams_dict[x[1]]
-            y_pred = margin_fn(ratings[home] - ratings[away] + HCA)
+        diff = [[] for _ in range(30)]
+        for row in games:
+            home, away, y = teams_dict[row[0]], teams_dict[row[1]], margin_fn(row[2])
+            y_pred = ratings[home] - ratings[away] + HCA
             err = y - y_pred
-            ratings[home] += lr * margin_fn(err)
-            ratings[away] -= lr * margin_fn(err)
+            diff[home].append(err)
+            diff[away].append(-err)
+        mean_diff = []
+        for i in range(30):
+            mean_diff.append(np.mean(diff[i]))
+            ratings[i] += lr * mean_diff[i]
     return ratings
 
-def get_em_ratings(df, cap=30, names=None):
+def get_em_ratings(df, cap=20, names=None, epochs=100):
     if names is None:
         teams_dict = {team: i for i, team in enumerate(df['team'].unique())}
     else:
@@ -34,13 +39,10 @@ def get_em_ratings(df, cap=30, names=None):
     if len(df) == 0:
         return ratings
     
-    X = np.array(df[['team', 'opponent']])
-    y = np.array(df['margin']) / df['pace']
-    games = zip(X, y)
-    margin_fn = lambda margin: np.clip(margin, -cap/MEAN_PACE, cap/MEAN_PACE)
-    ratings = sgd_ratings(games, teams_dict, margin_fn=margin_fn)
-    # scale ratings up to average margin of victory over 100 possessions
-    ratings = {team: MEAN_PACE * ratings[teams_dict[team]] for team in teams_dict.keys()}
+    games = df[['team', 'opponent', 'margin']]
+    margin_fn = lambda margin: np.clip(margin, -cap, cap)
+    ratings = sgd_ratings(games, teams_dict, margin_fn=margin_fn, epochs=epochs)
+    ratings = {team: ratings[teams_dict[team]] for team in teams_dict.keys()}
     return ratings
 
 def get_adjacency_matrix(df):
@@ -114,8 +116,8 @@ def last_n_games(year_data, n):
     for team in list(set(year_data['team'].unique().tolist() + year_data['opponent'].unique().tolist())):
         # team data is where team is team or opponent is team
         team_data = year_data[(year_data['team'] == team) | (year_data['opponent'] == team)]
-        # adj_margin = margin + opp_rating - HCA if team == team else margin + team_rating + HCA
-        team_data['team_adj_margin'] = team_data.apply(lambda x: x['margin'] + x['opponent_rating'] - HCA if x['team'] == team else x['margin'] + x['team_rating'] + HCA, axis=1)
+        # adj_margin = margin + opp_rating - HCA if team == team else -margin + team_rating + HCA
+        team_data['team_adj_margin'] = team_data.apply(lambda x: x['margin'] + x['opponent_rating'] - HCA if x['team'] == team else -x['margin'] + x['team_rating'] + HCA, axis=1)
         team_data['last_{}_rating'.format(n)] = team_data['team_adj_margin'].rolling(n, closed='left').mean()
         # fillna with 0
         team_data['last_{}_rating'.format(n)] = team_data['last_{}_rating'.format(n)].fillna(0)
