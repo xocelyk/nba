@@ -1,0 +1,31 @@
+Rank,Team,Record,EM Rating,Predictive Rating,AdjO,AdjD,Pace
+1,Denver Nuggets,68-33,4.0,5.69,8.76,7.58,96.79
+2,Boston Celtics,68-34,5.62,4.77,2.81,-0.21,97.12
+3,Los Angeles Lakers,52-47,0.96,4.04,9.09,-3.06,100.18
+4,Philadelphia 76ers,61-32,3.94,3.23,-21.91,-5.41,95.39
+5,Miami Heat,58-48,0.93,3.22,1.24,1.1,95.16
+6,Los Angeles Clippers,45-42,-0.14,2.83,0.0,-0.0,97.3
+7,Memphis Grizzlies,53-35,2.82,2.58,0.0,-0.0,100.23
+8,Cleveland Cavaliers,52-35,4.58,2.57,0.0,-0.0,94.48
+9,New Orleans Pelicans,42-41,1.17,2.27,0.0,-0.0,98.36
+10,Phoenix Suns,51-42,1.59,1.9,0.0,-0.0,97.41
+11,Sacramento Kings,51-38,1.8,1.74,0.0,-0.0,100.0
+12,Milwaukee Bucks,59-28,3.12,1.72,0.0,-0.0,100.07
+13,New York Knicks,53-40,2.79,1.43,0.0,-0.0,95.69
+14,Toronto Raptors,41-42,1.2,1.37,0.0,-0.0,96.47
+15,Brooklyn Nets,45-41,0.57,1.2,0.0,-0.0,97.13
+16,Chicago Bulls,41-43,1.04,0.98,0.0,-0.0,97.71
+17,Golden State Warriors,50-45,1.39,0.89,0.0,-0.0,100.86
+18,Dallas Mavericks,38-44,-0.38,0.71,0.0,-0.0,95.91
+19,Atlanta Hawks,44-45,0.31,0.53,0.0,-0.0,100.01
+20,Minnesota Timberwolves,44-45,-0.32,0.5,0.0,-0.0,99.97
+21,Washington Wizards,35-47,-1.12,-0.4,0.0,-0.0,97.96
+22,Oklahoma City Thunder,41-43,0.56,-0.55,0.0,-0.0,100.39
+23,Utah Jazz,37-45,-1.17,-1.61,0.0,-0.0,100.0
+24,Indiana Pacers,35-47,-3.08,-2.37,0.0,-0.0,100.25
+25,Charlotte Hornets,27-55,-5.95,-3.99,0.0,-0.0,100.28
+26,Orlando Magic,34-48,-2.57,-4.26,0.0,-0.0,98.64
+27,San Antonio Spurs,22-60,-9.38,-4.78,0.0,-0.0,101.01
+28,Detroit Pistons,17-65,-7.92,-5.96,0.0,-0.0,98.43
+29,Houston Rockets,22-60,-7.66,-7.7,0.0,-0.0,98.37
+30,Portland Trail Blazers,33-49,-3.72,-12.55,0.0,-0.0,97.81
