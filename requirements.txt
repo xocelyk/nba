@@ -182,9 +182,6 @@ torch-tb-profiler==0.4.1
 tornado==6.2
 tqdm==4.65.0
 traitlets==5.9.0
-transformers @ git+https://github.com/huggingface/transformers@1689aea73346816b936b84932e12b774974e61a6
-# Editable install with no version control (tree-of-thoughts-llm==0.1.0)
--e /Users/kylecox/Documents/ws/prediction-poker/src/tree-of-thoughts-llm
 tweepy==4.12.1
 typing_extensions==4.4.0
 tzdata==2023.3
