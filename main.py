@@ -54,7 +54,7 @@ def main(update=True, save_names=False):
     for i, (team, rating) in enumerate(em_ratings.items()):
         ratings_lst.append([i + 1, team, round(rating, 2)])
     em_ratings_df = pd.DataFrame(ratings_lst, columns=['rank', 'team', 'rating'])
-    # em_ratings_df.to_csv('data/ratings_' + str(YEAR) + '.csv')
+    em_ratings_df.to_csv('data/em_ratings_' + str(YEAR) + '.csv')
     
     # INITIALIZE DATAFRAME
     df_final = pd.DataFrame(index=abbrs)
@@ -100,13 +100,13 @@ def main(update=True, save_names=False):
     training_data = data_loader.load_training_data(abbrs, update=True, reset=False)
     win_margin_model, mean_margin_model_resid, std_margin_model_resid = eval.get_win_margin_model(training_data)
     win_prob_model = eval.get_win_probability_model(training_data, win_margin_model)
-    forecast.predict_margin_and_win_prob_this_week_games(training_data, win_margin_model, win_prob_model)
+    forecast.predict_margin_and_win_prob_future_games(training_data, win_margin_model, win_prob_model)
     forecast.predict_margin_this_week_games(training_data, win_margin_model)
 
     # SIMULATE SEASON
-    sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR, num_sims=1, parallel=False)
+    sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR, num_sims=1000, parallel=False)
     date_string = datetime.datetime.today().strftime('%Y-%m-%d')
-    # sim_report.to_csv('data/sim_results/sim_report_' + date_string + '.csv')
+    sim_report.to_csv('data/sim_results/sim_report_' + date_string + '.csv')
 
     # PREDICTIVE RATINGS
     predictive_ratings = forecast.get_predictive_ratings_win_margin(abbrs, win_margin_model, year=YEAR)
@@ -146,10 +146,10 @@ def main(update=True, save_names=False):
     small_df = False
     if small_df:
         df_final = df_final[['Rank', 'Team', 'Record', 'EM Rating', 'Predictive Rating', 'AdjO', 'AdjD', 'Pace']]
-    # df_final.to_csv('data/all_data_' + str(YEAR) + '.csv', index=False)
+    df_final.to_csv('data/main_' + str(YEAR) + '.csv', index=False)
     print(df_final.head(30))
 
 
 if __name__ == '__main__':
-    main(update=False)
+    main(update=True)
 

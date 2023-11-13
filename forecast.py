@@ -44,17 +44,15 @@ def predict_win_prob_this_week_games(games, win_prob_model):
     pass
     
 
-def predict_margin_and_win_prob_this_week_games(games, win_margin_model, win_prob_model):
+def predict_margin_and_win_prob_future_games(games, win_margin_model, win_prob_model):
     to_csv_data = []
     games['date'] = pd.to_datetime(games['date'])
     games['date'] = games['date'].dt.date
     games = games[games['completed'] == False]
     games = games[games['date'] >= datetime.date.today()]
-    games = games[games['date'] < datetime.date.today() + datetime.timedelta(days=7)]
     if len(games) == 0:
         return None
     games['pred_margin'] = win_margin_model.predict(games[['team_rating', 'opponent_rating', 'team_win_total_future','opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game']])
-    # games['win_prob'] = win_prob_model.predict_proba(games[['team_rating', 'opponent_rating', 'team_win_total_future','opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game', 'pred_margin']])[:, 1]
     games['win_prob'] = win_prob_model.predict_proba(games['pred_margin'].values.reshape(-1, 1))[:, 1]
 
     for date in games['date'].unique():
@@ -159,7 +157,7 @@ def get_predictive_ratings_win_margin(teams, model, year):
     
     team_predictive_em_df = pd.DataFrame.from_dict(team_predictive_em, orient='index', columns=['expected_margin'])
     team_predictive_em_df = team_predictive_em_df.sort_values(by='expected_margin', ascending=False)
-    team_predictive_em_df.to_csv('data/predictive_expected_margin.csv')
+    team_predictive_em_df.to_csv('data/predictive_ratings.csv')
     return team_predictive_em_df
 
 def get_expected_wins_losses(all_data, future_games_with_win_probs):
