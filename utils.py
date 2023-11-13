@@ -20,7 +20,7 @@ def sgd_ratings(games, teams_dict, margin_fn=lambda x:x, lr=.1, epochs=100):
         diff = [[] for _ in range(30)]
         for row in games:
             home, away, y = teams_dict[row[0]], teams_dict[row[1]], margin_fn(row[2])
-            y_pred = ratings[home] - ratings[away] + HCA
+            y_pred = margin_fn(ratings[home] - ratings[away] + HCA)
             err = y - y_pred
             diff[home].append(err)
             diff[away].append(-err)
@@ -30,7 +30,7 @@ def sgd_ratings(games, teams_dict, margin_fn=lambda x:x, lr=.1, epochs=100):
             ratings[i] += lr * mean_diff[i]
     return ratings
 
-def get_em_ratings(df, cap=20, names=None, epochs=100):
+def get_em_ratings(df, cap=20, names=None, num_epochs=100):
     if names is None:
         teams_dict = {team: i for i, team in enumerate(df['team'].unique())}
     else:
@@ -41,7 +41,7 @@ def get_em_ratings(df, cap=20, names=None, epochs=100):
     
     games = df[['team', 'opponent', 'margin']]
     margin_fn = lambda margin: np.clip(margin, -cap, cap)
-    ratings = sgd_ratings(games, teams_dict, margin_fn=margin_fn, epochs=epochs)
+    ratings = sgd_ratings(games, teams_dict, margin_fn=margin_fn, epochs=num_epochs)
     ratings = {team: ratings[teams_dict[team]] for team in teams_dict.keys()}
     return ratings
 
