@@ -38,12 +38,12 @@ class Season:
         self.mean_pace = mean_pace
         self.std_pace = std_pace
         self.update_counter = 0
-        self.update_every = 10
+        self.update_every = 3
         # pace of future games is not determnistic, assume gaussian distribution
         # also assuming that pace is normally distributed for completed games, have not scraped pace for all past games and now rate limited, so more difficult
         self.future_games['pace'] = [np.random.normal(self.mean_pace, self.std_pace) for _ in range(len(self.future_games))]
         self.completed_games['pace'] = [np.random.normal(self.mean_pace, self.std_pace) for _ in range(len(self.completed_games))]
-        self.em_ratings = utils.get_em_ratings(self.completed_games, names=self.teams)
+        self.em_ratings = utils.get_em_ratings(self.completed_games, names=self.teams, num_epochs=20)
         self.time = time.time()
         self.win_total_futures = self.get_win_total_futures()
         self.last_year_ratings = self.get_last_year_ratings()
@@ -167,7 +167,7 @@ class Season:
 
         if self.update_counter is not None:
             if self.update_counter % self.update_every == 0:
-                self.em_ratings = utils.get_em_ratings(self.completed_games, names=self.teams)
+                self.em_ratings = utils.get_em_ratings(self.completed_games, names=self.teams, num_epochs=20)
             self.update_counter += 1
 
         self.future_games['team_rating'] = self.future_games['team'].map(self.em_ratings)
@@ -587,8 +587,8 @@ class Season:
 
         # first, sort by wins
         # HACK: add some noise to the wins to break ties
-        ec_df['new_wins'] = ec_df['wins'] + np.random.normal(0, 0.01, len(ec_df))
-        wc_df['new_wins'] = wc_df['wins'] + np.random.normal(0, 0.01, len(wc_df))
+        ec_df['new_wins'] = ec_df['wins'] + np.random.normal(0, 1e-4, len(ec_df))
+        wc_df['new_wins'] = wc_df['wins'] + np.random.normal(0, 1e-4, len(wc_df))
         ec_df.sort_values(by='new_wins', ascending=False, inplace=True)
         wc_df.sort_values(by='new_wins', ascending=False, inplace=True)
 
@@ -778,7 +778,27 @@ def run_single_simulation(completed_year_games, future_year_games, margin_model,
     result_dict = {'wins_dict': wins_dict, 'losses_dict': losses_dict, 'playoff_results': playoff_results, 'seeds': seeds}
     return result_dict
 
-def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_resid_std, mean_pace, std_pace, year, num_sims=1000):
+def write_seed_report(seeds_results_over_sims):
+    print(seeds_results_over_sims)
+    seeds_results_over_sims = {team: {i: seeds_results_over_sims[team]['seed'].count(i)/len(seeds_results_over_sims[team]['seed']) for i in range(1, 16)} for team in seeds_results_over_sims}
+    seeds_results_over_sims_df = pd.DataFrame(seeds_results_over_sims).transpose().reset_index()
+    seeds_results_over_sims_df = seeds_results_over_sims_df.rename(columns={'index': 'team'})
+    seeds_results_over_sims_df = seeds_results_over_sims_df.fillna(0)
+    print(seeds_results_over_sims_df)
+    seeds_results_over_sims_df = seeds_results_over_sims_df.sort_values(by=[1, 2, 3, 4, 5, 6, 7, 8,
+                                                                                9, 10, 11, 12, 13, 14, 15], ascending=False)
+    # filename is appended with date as string, not including time
+    date_string = str(datetime.datetime.today()).split(' ')[0]
+    filename = 'data/seed_reports/seed_report_' + date_string + '_2' + '.csv'
+    east_teams = ['ATL', 'BOS', 'BRK', 'CHI', 'CHO', 'CLE', 'DET', 'IND', 'MIA', 'MIL', 'NYK', 'ORL', 'PHI', 'TOR', 'WAS']
+    west_teams = ['DAL', 'DEN', 'GSW', 'HOU', 'LAC', 'LAL', 'MEM', 'MIN', 'NOP', 'OKC', 'PHO', 'POR', 'SAC', 'SAS', 'UTA']
+    east_df = seeds_results_over_sims_df[seeds_results_over_sims_df['team'].isin(east_teams)]
+    west_df = seeds_results_over_sims_df[seeds_results_over_sims_df['team'].isin(west_teams)]
+    east_df.to_csv('data/seed_reports/east_seed_report_' + date_string + '_2' + '.csv', index=False)
+    west_df.to_csv('data/seed_reports/west_seed_report_' + date_string + '_2' + '.csv', index=False)
+    seeds_results_over_sims_df.to_csv(filename, index=False)
+
+def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_resid_std, mean_pace, std_pace, year, num_sims=1000, parallel=True):
     import multiprocessing
     teams = data[data['year'] == year]['team'].unique()
     data['date'] = pd.to_datetime(data['date']).dt.date
@@ -791,15 +811,22 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
     future_year_games = year_games[year_games['completed'] == False]
     
     start_time = time.time()
-    num_cores = multiprocessing.cpu_count()
-    print('Running {} simulations in parallel on {} cores'.format(num_sims, num_cores))
-    pool = multiprocessing.Pool(num_cores)
-    results = [pool.apply_async(run_single_simulation, args=(completed_year_games, future_year_games, margin_model, mean_pace, std_pace)) for i in range(num_sims)]
-    output = [p.get() for p in results]
-    pool.close()
+    if parallel:
+        num_cores = multiprocessing.cpu_count()
+        print('Running {} simulations in parallel on {} cores'.format(num_sims, num_cores))
+        pool = multiprocessing.Pool(num_cores)
+        results = [pool.apply_async(run_single_simulation, args=(completed_year_games, future_year_games, margin_model, mean_pace, std_pace)) for i in range(num_sims)]
+        output = [p.get() for p in results]
+        pool.close()
+    else:
+        output = []
+        for i in range(num_sims):
+            output.append(run_single_simulation(completed_year_games, future_year_games, margin_model, mean_pace, std_pace))
+            print(f'Sim {i+1}/{num_sims}')
+
     stop_time = time.time()
-    print('Finished {} simulations in {} seconds'.format(num_sims, round(stop_time - start_time, 2)))
-    print('Time per simulation: {} seconds'.format(round((stop_time - start_time) / num_sims, 2)))
+    print('Finished {} simulations in {} seconds'.format(num_sims, stop_time - start_time, 2))
+    print('Time per simulation: {} seconds'.format((stop_time - start_time) / num_sims, 2))
     print()
 
     playoff_results_over_sims = {team: {} for team in teams}
@@ -817,6 +844,7 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
                 
         for team, seed in seeds.items():
             seed_results_over_sims[team]['seed'].append(seed)
+        write_seed_report(seed_results_over_sims)
 
         for team, wins in wins_dict.items():
             season_results_over_sims[team]['wins'].append(wins)
