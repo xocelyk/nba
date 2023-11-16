@@ -143,8 +143,10 @@ def load_training_data(names, update=True, reset=False, start_year=2010, stop_ye
         for year in range(start_year, stop_year+1):
             if year == stop_year and this_year_games is not None:
                 year_data = this_year_games
+                year_data['date'] = pd.to_datetime(year_data['date'], format='mixed')
             else:
                 year_data = pd.read_csv(f'data/games/year_data_{year}.csv')
+            print(year_data['date'].dtype)
             year_data = year_data.sort_values('date')
             if 'team_abbr' in year_data.columns and 'team' not in year_data.columns:
                 year_data['team'] = year_data['team_abbr']
