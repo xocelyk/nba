@@ -80,6 +80,8 @@ def update_data(names_to_abbr, year=2024, preload=True):
             row.append(year)
             data.append(row)
             boxscore_tracked.append(game.boxscore_index)
+            if game.points_scored is not None:
+                print('New Game:', game.boxscore_index, game.date, game.opponent_abbr, game.points_scored, game.points_allowed, location, pace, year)
 
     # create dataframe
     data = pd.DataFrame(data, columns=['boxscore_id', 'date', 'team', 'opponent', 'team_score', 'opponent_score', 'location', 'pace', 'completed', 'year'])
@@ -111,7 +113,7 @@ def load_regular_season_win_totals_futures():
                 res[team][header[i]] = float(row[i]) if row[i] != '' else np.nan
     return res
 
-def load_training_data(names, update=True, reset=False, start_year=2010, stop_year=2024):
+def load_training_data(names, update=True, reset=False, start_year=2010, stop_year=2024, this_year_games=None):
     '''
     Loads the data from start_year to stop_year and returns a dataframe with the data
     Data includes each game with data, team rating, opp rating, team last year rating, opp last year rating, and num games into season
@@ -139,7 +141,10 @@ def load_training_data(names, update=True, reset=False, start_year=2010, stop_ye
         end_year_ratings_dct = {}
         first_year = True
         for year in range(start_year, stop_year+1):
-            year_data = pd.read_csv(f'data/games/year_data_{year}.csv')
+            if year == stop_year and this_year_games is not None:
+                year_data = this_year_games
+            else:
+                year_data = pd.read_csv(f'data/games/year_data_{year}.csv')
             year_data = year_data.sort_values('date')
             if 'team_abbr' in year_data.columns and 'team' not in year_data.columns:
                 year_data['team'] = year_data['team_abbr']

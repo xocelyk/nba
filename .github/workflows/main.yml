@@ -1,7 +1,7 @@
 name: Daily Update
 on:
   schedule:
-    - cron: '0 10 * * *'  # This runs at 10am UTC every day
+    - cron: '*/5 * * * *'  # This runs at 10am UTC every day
 
 jobs:
   run_my_code:
