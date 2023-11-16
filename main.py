@@ -104,7 +104,7 @@ def main(update=True, save_names=False):
     forecast.predict_margin_this_week_games(training_data, win_margin_model)
 
     # SIMULATE SEASON
-    sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR, num_sims=1, parallel=False)
+    sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR, num_sims=1000, parallel=False)
     date_string = datetime.datetime.today().strftime('%Y-%m-%d')
     sim_report.to_csv('data/sim_results/sim_report_' + date_string + '.csv')
 
