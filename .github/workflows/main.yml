@@ -1,7 +1,7 @@
 name: Daily Update
 on:
   schedule:
-    - cron: '*/5 * * * *'  # This runs at 10am UTC every day
+    - cron: '0 12 * * *'  # This runs at noon UTC every day
 
 jobs:
   run_my_code:
@@ -22,7 +22,7 @@ jobs:
             pip install -r requirements.txt
     
         # Main workflow
-        - name: Run a script
+        - name: Run main
           run: python main.py
 
         - name: Commit and push if there are changes

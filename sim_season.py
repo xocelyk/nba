@@ -166,9 +166,9 @@ class Season:
         self.future_games['opponent_last_1_rating'] = self.future_games['opponent'].map(last_1_games_dict)
 
         if self.update_counter is not None:
+            self.update_counter += 1
             if self.update_counter % self.update_every == 0:
                 self.em_ratings = utils.get_em_ratings(self.completed_games, names=self.teams, num_epochs=20)
-            self.update_counter += 1
 
         self.future_games['team_rating'] = self.future_games['team'].map(self.em_ratings)
         self.future_games['opponent_rating'] = self.future_games['opponent'].map(self.em_ratings)
@@ -314,8 +314,6 @@ class Season:
         # simulate finals
         champ = self.finals(team1, team2)
         playoff_results['champion'] = [champ]
-        print('Champion: ' + champ)
-        print()
         return playoff_results
 
     def first_round(self, east_seeds, west_seeds):
@@ -779,12 +777,10 @@ def run_single_simulation(completed_year_games, future_year_games, margin_model,
     return result_dict
 
 def write_seed_report(seeds_results_over_sims):
-    print(seeds_results_over_sims)
     seeds_results_over_sims = {team: {i: seeds_results_over_sims[team]['seed'].count(i)/len(seeds_results_over_sims[team]['seed']) for i in range(1, 16)} for team in seeds_results_over_sims}
     seeds_results_over_sims_df = pd.DataFrame(seeds_results_over_sims).transpose().reset_index()
     seeds_results_over_sims_df = seeds_results_over_sims_df.rename(columns={'index': 'team'})
     seeds_results_over_sims_df = seeds_results_over_sims_df.fillna(0)
-    print(seeds_results_over_sims_df)
     seeds_results_over_sims_df = seeds_results_over_sims_df.sort_values(by=[1, 2, 3, 4, 5, 6, 7, 8,
                                                                                 9, 10, 11, 12, 13, 14, 15], ascending=False)
     # filename is appended with date as string, not including time

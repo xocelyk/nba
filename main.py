@@ -104,9 +104,9 @@ def main(update=True, save_names=False):
     forecast.predict_margin_this_week_games(training_data, win_margin_model)
 
     # SIMULATE SEASON
-    sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR, num_sims=1000, parallel=False)
+    sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR, num_sims=1000, parallel=True)
     date_string = datetime.datetime.today().strftime('%Y-%m-%d')
-    sim_report.to_csv('data/sim_results/sim_report_' + date_string + '.csv')
+    sim_report.to_csv('data/sim_results/sim_report' + date_string + '.csv')
 
     # PREDICTIVE RATINGS
     predictive_ratings = forecast.get_predictive_ratings_win_margin(abbrs, win_margin_model, year=YEAR)
@@ -151,5 +151,5 @@ def main(update=True, save_names=False):
 
 
 if __name__ == '__main__':
-    main(update=True)
+    main(update=False)
 
