@@ -20,9 +20,10 @@ for each day:
 '''
 
 class MarginModel:
-    def __init__(self, margin_model, margin_model_resid_mean, margin_model_resid_std):
+    def __init__(self, margin_model, margin_model_resid_mean, margin_model_resid_std, num_games_to_std_margin_model_resid):
         self.margin_model = margin_model
         self.resid_std = margin_model_resid_std
+        self.num_games_to_std_margin_model_resid = num_games_to_std_margin_model_resid
         self.resid_mean = margin_model_resid_mean
 
 class Season:
@@ -209,9 +210,11 @@ class Season:
         # but make sure stats are not independent of each other (otherwise we will regress to mean, decreasing variance)
         team = row['team']
         opponent = row['opponent']
+        num_games_into_season = row['num_games_into_season']
         train_data = self.get_game_data(row)
         expected_margin = self.margin_model.margin_model.predict(train_data)[0]
-        margin = np.random.normal(0, self.margin_model.resid_std) + self.margin_model.resid_mean + expected_margin
+        noise = np.random.normal(0, self.margin_model.num_games_to_std_margin_model_resid(num_games_into_season))
+        margin = noise + expected_margin
         team_win = int(margin > 0)
         row['completed'] = True
         row['team_win'] = team_win
@@ -314,6 +317,7 @@ class Season:
         # simulate finals
         champ = self.finals(team1, team2)
         playoff_results['champion'] = [champ]
+        print(champ)
         return playoff_results
 
     def first_round(self, east_seeds, west_seeds):
@@ -794,14 +798,14 @@ def write_seed_report(seeds_results_over_sims):
     west_df.to_csv('data/seed_reports/west_seed_report_' + date_string + '_2' + '.csv', index=False)
     seeds_results_over_sims_df.to_csv(filename, index=False)
 
-def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_resid_std, mean_pace, std_pace, year, num_sims=1000, parallel=True):
+def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_resid_std, num_games_to_std_margin_model_resid, mean_pace, std_pace, year, num_sims=1000, parallel=True):
     import multiprocessing
     teams = data[data['year'] == year]['team'].unique()
     data['date'] = pd.to_datetime(data['date']).dt.date
     playoff_results_over_sims = {team: {} for team in teams}
     season_results_over_sims = {team: {'wins': [], 'losses': []} for team in teams}
     seed_results_over_sims = {team: {'seed': []} for team in teams}
-    margin_model = MarginModel(win_margin_model, margin_model_resid_mean, margin_model_resid_std)
+    margin_model = MarginModel(win_margin_model, margin_model_resid_mean, margin_model_resid_std, num_games_to_std_margin_model_resid)
     year_games = data[data['year'] == year]
     completed_year_games = year_games[year_games['completed'] == True]
     future_year_games = year_games[year_games['completed'] == False]

@@ -3,14 +3,11 @@ import numpy as np
 from matplotlib import pyplot as plt
 from sklearn.linear_model import LinearRegression
 from sklearn.ensemble import RandomForestRegressor
-from xgboost import XGBRegressor
-from xgboost import XGBClassifier
-from sklearn.model_selection import train_test_split
-from sklearn.model_selection import cross_val_score
-from sklearn.model_selection import KFold
-# import gridsearchcv
-from sklearn.model_selection import GridSearchCV
+from xgboost import XGBRegressor, XGBClassifier
+from sklearn.model_selection import train_test_split, cross_val_score, KFold, GridSearchCV
+from scipy.interpolate import UnivariateSpline
 import env
+import pickle
 
 def get_win_margin_model_heavy(games):
     games = games[games['completed'] == True]
@@ -36,7 +33,15 @@ def get_win_probability_model_heavy(games):
     return model
 
 def get_win_margin_model(games, features=None):
+    train_year_range = [2010, 2019]
+    test_year_range = [2021, 2023]
+    omit_years = [2020]
+    games = games[~games['year'].isin(omit_years)]
+    train = games[(games['year'] >= train_year_range[0]) & (games['year'] <= train_year_range[1])]
+    test = games[(games['year'] >= test_year_range[0]) & (games['year'] <= test_year_range[1])]
+
     games = games[games['completed'] == True]
+
     if not features:
         x_features = env.x_features
     else:
@@ -46,7 +51,7 @@ def get_win_margin_model(games, features=None):
     train_df, test_df = train_test_split(games, test_size=0.2, random_state=41)    
 
     # first split train/test to get error vals (needed for simulations)
-    X_train, y_train, X_test, y_test = train_df[x_features], train_df['margin'], test_df[x_features], test_df['margin']
+    X_train, y_train, X_test, y_test = train[x_features], train['margin'], test[x_features], test['margin']
     X = games[x_features]
     y = games['margin']
     model.fit(X_train, y_train)
@@ -54,17 +59,42 @@ def get_win_margin_model(games, features=None):
     errors = preds - y_test
     m = np.mean(errors)
     std = np.std(errors)
-    # print('Win Margin Model RMSE:')
-    # print(np.sqrt(np.mean((preds - y_test)**2)))
-    # print()
-    # print('Win Margin Model MAE:')
-    # print(np.mean(np.abs(preds - y_test)))
-    # print()
 
-    # save model to pickle
-    import pickle
-    filename = 'win_margin_model_heavy.pkl'
-    pickle.dump(model, open(filename, 'wb'))
+    test_df['num_games_into_season_round_100'] = test_df['num_games_into_season'].round(-2)
+
+    error_df = pd.DataFrame({
+        'num_games_into_season': test_df['num_games_into_season_round_100'],
+        'error': errors
+        })
+
+    std_dev_by_game = error_df.groupby('num_games_into_season')['error'].std()
+    # Fit a spline for smoothing
+    x = std_dev_by_game.index
+    y = std_dev_by_game.values
+    spline = UnivariateSpline(x, y, s=200) # s is the smoothing factor, adjust as needed
+
+    # Function to return smoothed standard deviation for a given number of games into the season
+    def get_smoothed_stdev_for_num_games(num_games):
+        high = num_games + 50
+        low = num_games - 50
+        high_weight = 1 - (high - num_games) / 100
+        low_weight = 1 - (num_games - low) / 100
+        return (spline(high) * high_weight + spline(low) * low_weight) / (high_weight + low_weight)
+
+    # Convert to dictionary for easy lookup
+    std_dev_dict = std_dev_by_game.to_dict()
+    st_dev_dict_smoothed = {k: get_smoothed_stdev_for_num_games(k) for k in std_dev_dict.keys()}
+    print(st_dev_dict_smoothed)
+
+    # Function to return standard deviation for a given number of games into the season
+    def get_stdev_for_num_games(num_games):
+        # If exact match found in dictionary, return it
+        if num_games in st_dev_dict_smoothed:
+            return st_dev_dict_smoothed[num_games]
+        # If no exact match, return closest available or default value
+        else:
+            closest_num_games = min(st_dev_dict_smoothed.keys(), key=lambda k: abs(k - num_games))
+            return st_dev_dict_smoothed.get(closest_num_games, np.nan) # np.nan as default if nothing close
 
     def prediction_interval_stdev(model, x_test, y_test):
         preds = model.predict(x_test)
@@ -76,9 +106,11 @@ def get_win_margin_model(games, features=None):
     m, std = prediction_interval_stdev(model, X_test, y_test)
 
     # now fit on all the data for final model
-    model = XGBRegressor(**params)
-    model.fit(X, y)
-    return model, m, std
+    # model = XGBRegressor(**params)
+    # model.fit(X, y)
+    filename = 'win_margin_model_heavy.pkl'
+    pickle.dump(model, open(filename, 'wb'))
+    return model, m, std, get_smoothed_stdev_for_num_games
 
 def get_win_probability_model(games, win_margin_model):
     '''

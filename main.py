@@ -98,13 +98,13 @@ def main(update=True, save_names=False):
     
     # GET MODELS
     training_data = data_loader.load_training_data(abbrs, update=True, reset=False, this_year_games=games)
-    win_margin_model, mean_margin_model_resid, std_margin_model_resid = eval.get_win_margin_model(training_data)
+    win_margin_model, mean_margin_model_resid, std_margin_model_resid, num_games_to_std_margin_model_resid = eval.get_win_margin_model(training_data)
     win_prob_model = eval.get_win_probability_model(training_data, win_margin_model)
     forecast.predict_margin_and_win_prob_future_games(training_data, win_margin_model, win_prob_model)
     forecast.predict_margin_this_week_games(training_data, win_margin_model)
 
     # SIMULATE SEASON
-    sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, mean_pace, std_pace, year=YEAR, num_sims=1000, parallel=False)
+    sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, num_games_to_std_margin_model_resid, mean_pace, std_pace, year=YEAR, num_sims=1000, parallel=False)
     date_string = datetime.datetime.today().strftime('%Y-%m-%d')
     sim_report.to_csv('data/sim_results/sim_report' + date_string + '.csv')
 
