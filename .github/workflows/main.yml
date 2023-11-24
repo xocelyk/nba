@@ -1,7 +1,8 @@
 name: Daily Update
 on:
   schedule:
-    - cron: '0 */4 * * *'  # every 4 hours
+    # - cron: '0 */4 * * *'  # every 4 hours
+    - cron: '*/5 * * * *'
 
 jobs:
   run_my_code:
@@ -31,4 +32,4 @@ jobs:
             git config --global user.name "xocelyk"
             git add .
             git commit -m "Automated data update" || exit 0   # This exits with 0 if there's nothing to commit
-            git push
+            git push --force
