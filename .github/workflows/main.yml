@@ -1,8 +1,7 @@
 name: Daily Update
 on:
   schedule:
-    # - cron: '0 */4 * * *'  # every 4 hours
-    - cron: '*/5 * * * *'
+    - cron: '0 */4 * * *'  # every 4 hours
 
 jobs:
   run_my_code:
