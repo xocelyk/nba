@@ -290,6 +290,8 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202312020DET,2023-12-02 00:00:00,DET,CLE,Detroit Pistons,Cleveland Cavaliers,101.0,110.0,-9.0,Home,98.4,True,2024
 202312020MIA,2023-12-02 00:00:00,MIA,IND,Miami Heat,Indiana Pacers,129.0,144.0,-15.0,Home,99.7,True,2024
 202312020UTA,2023-12-02 00:00:00,UTA,POR,Utah Jazz,Portland Trail Blazers,118.0,113.0,5.0,Home,92.4,True,2024
+202312040SAC,2023-12-04 00:00:00,SAC,NOP,Sacramento Kings,New Orleans Pelicans,117.0,127.0,-10.0,Home,95.8,True,2024
+202312040IND,2023-12-04 00:00:00,IND,BOS,Indiana Pacers,Boston Celtics,122.0,112.0,10.0,Home,102.2,True,2024
 202312060HOU,"Wed, Dec 6, 2023",HOU,OKC,Houston Rockets,Oklahoma City Thunder,,,,Home,,False,2024
 202312080DEN,"Fri, Dec 8, 2023",DEN,HOU,Denver Nuggets,Houston Rockets,,,,Home,,False,2024
 202312110HOU,"Mon, Dec 11, 2023",HOU,SAS,Houston Rockets,San Antonio Spurs,,,,Home,,False,2024
@@ -586,7 +588,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404100ATL,"Wed, Apr 10, 2024",ATL,CHO,Atlanta Hawks,Charlotte Hornets,,,,Home,,False,2024
 202404120BOS,"Fri, Apr 12, 2024",BOS,CHO,Boston Celtics,Charlotte Hornets,,,,Home,,False,2024
 202404140CLE,"Sun, Apr 14, 2024",CLE,CHO,Cleveland Cavaliers,Charlotte Hornets,,,,Home,,False,2024
-202312040SAC,"Mon, Dec 4, 2023",SAC,NOP,Sacramento Kings,New Orleans Pelicans,117.0,127.0,-10.0,Home,95.8,True,2024
 202312110SAC,"Mon, Dec 11, 2023",SAC,BRK,Sacramento Kings,Brooklyn Nets,,,,Home,,False,2024
 202312120LAC,"Tue, Dec 12, 2023",LAC,SAC,Los Angeles Clippers,Sacramento Kings,,,,Home,,False,2024
 202312140SAC,"Thu, Dec 14, 2023",SAC,OKC,Sacramento Kings,Oklahoma City Thunder,,,,Home,,False,2024
@@ -1002,7 +1003,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404090ATL,"Tue, Apr 9, 2024",ATL,MIA,Atlanta Hawks,Miami Heat,,,,Home,,False,2024
 202404120MIN,"Fri, Apr 12, 2024",MIN,ATL,Minnesota Timberwolves,Atlanta Hawks,,,,Home,,False,2024
 202404140IND,"Sun, Apr 14, 2024",IND,ATL,Indiana Pacers,Atlanta Hawks,,,,Home,,False,2024
-202312040IND,"Mon, Dec 4, 2023",IND,BOS,Indiana Pacers,Boston Celtics,122.0,112.0,10.0,Home,102.2,True,2024
 202312110DET,"Mon, Dec 11, 2023",DET,IND,Detroit Pistons,Indiana Pacers,,,,Home,,False,2024
 202312150WAS,"Fri, Dec 15, 2023",WAS,IND,Washington Wizards,Indiana Pacers,,,,Home,,False,2024
 202312160MIN,"Sat, Dec 16, 2023",MIN,IND,Minnesota Timberwolves,Indiana Pacers,,,,Home,,False,2024
