@@ -305,6 +305,8 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202312060ATL,2023-12-06 00:00:00,ATL,BRK,Atlanta Hawks,Brooklyn Nets,113.0,114.0,-1.0,Home,100.9,True,2024
 202312060WAS,2023-12-06 00:00:00,WAS,PHI,Washington Wizards,Philadelphia 76ers,126.0,131.0,-5.0,Home,103.7,True,2024
 202312060TOR,2023-12-06 00:00:00,TOR,MIA,Toronto Raptors,Miami Heat,103.0,112.0,-9.0,Home,96.0,True,2024
+202312070LAL,2023-12-07 00:00:00,LAL,NOP,Los Angeles Lakers,New Orleans Pelicans,133.0,89.0,44.0,Home,101.2,True,2024
+202312070MIL,2023-12-07 00:00:00,MIL,IND,Milwaukee Bucks,Indiana Pacers,119.0,128.0,-9.0,Home,104.5,True,2024
 202312080DEN,"Fri, Dec 8, 2023",DEN,HOU,Denver Nuggets,Houston Rockets,,,,Home,,False,2024
 202312110HOU,"Mon, Dec 11, 2023",HOU,SAS,Houston Rockets,San Antonio Spurs,,,,Home,,False,2024
 202312130HOU,"Wed, Dec 13, 2023",HOU,MEM,Houston Rockets,Memphis Grizzlies,,,,Home,,False,2024
@@ -651,7 +653,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404110SAC,"Thu, Apr 11, 2024",SAC,NOP,Sacramento Kings,New Orleans Pelicans,,,,Home,,False,2024
 202404120SAC,"Fri, Apr 12, 2024",SAC,PHO,Sacramento Kings,Phoenix Suns,,,,Home,,False,2024
 202404140SAC,"Sun, Apr 14, 2024",SAC,POR,Sacramento Kings,Portland Trail Blazers,,,,Home,,False,2024
-202312070LAL,"Thu, Dec 7, 2023",LAL,NOP,Los Angeles Lakers,New Orleans Pelicans,133.0,89.0,44.0,Home,101.2,True,2024
 202312120DAL,"Tue, Dec 12, 2023",DAL,LAL,Dallas Mavericks,Los Angeles Lakers,,,,Home,,False,2024
 202312180LAL,"Mon, Dec 18, 2023",LAL,NYK,Los Angeles Lakers,New York Knicks,,,,Home,,False,2024
 202312200CHI,"Wed, Dec 20, 2023",CHI,LAL,Chicago Bulls,Los Angeles Lakers,,,,Home,,False,2024
@@ -902,7 +903,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404100MIA,"Wed, Apr 10, 2024",MIA,DAL,Miami Heat,Dallas Mavericks,,,,Home,,False,2024
 202404120DAL,"Fri, Apr 12, 2024",DAL,DET,Dallas Mavericks,Detroit Pistons,,,,Home,,False,2024
 202404140OKC,"Sun, Apr 14, 2024",OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,,,,Home,,False,2024
-202312070MIL,"Thu, Dec 7, 2023",MIL,IND,Milwaukee Bucks,Indiana Pacers,119.0,128.0,-9.0,Home,104.5,True,2024
 202312110MIL,"Mon, Dec 11, 2023",MIL,CHI,Milwaukee Bucks,Chicago Bulls,,,,Home,,False,2024
 202312130MIL,"Wed, Dec 13, 2023",MIL,IND,Milwaukee Bucks,Indiana Pacers,,,,Home,,False,2024
 202312160MIL,"Sat, Dec 16, 2023",MIL,DET,Milwaukee Bucks,Detroit Pistons,,,,Home,,False,2024
