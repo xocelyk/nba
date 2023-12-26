@@ -587,7 +587,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404100OKC,"Wed, Apr 10, 2024",OKC,SAS,Oklahoma City Thunder,San Antonio Spurs,,,,Home,,False,2024
 202404120SAS,"Fri, Apr 12, 2024",SAS,DEN,San Antonio Spurs,Denver Nuggets,,,,Home,,False,2024
 202404140SAS,"Sun, Apr 14, 2024",SAS,DET,San Antonio Spurs,Detroit Pistons,,,,Home,,False,2024
-202312250DEN,"Mon, Dec 25, 2023",DEN,GSW,Denver Nuggets,Golden State Warriors,,,,Home,,False,2024
+202312250DEN,"Mon, Dec 25, 2023",DEN,GSW,Denver Nuggets,Golden State Warriors,120.0,114.0,6.0,Home,98.0,True,2024
 202312280GSW,"Thu, Dec 28, 2023",GSW,MIA,Golden State Warriors,Miami Heat,,,,Home,,False,2024
 202312300GSW,"Sat, Dec 30, 2023",GSW,DAL,Golden State Warriors,Dallas Mavericks,,,,Home,,False,2024
 202401040GSW,"Thu, Jan 4, 2024",GSW,DEN,Golden State Warriors,Denver Nuggets,,,,Home,,False,2024
@@ -727,7 +727,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404110SAC,"Thu, Apr 11, 2024",SAC,NOP,Sacramento Kings,New Orleans Pelicans,,,,Home,,False,2024
 202404120SAC,"Fri, Apr 12, 2024",SAC,PHO,Sacramento Kings,Phoenix Suns,,,,Home,,False,2024
 202404140SAC,"Sun, Apr 14, 2024",SAC,POR,Sacramento Kings,Portland Trail Blazers,,,,Home,,False,2024
-202312250LAL,"Mon, Dec 25, 2023",LAL,BOS,Los Angeles Lakers,Boston Celtics,,,,Home,,False,2024
+202312250LAL,"Mon, Dec 25, 2023",LAL,BOS,Los Angeles Lakers,Boston Celtics,115.0,126.0,-11.0,Home,96.7,True,2024
 202312300MIN,"Sat, Dec 30, 2023",MIN,LAL,Minnesota Timberwolves,Los Angeles Lakers,,,,Home,,False,2024
 202312310NOP,"Sun, Dec 31, 2023",NOP,LAL,New Orleans Pelicans,Los Angeles Lakers,,,,Home,,False,2024
 202401030LAL,"Wed, Jan 3, 2024",LAL,MIA,Los Angeles Lakers,Miami Heat,,,,Home,,False,2024
@@ -911,7 +911,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404050MEM,"Fri, Apr 5, 2024",MEM,DET,Memphis Grizzlies,Detroit Pistons,,,,Home,,False,2024
 202404060MEM,"Sat, Apr 6, 2024",MEM,PHI,Memphis Grizzlies,Philadelphia 76ers,,,,Home,,False,2024
 202404100CLE,"Wed, Apr 10, 2024",CLE,MEM,Cleveland Cavaliers,Memphis Grizzlies,,,,Home,,False,2024
-202312250PHO,"Mon, Dec 25, 2023",PHO,DAL,Phoenix Suns,Dallas Mavericks,,,,Home,,False,2024
+202312250PHO,"Mon, Dec 25, 2023",PHO,DAL,Phoenix Suns,Dallas Mavericks,114.0,128.0,-14.0,Home,98.4,True,2024
 202312270DAL,"Wed, Dec 27, 2023",DAL,CLE,Dallas Mavericks,Cleveland Cavaliers,,,,Home,,False,2024
 202312280MIN,"Thu, Dec 28, 2023",MIN,DAL,Minnesota Timberwolves,Dallas Mavericks,,,,Home,,False,2024
 202401010UTA,"Mon, Jan 1, 2024",UTA,DAL,Utah Jazz,Dallas Mavericks,,,,Home,,False,2024
@@ -946,7 +946,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404100MIA,"Wed, Apr 10, 2024",MIA,DAL,Miami Heat,Dallas Mavericks,,,,Home,,False,2024
 202404120DAL,"Fri, Apr 12, 2024",DAL,DET,Dallas Mavericks,Detroit Pistons,,,,Home,,False,2024
 202404140OKC,"Sun, Apr 14, 2024",OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,,,,Home,,False,2024
-202312250NYK,"Mon, Dec 25, 2023",NYK,MIL,New York Knicks,Milwaukee Bucks,,,,Home,,False,2024
+202312250NYK,"Mon, Dec 25, 2023",NYK,MIL,New York Knicks,Milwaukee Bucks,129.0,122.0,7.0,Home,101.0,True,2024
 202312270BRK,"Wed, Dec 27, 2023",BRK,MIL,Brooklyn Nets,Milwaukee Bucks,,,,Home,,False,2024
 202312290CLE,"Fri, Dec 29, 2023",CLE,MIL,Cleveland Cavaliers,Milwaukee Bucks,,,,Home,,False,2024
 202401010MIL,"Mon, Jan 1, 2024",MIL,IND,Milwaukee Bucks,Indiana Pacers,,,,Home,,False,2024
@@ -1080,7 +1080,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202403290OKC,"Fri, Mar 29, 2024",OKC,PHO,Oklahoma City Thunder,Phoenix Suns,,,,Home,,False,2024
 202404050PHO,"Fri, Apr 5, 2024",PHO,MIN,Phoenix Suns,Minnesota Timberwolves,,,,Home,,False,2024
 202404140MIN,"Sun, Apr 14, 2024",MIN,PHO,Minnesota Timberwolves,Phoenix Suns,,,,Home,,False,2024
-202312250MIA,"Mon, Dec 25, 2023",MIA,PHI,Miami Heat,Philadelphia 76ers,,,,Home,,False,2024
+202312250MIA,"Mon, Dec 25, 2023",MIA,PHI,Miami Heat,Philadelphia 76ers,119.0,113.0,6.0,Home,101.5,True,2024
 202312300CHI,"Sat, Dec 30, 2023",CHI,PHI,Chicago Bulls,Philadelphia 76ers,,,,Home,,False,2024
 202401020PHI,"Tue, Jan 2, 2024",PHI,CHI,Philadelphia 76ers,Chicago Bulls,,,,Home,,False,2024
 202401050PHI,"Fri, Jan 5, 2024",PHI,NYK,Philadelphia 76ers,New York Knicks,,,,Home,,False,2024
