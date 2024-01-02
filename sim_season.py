@@ -789,13 +789,15 @@ def write_seed_report(seeds_results_over_sims):
                                                                                 9, 10, 11, 12, 13, 14, 15], ascending=False)
     # filename is appended with date as string, not including time
     date_string = str(datetime.datetime.today()).split(' ')[0]
-    filename = 'data/seed_reports/seed_report_' + date_string + '_2' + '.csv'
+    filename = 'data/seed_reports/seed_report_' + date_string + '.csv'
     east_teams = ['ATL', 'BOS', 'BRK', 'CHI', 'CHO', 'CLE', 'DET', 'IND', 'MIA', 'MIL', 'NYK', 'ORL', 'PHI', 'TOR', 'WAS']
     west_teams = ['DAL', 'DEN', 'GSW', 'HOU', 'LAC', 'LAL', 'MEM', 'MIN', 'NOP', 'OKC', 'PHO', 'POR', 'SAC', 'SAS', 'UTA']
     east_df = seeds_results_over_sims_df[seeds_results_over_sims_df['team'].isin(east_teams)]
     west_df = seeds_results_over_sims_df[seeds_results_over_sims_df['team'].isin(west_teams)]
-    east_df.to_csv('data/seed_reports/east_seed_report_' + date_string + '_2' + '.csv', index=False)
-    west_df.to_csv('data/seed_reports/west_seed_report_' + date_string + '_2' + '.csv', index=False)
+    east_df.to_csv('data/seed_reports/east_seed_report_' + date_string + '.csv', index=False)
+    east_df.to_csv('data/seed_reports/east_seed_report.csv', index=False)
+    west_df.to_csv('data/seed_reports/west_seed_report_' + date_string + '.csv', index=False)
+    west_df.to_csv('data/seed_reports/west_seed_report.csv', index=False)
     seeds_results_over_sims_df.to_csv(filename, index=False)
 
 def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_resid_std, num_games_to_std_margin_model_resid, mean_pace, std_pace, year, num_sims=1000, parallel=True):
