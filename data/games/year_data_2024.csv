@@ -493,7 +493,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202401020NOP,2024-01-02 00:00:00,NOP,BRK,New Orleans Pelicans,Brooklyn Nets,112.0,85.0,27.0,Home,90.8,True,2024
 202401020PHI,2024-01-02 00:00:00,PHI,CHI,Philadelphia 76ers,Chicago Bulls,110.0,97.0,13.0,Home,101.8,True,2024
 202401020OKC,2024-01-02 00:00:00,OKC,BOS,Oklahoma City Thunder,Boston Celtics,127.0,123.0,4.0,Home,96.8,True,2024
-202401030HOU,"Wed, Jan 3, 2024",HOU,BRK,Houston Rockets,Brooklyn Nets,,,,Home,,False,2024
+202401030HOU,"Wed, Jan 3, 2024",HOU,BRK,Houston Rockets,Brooklyn Nets,112.0,101.0,11.0,Home,96.6,True,2024
 202401050HOU,"Fri, Jan 5, 2024",HOU,MIN,Houston Rockets,Minnesota Timberwolves,,,,Home,,False,2024
 202401060HOU,"Sat, Jan 6, 2024",HOU,MIL,Houston Rockets,Milwaukee Bucks,,,,Home,,False,2024
 202401080MIA,"Mon, Jan 8, 2024",MIA,HOU,Miami Heat,Houston Rockets,,,,Home,,False,2024
@@ -544,7 +544,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404110UTA,"Thu, Apr 11, 2024",UTA,HOU,Utah Jazz,Houston Rockets,,,,Home,,False,2024
 202404120POR,"Fri, Apr 12, 2024",POR,HOU,Portland Trail Blazers,Houston Rockets,,,,Home,,False,2024
 202404140LAC,"Sun, Apr 14, 2024",LAC,HOU,Los Angeles Clippers,Houston Rockets,,,,Home,,False,2024
-202401030SAC,"Wed, Jan 3, 2024",SAC,ORL,Sacramento Kings,Orlando Magic,,,,Home,,False,2024
+202401030SAC,"Wed, Jan 3, 2024",SAC,ORL,Sacramento Kings,Orlando Magic,138.0,135.0,3.0,Home,94.0,True,2024
 202401050DEN,"Fri, Jan 5, 2024",DEN,ORL,Denver Nuggets,Orlando Magic,,,,Home,,False,2024
 202401070ORL,"Sun, Jan 7, 2024",ORL,ATL,Orlando Magic,Atlanta Hawks,,,,Home,,False,2024
 202401090ORL,"Tue, Jan 9, 2024",ORL,MIN,Orlando Magic,Minnesota Timberwolves,,,,Home,,False,2024
@@ -766,7 +766,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404110SAC,"Thu, Apr 11, 2024",SAC,NOP,Sacramento Kings,New Orleans Pelicans,,,,Home,,False,2024
 202404120SAC,"Fri, Apr 12, 2024",SAC,PHO,Sacramento Kings,Phoenix Suns,,,,Home,,False,2024
 202404140SAC,"Sun, Apr 14, 2024",SAC,POR,Sacramento Kings,Portland Trail Blazers,,,,Home,,False,2024
-202401030LAL,"Wed, Jan 3, 2024",LAL,MIA,Los Angeles Lakers,Miami Heat,,,,Home,,False,2024
+202401030LAL,"Wed, Jan 3, 2024",LAL,MIA,Los Angeles Lakers,Miami Heat,96.0,110.0,-14.0,Home,101.0,True,2024
 202401050LAL,"Fri, Jan 5, 2024",LAL,MEM,Los Angeles Lakers,Memphis Grizzlies,,,,Home,,False,2024
 202401070LAL,"Sun, Jan 7, 2024",LAL,LAC,Los Angeles Lakers,Los Angeles Clippers,,,,Home,,False,2024
 202401090LAL,"Tue, Jan 9, 2024",LAL,TOR,Los Angeles Lakers,Toronto Raptors,,,,Home,,False,2024
@@ -805,7 +805,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404070LAL,"Sun, Apr 7, 2024",LAL,MIN,Los Angeles Lakers,Minnesota Timberwolves,,,,Home,,False,2024
 202404120MEM,"Fri, Apr 12, 2024",MEM,LAL,Memphis Grizzlies,Los Angeles Lakers,,,,Home,,False,2024
 202404140NOP,"Sun, Apr 14, 2024",NOP,LAL,New Orleans Pelicans,Los Angeles Lakers,,,,Home,,False,2024
-202401030MIN,"Wed, Jan 3, 2024",MIN,NOP,Minnesota Timberwolves,New Orleans Pelicans,,,,Home,,False,2024
+202401030MIN,"Wed, Jan 3, 2024",MIN,NOP,Minnesota Timberwolves,New Orleans Pelicans,106.0,117.0,-11.0,Home,91.0,True,2024
 202401050NOP,"Fri, Jan 5, 2024",NOP,LAC,New Orleans Pelicans,Los Angeles Clippers,,,,Home,,False,2024
 202401120DEN,"Fri, Jan 12, 2024",DEN,NOP,Denver Nuggets,New Orleans Pelicans,,,,Home,,False,2024
 202401130DAL,"Sat, Jan 13, 2024",DAL,NOP,Dallas Mavericks,New Orleans Pelicans,,,,Home,,False,2024
@@ -875,7 +875,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404090UTA,"Tue, Apr 9, 2024",UTA,DEN,Utah Jazz,Denver Nuggets,,,,Home,,False,2024
 202404100DEN,"Wed, Apr 10, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,,,,Home,,False,2024
 202404140MEM,"Sun, Apr 14, 2024",MEM,DEN,Memphis Grizzlies,Denver Nuggets,,,,Home,,False,2024
-202401030PHO,"Wed, Jan 3, 2024",PHO,LAC,Phoenix Suns,Los Angeles Clippers,,,,Home,,False,2024
+202401030PHO,"Wed, Jan 3, 2024",PHO,LAC,Phoenix Suns,Los Angeles Clippers,122.0,131.0,-9.0,Home,91.9,True,2024
 202401080LAC,"Mon, Jan 8, 2024",LAC,PHO,Los Angeles Clippers,Phoenix Suns,,,,Home,,False,2024
 202401100LAC,"Wed, Jan 10, 2024",LAC,TOR,Los Angeles Clippers,Toronto Raptors,,,,Home,,False,2024
 202401120MEM,"Fri, Jan 12, 2024",MEM,LAC,Memphis Grizzlies,Los Angeles Clippers,,,,Home,,False,2024
@@ -911,7 +911,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404090PHO,"Tue, Apr 9, 2024",PHO,LAC,Phoenix Suns,Los Angeles Clippers,,,,Home,,False,2024
 202404100LAC,"Wed, Apr 10, 2024",LAC,PHO,Los Angeles Clippers,Phoenix Suns,,,,Home,,False,2024
 202404120LAC,"Fri, Apr 12, 2024",LAC,UTA,Los Angeles Clippers,Utah Jazz,,,,Home,,False,2024
-202401030MEM,"Wed, Jan 3, 2024",MEM,TOR,Memphis Grizzlies,Toronto Raptors,,,,Home,,False,2024
+202401030MEM,"Wed, Jan 3, 2024",MEM,TOR,Memphis Grizzlies,Toronto Raptors,111.0,116.0,-5.0,Home,100.3,True,2024
 202401070PHO,"Sun, Jan 7, 2024",PHO,MEM,Phoenix Suns,Memphis Grizzlies,,,,Home,,False,2024
 202401090DAL,"Tue, Jan 9, 2024",DAL,MEM,Dallas Mavericks,Memphis Grizzlies,,,,Home,,False,2024
 202401130MEM,"Sat, Jan 13, 2024",MEM,NYK,Memphis Grizzlies,New York Knicks,,,,Home,,False,2024
@@ -940,7 +940,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404050MEM,"Fri, Apr 5, 2024",MEM,DET,Memphis Grizzlies,Detroit Pistons,,,,Home,,False,2024
 202404060MEM,"Sat, Apr 6, 2024",MEM,PHI,Memphis Grizzlies,Philadelphia 76ers,,,,Home,,False,2024
 202404100CLE,"Wed, Apr 10, 2024",CLE,MEM,Cleveland Cavaliers,Memphis Grizzlies,,,,Home,,False,2024
-202401030DAL,"Wed, Jan 3, 2024",DAL,POR,Dallas Mavericks,Portland Trail Blazers,,,,Home,,False,2024
+202401030DAL,"Wed, Jan 3, 2024",DAL,POR,Dallas Mavericks,Portland Trail Blazers,126.0,97.0,29.0,Home,104.8,True,2024
 202401050DAL,"Fri, Jan 5, 2024",DAL,POR,Dallas Mavericks,Portland Trail Blazers,,,,Home,,False,2024
 202401070DAL,"Sun, Jan 7, 2024",DAL,MIN,Dallas Mavericks,Minnesota Timberwolves,,,,Home,,False,2024
 202401110DAL,"Thu, Jan 11, 2024",DAL,NYK,Dallas Mavericks,New York Knicks,,,,Home,,False,2024
@@ -971,7 +971,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404100MIA,"Wed, Apr 10, 2024",MIA,DAL,Miami Heat,Dallas Mavericks,,,,Home,,False,2024
 202404120DAL,"Fri, Apr 12, 2024",DAL,DET,Dallas Mavericks,Detroit Pistons,,,,Home,,False,2024
 202404140OKC,"Sun, Apr 14, 2024",OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,,,,Home,,False,2024
-202401030IND,"Wed, Jan 3, 2024",IND,MIL,Indiana Pacers,Milwaukee Bucks,,,,Home,,False,2024
+202401030IND,"Wed, Jan 3, 2024",IND,MIL,Indiana Pacers,Milwaukee Bucks,142.0,130.0,12.0,Home,106.6,True,2024
 202401080MIL,"Mon, Jan 8, 2024",MIL,UTA,Milwaukee Bucks,Utah Jazz,,,,Home,,False,2024
 202401110MIL,"Thu, Jan 11, 2024",MIL,BOS,Milwaukee Bucks,Boston Celtics,,,,Home,,False,2024
 202401170CLE,"Wed, Jan 17, 2024",CLE,MIL,Cleveland Cavaliers,Milwaukee Bucks,,,,Home,,False,2024
@@ -998,7 +998,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404070MIL,"Sun, Apr 7, 2024",MIL,NYK,Milwaukee Bucks,New York Knicks,,,,Home,,False,2024
 202404090MIL,"Tue, Apr 9, 2024",MIL,BOS,Milwaukee Bucks,Boston Celtics,,,,Home,,False,2024
 202404120OKC,"Fri, Apr 12, 2024",OKC,MIL,Oklahoma City Thunder,Milwaukee Bucks,,,,Home,,False,2024
-202401030CLE,"Wed, Jan 3, 2024",CLE,WAS,Cleveland Cavaliers,Washington Wizards,,,,Home,,False,2024
+202401030CLE,"Wed, Jan 3, 2024",CLE,WAS,Cleveland Cavaliers,Washington Wizards,140.0,101.0,39.0,Home,96.9,True,2024
 202401050CLE,"Fri, Jan 5, 2024",CLE,WAS,Cleveland Cavaliers,Washington Wizards,,,,Home,,False,2024
 202401110CLE,"Thu, Jan 11, 2024",CLE,BRK,Cleveland Cavaliers,Brooklyn Nets,,,,Home,,False,2024
 202401150CLE,"Mon, Jan 15, 2024",CLE,CHI,Cleveland Cavaliers,Chicago Bulls,,,,Home,,False,2024
@@ -1027,7 +1027,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404020UTA,"Tue, Apr 2, 2024",UTA,CLE,Utah Jazz,Cleveland Cavaliers,,,,Home,,False,2024
 202404030PHO,"Wed, Apr 3, 2024",PHO,CLE,Phoenix Suns,Cleveland Cavaliers,,,,Home,,False,2024
 202404120CLE,"Fri, Apr 12, 2024",CLE,IND,Cleveland Cavaliers,Indiana Pacers,,,,Home,,False,2024
-202401030ATL,"Wed, Jan 3, 2024",ATL,OKC,Atlanta Hawks,Oklahoma City Thunder,,,,Home,,False,2024
+202401030ATL,"Wed, Jan 3, 2024",ATL,OKC,Atlanta Hawks,Oklahoma City Thunder,141.0,138.0,3.0,Home,103.4,True,2024
 202401050IND,"Fri, Jan 5, 2024",IND,ATL,Indiana Pacers,Atlanta Hawks,,,,Home,,False,2024
 202401100ATL,"Wed, Jan 10, 2024",ATL,PHI,Atlanta Hawks,Philadelphia 76ers,,,,Home,,False,2024
 202401120ATL,"Fri, Jan 12, 2024",ATL,IND,Atlanta Hawks,Indiana Pacers,,,,Home,,False,2024
@@ -1113,7 +1113,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404040MIA,"Thu, Apr 4, 2024",MIA,PHI,Miami Heat,Philadelphia 76ers,,,,Home,,False,2024
 202404090PHI,"Tue, Apr 9, 2024",PHI,DET,Philadelphia 76ers,Detroit Pistons,,,,Home,,False,2024
 202404140PHI,"Sun, Apr 14, 2024",PHI,BRK,Philadelphia 76ers,Brooklyn Nets,,,,Home,,False,2024
-202401030UTA,"Wed, Jan 3, 2024",UTA,DET,Utah Jazz,Detroit Pistons,,,,Home,,False,2024
+202401030UTA,"Wed, Jan 3, 2024",UTA,DET,Utah Jazz,Detroit Pistons,154.0,148.0,6.0,Home,101.3,True,2024
 202401150WAS,"Mon, Jan 15, 2024",WAS,DET,Washington Wizards,Detroit Pistons,,,,Home,,False,2024
 202401170DET,"Wed, Jan 17, 2024",DET,MIN,Detroit Pistons,Minnesota Timberwolves,,,,Home,,False,2024
 202401270DET,"Sat, Jan 27, 2024",DET,WAS,Detroit Pistons,Washington Wizards,,,,Home,,False,2024
@@ -1179,7 +1179,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404020MIA,"Tue, Apr 2, 2024",MIA,NYK,Miami Heat,New York Knicks,,,,Home,,False,2024
 202404120MIA,"Fri, Apr 12, 2024",MIA,TOR,Miami Heat,Toronto Raptors,,,,Home,,False,2024
 202404140MIA,"Sun, Apr 14, 2024",MIA,TOR,Miami Heat,Toronto Raptors,,,,Home,,False,2024
-202401030NYK,"Wed, Jan 3, 2024",NYK,CHI,New York Knicks,Chicago Bulls,,,,Home,,False,2024
+202401030NYK,"Wed, Jan 3, 2024",NYK,CHI,New York Knicks,Chicago Bulls,116.0,100.0,16.0,Home,94.0,True,2024
 202401180TOR,"Thu, Jan 18, 2024",TOR,CHI,Toronto Raptors,Chicago Bulls,,,,Home,,False,2024
 202401280POR,"Sun, Jan 28, 2024",POR,CHI,Portland Trail Blazers,Chicago Bulls,,,,Home,,False,2024
 202401300CHI,"Tue, Jan 30, 2024",CHI,TOR,Chicago Bulls,Toronto Raptors,,,,Home,,False,2024
