@@ -505,6 +505,8 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202401030ATL,2024-01-03 00:00:00,ATL,OKC,Atlanta Hawks,Oklahoma City Thunder,141.0,138.0,3.0,Home,103.4,True,2024
 202401030UTA,2024-01-03 00:00:00,UTA,DET,Utah Jazz,Detroit Pistons,154.0,148.0,6.0,Home,101.3,True,2024
 202401030NYK,2024-01-03 00:00:00,NYK,CHI,New York Knicks,Chicago Bulls,116.0,100.0,16.0,Home,94.0,True,2024
+202401040SAS,2024-01-04 00:00:00,SAS,MIL,San Antonio Spurs,Milwaukee Bucks,121.0,125.0,-4.0,Home,102.6,True,2024
+202401040GSW,2024-01-04 00:00:00,GSW,DEN,Golden State Warriors,Denver Nuggets,127.0,130.0,-3.0,Home,92.0,True,2024
 202401050HOU,"Fri, Jan 5, 2024",HOU,MIN,Houston Rockets,Minnesota Timberwolves,,,,Home,,False,2024
 202401060HOU,"Sat, Jan 6, 2024",HOU,MIL,Houston Rockets,Milwaukee Bucks,,,,Home,,False,2024
 202401080MIA,"Mon, Jan 8, 2024",MIA,HOU,Miami Heat,Houston Rockets,,,,Home,,False,2024
@@ -602,7 +604,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404100MIL,"Wed, Apr 10, 2024",MIL,ORL,Milwaukee Bucks,Orlando Magic,,,,Home,,False,2024
 202404120PHI,"Fri, Apr 12, 2024",PHI,ORL,Philadelphia 76ers,Orlando Magic,,,,Home,,False,2024
 202404140ORL,"Sun, Apr 14, 2024",ORL,MIL,Orlando Magic,Milwaukee Bucks,,,,Home,,False,2024
-202401040SAS,"Thu, Jan 4, 2024",SAS,MIL,San Antonio Spurs,Milwaukee Bucks,121.0,125.0,-4.0,Home,102.6,True,2024
 202401070CLE,"Sun, Jan 7, 2024",CLE,SAS,Cleveland Cavaliers,San Antonio Spurs,,,,Home,,False,2024
 202401100DET,"Wed, Jan 10, 2024",DET,SAS,Detroit Pistons,San Antonio Spurs,,,,Home,,False,2024
 202401120SAS,"Fri, Jan 12, 2024",SAS,CHO,San Antonio Spurs,Charlotte Hornets,,,,Home,,False,2024
@@ -647,7 +648,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404100OKC,"Wed, Apr 10, 2024",OKC,SAS,Oklahoma City Thunder,San Antonio Spurs,,,,Home,,False,2024
 202404120SAS,"Fri, Apr 12, 2024",SAS,DEN,San Antonio Spurs,Denver Nuggets,,,,Home,,False,2024
 202404140SAS,"Sun, Apr 14, 2024",SAS,DET,San Antonio Spurs,Detroit Pistons,,,,Home,,False,2024
-202401040GSW,"Thu, Jan 4, 2024",GSW,DEN,Golden State Warriors,Denver Nuggets,127.0,130.0,-3.0,Home,92.0,True,2024
 202401050GSW,"Fri, Jan 5, 2024",GSW,DET,Golden State Warriors,Detroit Pistons,,,,Home,,False,2024
 202401070GSW,"Sun, Jan 7, 2024",GSW,TOR,Golden State Warriors,Toronto Raptors,,,,Home,,False,2024
 202401100GSW,"Wed, Jan 10, 2024",GSW,NOP,Golden State Warriors,New Orleans Pelicans,,,,Home,,False,2024
