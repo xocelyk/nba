@@ -149,10 +149,10 @@ class Season:
         if games_on_date is None:
             games_on_date = self.future_games[self.future_games['completed'] == True]
     
-        last_10_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][:10]) if len(self.last_n_games_adj_margins[team]) >= 10 else 0 for team in self.teams}
-        last_5_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][:5]) if len(self.last_n_games_adj_margins[team]) >= 5 else 0 for team in self.teams}
-        last_3_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][:3]) if len(self.last_n_games_adj_margins[team]) >= 3 else 0 for team in self.teams}
-        last_1_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][:1]) if len(self.last_n_games_adj_margins[team]) >= 1 else 0 for team in self.teams}
+        last_10_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][-10:]) if len(self.last_n_games_adj_margins[team]) >= 10 else 0 for team in self.teams}
+        last_5_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][-5:]) if len(self.last_n_games_adj_margins[team]) >= 5 else 0 for team in self.teams}
+        last_3_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][-3:]) if len(self.last_n_games_adj_margins[team]) >= 3 else 0 for team in self.teams}
+        last_1_games_dict = {team: np.mean(self.last_n_games_adj_margins[team][-1:]) if len(self.last_n_games_adj_margins[team]) >= 1 else 0 for team in self.teams}
 
         self.future_games['team_last_10_rating'] = self.future_games['team'].map(last_10_games_dict)
         self.future_games['opponent_last_10_rating'] = self.future_games['opponent'].map(last_10_games_dict)
