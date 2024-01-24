@@ -10,14 +10,6 @@ import stats
 import time
 from sim_season import sim_season
 
-'''
-TODO list
- - use historic year data to impute pace data into training data composite
- - fix HCA calculationp
- - impute with boxscore data
- - mark playoff games in training data
-'''
-
 # ignore warnings
 warnings.filterwarnings('ignore')
 
