@@ -57,7 +57,6 @@ def get_defensive_efficiency(data):
 def get_adjusted_efficiencies(data, off_eff, def_eff):
     '''
     gets both adjusted defensive efficiency and adjusted offensive efficiency
-    TODO: use HCA
     '''
 
     adj_off_eff = off_eff.copy()
@@ -69,6 +68,12 @@ def get_adjusted_efficiencies(data, off_eff, def_eff):
         game_offensive_efficiencies = {team: [] for team in off_eff.keys()}
         game_defensive_efficiencies = {team: [] for team in off_eff.keys()}
         for idx, row in data.iterrows():
+            team_ppp = row['team_score'] / row['pace']
+            opponent_ppp = row['opponent_score'] / row['pace']
+            team_game_adjusted_offensive_efficiency = team_ppp - (adj_def_eff[row['opponent']] + average_ppp)
+            team_game_adjusted_defensive_efficiency = opponent_ppp - (adj_off_eff[row['opponent']] + average_ppp)
+            opponent_game_adjusted_offensive_efficiency = opponent_ppp - (adj_def_eff[row['team']] + average_ppp)
+            opponent_game_adjusted_defensive_efficiency = team_ppp - (adj_off_eff[row['team']] + average_ppp)
             team_ppp = (row['team_score'] + HCA/2) / row['pace']
             opponent_ppp = (row['opponent_score'] - HCA/2) / row['pace']
             team_game_adjusted_offensive_efficiency = team_ppp - average_ppp + adj_def_eff[row['opponent']]
