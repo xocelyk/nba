@@ -76,8 +76,6 @@ def main(update=True, save_names=False):
     last_thirty_day_def_eff = stats.get_defensive_efficiency(last_thirty_day_games)
     last_thirty_day_adj_off_eff, last_thirty_day_adj_def_eff = stats.get_adjusted_efficiencies(last_thirty_day_games, last_thirty_day_off_eff, last_thirty_day_def_eff)
 
-    adj_off_eff, adj_def_eff = last_thirty_day_adj_off_eff.copy(), last_thirty_day_adj_def_eff.copy()
-
     paces = stats.get_pace(completed_games)
     wins, losses = stats.get_wins_losses(completed_games)
 
@@ -92,7 +90,6 @@ def main(update=True, save_names=False):
     df_final['def_eff'] = 100 * df_final['def_eff']
     df_final['adj_off_eff'] = df_final.apply(lambda x: adj_off_eff.get(x['team'], 0), axis=1)
     df_final['adj_def_eff'] = df_final.apply(lambda x: adj_def_eff.get(x['team'], 0), axis=1)
-    df_final['adj_def_eff'] = -df_final['adj_def_eff']
     df_final = df_final[['rank', 'team', 'team_name', 'em_rating', 'wins', 'losses', 'win_pct', 'off_eff', 'def_eff', 'adj_off_eff', 'adj_def_eff', 'pace']]
     print(df_final.head(30))
     
