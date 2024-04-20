@@ -1233,9 +1233,9 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404140BOS,2024-04-14 00:00:00,BOS,WAS,Boston Celtics,Washington Wizards,132.0,122.0,10.0,Home,104.3,True,2024
 202404170CHI,2024-04-17 00:00:00,CHI,ATL,Chicago Bulls,Atlanta Hawks,131.0,116.0,15.0,Home,98.8,True,2024
 202404170PHI,2024-04-17 00:00:00,PHI,MIA,Philadelphia 76ers,Miami Heat,105.0,104.0,1.0,Home,91.7,True,2024
+202404190NOP,2024-04-19 00:00:00,NOP,SAC,New Orleans Pelicans,Sacramento Kings,105.0,98.0,7.0,Home,93.9,True,2024
+202404190MIA,2024-04-19 00:00:00,MIA,CHI,Miami Heat,Chicago Bulls,112.0,91.0,21.0,Home,97.3,True,2024
 202404200CLE,"Sat, Apr 20, 2024",CLE,ORL,Cleveland Cavaliers,Orlando Magic,,,,Home,,False,2024
-202404190NOP,"Fri, Apr 19, 2024",NOP,SAC,New Orleans Pelicans,Sacramento Kings,105.0,98.0,7.0,Home,93.9,True,2024
 202404210LAC,"Sun, Apr 21, 2024",LAC,DAL,Los Angeles Clippers,Dallas Mavericks,,,,Home,,False,2024
 202404210MIL,"Sun, Apr 21, 2024",MIL,IND,Milwaukee Bucks,Indiana Pacers,,,,Home,,False,2024
 202404200MIN,"Sat, Apr 20, 2024",MIN,PHO,Minnesota Timberwolves,Phoenix Suns,,,,Home,,False,2024
-202404190MIA,"Fri, Apr 19, 2024",MIA,CHI,Miami Heat,Chicago Bulls,112.0,91.0,21.0,Home,97.3,True,2024
