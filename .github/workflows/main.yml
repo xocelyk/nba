@@ -1,7 +1,7 @@
 name: Daily Update
 on:
   schedule:
-    - cron: '0 12 * * *'  # runs at 12 PM (noon) UTC, which is 7 AM Central Daylight Time
+    - cron: '0 */4 * * *'  # runs at 12 PM (noon) UTC, which is 7 AM Central Daylight Time
 
 jobs:
   run_my_code:
