@@ -1,11 +1,8 @@
 import pandas as pd
 import numpy as np
 import datetime
-from scipy.sparse.linalg import eigs
-from sklearn.linear_model import LinearRegression
 import utils
 import time
-import data_loader
 from random import choice
 
 '''
@@ -143,6 +140,7 @@ class Season:
         return teams_last_games_dict
 
     def update_data(self, games_on_date=None):
+        # TODO: last_n_games should be based on em_ratings calculated from the most recent data
         # After playing a series of games (e.g. a day), update the ratings for each team
         if self.future_games.empty:
             return
@@ -170,9 +168,14 @@ class Season:
             self.update_counter += 1
             if self.update_counter % self.update_every == 0:
                 self.em_ratings = utils.get_em_ratings(self.completed_games, names=self.teams, num_epochs=20)
+                last_30_days_games = self.completed_games[self.completed_games['date'] > (self.completed_games['date'].max() - datetime.timedelta(days=30))]
+                # self.recent_em_ratings = utils.get_rolling_em_ratings(last_30_days_games, names=self.teams, num_epochs=20)
+                # self.recent_em_ratings = utils.get_rolling_em_ratings(self.completed_games, names=self.teams, num_epochs=20)
 
         self.future_games['team_rating'] = self.future_games['team'].map(self.em_ratings)
         self.future_games['opponent_rating'] = self.future_games['opponent'].map(self.em_ratings)
+        # self.future_games['recent_team_rating'] = self.future_games['team'].map(self.recent_em_ratings)
+        # self.future_games['recent_opponent_rating'] = self.future_games['opponent'].map(self.recent_em_ratings)
 
         self.future_games['team_days_since_most_recent_game'] = self.future_games.apply(lambda row: 10 if self.most_recent_game_date_dict[row['team']] is None else min(int((row['date'] - self.most_recent_game_date_dict[row['team']]).days), 10), axis=1)
         self.future_games['opponent_days_since_most_recent_game'] = self.future_games.apply(lambda row: 10 if self.most_recent_game_date_dict[row['opponent']] is None else min(int((row['date'] - self.most_recent_game_date_dict[row['opponent']]).days), 10), axis=1)
@@ -205,6 +208,14 @@ class Season:
             return
         self.update_data(games_on_date=games_on_date)
 
+    def print_game(self, row, pred_margin):
+        print(row['team'], 'vs', row['opponent'], 'on', row['date'])
+        print('{} Rating: {}'.format(row['team'], round(row['team_rating'], 1)))
+        print('{} Rating: {}'.format(row['opponent'], round(row['opponent_rating'], 1)))
+        print('{} Last 10 Rating: {}'.format(row['team'], round(row['team_last_10_rating'], 1)))
+        print('{} Last 10 Rating: {}'.format(row['opponent'], round(row['opponent_last_10_rating'], 1)))
+        print('Predicted margin:', round(pred_margin, 1))
+
     def simulate_game(self, row):
         # TODO (possibly): add simulations of pace, three point percentage, etc
         # but make sure stats are not independent of each other (otherwise we will regress to mean, decreasing variance)
@@ -213,8 +224,13 @@ class Season:
         num_games_into_season = row['num_games_into_season']
         train_data = self.get_game_data(row)
         expected_margin = self.margin_model.margin_model.predict(train_data)[0]
+        # if 'MIN' in team or 'MIN' in opponent:
+        #     self.print_game(row, expected_margin)
         noise = np.random.normal(0, self.margin_model.num_games_to_std_margin_model_resid(num_games_into_season))
         margin = noise + expected_margin
+        # if 'MIN' in team or 'MIN' in opponent:
+        #     print('Result Margin:', round(margin, 1))
+        #     print()
         team_win = int(margin > 0)
         row['completed'] = True
         row['team_win'] = team_win
@@ -260,6 +276,29 @@ class Season:
                 record_by_team[game['team']][1] += 1
                 record_by_team[game['opponent']][0] += 1
         return record_by_team
+    
+    def get_playoff_games_completed(self, playoff_start_date):
+        return self.completed_games[self.completed_games['date'] >= playoff_start_date]
+    
+    def get_cur_playoff_results(self, playoff_start_date):
+        results = {i:{} for i in range(4)}#{round: [{team: [opponent, wins, losses]}]}
+        playoff_games = self.get_playoff_games_completed(playoff_start_date)
+        for team in self.teams:
+            if team not in playoff_games['team'].unique() and team not in playoff_games['opponent'].unique():
+                continue
+            team_playoff_games = playoff_games[(playoff_games['team'] == team) | (playoff_games['opponent'] == team)]
+            duped_games = utils.duplicate_games(team_playoff_games)
+            # find all the unique opponents the team played and sort them by date. first is the first round opponent, second is the second round opponent, etc.
+            opponents = duped_games['opponent'].unique()
+            opponents = sorted(opponents, key=lambda x: duped_games[duped_games['opponent'] == x].iloc[0]['date'])
+            for idx, opponent in enumerate(opponents):
+                team_opponent_games = duped_games[(duped_games['opponent'] == opponent) & (duped_games['team'] == opponent)]
+                series_team_wins = team_opponent_games['team_win'].sum()
+                series_opponent_wins = len(team_opponent_games) - series_team_wins
+                if idx not in results:
+                    results[idx] = {}
+                results[idx][team] = [opponent, series_team_wins, series_opponent_wins]
+        return results
 
     def playoffs(self):
         playoff_results = {'playoffs': [], 'second_round': [], 'conference_finals': [], 'finals': [], 'champion': []}
@@ -271,6 +310,7 @@ class Season:
             self.end_season_standings[row['team']] = row['seed']
         for idx, row in wc_standings.iterrows():
             self.end_season_standings[row['team']] = row['seed']
+    
         
         self.future_games['playoff_label'] = None
         self.future_games['winner_name'] = None
@@ -291,20 +331,22 @@ class Season:
         assert len(set(west_alive + east_alive)) == len(west_alive + east_alive)
         playoff_results['playoffs'] = east_alive + west_alive
 
+        cur_playoff_results = self.get_cur_playoff_results(self.future_games['date'].min())
+
         # simulate first round
-        east_seeds, west_seeds = self.first_round(east_seeds, west_seeds)
+        east_seeds, west_seeds = self.first_round(east_seeds, west_seeds, cur_playoff_results)
         east_alive = list(east_seeds.values())
         west_alive = list(west_seeds.values())
         playoff_results['second_round'] = east_alive + west_alive
 
         # simulate second round
-        east_seeds, west_seeds = self.second_round(east_seeds, west_seeds)
+        east_seeds, west_seeds = self.second_round(east_seeds, west_seeds, cur_playoff_results)
         east_alive = list(east_seeds.values())
         west_alive = list(west_seeds.values())
         playoff_results['conference_finals'] = east_alive + west_alive
 
         # simulate conference finals
-        e1, w1 = self.conference_finals(east_seeds, west_seeds)
+        e1, w1 = self.conference_finals(east_seeds, west_seeds, cur_playoff_results)
         playoff_results['finals'] = [e1, w1]
 
         if choice([True, False]):
@@ -315,12 +357,12 @@ class Season:
             team2 = e1
         
         # simulate finals
-        champ = self.finals(team1, team2)
+        champ = self.finals(team1, team2, cur_playoff_results)
         playoff_results['champion'] = [champ]
         print(champ)
         return playoff_results
 
-    def first_round(self, east_seeds, west_seeds):
+    def first_round(self, east_seeds, west_seeds, cur_playoff_results):
         game_1_date = self.get_next_date(day_increment=3)
         game_2_date = game_1_date + datetime.timedelta(days=3)
         game_3_date = game_2_date + datetime.timedelta(days=3)
@@ -328,6 +370,7 @@ class Season:
         game_5_date = game_4_date + datetime.timedelta(days=3)
         game_6_date = game_5_date + datetime.timedelta(days=3)
         game_7_date = game_6_date + datetime.timedelta(days=3)
+        game_dates = [game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]
 
         matchups = {'E_1_8': [east_seeds[1], east_seeds[8]],
                     'E_4_5': [east_seeds[4], east_seeds[5]],
@@ -337,16 +380,35 @@ class Season:
                     'W_4_5': [west_seeds[4], west_seeds[5]],
                     'W_2_7': [west_seeds[2], west_seeds[7]],
                     'W_3_6': [west_seeds[3], west_seeds[6]]}
+
+        rem_games = {}
+        for label, (team1, team2) in matchups.items():
+            if team1 not in cur_playoff_results[0]:
+                rem_games[label] = 7
+            else:
+                matchup_status = cur_playoff_results[0][team1]
+                [wins, losses] = matchup_status[1:]
+                if wins == 4:
+                    num_games_rem = 0
+                elif losses == 4:
+                    num_games_rem = 0
+                else:
+                    num_games_rem = 7 - (wins + losses)
+                rem_games[label] = num_games_rem
         
+        games_added = 0
         for label, [team1, team2] in matchups.items():
-            self.append_future_game(self.future_games, game_1_date, team1, team2, label)
-            self.append_future_game(self.future_games, game_2_date, team1, team2, label)
-            self.append_future_game(self.future_games, game_3_date, team2, team1, label)
-            self.append_future_game(self.future_games, game_4_date, team2, team1, label)
-            self.append_future_game(self.future_games, game_5_date, team1, team2, label)
-            self.append_future_game(self.future_games, game_6_date, team2, team1, label)
-            self.append_future_game(self.future_games, game_7_date, team1, team2, label)
-        self.update_data(games_on_date=self.future_games[:-56])
+            for i in range(0, rem_games[label]):
+                self.append_future_game(self.future_games, game_dates[i], team1, team2, label)
+                games_added += 1
+            # self.append_future_game(self.future_games, game_1_date, team1, team2, label)
+            # self.append_future_game(self.future_games, game_2_date, team1, team2, label)
+            # self.append_future_game(self.future_games, game_3_date, team2, team1, label)
+            # self.append_future_game(self.future_games, game_4_date, team2, team1, label)
+            # self.append_future_game(self.future_games, game_5_date, team1, team2, label)
+            # self.append_future_game(self.future_games, game_6_date, team2, team1, label)
+            # self.append_future_game(self.future_games, game_7_date, team1, team2, label)
+        self.update_data(games_on_date=self.future_games[:-games_added])
         
         for date in sorted([game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]):
             self.simulate_day(date, date + datetime.timedelta(days=3), 1)
@@ -376,7 +438,7 @@ class Season:
 
         return east_seeds, west_seeds
 
-    def second_round(self, east_seeds, west_seeds):
+    def second_round(self, east_seeds, west_seeds, cur_playoff_results):
         game_1_date = self.get_next_date(day_increment=3)
         game_2_date = game_1_date + datetime.timedelta(days=3)
         game_3_date = game_2_date + datetime.timedelta(days=3)
@@ -385,20 +447,50 @@ class Season:
         game_6_date = game_5_date + datetime.timedelta(days=3)
         game_7_date = game_6_date + datetime.timedelta(days=3)
 
+        game_dates = [game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]
+
         matchups = {'E_1_4': (east_seeds[1], east_seeds[4]),
                     'E_2_3': (east_seeds[2], east_seeds[3]),
                     'W_1_4': (west_seeds[1], west_seeds[4]),
                     'W_2_3': (west_seeds[2], west_seeds[3])}
         
+        rem_games = {}
         for label, (team1, team2) in matchups.items():
-            self.append_future_game(self.future_games, game_1_date, team1, team2, label)
-            self.append_future_game(self.future_games, game_2_date, team1, team2, label)
-            self.append_future_game(self.future_games, game_3_date, team2, team1, label)
-            self.append_future_game(self.future_games, game_4_date, team2, team1, label)
-            self.append_future_game(self.future_games, game_5_date, team1, team2, label)
-            self.append_future_game(self.future_games, game_6_date, team2, team1, label)
-            self.append_future_game(self.future_games, game_7_date, team1, team2, label)
-        self.update_data(games_on_date=self.future_games[:-28])
+            if team1 not in cur_playoff_results[1]:
+                rem_games[label] = 7
+            else:
+                matchup_status = cur_playoff_results[1][team1]
+                [wins, losses] = matchup_status[1:]
+                if wins == 4:
+                    num_games_rem = 0
+                elif losses == 4:
+                    num_games_rem = 0
+                else:
+                    num_games_rem = 7 - (wins + losses)
+                rem_games[label] = num_games_rem
+        
+        games_added = 0
+        for label, (team1, team2) in matchups.items():
+            for i in range(0, rem_games[label]):
+                self.append_future_game(self.future_games, game_dates[i], team1, team2, label)
+                games_added += 1
+            # self.append_future_game(self.future_games, game_1_date, team1, team2, label)
+            # self.append_future_game(self.future_games, game_2_date, team1, team2, label)
+            # self.append_future_game(self.future_games, game_3_date, team2, team1, label)
+            # self.append_future_game(self.future_games, game_4_date, team2, team1, label)
+            # self.append_future_game(self.future_games, game_5_date, team1, team2, label)
+            # self.append_future_game(self.future_games, game_6_date, team2, team1, label)
+            # self.append_future_game(self.future_games, game_7_date, team1, team2, label)
+        # for label, (team1, team2) in matchups.items():
+            # self.append_future_game(self.future_games, game_1_date, team1, team2, label)
+            # self.append_future_game(self.future_games, game_2_date, team1, team2, label)
+            # self.append_future_game(self.future_games, game_3_date, team2, team1, label)
+            # self.append_future_game(self.future_games, game_4_date, team2, team1, label)
+            # self.append_future_game(self.future_games, game_5_date, team1, team2, label)
+            # self.append_future_game(self.future_games, game_6_date, team2, team1, label)
+            # self.append_future_game(self.future_games, game_7_date, team1, team2, label)
+        self.update_data(games_on_date=self.future_games[:-games_added])
+
         
         for date in sorted([game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]):
             self.simulate_day(date, date + datetime.timedelta(days=3), 1)
@@ -418,7 +510,7 @@ class Season:
 
         return east_seeds, west_seeds
     
-    def conference_finals(self, east_seeds, west_seeds):
+    def conference_finals(self, east_seeds, west_seeds, cur_playoff_results):
         game_1_date = self.get_next_date(day_increment=3)
         game_2_date = game_1_date + datetime.timedelta(days=3)
         game_3_date = game_2_date + datetime.timedelta(days=3)
@@ -427,18 +519,41 @@ class Season:
         game_6_date = game_5_date + datetime.timedelta(days=3)
         game_7_date = game_6_date + datetime.timedelta(days=3)
 
+        game_dates = [game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]
+
         matchups = {'E_1_2': [east_seeds[1], east_seeds[2]],
                     'W_1_2': [west_seeds[1], west_seeds[2]]}
         
+        rem_games = {}
         for label, (team1, team2) in matchups.items():
-            self.append_future_game(self.future_games, game_1_date, team1, team2, label)
-            self.append_future_game(self.future_games, game_2_date, team1, team2, label)
-            self.append_future_game(self.future_games, game_3_date, team2, team1, label)
-            self.append_future_game(self.future_games, game_4_date, team2, team1, label)
-            self.append_future_game(self.future_games, game_5_date, team1, team2, label)
-            self.append_future_game(self.future_games, game_6_date, team2, team1, label)
-            self.append_future_game(self.future_games, game_7_date, team1, team2, label)
-        self.update_data(games_on_date=self.future_games[:-14])
+            if team1 not in cur_playoff_results[2]:
+                rem_games[label] = 7
+            else:
+                matchup_status = cur_playoff_results[2][team1]
+                [wins, losses] = matchup_status[1:]
+                if wins == 4:
+                    num_games_rem = 0
+                elif losses == 4:
+                    num_games_rem = 0
+                else:
+                    num_games_rem = 7 - (wins + losses)
+                rem_games[label] = num_games_rem
+        
+        games_added = 0
+        for label, (team1, team2) in matchups.items():
+            for i in range(0, rem_games[label]):
+                self.append_future_game(self.future_games, game_dates[i], team1, team2, label)
+                games_added += 1
+        
+        # for label, (team1, team2) in matchups.items():
+        #     self.append_future_game(self.future_games, game_1_date, team1, team2, label)
+        #     self.append_future_game(self.future_games, game_2_date, team1, team2, label)
+        #     self.append_future_game(self.future_games, game_3_date, team2, team1, label)
+        #     self.append_future_game(self.future_games, game_4_date, team2, team1, label)
+        #     self.append_future_game(self.future_games, game_5_date, team1, team2, label)
+        #     self.append_future_game(self.future_games, game_6_date, team2, team1, label)
+        #     self.append_future_game(self.future_games, game_7_date, team1, team2, label)
+        self.update_data(games_on_date=self.future_games[:-games_added])
         
         for date in sorted([game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]):
             self.simulate_day(date, date + datetime.timedelta(days=3), 1)
@@ -448,7 +563,7 @@ class Season:
 
         return e_1, w_1
 
-    def finals(self, e_1, w_1):
+    def finals(self, e_1, w_1, cur_playoff_results):
         game_1_date = self.get_next_date(day_increment=3)
         game_2_date = game_1_date + datetime.timedelta(days=3)
         game_3_date = game_2_date + datetime.timedelta(days=3)
@@ -456,6 +571,8 @@ class Season:
         game_5_date = game_4_date + datetime.timedelta(days=3)
         game_6_date = game_5_date + datetime.timedelta(days=3)
         game_7_date = game_6_date + datetime.timedelta(days=3)
+
+        game_dates = [game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]
 
         import random
         # randomize home court advantage
@@ -470,16 +587,36 @@ class Season:
                 team1, team2 = e_1, w_1
         
         matchups = {'Finals': [team1, team2]}
-        
+
+        rem_games = {}
         for label, (team1, team2) in matchups.items():
-            self.append_future_game(self.future_games, game_1_date, team1, team2, label)
-            self.append_future_game(self.future_games, game_2_date, team1, team2, label)
-            self.append_future_game(self.future_games, game_3_date, team2, team1, label)
-            self.append_future_game(self.future_games, game_4_date, team2, team1, label)
-            self.append_future_game(self.future_games, game_5_date, team1, team2, label)
-            self.append_future_game(self.future_games, game_6_date, team2, team1, label)
-            self.append_future_game(self.future_games, game_7_date, team1, team2, label)
-        self.update_data(games_on_date=self.future_games[:-7])
+            if team1 not in cur_playoff_results[3]:
+                rem_games[label] = 7
+            else:
+                matchup_status = cur_playoff_results[1][team1]
+                [wins, losses] = matchup_status[1:]
+                if wins == 4:
+                    num_games_rem = 0
+                elif losses == 4:
+                    num_games_rem = 0
+                else:
+                    num_games_rem = 7 - (wins + losses)
+                rem_games[label] = num_games_rem
+
+        games_added = 0
+        for label, (team1, team2) in matchups.items():
+            for i in range(0, rem_games[label]):
+                self.append_future_game(self.future_games, game_dates[i], team1, team2, label)
+                games_added += 1
+        # for label, (team1, team2) in matchups.items():
+        #     self.append_future_game(self.future_games, game_1_date, team1, team2, label)
+        #     self.append_future_game(self.future_games, game_2_date, team1, team2, label)
+        #     self.append_future_game(self.future_games, game_3_date, team2, team1, label)
+        #     self.append_future_game(self.future_games, game_4_date, team2, team1, label)
+        #     self.append_future_game(self.future_games, game_5_date, team1, team2, label)
+        #     self.append_future_game(self.future_games, game_6_date, team2, team1, label)
+        #     self.append_future_game(self.future_games, game_7_date, team1, team2, label)
+        self.update_data(games_on_date=self.future_games[:-games_added])
         
         for date in sorted([game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]):
             self.simulate_day(date, date + datetime.timedelta(days=3), 1)
@@ -498,7 +635,9 @@ class Season:
     def play_in(self, ec_standings, wc_standings):
         [e_1, e_2, e_3, e_4, e_5, e_6, e_7, e_8, e_9, e_10] = ec_standings['team'].values.tolist()[:10]
         [w_1, w_2, w_3, w_4, w_5, w_6, w_7, w_8, w_9, w_10] = wc_standings['team'].values.tolist()[:10]
-
+        ec_seeds = {1: e_1, 2: e_2, 3: e_3, 4: e_4, 5: e_5, 6: e_6, 7: e_7, 8: e_8}
+        wc_seeds = {1: w_1, 2: w_2, 3: w_3, 4: w_4, 5: w_5, 6: w_6, 7: w_7, 8: w_8}
+        return ec_seeds, wc_seeds
         # simulate play in round 1
         playin_round_1_date = self.get_next_date(day_increment=3)
         self.append_future_game(self.future_games, date=playin_round_1_date, team=e_7, opponent=e_8, playoff_label='E_P_1')
@@ -575,24 +714,38 @@ class Season:
         5. record against conference eligible playoff teams
         '''
 
-        eastern_conference = ['BOS', 'TOR', 'PHI', 'BRK', 'IND', 'MIL', 'DET', 'CHI', 'ORL', 'WAS', 'CHO', 'NYK', 'ATL', 'MIA', 'CLE']
-        western_conference = ['GSW', 'HOU', 'LAC', 'UTA', 'POR', 'OKC', 'DEN', 'SAS', 'MIN', 'NOP', 'MEM', 'SAC', 'LAL', 'DAL', 'PHO']
+        # eastern_conference = ['BOS', 'TOR', 'PHI', 'BRK', 'IND', 'MIL', 'DET', 'CHI', 'ORL', 'WAS', 'CHO', 'NYK', 'ATL', 'MIA', 'CLE']
+        # western_conference = ['GSW', 'HOU', 'LAC', 'UTA', 'POR', 'OKC', 'DEN', 'SAS', 'MIN', 'NOP', 'MEM', 'SAC', 'LAL', 'DAL', 'PHO']
+
+        western_conference = ['OKC', 'DEN', 'MIN', 'LAC', 'DAL', 'PHO', 'LAL', 'NOP', 'SAC', 'GSW', 'POR', 'UTA', 'MEM', 'HOU', 'SAS']
+        eastern_conference = ['BOS', 'NYK', 'MIL', 'CLE', 'ORL', 'IND', 'PHI', 'MIA', 'CHI', 'ATL', 'BRK', 'TOR', 'WAS', 'DET', 'CHO']
 
         # create dataframes for each conference
         ec_df = pd.DataFrame.from_dict(record_by_team, orient='index', columns=['wins', 'losses'])
         ec_df = ec_df[ec_df.index.isin(eastern_conference)]
         wc_df = pd.DataFrame.from_dict(record_by_team, orient='index', columns=['wins', 'losses'])
         wc_df = wc_df[wc_df.index.isin(western_conference)]
+
+        # sort teams by their position in eastern_conference and western_conference
+        ec_df = ec_df.loc[eastern_conference]
+        wc_df = wc_df.loc[western_conference]
+
+        ec_df['seed'] = [i + 1 for i in range(len(ec_df))]
+        wc_df['seed'] = [i + 1 for i in range(len(wc_df))]
         ec_df['team'] = ec_df.index
         wc_df['team'] = wc_df.index
+        return ec_df, wc_df
+
 
 
         # first, sort by wins
         # HACK: add some noise to the wins to break ties
         ec_df['new_wins'] = ec_df['wins'] + np.random.normal(0, 1e-4, len(ec_df))
         wc_df['new_wins'] = wc_df['wins'] + np.random.normal(0, 1e-4, len(wc_df))
-        ec_df.sort_values(by='new_wins', ascending=False, inplace=True)
-        wc_df.sort_values(by='new_wins', ascending=False, inplace=True)
+        # ec_df.sort_values(by='new_wins', ascending=False, inplace=True)
+        # wc_df.sort_values(by='new_wins', ascending=False, inplace=True)
+
+
 
         # then, sort by head to head
         # ec_df = self.sort_by_head_to_head(ec_df)
