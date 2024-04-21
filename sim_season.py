@@ -4,6 +4,7 @@ import datetime
 import utils
 import time
 from random import choice
+import random
 
 '''
 # TODO: update with days since most recent game
@@ -236,6 +237,13 @@ class Season:
         row['team_win'] = team_win
         row['margin'] = margin
         row['winner_name'] = team if team_win else opponent
+
+        print(row['team'], 'vs', row['opponent'], 'on', row['date'])
+        print('Predicted Margin:', round(expected_margin, 1))
+        print('Actual Margin:', round(margin, 1))
+        print('Winner:', row['winner_name'])
+        print()
+
         team_adj_margin = row['margin'] + row['opponent_rating'] - utils.HCA
         opponent_adj_margin = -row['margin'] + row['team_rating'] + utils.HCA
         self.last_n_games_adj_margins[team].append(team_adj_margin)
@@ -331,7 +339,9 @@ class Season:
         assert len(set(west_alive + east_alive)) == len(west_alive + east_alive)
         playoff_results['playoffs'] = east_alive + west_alive
 
-        cur_playoff_results = self.get_cur_playoff_results(self.future_games['date'].min())
+        # playoff start date is 4/20/2024
+        playoff_start_date = datetime.date(2024, 4, 20)
+        cur_playoff_results = self.get_cur_playoff_results(playoff_start_date)
 
         # simulate first round
         east_seeds, west_seeds = self.first_round(east_seeds, west_seeds, cur_playoff_results)
@@ -363,15 +373,6 @@ class Season:
         return playoff_results
 
     def first_round(self, east_seeds, west_seeds, cur_playoff_results):
-        game_1_date = self.get_next_date(day_increment=3)
-        game_2_date = game_1_date + datetime.timedelta(days=3)
-        game_3_date = game_2_date + datetime.timedelta(days=3)
-        game_4_date = game_3_date + datetime.timedelta(days=3)
-        game_5_date = game_4_date + datetime.timedelta(days=3)
-        game_6_date = game_5_date + datetime.timedelta(days=3)
-        game_7_date = game_6_date + datetime.timedelta(days=3)
-        game_dates = [game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]
-
         matchups = {'E_1_8': [east_seeds[1], east_seeds[8]],
                     'E_4_5': [east_seeds[4], east_seeds[5]],
                     'E_2_7': [east_seeds[2], east_seeds[7]],
@@ -381,10 +382,15 @@ class Season:
                     'W_2_7': [west_seeds[2], west_seeds[7]],
                     'W_3_6': [west_seeds[3], west_seeds[6]]}
 
+        new_dates = set()
+        team1_home_map = {0: True, 1: True, 2: False, 3: False, 4: True, 5: False, 6: True}
         rem_games = {}
+        num_games_added = 0
         for label, (team1, team2) in matchups.items():
             if team1 not in cur_playoff_results[0]:
                 rem_games[label] = 7
+                wins = 0
+                losses = 0
             else:
                 matchup_status = cur_playoff_results[0][team1]
                 [wins, losses] = matchup_status[1:]
@@ -395,22 +401,24 @@ class Season:
                 else:
                     num_games_rem = 7 - (wins + losses)
                 rem_games[label] = num_games_rem
-        
-        games_added = 0
-        for label, [team1, team2] in matchups.items():
+            num_games_played = wins + losses
+            game_date = self.get_next_date(day_increment=3)
             for i in range(0, rem_games[label]):
-                self.append_future_game(self.future_games, game_dates[i], team1, team2, label)
-                games_added += 1
-            # self.append_future_game(self.future_games, game_1_date, team1, team2, label)
-            # self.append_future_game(self.future_games, game_2_date, team1, team2, label)
-            # self.append_future_game(self.future_games, game_3_date, team2, team1, label)
-            # self.append_future_game(self.future_games, game_4_date, team2, team1, label)
-            # self.append_future_game(self.future_games, game_5_date, team1, team2, label)
-            # self.append_future_game(self.future_games, game_6_date, team2, team1, label)
-            # self.append_future_game(self.future_games, game_7_date, team1, team2, label)
-        self.update_data(games_on_date=self.future_games[:-games_added])
+                game_idx = num_games_played + i
+                
+                new_dates.add(game_date)
+                team1_home = team1_home_map[game_idx]
+                print(team1, team2, game_date)
+                if team1_home:
+                    self.append_future_game(self.future_games, game_date, team1, team2, label)
+                else:
+                    self.append_future_game(self.future_games, game_date, team2, team1, label)
+                num_games_added += 1
+                # add 3 days to game_date
+                game_date += datetime.timedelta(days=3)
+        self.update_data(games_on_date=self.future_games[-num_games_added:])
         
-        for date in sorted([game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]):
+        for date in sorted(list(new_dates)):
             self.simulate_day(date, date + datetime.timedelta(days=3), 1)
 
         e1 = self.get_series_winner('E_1_8')
@@ -439,27 +447,22 @@ class Season:
         return east_seeds, west_seeds
 
     def second_round(self, east_seeds, west_seeds, cur_playoff_results):
-        game_1_date = self.get_next_date(day_increment=3)
-        game_2_date = game_1_date + datetime.timedelta(days=3)
-        game_3_date = game_2_date + datetime.timedelta(days=3)
-        game_4_date = game_3_date + datetime.timedelta(days=3)
-        game_5_date = game_4_date + datetime.timedelta(days=3)
-        game_6_date = game_5_date + datetime.timedelta(days=3)
-        game_7_date = game_6_date + datetime.timedelta(days=3)
-
-        game_dates = [game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]
-
         matchups = {'E_1_4': (east_seeds[1], east_seeds[4]),
                     'E_2_3': (east_seeds[2], east_seeds[3]),
                     'W_1_4': (west_seeds[1], west_seeds[4]),
                     'W_2_3': (west_seeds[2], west_seeds[3])}
         
+        new_dates = set()
+        team1_home_map = {0: True, 1: True, 2: False, 3: False, 4: True, 5: False, 6: True}
         rem_games = {}
+        num_games_added = 0
         for label, (team1, team2) in matchups.items():
-            if team1 not in cur_playoff_results[1]:
+            if team1 not in cur_playoff_results[0]:
                 rem_games[label] = 7
+                wins = 0
+                losses = 0
             else:
-                matchup_status = cur_playoff_results[1][team1]
+                matchup_status = cur_playoff_results[0][team1]
                 [wins, losses] = matchup_status[1:]
                 if wins == 4:
                     num_games_rem = 0
@@ -468,31 +471,21 @@ class Season:
                 else:
                     num_games_rem = 7 - (wins + losses)
                 rem_games[label] = num_games_rem
-        
-        games_added = 0
-        for label, (team1, team2) in matchups.items():
+            num_games_played = wins + losses
+            game_date = self.get_next_date(day_increment=3)
             for i in range(0, rem_games[label]):
-                self.append_future_game(self.future_games, game_dates[i], team1, team2, label)
-                games_added += 1
-            # self.append_future_game(self.future_games, game_1_date, team1, team2, label)
-            # self.append_future_game(self.future_games, game_2_date, team1, team2, label)
-            # self.append_future_game(self.future_games, game_3_date, team2, team1, label)
-            # self.append_future_game(self.future_games, game_4_date, team2, team1, label)
-            # self.append_future_game(self.future_games, game_5_date, team1, team2, label)
-            # self.append_future_game(self.future_games, game_6_date, team2, team1, label)
-            # self.append_future_game(self.future_games, game_7_date, team1, team2, label)
-        # for label, (team1, team2) in matchups.items():
-            # self.append_future_game(self.future_games, game_1_date, team1, team2, label)
-            # self.append_future_game(self.future_games, game_2_date, team1, team2, label)
-            # self.append_future_game(self.future_games, game_3_date, team2, team1, label)
-            # self.append_future_game(self.future_games, game_4_date, team2, team1, label)
-            # self.append_future_game(self.future_games, game_5_date, team1, team2, label)
-            # self.append_future_game(self.future_games, game_6_date, team2, team1, label)
-            # self.append_future_game(self.future_games, game_7_date, team1, team2, label)
-        self.update_data(games_on_date=self.future_games[:-games_added])
+                game_idx = num_games_played + i
+                new_dates.add(game_date)
+                team1_home = team1_home_map[game_idx]
+                if team1_home:
+                    self.append_future_game(self.future_games, game_date, team1, team2, label)
+                else:
+                    self.append_future_game(self.future_games, game_date, team2, team1, label)
+                num_games_added += 1
+                game_date += datetime.timedelta(days=3)
+        self.update_data(games_on_date=self.future_games[-num_games_added:])
 
-        
-        for date in sorted([game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]):
+        for date in sorted(list(new_dates)):
             self.simulate_day(date, date + datetime.timedelta(days=3), 1)
 
         e_1 = self.get_series_winner('E_1_4')
@@ -511,25 +504,20 @@ class Season:
         return east_seeds, west_seeds
     
     def conference_finals(self, east_seeds, west_seeds, cur_playoff_results):
-        game_1_date = self.get_next_date(day_increment=3)
-        game_2_date = game_1_date + datetime.timedelta(days=3)
-        game_3_date = game_2_date + datetime.timedelta(days=3)
-        game_4_date = game_3_date + datetime.timedelta(days=3)
-        game_5_date = game_4_date + datetime.timedelta(days=3)
-        game_6_date = game_5_date + datetime.timedelta(days=3)
-        game_7_date = game_6_date + datetime.timedelta(days=3)
-
-        game_dates = [game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]
-
         matchups = {'E_1_2': [east_seeds[1], east_seeds[2]],
                     'W_1_2': [west_seeds[1], west_seeds[2]]}
         
+        new_dates = set()
+        team1_home_map = {0: True, 1: True, 2: False, 3: False, 4: True, 5: False, 6: True}
         rem_games = {}
+        num_games_added = 0
         for label, (team1, team2) in matchups.items():
-            if team1 not in cur_playoff_results[2]:
+            if team1 not in cur_playoff_results[0]:
                 rem_games[label] = 7
+                wins = 0
+                losses = 0
             else:
-                matchup_status = cur_playoff_results[2][team1]
+                matchup_status = cur_playoff_results[0][team1]
                 [wins, losses] = matchup_status[1:]
                 if wins == 4:
                     num_games_rem = 0
@@ -538,24 +526,21 @@ class Season:
                 else:
                     num_games_rem = 7 - (wins + losses)
                 rem_games[label] = num_games_rem
-        
-        games_added = 0
-        for label, (team1, team2) in matchups.items():
+            num_games_played = wins + losses
+            game_date = self.get_next_date(day_increment=3)
             for i in range(0, rem_games[label]):
-                self.append_future_game(self.future_games, game_dates[i], team1, team2, label)
-                games_added += 1
-        
-        # for label, (team1, team2) in matchups.items():
-        #     self.append_future_game(self.future_games, game_1_date, team1, team2, label)
-        #     self.append_future_game(self.future_games, game_2_date, team1, team2, label)
-        #     self.append_future_game(self.future_games, game_3_date, team2, team1, label)
-        #     self.append_future_game(self.future_games, game_4_date, team2, team1, label)
-        #     self.append_future_game(self.future_games, game_5_date, team1, team2, label)
-        #     self.append_future_game(self.future_games, game_6_date, team2, team1, label)
-        #     self.append_future_game(self.future_games, game_7_date, team1, team2, label)
-        self.update_data(games_on_date=self.future_games[:-games_added])
-        
-        for date in sorted([game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]):
+                game_idx = num_games_played + i
+                new_dates.add(game_date)
+                team1_home = team1_home_map[game_idx]
+                if team1_home:
+                    self.append_future_game(self.future_games, game_date, team1, team2, label)
+                else:
+                    self.append_future_game(self.future_games, game_date, team2, team1, label)
+                num_games_added += 1
+                game_date += datetime.timedelta(days=3)
+        self.update_data(games_on_date=self.future_games[-num_games_added:])
+
+        for date in sorted(list(new_dates)):
             self.simulate_day(date, date + datetime.timedelta(days=3), 1)
         
         e_1 = self.get_series_winner('E_1_2')
@@ -564,17 +549,6 @@ class Season:
         return e_1, w_1
 
     def finals(self, e_1, w_1, cur_playoff_results):
-        game_1_date = self.get_next_date(day_increment=3)
-        game_2_date = game_1_date + datetime.timedelta(days=3)
-        game_3_date = game_2_date + datetime.timedelta(days=3)
-        game_4_date = game_3_date + datetime.timedelta(days=3)
-        game_5_date = game_4_date + datetime.timedelta(days=3)
-        game_6_date = game_5_date + datetime.timedelta(days=3)
-        game_7_date = game_6_date + datetime.timedelta(days=3)
-
-        game_dates = [game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]
-
-        import random
         # randomize home court advantage
         if self.regular_season_win_loss_report[e_1][0] > self.regular_season_win_loss_report[w_1][0]:
             team1, team2 = e_1, w_1
@@ -588,12 +562,17 @@ class Season:
         
         matchups = {'Finals': [team1, team2]}
 
+        new_dates = set()
+        team1_home_map = {0: True, 1: True, 2: False, 3: False, 4: True, 5: False, 6: True}
         rem_games = {}
+        num_games_added = 0
         for label, (team1, team2) in matchups.items():
-            if team1 not in cur_playoff_results[3]:
+            if team1 not in cur_playoff_results[0]:
                 rem_games[label] = 7
+                wins = 0
+                losses = 0
             else:
-                matchup_status = cur_playoff_results[1][team1]
+                matchup_status = cur_playoff_results[0][team1]
                 [wins, losses] = matchup_status[1:]
                 if wins == 4:
                     num_games_rem = 0
@@ -602,23 +581,21 @@ class Season:
                 else:
                     num_games_rem = 7 - (wins + losses)
                 rem_games[label] = num_games_rem
-
-        games_added = 0
-        for label, (team1, team2) in matchups.items():
+            num_games_played = wins + losses
+            game_date = self.get_next_date(day_increment=3)
             for i in range(0, rem_games[label]):
-                self.append_future_game(self.future_games, game_dates[i], team1, team2, label)
-                games_added += 1
-        # for label, (team1, team2) in matchups.items():
-        #     self.append_future_game(self.future_games, game_1_date, team1, team2, label)
-        #     self.append_future_game(self.future_games, game_2_date, team1, team2, label)
-        #     self.append_future_game(self.future_games, game_3_date, team2, team1, label)
-        #     self.append_future_game(self.future_games, game_4_date, team2, team1, label)
-        #     self.append_future_game(self.future_games, game_5_date, team1, team2, label)
-        #     self.append_future_game(self.future_games, game_6_date, team2, team1, label)
-        #     self.append_future_game(self.future_games, game_7_date, team1, team2, label)
-        self.update_data(games_on_date=self.future_games[:-games_added])
-        
-        for date in sorted([game_1_date, game_2_date, game_3_date, game_4_date, game_5_date, game_6_date, game_7_date]):
+                game_idx = num_games_played + i
+                new_dates.add(game_date)
+                team1_home = team1_home_map[game_idx]
+                if team1_home:
+                    self.append_future_game(self.future_games, game_date, team1, team2, label)
+                else:
+                    self.append_future_game(self.future_games, game_date, team2, team1, label)
+                num_games_added += 1
+                game_date += datetime.timedelta(days=3)
+        self.update_data(games_on_date=self.future_games[-num_games_added:])
+
+        for date in sorted(list(new_dates)):
             self.simulate_day(date, date + datetime.timedelta(days=3), 1)
         
         winner = self.get_series_winner('Finals')
@@ -630,6 +607,17 @@ class Season:
         value_counts = series['winner_name'].value_counts().sort_values(ascending=False)
         # get the team with the most wins
         winner = value_counts.index[0]
+        wins = value_counts.values[0]
+        losses = value_counts.values[1] if len(value_counts) > 1 else 0
+        print('Series:', series_label)
+        print('{} vs. {}'.format(series['team'].values[0], series['opponent'].values[0]))
+        wins = value_counts[0]
+        losses = 0
+        if len(value_counts) > 1:
+            losses = value_counts[1]
+        print(f'Record: {wins}-{losses}')
+        print('Winner:', winner)
+        print()
         return winner
                 
     def play_in(self, ec_standings, wc_standings):
