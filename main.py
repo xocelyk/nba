@@ -108,14 +108,15 @@ def main(update=True, save_names=False):
     df_final['expected_wins'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'wins'])
     df_final['expected_losses'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'losses'])
     # 2024 correction for midseason tournament
-    df_final['expected_wins_temp'] = df_final.apply(lambda row: 82 / (row['expected_wins'] + row['expected_losses']) * row['expected_wins'], axis=1)
-    df_final['expected_losses_temp'] = df_final.apply(lambda row: 82 / (row['expected_wins'] + row['expected_losses']) * row['expected_losses'], axis=1)
+    df_final['expected_wins_temp'] = df_final.apply(lambda row: row['expected_wins'], axis=1)
+    df_final['expected_losses_temp'] = df_final.apply(lambda row: row['expected_losses'], axis=1)
     df_final['expected_wins'] = df_final['expected_wins_temp']
     df_final['expected_losses'] = df_final['expected_losses_temp']
     df_final.drop(columns=['expected_wins_temp', 'expected_losses_temp'], inplace=True)
     
     df_final['expected_record'] = df_final.apply(lambda x: str(round(x['expected_wins'], 1)) + '-' + str(round(x['expected_losses'], 1)), axis=1)
     df_final['Playoffs'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'playoffs'], 3))
+    df_final['Conference Semis'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'second_round'], 3))
     df_final['Conference Finals'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'conference_finals'], 3))
     df_final['Finals'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'finals'], 3))
     df_final['Champion'] = df_final['team'].apply(lambda x: round(sim_report.loc[x, 'champion'], 3))
@@ -125,13 +126,14 @@ def main(update=True, save_names=False):
     # FORMAT FOR CSV
     df_final['current_record'] = df_final.apply(lambda x: str(x['wins']) + '-' + str(x['losses']), axis=1)
     df_final.rename(columns={'current_record': 'Record', 'rank': 'Rank', 'team_name': 'Team', 'em_rating': 'EM Rating', 'win_pct': 'Win %', 'off_eff': 'Offensive Efficiency', 'def_eff': 'Defensive Efficiency', 'adj_off_eff': 'AdjO', 'adj_def_eff': 'AdjD', 'pace': 'Pace', 'predictive_rating': 'Predictive Rating', 'expected_record': 'Projected Record', 'remaining_sos': 'RSOS'}, inplace=True)
-    df_final = df_final[['Rank', 'Team', 'Record', 'EM Rating', 'Predictive Rating', 'Projected Record', 'AdjO', 'AdjD', 'Pace', 'RSOS', 'Playoffs', 'Conference Finals', 'Finals', 'Champion']]
+    df_final = df_final[['Rank', 'Team', 'Record', 'EM Rating', 'Predictive Rating', 'Projected Record', 'AdjO', 'AdjD', 'Pace', 'RSOS', 'Playoffs', 'Conference Semis', 'Conference Finals', 'Finals', 'Champion']]
     df_final['EM Rating'] = df_final['EM Rating'].apply(lambda x: round(x, 2))
     df_final['Predictive Rating'] = df_final['Predictive Rating'].apply(lambda x: round(x, 2))
     df_final['AdjO'] = df_final['AdjO'].apply(lambda x: round(x, 2))
     df_final['AdjD'] = df_final['AdjD'].apply(lambda x: round(x, 2))
     df_final['Pace'] = df_final['Pace'].apply(lambda x: round(x, 2))
     df_final['RSOS'] = df_final['RSOS'].apply(lambda x: round(x, 2))
+    df_final['RSOS'].fillna(0, inplace=True)
     small_df = False
     if small_df:
         df_final = df_final[['Rank', 'Team', 'Record', 'EM Rating', 'Predictive Rating', 'AdjO', 'AdjD', 'Pace']]
