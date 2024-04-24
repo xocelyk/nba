@@ -397,7 +397,6 @@ class Season:
         rem_games = {}
         num_games_added = 0
         playoff_games_completed = self.get_playoff_games_completed(datetime.date(2024, 4, 20))
-        # assert False
         for label, (team1, team2) in matchups.items():
             # print()
             # print(label, team1, team2)
@@ -644,7 +643,7 @@ class Season:
     
     def get_series_winner(self, series_label):
         series = self.completed_games[self.completed_games['playoff_label'] == series_label]
-        # print(series)
+        print(series)
         assert len(series) == 7
         series['winner_name'] = series.apply(lambda row: row['team'] if row['team_win'] else row['opponent'], axis=1)
         value_counts = series['winner_name'].value_counts().sort_values(ascending=False)
