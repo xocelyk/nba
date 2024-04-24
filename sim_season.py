@@ -415,12 +415,7 @@ class Season:
 
                 matchup_status = cur_playoff_results[round_num][team1]
                 [wins, losses] = matchup_status[1:]
-                # print('Wins:', wins)
-                # print('Losses:', losses)
-                if wins == 4 and losses == 0:
-                    num_games_rem = 0
-                else:
-                    num_games_rem = 7 - (wins + losses)
+                num_games_rem = 7 - (wins + losses)
                 rem_games[label] = num_games_rem
                 # print('Games Remaining:', num_games_rem)
             num_games_played = wins + losses
@@ -497,10 +492,7 @@ class Season:
 
                 matchup_status = cur_playoff_results[round_num][team1]
                 [wins, losses] = matchup_status[1:]
-                if wins == 4 and losses == 0:
-                    num_games_rem = 0
-                else:
-                    num_games_rem = 7 - (wins + losses)
+                num_games_rem = 7 - (wins + losses)
                 rem_games[label] = num_games_rem
             num_games_played = wins + losses
             game_date = self.get_next_date(day_increment=3)
@@ -562,10 +554,7 @@ class Season:
 
                 matchup_status = cur_playoff_results[round_num][team1]
                 [wins, losses] = matchup_status[1:]
-                if wins == 4 and losses == 4:
-                    num_games_rem = 0
-                else:
-                    num_games_rem = 7 - (wins + losses)
+                num_games_rem = 7 - (wins + losses)
                 rem_games[label] = num_games_rem
             num_games_played = wins + losses
             game_date = self.get_next_date(day_increment=3)
@@ -629,10 +618,7 @@ class Season:
 
                 matchup_status = cur_playoff_results[round_num][team1]
                 [wins, losses] = matchup_status[1:]
-                if wins == 4 and losses == 4:
-                    num_games_rem = 0
-                else:
-                    num_games_rem = 7 - (wins + losses)
+                num_games_rem = 7 - (wins + losses)
                 rem_games[label] = num_games_rem
             num_games_played = wins + losses
             game_date = self.get_next_date(day_increment=3)
