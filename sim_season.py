@@ -242,11 +242,11 @@ class Season:
         row['margin'] = margin
         row['winner_name'] = team if team_win else opponent
 
-        print(row['team'], 'vs', row['opponent'], 'on', row['date'])
-        print('Predicted Margin:', round(expected_margin, 1))
-        print('Actual Margin:', round(margin, 1))
-        print('Winner:', row['winner_name'])
-        print()
+        # print(row['team'], 'vs', row['opponent'], 'on', row['date'])
+        # print('Predicted Margin:', round(expected_margin, 1))
+        # print('Actual Margin:', round(margin, 1))
+        # print('Winner:', row['winner_name'])
+        # print()
 
         team_adj_margin = row['margin'] + row['opponent_rating'] - utils.HCA
         opponent_adj_margin = -row['margin'] + row['team_rating'] + utils.HCA
@@ -290,7 +290,12 @@ class Season:
         return record_by_team
     
     def get_playoff_games_completed(self, playoff_start_date):
-        return self.completed_games[self.completed_games['date'] >= playoff_start_date]
+        playoff_games = self.completed_games[self.completed_games['date'] >= playoff_start_date]
+        # drop duplicate entries in playoff_games
+        # TODO: there are duplicate entires in the playoffs for some reason, not sure where this comes from
+        playoff_games = playoff_games.drop_duplicates(subset=['team', 'opponent', 'date'], keep='first')
+        return playoff_games
+
     
     def get_cur_playoff_results(self, playoff_start_date):
         results = {i:{} for i in range(4)}#{round: [{team: [opponent, wins, losses]}]}
@@ -394,6 +399,8 @@ class Season:
         playoff_games_completed = self.get_playoff_games_completed(datetime.date(2024, 4, 20))
         # assert False
         for label, (team1, team2) in matchups.items():
+            # print()
+            # print(label, team1, team2)
             # TODO: add each played playoff game to completed_games
             if team1 not in cur_playoff_results[round_num]:
                 rem_games[label] = 7
@@ -408,13 +415,14 @@ class Season:
 
                 matchup_status = cur_playoff_results[round_num][team1]
                 [wins, losses] = matchup_status[1:]
-                if wins == 4:
-                    num_games_rem = 0
-                elif losses == 4:
+                # print('Wins:', wins)
+                # print('Losses:', losses)
+                if wins == 4 and losses == 0:
                     num_games_rem = 0
                 else:
                     num_games_rem = 7 - (wins + losses)
                 rem_games[label] = num_games_rem
+                # print('Games Remaining:', num_games_rem)
             num_games_played = wins + losses
             game_date = self.get_next_date(day_increment=3)
 
@@ -423,8 +431,10 @@ class Season:
                 new_dates.add(game_date)
                 team1_home = team1_home_map[game_idx]
                 if team1_home:
+                    # print('Adding Game:', game_date, team1, team2, label)
                     self.append_future_game(self.future_games, game_date, team1, team2, label)
                 else:
+                    # print('Adding Game:', game_date, team2, team1, label)
                     self.append_future_game(self.future_games, game_date, team2, team1, label)
                 num_games_added += 1
                 # add 3 days to game_date
@@ -487,9 +497,7 @@ class Season:
 
                 matchup_status = cur_playoff_results[round_num][team1]
                 [wins, losses] = matchup_status[1:]
-                if wins == 4:
-                    num_games_rem = 0
-                elif losses == 4:
+                if wins == 4 and losses == 0:
                     num_games_rem = 0
                 else:
                     num_games_rem = 7 - (wins + losses)
@@ -554,9 +562,7 @@ class Season:
 
                 matchup_status = cur_playoff_results[round_num][team1]
                 [wins, losses] = matchup_status[1:]
-                if wins == 4:
-                    num_games_rem = 0
-                elif losses == 4:
+                if wins == 4 and losses == 4:
                     num_games_rem = 0
                 else:
                     num_games_rem = 7 - (wins + losses)
@@ -605,6 +611,8 @@ class Season:
         rem_games = {}
         num_games_added = 0
         playoff_games_completed = self.get_playoff_games_completed(datetime.date(2024, 4, 20))
+        # print('Playoff games completed')
+        # print(playoff_games_completed.head(50))
         # assert False
         for label, (team1, team2) in matchups.items():
             # TODO: add each played playoff game to completed_games
@@ -621,9 +629,7 @@ class Season:
 
                 matchup_status = cur_playoff_results[round_num][team1]
                 [wins, losses] = matchup_status[1:]
-                if wins == 4:
-                    num_games_rem = 0
-                elif losses == 4:
+                if wins == 4 and losses == 4:
                     num_games_rem = 0
                 else:
                     num_games_rem = 7 - (wins + losses)
@@ -652,6 +658,7 @@ class Season:
     
     def get_series_winner(self, series_label):
         series = self.completed_games[self.completed_games['playoff_label'] == series_label]
+        # print(series)
         assert len(series) == 7
         series['winner_name'] = series.apply(lambda row: row['team'] if row['team_win'] else row['opponent'], axis=1)
         value_counts = series['winner_name'].value_counts().sort_values(ascending=False)
