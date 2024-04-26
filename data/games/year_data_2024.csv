@@ -1251,12 +1251,12 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404230MIN,2024-04-23 00:00:00,MIN,PHO,Minnesota Timberwolves,Phoenix Suns,105.0,93.0,12.0,Home,91.7,True,2024
 202404240OKC,2024-04-24 00:00:00,OKC,NOP,Oklahoma City Thunder,New Orleans Pelicans,124.0,92.0,32.0,Home,89.2,True,2024
 202404240BOS,2024-04-24 00:00:00,BOS,MIA,Boston Celtics,Miami Heat,101.0,111.0,-10.0,Home,91.8,True,2024
-202404250ORL,"Thu, Apr 25, 2024",ORL,CLE,Orlando Magic,Cleveland Cavaliers,,,,Home,,False,2024
+202404250ORL,"Thu, Apr 25, 2024",ORL,CLE,Orlando Magic,Cleveland Cavaliers,121.0,83.0,38.0,Home,92.4,True,2024
 202404270ORL,"Sat, Apr 27, 2024",ORL,CLE,Orlando Magic,Cleveland Cavaliers,,,,Home,,False,2024
 202404300CLE,"Tue, Apr 30, 2024",CLE,ORL,Cleveland Cavaliers,Orlando Magic,,,,Home,,False,2024
 202405030ORL,"Fri, May 3, 2024",ORL,CLE,Orlando Magic,Cleveland Cavaliers,,,,Home,,False,2024
 202405050CLE,"Sun, May 5, 2024",CLE,ORL,Cleveland Cavaliers,Orlando Magic,,,,Home,,False,2024
-202404250LAL,"Thu, Apr 25, 2024",LAL,DEN,Los Angeles Lakers,Denver Nuggets,,,,Home,,False,2024
+202404250LAL,"Thu, Apr 25, 2024",LAL,DEN,Los Angeles Lakers,Denver Nuggets,105.0,112.0,-7.0,Home,95.6,True,2024
 202404270LAL,"Sat, Apr 27, 2024",LAL,DEN,Los Angeles Lakers,Denver Nuggets,,,,Home,,False,2024
 202404290DEN,"Mon, Apr 29, 2024",DEN,LAL,Denver Nuggets,Los Angeles Lakers,,,,Home,,False,2024
 202405020LAL,"Thu, May 2, 2024",LAL,DEN,Los Angeles Lakers,Denver Nuggets,,,,Home,,False,2024
@@ -1281,7 +1281,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404300MIN,"Tue, Apr 30, 2024",MIN,PHO,Minnesota Timberwolves,Phoenix Suns,,,,Home,,False,2024
 202405020PHO,"Thu, May 2, 2024",PHO,MIN,Phoenix Suns,Minnesota Timberwolves,,,,Home,,False,2024
 202405040MIN,"Sat, May 4, 2024",MIN,PHO,Minnesota Timberwolves,Phoenix Suns,,,,Home,,False,2024
-202404250PHI,"Thu, Apr 25, 2024",PHI,NYK,Philadelphia 76ers,New York Knicks,,,,Home,,False,2024
+202404250PHI,"Thu, Apr 25, 2024",PHI,NYK,Philadelphia 76ers,New York Knicks,125.0,114.0,11.0,Home,90.4,True,2024
 202404280PHI,"Sun, Apr 28, 2024",PHI,NYK,Philadelphia 76ers,New York Knicks,,,,Home,,False,2024
 202404300NYK,"Tue, Apr 30, 2024",NYK,PHI,New York Knicks,Philadelphia 76ers,,,,Home,,False,2024
 202405020PHI,"Thu, May 2, 2024",PHI,NYK,Philadelphia 76ers,New York Knicks,,,,Home,,False,2024
