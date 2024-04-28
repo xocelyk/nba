@@ -1257,15 +1257,16 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404260DAL,2024-04-26 00:00:00,DAL,LAC,Dallas Mavericks,Los Angeles Clippers,101.0,90.0,11.0,Home,88.1,True,2024
 202404260IND,2024-04-26 00:00:00,IND,MIL,Indiana Pacers,Milwaukee Bucks,121.0,118.0,3.0,Home,88.4,True,2024
 202404260PHO,2024-04-26 00:00:00,PHO,MIN,Phoenix Suns,Minnesota Timberwolves,109.0,126.0,-17.0,Home,93.1,True,2024
-202404270ORL,"Sat, Apr 27, 2024",ORL,CLE,Orlando Magic,Cleveland Cavaliers,112.0,89.0,23.0,Home,93.2,True,2024
+202404270ORL,2024-04-27 00:00:00,ORL,CLE,Orlando Magic,Cleveland Cavaliers,112.0,89.0,23.0,Home,93.2,True,2024
+202404270LAL,2024-04-27 00:00:00,LAL,DEN,Los Angeles Lakers,Denver Nuggets,119.0,108.0,11.0,Home,100.9,True,2024
+202404270NOP,2024-04-27 00:00:00,NOP,OKC,New Orleans Pelicans,Oklahoma City Thunder,85.0,106.0,-21.0,Home,95.8,True,2024
+202404270MIA,2024-04-27 00:00:00,MIA,BOS,Miami Heat,Boston Celtics,84.0,104.0,-20.0,Home,83.6,True,2024
 202404300CLE,"Tue, Apr 30, 2024",CLE,ORL,Cleveland Cavaliers,Orlando Magic,,,,Home,,False,2024
 202405030ORL,"Fri, May 3, 2024",ORL,CLE,Orlando Magic,Cleveland Cavaliers,,,,Home,,False,2024
 202405050CLE,"Sun, May 5, 2024",CLE,ORL,Cleveland Cavaliers,Orlando Magic,,,,Home,,False,2024
-202404270LAL,"Sat, Apr 27, 2024",LAL,DEN,Los Angeles Lakers,Denver Nuggets,119.0,108.0,11.0,Home,100.9,True,2024
 202404290DEN,"Mon, Apr 29, 2024",DEN,LAL,Denver Nuggets,Los Angeles Lakers,,,,Home,,False,2024
 202405020LAL,"Thu, May 2, 2024",LAL,DEN,Los Angeles Lakers,Denver Nuggets,,,,Home,,False,2024
 202405040DEN,"Sat, May 4, 2024",DEN,LAL,Denver Nuggets,Los Angeles Lakers,,,,Home,,False,2024
-202404270NOP,"Sat, Apr 27, 2024",NOP,OKC,New Orleans Pelicans,Oklahoma City Thunder,85.0,106.0,-21.0,Home,95.8,True,2024
 202404290NOP,"Mon, Apr 29, 2024",NOP,OKC,New Orleans Pelicans,Oklahoma City Thunder,,,,Home,,False,2024
 202405010OKC,"Wed, May 1, 2024",OKC,NOP,Oklahoma City Thunder,New Orleans Pelicans,,,,Home,,False,2024
 202405030NOP,"Fri, May 3, 2024",NOP,OKC,New Orleans Pelicans,Oklahoma City Thunder,,,,Home,,False,2024
@@ -1286,7 +1287,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202404300NYK,"Tue, Apr 30, 2024",NYK,PHI,New York Knicks,Philadelphia 76ers,,,,Home,,False,2024
 202405020PHI,"Thu, May 2, 2024",PHI,NYK,Philadelphia 76ers,New York Knicks,,,,Home,,False,2024
 202405040NYK,"Sat, May 4, 2024",NYK,PHI,New York Knicks,Philadelphia 76ers,,,,Home,,False,2024
-202404270MIA,"Sat, Apr 27, 2024",MIA,BOS,Miami Heat,Boston Celtics,84.0,104.0,-20.0,Home,83.6,True,2024
 202404290MIA,"Mon, Apr 29, 2024",MIA,BOS,Miami Heat,Boston Celtics,,,,Home,,False,2024
 202405010BOS,"Wed, May 1, 2024",BOS,MIA,Boston Celtics,Miami Heat,,,,Home,,False,2024
 202405030MIA,"Fri, May 3, 2024",MIA,BOS,Miami Heat,Boston Celtics,,,,Home,,False,2024
