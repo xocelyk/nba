@@ -1280,13 +1280,11 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202405140DEN,"Tue, May 14, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,,,,Home,,False,2024
 202405160MIN,"Thu, May 16, 2024",MIN,DEN,Minnesota Timberwolves,Denver Nuggets,,,,Home,,False,2024
 202405190DEN,"Sun, May 19, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,,,,Home,,False,2024
-202405010LAC,"Wed, May 1, 2024",LAC,DAL,Los Angeles Clippers,Dallas Mavericks,,,,Home,,False,2024
+202405010LAC,"Wed, May 1, 2024",LAC,DAL,Los Angeles Clippers,Dallas Mavericks,93.0,123.0,-30.0,Home,91.9,True,2024
 202405030DAL,"Fri, May 3, 2024",DAL,LAC,Dallas Mavericks,Los Angeles Clippers,,,,Home,,False,2024
 202405050LAC,"Sun, May 5, 2024",LAC,DAL,Los Angeles Clippers,Dallas Mavericks,,,,Home,,False,2024
 202405020IND,"Thu, May 2, 2024",IND,MIL,Indiana Pacers,Milwaukee Bucks,,,,Home,,False,2024
 202405040MIL,"Sat, May 4, 2024",MIL,IND,Milwaukee Bucks,Indiana Pacers,,,,Home,,False,2024
 202405020PHI,"Thu, May 2, 2024",PHI,NYK,Philadelphia 76ers,New York Knicks,,,,Home,,False,2024
 202405040NYK,"Sat, May 4, 2024",NYK,PHI,New York Knicks,Philadelphia 76ers,,,,Home,,False,2024
-202405010BOS,"Wed, May 1, 2024",BOS,MIA,Boston Celtics,Miami Heat,,,,Home,,False,2024
-202405030MIA,"Fri, May 3, 2024",MIA,BOS,Miami Heat,Boston Celtics,,,,Home,,False,2024
-202405050BOS,"Sun, May 5, 2024",BOS,MIA,Boston Celtics,Miami Heat,,,,Home,,False,2024
+202405010BOS,"Wed, May 1, 2024",BOS,MIA,Boston Celtics,Miami Heat,118.0,84.0,34.0,Home,94.0,True,2024
