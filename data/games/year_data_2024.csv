@@ -1284,7 +1284,9 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202405190DEN,"Sun, May 19, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,,,,Home,,False,2024
 202405030DAL,"Fri, May 3, 2024",DAL,LAC,Dallas Mavericks,Los Angeles Clippers,,,,Home,,False,2024
 202405050LAC,"Sun, May 5, 2024",LAC,DAL,Los Angeles Clippers,Dallas Mavericks,,,,Home,,False,2024
-202405020IND,"Thu, May 2, 2024",IND,MIL,Indiana Pacers,Milwaukee Bucks,,,,Home,,False,2024
-202405040MIL,"Sat, May 4, 2024",MIL,IND,Milwaukee Bucks,Indiana Pacers,,,,Home,,False,2024
-202405020PHI,"Thu, May 2, 2024",PHI,NYK,Philadelphia 76ers,New York Knicks,,,,Home,,False,2024
-202405040NYK,"Sat, May 4, 2024",NYK,PHI,New York Knicks,Philadelphia 76ers,,,,Home,,False,2024
+202405020IND,"Thu, May 2, 2024",IND,MIL,Indiana Pacers,Milwaukee Bucks,120.0,98.0,22.0,Home,92.8,True,2024
+202405060NYK,"Mon, May 6, 2024",NYK,IND,New York Knicks,Indiana Pacers,,,,Home,,False,2024
+202405080NYK,"Wed, May 8, 2024",NYK,IND,New York Knicks,Indiana Pacers,,,,Home,,False,2024
+202405100IND,"Fri, May 10, 2024",IND,NYK,Indiana Pacers,New York Knicks,,,,Home,,False,2024
+202405120IND,"Sun, May 12, 2024",IND,NYK,Indiana Pacers,New York Knicks,,,,Home,,False,2024
+202405020PHI,"Thu, May 2, 2024",PHI,NYK,Philadelphia 76ers,New York Knicks,115.0,118.0,-3.0,Home,89.2,True,2024
