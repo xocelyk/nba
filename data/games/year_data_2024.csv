@@ -1275,7 +1275,8 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202405010BOS,2024-05-01 00:00:00,BOS,MIA,Boston Celtics,Miami Heat,118.0,84.0,34.0,Home,94.0,True,2024
 202405020IND,2024-05-02 00:00:00,IND,MIL,Indiana Pacers,Milwaukee Bucks,120.0,98.0,22.0,Home,92.8,True,2024
 202405020PHI,2024-05-02 00:00:00,PHI,NYK,Philadelphia 76ers,New York Knicks,115.0,118.0,-3.0,Home,89.2,True,2024
-202405030ORL,"Fri, May 3, 2024",ORL,CLE,Orlando Magic,Cleveland Cavaliers,103.0,96.0,7.0,Home,94.2,True,2024
+202405030ORL,2024-05-03 00:00:00,ORL,CLE,Orlando Magic,Cleveland Cavaliers,103.0,96.0,7.0,Home,94.2,True,2024
+202405030DAL,2024-05-03 00:00:00,DAL,LAC,Dallas Mavericks,Los Angeles Clippers,114.0,101.0,13.0,Home,86.1,True,2024
 202405050CLE,"Sun, May 5, 2024",CLE,ORL,Cleveland Cavaliers,Orlando Magic,,,,Home,,False,2024
 202405040DEN,"Sat, May 4, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,,,,Home,,False,2024
 202405060DEN,"Mon, May 6, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,,,,Home,,False,2024
@@ -1284,7 +1285,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202405140DEN,"Tue, May 14, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,,,,Home,,False,2024
 202405160MIN,"Thu, May 16, 2024",MIN,DEN,Minnesota Timberwolves,Denver Nuggets,,,,Home,,False,2024
 202405190DEN,"Sun, May 19, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,,,,Home,,False,2024
-202405030DAL,"Fri, May 3, 2024",DAL,LAC,Dallas Mavericks,Los Angeles Clippers,114.0,101.0,13.0,Home,86.1,True,2024
 202405070OKC,"Tue, May 7, 2024",OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,,,,Home,,False,2024
 202405090OKC,"Thu, May 9, 2024",OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,,,,Home,,False,2024
 202405110DAL,"Sat, May 11, 2024",DAL,OKC,Dallas Mavericks,Oklahoma City Thunder,,,,Home,,False,2024
