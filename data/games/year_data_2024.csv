@@ -1277,30 +1277,30 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202405020PHI,2024-05-02 00:00:00,PHI,NYK,Philadelphia 76ers,New York Knicks,115.0,118.0,-3.0,Home,89.2,True,2024
 202405030ORL,2024-05-03 00:00:00,ORL,CLE,Orlando Magic,Cleveland Cavaliers,103.0,96.0,7.0,Home,94.2,True,2024
 202405030DAL,2024-05-03 00:00:00,DAL,LAC,Dallas Mavericks,Los Angeles Clippers,114.0,101.0,13.0,Home,86.1,True,2024
-202405050CLE,"Sun, May 5, 2024",CLE,ORL,Cleveland Cavaliers,Orlando Magic,106.0,94.0,12.0,Home,94.8,True,2024
-202405040DEN,"Sat, May 4, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,99.0,106.0,-7.0,Home,92.4,True,2024
-202405060DEN,"Mon, May 6, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,80.0,106.0,-26.0,Home,88.1,True,2024
-202405100MIN,"Fri, May 10, 2024",MIN,DEN,Minnesota Timberwolves,Denver Nuggets,90.0,117.0,-27.0,Home,89.1,True,2024
-202405120MIN,"Sun, May 12, 2024",MIN,DEN,Minnesota Timberwolves,Denver Nuggets,107.0,115.0,-8.0,Home,90.5,True,2024
-202405140DEN,"Tue, May 14, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,112.0,97.0,15.0,Home,89.7,True,2024
+202405050CLE,2024-05-05 00:00:00,CLE,ORL,Cleveland Cavaliers,Orlando Magic,106.0,94.0,12.0,Home,94.8,True,2024
+202405040DEN,2024-05-04 00:00:00,DEN,MIN,Denver Nuggets,Minnesota Timberwolves,99.0,106.0,-7.0,Home,92.4,True,2024
+202405060DEN,2024-05-06 00:00:00,DEN,MIN,Denver Nuggets,Minnesota Timberwolves,80.0,106.0,-26.0,Home,88.1,True,2024
+202405100MIN,2024-05-10 00:00:00,MIN,DEN,Minnesota Timberwolves,Denver Nuggets,90.0,117.0,-27.0,Home,89.1,True,2024
+202405120MIN,2024-05-12 00:00:00,MIN,DEN,Minnesota Timberwolves,Denver Nuggets,107.0,115.0,-8.0,Home,90.5,True,2024
+202405140DEN,2024-05-14 00:00:00,DEN,MIN,Denver Nuggets,Minnesota Timberwolves,112.0,97.0,15.0,Home,89.7,True,2024
+202405070OKC,2024-05-07 00:00:00,OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,117.0,95.0,22.0,Home,93.2,True,2024
+202405090OKC,2024-05-09 00:00:00,OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,110.0,119.0,-9.0,Home,95.8,True,2024
+202405110DAL,2024-05-11 00:00:00,DAL,OKC,Dallas Mavericks,Oklahoma City Thunder,105.0,101.0,4.0,Home,95.9,True,2024
+202405130DAL,2024-05-13 00:00:00,DAL,OKC,Dallas Mavericks,Oklahoma City Thunder,96.0,100.0,-4.0,Home,94.2,True,2024
+202405150OKC,2024-05-15 00:00:00,OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,92.0,104.0,-12.0,Home,86.2,True,2024
+202405070BOS,2024-05-07 00:00:00,BOS,CLE,Boston Celtics,Cleveland Cavaliers,120.0,95.0,25.0,Home,90.4,True,2024
+202405090BOS,2024-05-09 00:00:00,BOS,CLE,Boston Celtics,Cleveland Cavaliers,94.0,118.0,-24.0,Home,91.4,True,2024
+202405110CLE,2024-05-11 00:00:00,CLE,BOS,Cleveland Cavaliers,Boston Celtics,93.0,106.0,-13.0,Home,86.9,True,2024
+202405130CLE,2024-05-13 00:00:00,CLE,BOS,Cleveland Cavaliers,Boston Celtics,102.0,109.0,-7.0,Home,91.5,True,2024
+202405150BOS,2024-05-15 00:00:00,BOS,CLE,Boston Celtics,Cleveland Cavaliers,113.0,98.0,15.0,Home,85.1,True,2024
+202405060NYK,2024-05-06 00:00:00,NYK,IND,New York Knicks,Indiana Pacers,121.0,117.0,4.0,Home,95.5,True,2024
+202405080NYK,2024-05-08 00:00:00,NYK,IND,New York Knicks,Indiana Pacers,130.0,121.0,9.0,Home,91.5,True,2024
+202405100IND,2024-05-10 00:00:00,IND,NYK,Indiana Pacers,New York Knicks,111.0,106.0,5.0,Home,90.8,True,2024
+202405120IND,2024-05-12 00:00:00,IND,NYK,Indiana Pacers,New York Knicks,121.0,89.0,32.0,Home,95.7,True,2024
+202405140NYK,2024-05-14 00:00:00,NYK,IND,New York Knicks,Indiana Pacers,121.0,91.0,30.0,Home,92.2,True,2024
 202405160MIN,"Thu, May 16, 2024",MIN,DEN,Minnesota Timberwolves,Denver Nuggets,,,,Home,,False,2024
 202405190DEN,"Sun, May 19, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,,,,Home,,False,2024
-202405070OKC,"Tue, May 7, 2024",OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,117.0,95.0,22.0,Home,93.2,True,2024
-202405090OKC,"Thu, May 9, 2024",OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,110.0,119.0,-9.0,Home,95.8,True,2024
-202405110DAL,"Sat, May 11, 2024",DAL,OKC,Dallas Mavericks,Oklahoma City Thunder,105.0,101.0,4.0,Home,95.9,True,2024
-202405130DAL,"Mon, May 13, 2024",DAL,OKC,Dallas Mavericks,Oklahoma City Thunder,96.0,100.0,-4.0,Home,94.2,True,2024
-202405150OKC,"Wed, May 15, 2024",OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,92.0,104.0,-12.0,Home,86.2,True,2024
 202405180DAL,"Sat, May 18, 2024",DAL,OKC,Dallas Mavericks,Oklahoma City Thunder,,,,Home,,False,2024
 202405200OKC,"Mon, May 20, 2024",OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,,,,Home,,False,2024
-202405070BOS,"Tue, May 7, 2024",BOS,CLE,Boston Celtics,Cleveland Cavaliers,120.0,95.0,25.0,Home,90.4,True,2024
-202405090BOS,"Thu, May 9, 2024",BOS,CLE,Boston Celtics,Cleveland Cavaliers,94.0,118.0,-24.0,Home,91.4,True,2024
-202405110CLE,"Sat, May 11, 2024",CLE,BOS,Cleveland Cavaliers,Boston Celtics,93.0,106.0,-13.0,Home,86.9,True,2024
-202405130CLE,"Mon, May 13, 2024",CLE,BOS,Cleveland Cavaliers,Boston Celtics,102.0,109.0,-7.0,Home,91.5,True,2024
-202405150BOS,"Wed, May 15, 2024",BOS,CLE,Boston Celtics,Cleveland Cavaliers,113.0,98.0,15.0,Home,85.1,True,2024
-202405060NYK,"Mon, May 6, 2024",NYK,IND,New York Knicks,Indiana Pacers,121.0,117.0,4.0,Home,95.5,True,2024
-202405080NYK,"Wed, May 8, 2024",NYK,IND,New York Knicks,Indiana Pacers,130.0,121.0,9.0,Home,91.5,True,2024
-202405100IND,"Fri, May 10, 2024",IND,NYK,Indiana Pacers,New York Knicks,111.0,106.0,5.0,Home,90.8,True,2024
-202405120IND,"Sun, May 12, 2024",IND,NYK,Indiana Pacers,New York Knicks,121.0,89.0,32.0,Home,95.7,True,2024
-202405140NYK,"Tue, May 14, 2024",NYK,IND,New York Knicks,Indiana Pacers,121.0,91.0,30.0,Home,92.2,True,2024
 202405170IND,"Fri, May 17, 2024",IND,NYK,Indiana Pacers,New York Knicks,,,,Home,,False,2024
 202405190NYK,"Sun, May 19, 2024",NYK,IND,New York Knicks,Indiana Pacers,,,,Home,,False,2024
