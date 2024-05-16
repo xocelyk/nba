@@ -351,6 +351,9 @@ class Season:
         # playoff start date is 4/20/2024
         playoff_start_date = datetime.date(2024, 4, 20)
         cur_playoff_results = self.get_cur_playoff_results(playoff_start_date)
+        # clear all future games - we create them ourselves
+        self.future_games = self.future_games[self.future_games['date'] < playoff_start_date]
+
 
         # simulate first round
         east_seeds, west_seeds = self.first_round(east_seeds, west_seeds, cur_playoff_results)
