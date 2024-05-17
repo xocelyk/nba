@@ -1298,7 +1298,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202405100IND,2024-05-10 00:00:00,IND,NYK,Indiana Pacers,New York Knicks,111.0,106.0,5.0,Home,90.8,True,2024
 202405120IND,2024-05-12 00:00:00,IND,NYK,Indiana Pacers,New York Knicks,121.0,89.0,32.0,Home,95.7,True,2024
 202405140NYK,2024-05-14 00:00:00,NYK,IND,New York Knicks,Indiana Pacers,121.0,91.0,30.0,Home,92.2,True,2024
-202405160MIN,"Thu, May 16, 2024",MIN,DEN,Minnesota Timberwolves,Denver Nuggets,115.0,70.0,45.0,Home,91.2,True,2024
+202405160MIN,2024-05-16 00:00:00,MIN,DEN,Minnesota Timberwolves,Denver Nuggets,115.0,70.0,45.0,Home,91.2,True,2024
 202405190DEN,"Sun, May 19, 2024",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,,,,Home,,False,2024
 202405180DAL,"Sat, May 18, 2024",DAL,OKC,Dallas Mavericks,Oklahoma City Thunder,,,,Home,,False,2024
 202405200OKC,"Mon, May 20, 2024",OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,,,,Home,,False,2024
