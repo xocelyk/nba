@@ -1305,13 +1305,13 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202405190NYK,2024-05-19 00:00:00,NYK,IND,New York Knicks,Indiana Pacers,109.0,130.0,-21.0,Home,90.1,True,2024
 202405210BOS,2024-05-21 00:00:00,BOS,IND,Boston Celtics,Indiana Pacers,133.0,128.0,5.0,Home,100.2,True,2024
 202405220MIN,2024-05-22 00:00:00,MIN,DAL,Minnesota Timberwolves,Dallas Mavericks,105.0,108.0,-3.0,Home,94.4,True,2024
+202405230BOS,2024-05-23 00:00:00,BOS,IND,Boston Celtics,Indiana Pacers,126.0,110.0,16.0,Home,92.1,True,2024
 202405240MIN,"Fri, May 24, 2024",MIN,DAL,Minnesota Timberwolves,Dallas Mavericks,,,,Home,,False,2024
 202405260DAL,"Sun, May 26, 2024",DAL,MIN,Dallas Mavericks,Minnesota Timberwolves,,,,Home,,False,2024
 202405280DAL,"Tue, May 28, 2024",DAL,MIN,Dallas Mavericks,Minnesota Timberwolves,,,,Home,,False,2024
 202405300MIN,"Thu, May 30, 2024",MIN,DAL,Minnesota Timberwolves,Dallas Mavericks,,,,Home,,False,2024
 202406010DAL,"Sat, Jun 1, 2024",DAL,MIN,Dallas Mavericks,Minnesota Timberwolves,,,,Home,,False,2024
 202406030MIN,"Mon, Jun 3, 2024",MIN,DAL,Minnesota Timberwolves,Dallas Mavericks,,,,Home,,False,2024
-202405230BOS,"Thu, May 23, 2024",BOS,IND,Boston Celtics,Indiana Pacers,126.0,110.0,16.0,Home,92.1,True,2024
 202405250IND,"Sat, May 25, 2024",IND,BOS,Indiana Pacers,Boston Celtics,,,,Home,,False,2024
 202405270IND,"Mon, May 27, 2024",IND,BOS,Indiana Pacers,Boston Celtics,,,,Home,,False,2024
 202405290BOS,"Wed, May 29, 2024",BOS,IND,Boston Celtics,Indiana Pacers,,,,Home,,False,2024
