@@ -1311,7 +1311,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202405260DAL,2024-05-26 00:00:00,DAL,MIN,Dallas Mavericks,Minnesota Timberwolves,116.0,107.0,9.0,Home,87.9,True,2024
 202405270IND,2024-05-27 00:00:00,IND,BOS,Indiana Pacers,Boston Celtics,102.0,105.0,-3.0,Home,92.4,True,2024
 202405280DAL,2024-05-28 00:00:00,DAL,MIN,Dallas Mavericks,Minnesota Timberwolves,100.0,105.0,-5.0,Home,91.2,True,2024
-202405300MIN,"Thu, May 30, 2024",MIN,DAL,Minnesota Timberwolves,Dallas Mavericks,103.0,124.0,-21.0,Home,94.6,True,2024
+202405300MIN,2024-05-30 00:00:00,MIN,DAL,Minnesota Timberwolves,Dallas Mavericks,103.0,124.0,-21.0,Home,94.6,True,2024
 202406060BOS,"Thu, Jun 6, 2024",BOS,DAL,Boston Celtics,Dallas Mavericks,,,,Home,,False,2024
 202406090BOS,"Sun, Jun 9, 2024",BOS,DAL,Boston Celtics,Dallas Mavericks,,,,Home,,False,2024
 202406120DAL,"Wed, Jun 12, 2024",DAL,BOS,Dallas Mavericks,Boston Celtics,,,,Home,,False,2024
