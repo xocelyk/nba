@@ -1315,7 +1315,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202406060BOS,2024-06-06 00:00:00,BOS,DAL,Boston Celtics,Dallas Mavericks,107.0,89.0,18.0,Home,91.2,True,2024
 202406090BOS,2024-06-09 00:00:00,BOS,DAL,Boston Celtics,Dallas Mavericks,105.0,98.0,7.0,Home,92.7,True,2024
 202406120DAL,2024-06-12 00:00:00,DAL,BOS,Dallas Mavericks,Boston Celtics,99.0,106.0,-7.0,Home,90.3,True,2024
-202406140DAL,"Fri, Jun 14, 2024",DAL,BOS,Dallas Mavericks,Boston Celtics,,,,Home,,False,2024
+202406140DAL,"Fri, Jun 14, 2024",DAL,BOS,Dallas Mavericks,Boston Celtics,122.0,84.0,38.0,Home,92.6,True,2024
 202406170BOS,"Mon, Jun 17, 2024",BOS,DAL,Boston Celtics,Dallas Mavericks,,,,Home,,False,2024
 202406200DAL,"Thu, Jun 20, 2024",DAL,BOS,Dallas Mavericks,Boston Celtics,,,,Home,,False,2024
 202406230BOS,"Sun, Jun 23, 2024",BOS,DAL,Boston Celtics,Dallas Mavericks,,,,Home,,False,2024
