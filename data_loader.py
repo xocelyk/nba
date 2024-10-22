@@ -160,12 +160,19 @@ def load_training_data(names, update=True, reset=False, start_year=2010, stop_ye
             year_data['date'] = pd.to_datetime(year_data['date'], format='mixed')
             end_year_ratings_dct[year] = {}
             abbrs = list(set(year_data['team']).union(set(year_data['opponent'])))
-            games_to_date = year_data[year_data['completed'] == True]
+            completed_year_data = year_data[year_data['completed'] == True]
             if year == stop_year:
                 year_names = names
             else:
                 year_names = None
-            year_ratings = utils.get_em_ratings(games_to_date[games_to_date['completed'] == True], names=year_names)
+            
+            # For end year ratings, take games from last 100 days of season
+            last_date = completed_year_data['date'].max()
+            
+            if year == 2020:
+                year_ratings = utils.get_em_ratings(completed_year_data, names=year_names, day_cap=200)
+            else:
+                year_ratings = utils.get_em_ratings(completed_year_data, names=year_names, day_cap=100)
             print(year)
             print('Year Ratings:', sorted(year_ratings.items(), key=lambda x: x[1], reverse=True))
             print()
@@ -176,7 +183,7 @@ def load_training_data(names, update=True, reset=False, start_year=2010, stop_ye
                 first_year = False
                 continue
             else:
-                if reset or year == stop_year:
+                if (reset or year == stop_year) and year > 2019:
                     for team in abbrs:
                         if team not in end_year_ratings_dct[year - 1].keys():
                             # Some teams have changed names over the seasons--hard coding the changes for now
@@ -205,10 +212,10 @@ def load_training_data(names, update=True, reset=False, start_year=2010, stop_ye
                     year_data_temp = []
                     for i, date in enumerate(sorted(year_data['date'].unique())):
                         print('Progress:', i+1, '/', len(year_data['date'].unique()), end='\r')
-                        games_to_date = year_data[year_data['date'] < date]
+                        completed_year_data = year_data[year_data['date'] < date]
                         games_on_date = year_data[year_data['date'] == date]
-                        if len(games_to_date[games_to_date['completed'] == True]) > 100:
-                            cur_ratings = utils.get_em_ratings(games_to_date[games_to_date['completed'] == True])
+                        if len(completed_year_data[completed_year_data['completed'] == True]) > 100:
+                            cur_ratings = utils.get_em_ratings(completed_year_data[completed_year_data['completed'] == True])
                         else:
                             # If not enough data to get EM ratings for every team, ratings default to 0
                             cur_ratings = {team: 0 for team in end_year_ratings_dct[year-1].keys()}

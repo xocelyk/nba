@@ -1040,4 +1040,3 @@ def sim_season(data, win_margin_model, margin_model_resid_mean, margin_model_res
 
     sim_report_df = get_sim_report(season_results_over_sims, playoff_results_over_sims, num_sims)
     return sim_report_df
-

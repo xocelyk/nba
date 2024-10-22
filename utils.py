@@ -31,7 +31,7 @@ def sgd_ratings(games, teams_dict, margin_fn=lambda x:x, lr=.1, epochs=100):
             ratings[i] += lr * mean_diff[i]
     return ratings
 
-def get_em_ratings(df, cap=20, names=None, num_epochs=100):
+def get_em_ratings(df, cap=20, names=None, num_epochs=100, day_cap=100):
     if names is None:
         teams_dict = {team: i for i, team in enumerate(df['team'].unique())}
     else:
@@ -39,6 +39,9 @@ def get_em_ratings(df, cap=20, names=None, num_epochs=100):
   
     if len(df) == 0:
         return {team: 0 for team in teams_dict.keys()}
+    
+    # Only use games from last day_cap days
+    df = df[df['date'] > (df['date'].max() - pd.Timedelta(days=day_cap))]
     
     games = df[['team', 'opponent', 'margin']]
     margin_fn = lambda margin: np.clip(margin, -cap, cap)

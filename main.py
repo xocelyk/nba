@@ -29,6 +29,7 @@ def parse_arguments() -> argparse.Namespace:
     parser.add_argument('--update', action='store_true', help='Update data')
     parser.add_argument('--save-names', action='store_true', help='Save team names')
     parser.add_argument('--num-sims', type=int, default=1000, help='Number of simulations to run')
+    parser.add_argument('--reset', action='store_true', help='Reset training data')
     return parser.parse_args()
 
 def load_team_data(year: int, update: bool, save_names: bool) -> Tuple[List[str], Dict[str, str], Dict[str, str]]:
@@ -186,6 +187,7 @@ def main():
     update = args.update
     save_names = args.save_names
     num_sims = args.num_sims
+    reset = args.reset
 
     # Load team data
     abbrs, names_to_abbr, abbr_to_name = load_team_data(YEAR, update, save_names)
@@ -208,7 +210,7 @@ def main():
     df_final = add_statistics(df_final, completed_games)
 
     # Train models
-    training_data = data_loader.load_training_data(abbrs, update=update, reset=False, this_year_games=games)
+    training_data = data_loader.load_training_data(abbrs, update=update, reset=reset, this_year_games=games)
     models = train_models(training_data)
 
     win_margin_model, win_prob_model, _, _, _ = models
