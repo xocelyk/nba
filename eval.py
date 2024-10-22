@@ -1,13 +1,14 @@
-import pandas as pd
-import numpy as np
-from matplotlib import pyplot as plt
-from sklearn.linear_model import LinearRegression
-from sklearn.ensemble import RandomForestRegressor
-from xgboost import XGBRegressor, XGBClassifier
-from sklearn.model_selection import train_test_split, cross_val_score, KFold, GridSearchCV
-from scipy.interpolate import UnivariateSpline
-import env
 import pickle
+import numpy as np
+import pandas as pd
+from matplotlib import pyplot as plt
+from scipy.interpolate import UnivariateSpline
+from sklearn.ensemble import RandomForestRegressor
+from sklearn.linear_model import LinearRegression, LogisticRegression
+from sklearn.model_selection import train_test_split
+from xgboost import XGBClassifier, XGBRegressor
+from sklearn.metrics import log_loss
+import env
 
 def get_win_margin_model_heavy(games):
     games = games[games['completed'] == True]
@@ -26,111 +27,87 @@ def get_win_probability_model_heavy(games):
     x_features = env.x_features_heavy
     X = games[x_features]
     y = games['win']
-
     params = env.win_prob_model_params
     model = XGBClassifier(**params)
     model.fit(X, y)
     return model
 
-def get_win_margin_model(games, features=None):
-    train_year_range = [2010, 2019]
-    test_year_range = [2021, 2023]
-    omit_years = [2020]
-    games = games[~games['year'].isin(omit_years)]
-    train = games[(games['year'] >= train_year_range[0]) & (games['year'] <= train_year_range[1])]
-    test = games[(games['year'] >= test_year_range[0]) & (games['year'] <= test_year_range[1])]
+def get_smoothed_stdev_for_num_games(num_games, spline):
+    high = num_games + 50
+    low = num_games - 50
+    high_weight = 1 - (high - num_games) / 100
+    low_weight = 1 - (num_games - low) / 100
+    return (spline(high) * high_weight + spline(low) * low_weight) / (high_weight + low_weight)
 
-    games = games[games['completed'] == True]
+def create_stdev_function(spline):
+    return lambda num_games: get_smoothed_stdev_for_num_games(num_games, spline)
 
-    if not features:
-        x_features = env.x_features
-    else:
-        x_features = features
-    params = env.win_margin_model_params
-    model = XGBRegressor(**params)
-    train_df, test_df = train_test_split(games, test_size=0.2, random_state=41)    
-
-    # first split train/test to get error vals (needed for simulations)
-    X_train, y_train, X_test, y_test = train[x_features], train['margin'], test[x_features], test['margin']
-    X = games[x_features]
-    y = games['margin']
-    model.fit(X_train, y_train)
-    preds = model.predict(X_test)
+def prediction_interval_stdev(model, x_test, y_test):
+    preds = model.predict(x_test)
     errors = preds - y_test
     m = np.mean(errors)
     std = np.std(errors)
+    return m, std
 
+def get_win_margin_model(games, features=None):
+    train_years = [2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2021, 2023]
+    test_years = [2022]
+    omit_years = [2020]
+
+    # Exclude omitted years
+    games = games[~games['year'].isin(omit_years)]
+
+    # Select training and testing datasets based on specified years
+    train = games[games['year'].isin(train_years)]
+    test = games[games['year'].isin(test_years)]
+
+    # Filter completed games
+    games = games[games['completed'] == True]
+
+    # Use specified features or default to environment features
+    x_features = features if features else env.x_features
+    params = env.win_margin_model_params
+    model = XGBRegressor(**params)
+    
+    # Split the data into training and testing sets
+    train_df, test_df = train_test_split(games, test_size=0.2, random_state=41)    
+
+    X_train, y_train = train[x_features], train['margin']
+    X_test, y_test = test[x_features], test['margin']
+    X, y = games[x_features], games['margin']
+    
+    # Train the model
+    model.fit(X_train, y_train)
+    
+    # Make predictions and calculate errors
+    preds = model.predict(X_test)
+    errors = preds - y_test
+
+    # Round the number of games into the season
     test_df['num_games_into_season_round_100'] = test_df['num_games_into_season'].round(-2)
 
+    # Create a DataFrame for errors
     error_df = pd.DataFrame({
         'num_games_into_season': test_df['num_games_into_season_round_100'],
         'error': errors
-        })
+    })
 
+    # Calculate standard deviation of errors grouped by the number of games into the season
     std_dev_by_game = error_df.groupby('num_games_into_season')['error'].std()
-    # Fit a spline for smoothing
     x = std_dev_by_game.index
     y = std_dev_by_game.values
-    spline = UnivariateSpline(x, y, s=200) # s is the smoothing factor, adjust as needed
+    spline = UnivariateSpline(x, y, s=200)
 
-    # Function to return smoothed standard deviation for a given number of games into the season
-    def get_smoothed_stdev_for_num_games(num_games):
-        high = num_games + 50
-        low = num_games - 50
-        high_weight = 1 - (high - num_games) / 100
-        low_weight = 1 - (num_games - low) / 100
-        return (spline(high) * high_weight + spline(low) * low_weight) / (high_weight + low_weight)
-
-    # Convert to dictionary for easy lookup
-    std_dev_dict = std_dev_by_game.to_dict()
-    st_dev_dict_smoothed = {k: get_smoothed_stdev_for_num_games(k) for k in std_dev_dict.keys()}
-    print(st_dev_dict_smoothed)
-
-    # Function to return standard deviation for a given number of games into the season
-    def get_stdev_for_num_games(num_games):
-        # If exact match found in dictionary, return it
-        if num_games in st_dev_dict_smoothed:
-            return st_dev_dict_smoothed[num_games]
-        # If no exact match, return closest available or default value
-        else:
-            closest_num_games = min(st_dev_dict_smoothed.keys(), key=lambda k: abs(k - num_games))
-            return st_dev_dict_smoothed.get(closest_num_games, np.nan) # np.nan as default if nothing close
-
-    def prediction_interval_stdev(model, x_test, y_test):
-        preds = model.predict(x_test)
-        errors = preds - y_test
-        m = np.mean(errors)
-        std = np.std(errors)
-        return m, std
-
+    # Calculate prediction interval standard deviation
     m, std = prediction_interval_stdev(model, X_test, y_test)
 
-    # now fit on all the data for final model
-    # model = XGBRegressor(**params)
-    # model.fit(X, y)
+    # Save the trained model
     filename = 'win_margin_model_heavy.pkl'
     pickle.dump(model, open(filename, 'wb'))
-    return model, m, std, get_smoothed_stdev_for_num_games
+    
+    return model, m, std, spline
 
 def get_win_probability_model(games, win_margin_model):
-    '''
-    just predicts from predicted margin
-    '''
-    # from sklearn.linear_model import LogisticRegression
-    # games = games[games['completed'] == True]
-    # games['expected_margin'] = win_margin_model.predict(games[['team_rating', 'opponent_rating', 'team_win_total_future', 'opponent_win_total_future', 'last_year_team_rating', 'last_year_opponent_rating', 'num_games_into_season', 'team_last_10_rating', 'opponent_last_10_rating', 'team_last_5_rating', 'opponent_last_5_rating', 'team_last_3_rating', 'opponent_last_3_rating', 'team_last_1_rating', 'opponent_last_1_rating', 'team_days_since_most_recent_game', 'opponent_days_since_most_recent_game']])
-    # games['team_win'] = games['margin'] > 0
-    # model = LogisticRegression()
-    # model.fit(games[['expected_margin']], games['team_win'])
-    # # print log loss
-    # from sklearn.metrics import log_loss
-    # print('Win Prob Model Log Loss')
-    # print(log_loss(games['team_win'], model.predict_proba(games[['expected_margin']])[:,1]))
-    # print()
-    # return model
-
-    from xgboost import XGBClassifier
-    from sklearn.linear_model import LogisticRegression
     games = games[games['completed'] == True]
     x_features = env.x_features
     X = games[x_features]
@@ -141,40 +118,19 @@ def get_win_probability_model(games, win_margin_model):
     intercept = -(logit_inv(0.5) / X.mean())
     print(intercept)
     games['win'] = games['margin'] > 0
-    #TODO: fit intercept?
     model = LogisticRegression(fit_intercept=False)
     model.fit(X, games['win'])
-    # plot win probability
-    # import matplotlib.pyplot as plt
-    # plt.scatter(X['pred_margin'], model.predict_proba(X[['pred_margin']])[:,1])
-    # plt.xlabel('Predicted Margin')
-    # plt.ylabel('Win Probability')
-    # add true win proportion binned by margin of 1
-    # win_probs = []
-    # margins = []
-    # for i in range(-30, 31):
-    #     win_probs.append(games[games['pred_margin'].round(0) == i]['win'].mean())
-    #     margins.append(i)
-    # for i in range(-30, 31):
-    #     print(i, games[games['pred_margin'] == i]['win'].mean())
-    # plt.scatter(margins, win_probs, color='red')
-
-
-    # plt.show()
-    # print log loss
-    from sklearn.metrics import log_loss
-    # print('Win Prob Model Log Loss')
-    # print(log_loss(games['win'], model.predict_proba(X[['pred_margin']])[:,1]))
-    # print()
     return model
 
+# Unused function, kept for reference
+def get_win_probability_model_xgb(games, win_margin_model):
+    games = games[games['completed'] == True]
+    x_features = env.x_features
+    X = games[x_features]
     games['team_win'] = games['margin'] > 0
-
     params = {'max_depth': 5, 'learning_rate': 0.01337501236333186, 'n_estimators': 615, 'min_child_weight': 6, 'gamma': 0.22171810700204012, 'subsample': 0.23183800840898533, 'colsample_bytree': 0.29826505641378537, 'reg_alpha': 0.5869931848470185, 'reg_lambda': 0.01392437600344064, 'random_state': 931}
     model = XGBClassifier(**params)
     model.fit(X, games['team_win'])
-    # print log loss
-    from sklearn.metrics import log_loss
     print('Win Prob Model Log Loss')
     print(log_loss(games['team_win'], model.predict_proba(X)[:,1]))
     print()
