@@ -1,0 +1,1201 @@
+boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score,margin,location,pace,completed,year
+202410230HOU,"Wed, Oct 23, 2024",HOU,CHO,Houston Rockets,Charlotte Hornets,,,,Home,,False,2025
+202410250HOU,"Fri, Oct 25, 2024",HOU,MEM,Houston Rockets,Memphis Grizzlies,,,,Home,,False,2025
+202410260SAS,"Sat, Oct 26, 2024",SAS,HOU,San Antonio Spurs,Houston Rockets,,,,Home,,False,2025
+202410280SAS,"Mon, Oct 28, 2024",SAS,HOU,San Antonio Spurs,Houston Rockets,,,,Home,,False,2025
+202410310DAL,"Thu, Oct 31, 2024",DAL,HOU,Dallas Mavericks,Houston Rockets,,,,Home,,False,2025
+202411020HOU,"Sat, Nov 2, 2024",HOU,GSW,Houston Rockets,Golden State Warriors,,,,Home,,False,2025
+202411040HOU,"Mon, Nov 4, 2024",HOU,NYK,Houston Rockets,New York Knicks,,,,Home,,False,2025
+202411060HOU,"Wed, Nov 6, 2024",HOU,SAS,Houston Rockets,San Antonio Spurs,,,,Home,,False,2025
+202411080OKC,"Fri, Nov 8, 2024",OKC,HOU,Oklahoma City Thunder,Houston Rockets,,,,Home,,False,2025
+202411100DET,"Sun, Nov 10, 2024",DET,HOU,Detroit Pistons,Houston Rockets,,,,Home,,False,2025
+202411110HOU,"Mon, Nov 11, 2024",HOU,WAS,Houston Rockets,Washington Wizards,,,,Home,,False,2025
+202411130HOU,"Wed, Nov 13, 2024",HOU,LAC,Houston Rockets,Los Angeles Clippers,,,,Home,,False,2025
+202411150HOU,"Fri, Nov 15, 2024",HOU,LAC,Houston Rockets,Los Angeles Clippers,,,,Home,,False,2025
+202411170CHI,"Sun, Nov 17, 2024",CHI,HOU,Chicago Bulls,Houston Rockets,,,,Home,,False,2025
+202411180MIL,"Mon, Nov 18, 2024",MIL,HOU,Milwaukee Bucks,Houston Rockets,,,,Home,,False,2025
+202411200HOU,"Wed, Nov 20, 2024",HOU,IND,Houston Rockets,Indiana Pacers,,,,Home,,False,2025
+202411220HOU,"Fri, Nov 22, 2024",HOU,POR,Houston Rockets,Portland Trail Blazers,,,,Home,,False,2025
+202411230HOU,"Sat, Nov 23, 2024",HOU,POR,Houston Rockets,Portland Trail Blazers,,,,Home,,False,2025
+202411260MIN,"Tue, Nov 26, 2024",MIN,HOU,Minnesota Timberwolves,Houston Rockets,,,,Home,,False,2025
+202411270PHI,"Wed, Nov 27, 2024",PHI,HOU,Philadelphia 76ers,Houston Rockets,,,,Home,,False,2025
+202412010HOU,"Sun, Dec 1, 2024",HOU,OKC,Houston Rockets,Oklahoma City Thunder,,,,Home,,False,2025
+202412030SAC,"Tue, Dec 3, 2024",SAC,HOU,Sacramento Kings,Houston Rockets,,,,Home,,False,2025
+202412050GSW,"Thu, Dec 5, 2024",GSW,HOU,Golden State Warriors,Houston Rockets,,,,Home,,False,2025
+202412080LAC,"Sun, Dec 8, 2024",LAC,HOU,Los Angeles Clippers,Houston Rockets,,,,Home,,False,2025
+202412190HOU,"Thu, Dec 19, 2024",HOU,NOP,Houston Rockets,New Orleans Pelicans,,,,Home,,False,2025
+202412220TOR,"Sun, Dec 22, 2024",TOR,HOU,Toronto Raptors,Houston Rockets,,,,Home,,False,2025
+202412230CHO,"Mon, Dec 23, 2024",CHO,HOU,Charlotte Hornets,Houston Rockets,,,,Home,,False,2025
+202412260NOP,"Thu, Dec 26, 2024",NOP,HOU,New Orleans Pelicans,Houston Rockets,,,,Home,,False,2025
+202412270HOU,"Fri, Dec 27, 2024",HOU,MIN,Houston Rockets,Minnesota Timberwolves,,,,Home,,False,2025
+202412290HOU,"Sun, Dec 29, 2024",HOU,MIA,Houston Rockets,Miami Heat,,,,Home,,False,2025
+202501010HOU,"Wed, Jan 1, 2025",HOU,DAL,Houston Rockets,Dallas Mavericks,,,,Home,,False,2025
+202501030HOU,"Fri, Jan 3, 2025",HOU,BOS,Houston Rockets,Boston Celtics,,,,Home,,False,2025
+202501050HOU,"Sun, Jan 5, 2025",HOU,LAL,Houston Rockets,Los Angeles Lakers,,,,Home,,False,2025
+202501070WAS,"Tue, Jan 7, 2025",WAS,HOU,Washington Wizards,Houston Rockets,,,,Home,,False,2025
+202501090MEM,"Thu, Jan 9, 2025",MEM,HOU,Memphis Grizzlies,Houston Rockets,,,,Home,,False,2025
+202501110ATL,"Sat, Jan 11, 2025",ATL,HOU,Atlanta Hawks,Houston Rockets,,,,Home,,False,2025
+202501130HOU,"Mon, Jan 13, 2025",HOU,MEM,Houston Rockets,Memphis Grizzlies,,,,Home,,False,2025
+202501150DEN,"Wed, Jan 15, 2025",DEN,HOU,Denver Nuggets,Houston Rockets,,,,Home,,False,2025
+202501160SAC,"Thu, Jan 16, 2025",SAC,HOU,Sacramento Kings,Houston Rockets,,,,Home,,False,2025
+202501180POR,"Sat, Jan 18, 2025",POR,HOU,Portland Trail Blazers,Houston Rockets,,,,Home,,False,2025
+202501200HOU,"Mon, Jan 20, 2025",HOU,DET,Houston Rockets,Detroit Pistons,,,,Home,,False,2025
+202501220HOU,"Wed, Jan 22, 2025",HOU,CLE,Houston Rockets,Cleveland Cavaliers,,,,Home,,False,2025
+202501250CLE,"Sat, Jan 25, 2025",CLE,HOU,Cleveland Cavaliers,Houston Rockets,,,,Home,,False,2025
+202501270BOS,"Mon, Jan 27, 2025",BOS,HOU,Boston Celtics,Houston Rockets,,,,Home,,False,2025
+202501300MEM,"Thu, Jan 30, 2025",MEM,HOU,Memphis Grizzlies,Houston Rockets,,,,Home,,False,2025
+202502010HOU,"Sat, Feb 1, 2025",HOU,BRK,Houston Rockets,Brooklyn Nets,,,,Home,,False,2025
+202502030NYK,"Mon, Feb 3, 2025",NYK,HOU,New York Knicks,Houston Rockets,,,,Home,,False,2025
+202502040BRK,"Tue, Feb 4, 2025",BRK,HOU,Brooklyn Nets,Houston Rockets,,,,Home,,False,2025
+202502060MIN,"Thu, Feb 6, 2025",MIN,HOU,Minnesota Timberwolves,Houston Rockets,,,,Home,,False,2025
+202502080DAL,"Sat, Feb 8, 2025",DAL,HOU,Dallas Mavericks,Houston Rockets,,,,Home,,False,2025
+202502090HOU,"Sun, Feb 9, 2025",HOU,TOR,Houston Rockets,Toronto Raptors,,,,Home,,False,2025
+202502120HOU,"Wed, Feb 12, 2025",HOU,PHO,Houston Rockets,Phoenix Suns,,,,Home,,False,2025
+202502130HOU,"Thu, Feb 13, 2025",HOU,GSW,Houston Rockets,Golden State Warriors,,,,Home,,False,2025
+202502210HOU,"Fri, Feb 21, 2025",HOU,MIN,Houston Rockets,Minnesota Timberwolves,,,,Home,,False,2025
+202502220UTA,"Sat, Feb 22, 2025",UTA,HOU,Utah Jazz,Houston Rockets,,,,Home,,False,2025
+202502250HOU,"Tue, Feb 25, 2025",HOU,MIL,Houston Rockets,Milwaukee Bucks,,,,Home,,False,2025
+202502260HOU,"Wed, Feb 26, 2025",HOU,SAS,Houston Rockets,San Antonio Spurs,,,,Home,,False,2025
+202503010HOU,"Sat, Mar 1, 2025",HOU,SAC,Houston Rockets,Sacramento Kings,,,,Home,,False,2025
+202503030OKC,"Mon, Mar 3, 2025",OKC,HOU,Oklahoma City Thunder,Houston Rockets,,,,Home,,False,2025
+202503040IND,"Tue, Mar 4, 2025",IND,HOU,Indiana Pacers,Houston Rockets,,,,Home,,False,2025
+202503060NOP,"Thu, Mar 6, 2025",NOP,HOU,New Orleans Pelicans,Houston Rockets,,,,Home,,False,2025
+202503080HOU,"Sat, Mar 8, 2025",HOU,NOP,Houston Rockets,New Orleans Pelicans,,,,Home,,False,2025
+202503100HOU,"Mon, Mar 10, 2025",HOU,ORL,Houston Rockets,Orlando Magic,,,,Home,,False,2025
+202503120HOU,"Wed, Mar 12, 2025",HOU,PHO,Houston Rockets,Phoenix Suns,,,,Home,,False,2025
+202503140HOU,"Fri, Mar 14, 2025",HOU,DAL,Houston Rockets,Dallas Mavericks,,,,Home,,False,2025
+202503150HOU,"Sat, Mar 15, 2025",HOU,CHI,Houston Rockets,Chicago Bulls,,,,Home,,False,2025
+202503170HOU,"Mon, Mar 17, 2025",HOU,PHI,Houston Rockets,Philadelphia 76ers,,,,Home,,False,2025
+202503190ORL,"Wed, Mar 19, 2025",ORL,HOU,Orlando Magic,Houston Rockets,,,,Home,,False,2025
+202503210MIA,"Fri, Mar 21, 2025",MIA,HOU,Miami Heat,Houston Rockets,,,,Home,,False,2025
+202503230HOU,"Sun, Mar 23, 2025",HOU,DEN,Houston Rockets,Denver Nuggets,,,,Home,,False,2025
+202503250HOU,"Tue, Mar 25, 2025",HOU,ATL,Houston Rockets,Atlanta Hawks,,,,Home,,False,2025
+202503270UTA,"Thu, Mar 27, 2025",UTA,HOU,Utah Jazz,Houston Rockets,,,,Home,,False,2025
+202503300PHO,"Sun, Mar 30, 2025",PHO,HOU,Phoenix Suns,Houston Rockets,,,,Home,,False,2025
+202503310LAL,"Mon, Mar 31, 2025",LAL,HOU,Los Angeles Lakers,Houston Rockets,,,,Home,,False,2025
+202504020HOU,"Wed, Apr 2, 2025",HOU,UTA,Houston Rockets,Utah Jazz,,,,Home,,False,2025
+202504040HOU,"Fri, Apr 4, 2025",HOU,OKC,Houston Rockets,Oklahoma City Thunder,,,,Home,,False,2025
+202504060GSW,"Sun, Apr 6, 2025",GSW,HOU,Golden State Warriors,Houston Rockets,,,,Home,,False,2025
+202504090LAC,"Wed, Apr 9, 2025",LAC,HOU,Los Angeles Clippers,Houston Rockets,,,,Home,,False,2025
+202504110LAL,"Fri, Apr 11, 2025",LAL,HOU,Los Angeles Lakers,Houston Rockets,,,,Home,,False,2025
+202504130HOU,"Sun, Apr 13, 2025",HOU,DEN,Houston Rockets,Denver Nuggets,,,,Home,,False,2025
+202410250ATL,"Fri, Oct 25, 2024",ATL,CHO,Atlanta Hawks,Charlotte Hornets,,,,Home,,False,2025
+202410260CHO,"Sat, Oct 26, 2024",CHO,MIA,Charlotte Hornets,Miami Heat,,,,Home,,False,2025
+202410300CHO,"Wed, Oct 30, 2024",CHO,TOR,Charlotte Hornets,Toronto Raptors,,,,Home,,False,2025
+202411010CHO,"Fri, Nov 1, 2024",CHO,BOS,Charlotte Hornets,Boston Celtics,,,,Home,,False,2025
+202411020CHO,"Sat, Nov 2, 2024",CHO,BOS,Charlotte Hornets,Boston Celtics,,,,Home,,False,2025
+202411040MIN,"Mon, Nov 4, 2024",MIN,CHO,Minnesota Timberwolves,Charlotte Hornets,,,,Home,,False,2025
+202411060CHO,"Wed, Nov 6, 2024",CHO,DET,Charlotte Hornets,Detroit Pistons,,,,Home,,False,2025
+202411080CHO,"Fri, Nov 8, 2024",CHO,IND,Charlotte Hornets,Indiana Pacers,,,,Home,,False,2025
+202411100PHI,"Sun, Nov 10, 2024",PHI,CHO,Philadelphia 76ers,Charlotte Hornets,,,,Home,,False,2025
+202411120ORL,"Tue, Nov 12, 2024",ORL,CHO,Orlando Magic,Charlotte Hornets,,,,Home,,False,2025
+202411160CHO,"Sat, Nov 16, 2024",CHO,MIL,Charlotte Hornets,Milwaukee Bucks,,,,Home,,False,2025
+202411170CLE,"Sun, Nov 17, 2024",CLE,CHO,Cleveland Cavaliers,Charlotte Hornets,,,,Home,,False,2025
+202411190BRK,"Tue, Nov 19, 2024",BRK,CHO,Brooklyn Nets,Charlotte Hornets,,,,Home,,False,2025
+202411210CHO,"Thu, Nov 21, 2024",CHO,DET,Charlotte Hornets,Detroit Pistons,,,,Home,,False,2025
+202411230MIL,"Sat, Nov 23, 2024",MIL,CHO,Milwaukee Bucks,Charlotte Hornets,,,,Home,,False,2025
+202411250CHO,"Mon, Nov 25, 2024",CHO,ORL,Charlotte Hornets,Orlando Magic,,,,Home,,False,2025
+202411270CHO,"Wed, Nov 27, 2024",CHO,MIA,Charlotte Hornets,Miami Heat,,,,Home,,False,2025
+202411290CHO,"Fri, Nov 29, 2024",CHO,NYK,Charlotte Hornets,New York Knicks,,,,Home,,False,2025
+202411300CHO,"Sat, Nov 30, 2024",CHO,ATL,Charlotte Hornets,Atlanta Hawks,,,,Home,,False,2025
+202412030CHO,"Tue, Dec 3, 2024",CHO,PHI,Charlotte Hornets,Philadelphia 76ers,,,,Home,,False,2025
+202412050NYK,"Thu, Dec 5, 2024",NYK,CHO,New York Knicks,Charlotte Hornets,,,,Home,,False,2025
+202412070CHO,"Sat, Dec 7, 2024",CHO,CLE,Charlotte Hornets,Cleveland Cavaliers,,,,Home,,False,2025
+202412080IND,"Sun, Dec 8, 2024",IND,CHO,Indiana Pacers,Charlotte Hornets,,,,Home,,False,2025
+202412190WAS,"Thu, Dec 19, 2024",WAS,CHO,Washington Wizards,Charlotte Hornets,,,,Home,,False,2025
+202412200PHI,"Fri, Dec 20, 2024",PHI,CHO,Philadelphia 76ers,Charlotte Hornets,,,,Home,,False,2025
+202412260WAS,"Thu, Dec 26, 2024",WAS,CHO,Washington Wizards,Charlotte Hornets,,,,Home,,False,2025
+202412280CHO,"Sat, Dec 28, 2024",CHO,OKC,Charlotte Hornets,Oklahoma City Thunder,,,,Home,,False,2025
+202412300CHO,"Mon, Dec 30, 2024",CHO,CHI,Charlotte Hornets,Chicago Bulls,,,,Home,,False,2025
+202501030DET,"Fri, Jan 3, 2025",DET,CHO,Detroit Pistons,Charlotte Hornets,,,,Home,,False,2025
+202501050CLE,"Sun, Jan 5, 2025",CLE,CHO,Cleveland Cavaliers,Charlotte Hornets,,,,Home,,False,2025
+202501070CHO,"Tue, Jan 7, 2025",CHO,PHO,Charlotte Hornets,Phoenix Suns,,,,Home,,False,2025
+202501090LAL,"Thu, Jan 9, 2025",LAL,CHO,Los Angeles Lakers,Charlotte Hornets,,,,Home,,False,2025
+202501110LAC,"Sat, Jan 11, 2025",LAC,CHO,Los Angeles Clippers,Charlotte Hornets,,,,Home,,False,2025
+202501120PHO,"Sun, Jan 12, 2025",PHO,CHO,Phoenix Suns,Charlotte Hornets,,,,Home,,False,2025
+202501150UTA,"Wed, Jan 15, 2025",UTA,CHO,Utah Jazz,Charlotte Hornets,,,,Home,,False,2025
+202501170CHI,"Fri, Jan 17, 2025",CHI,CHO,Chicago Bulls,Charlotte Hornets,,,,Home,,False,2025
+202501200CHO,"Mon, Jan 20, 2025",CHO,DAL,Charlotte Hornets,Dallas Mavericks,,,,Home,,False,2025
+202501220MEM,"Wed, Jan 22, 2025",MEM,CHO,Memphis Grizzlies,Charlotte Hornets,,,,Home,,False,2025
+202501240CHO,"Fri, Jan 24, 2025",CHO,POR,Charlotte Hornets,Portland Trail Blazers,,,,Home,,False,2025
+202501250CHO,"Sat, Jan 25, 2025",CHO,NOP,Charlotte Hornets,New Orleans Pelicans,,,,Home,,False,2025
+202501270CHO,"Mon, Jan 27, 2025",CHO,LAL,Charlotte Hornets,Los Angeles Lakers,,,,Home,,False,2025
+202501290CHO,"Wed, Jan 29, 2025",CHO,BRK,Charlotte Hornets,Brooklyn Nets,,,,Home,,False,2025
+202501310CHO,"Fri, Jan 31, 2025",CHO,LAC,Charlotte Hornets,Los Angeles Clippers,,,,Home,,False,2025
+202502010CHO,"Sat, Feb 1, 2025",CHO,DEN,Charlotte Hornets,Denver Nuggets,,,,Home,,False,2025
+202502030CHO,"Mon, Feb 3, 2025",CHO,WAS,Charlotte Hornets,Washington Wizards,,,,Home,,False,2025
+202502050CHO,"Wed, Feb 5, 2025",CHO,MIL,Charlotte Hornets,Milwaukee Bucks,,,,Home,,False,2025
+202502070CHO,"Fri, Feb 7, 2025",CHO,SAS,Charlotte Hornets,San Antonio Spurs,,,,Home,,False,2025
+202502090DET,"Sun, Feb 9, 2025",DET,CHO,Detroit Pistons,Charlotte Hornets,,,,Home,,False,2025
+202502100BRK,"Mon, Feb 10, 2025",BRK,CHO,Brooklyn Nets,Charlotte Hornets,,,,Home,,False,2025
+202502120ORL,"Wed, Feb 12, 2025",ORL,CHO,Orlando Magic,Charlotte Hornets,,,,Home,,False,2025
+202502200DEN,"Thu, Feb 20, 2025",DEN,CHO,Denver Nuggets,Charlotte Hornets,,,,Home,,False,2025
+202502220POR,"Sat, Feb 22, 2025",POR,CHO,Portland Trail Blazers,Charlotte Hornets,,,,Home,,False,2025
+202502240SAC,"Mon, Feb 24, 2025",SAC,CHO,Sacramento Kings,Charlotte Hornets,,,,Home,,False,2025
+202502250GSW,"Tue, Feb 25, 2025",GSW,CHO,Golden State Warriors,Charlotte Hornets,,,,Home,,False,2025
+202502270DAL,"Thu, Feb 27, 2025",DAL,CHO,Dallas Mavericks,Charlotte Hornets,,,,Home,,False,2025
+202503010CHO,"Sat, Mar 1, 2025",CHO,WAS,Charlotte Hornets,Washington Wizards,,,,Home,,False,2025
+202503030CHO,"Mon, Mar 3, 2025",CHO,GSW,Charlotte Hornets,Golden State Warriors,,,,Home,,False,2025
+202503050CHO,"Wed, Mar 5, 2025",CHO,MIN,Charlotte Hornets,Minnesota Timberwolves,,,,Home,,False,2025
+202503070CHO,"Fri, Mar 7, 2025",CHO,CLE,Charlotte Hornets,Cleveland Cavaliers,,,,Home,,False,2025
+202503080CHO,"Sat, Mar 8, 2025",CHO,BRK,Charlotte Hornets,Brooklyn Nets,,,,Home,,False,2025
+202503100MIA,"Mon, Mar 10, 2025",MIA,CHO,Miami Heat,Charlotte Hornets,,,,Home,,False,2025
+202503120ATL,"Wed, Mar 12, 2025",ATL,CHO,Atlanta Hawks,Charlotte Hornets,,,,Home,,False,2025
+202503140SAS,"Fri, Mar 14, 2025",SAS,CHO,San Antonio Spurs,Charlotte Hornets,,,,Home,,False,2025
+202503180CHO,"Tue, Mar 18, 2025",CHO,ATL,Charlotte Hornets,Atlanta Hawks,,,,Home,,False,2025
+202503200CHO,"Thu, Mar 20, 2025",CHO,NYK,Charlotte Hornets,New York Knicks,,,,Home,,False,2025
+202503210OKC,"Fri, Mar 21, 2025",OKC,CHO,Oklahoma City Thunder,Charlotte Hornets,,,,Home,,False,2025
+202503230MIA,"Sun, Mar 23, 2025",MIA,CHO,Miami Heat,Charlotte Hornets,,,,Home,,False,2025
+202503250CHO,"Tue, Mar 25, 2025",CHO,ORL,Charlotte Hornets,Orlando Magic,,,,Home,,False,2025
+202503280TOR,"Fri, Mar 28, 2025",TOR,CHO,Toronto Raptors,Charlotte Hornets,,,,Home,,False,2025
+202503300NOP,"Sun, Mar 30, 2025",NOP,CHO,New Orleans Pelicans,Charlotte Hornets,,,,Home,,False,2025
+202503310CHO,"Mon, Mar 31, 2025",CHO,UTA,Charlotte Hornets,Utah Jazz,,,,Home,,False,2025
+202504020IND,"Wed, Apr 2, 2025",IND,CHO,Indiana Pacers,Charlotte Hornets,,,,Home,,False,2025
+202504040CHO,"Fri, Apr 4, 2025",CHO,SAC,Charlotte Hornets,Sacramento Kings,,,,Home,,False,2025
+202504060CHO,"Sun, Apr 6, 2025",CHO,CHI,Charlotte Hornets,Chicago Bulls,,,,Home,,False,2025
+202504080CHO,"Tue, Apr 8, 2025",CHO,MEM,Charlotte Hornets,Memphis Grizzlies,,,,Home,,False,2025
+202504090TOR,"Wed, Apr 9, 2025",TOR,CHO,Toronto Raptors,Charlotte Hornets,,,,Home,,False,2025
+202504110BOS,"Fri, Apr 11, 2025",BOS,CHO,Boston Celtics,Charlotte Hornets,,,,Home,,False,2025
+202504130BOS,"Sun, Apr 13, 2025",BOS,CHO,Boston Celtics,Charlotte Hornets,,,,Home,,False,2025
+202410230UTA,"Wed, Oct 23, 2024",UTA,MEM,Utah Jazz,Memphis Grizzlies,,,,Home,,False,2025
+202410260MEM,"Sat, Oct 26, 2024",MEM,ORL,Memphis Grizzlies,Orlando Magic,,,,Home,,False,2025
+202410280MEM,"Mon, Oct 28, 2024",MEM,CHI,Memphis Grizzlies,Chicago Bulls,,,,Home,,False,2025
+202410300MEM,"Wed, Oct 30, 2024",MEM,BRK,Memphis Grizzlies,Brooklyn Nets,,,,Home,,False,2025
+202410310MEM,"Thu, Oct 31, 2024",MEM,MIL,Memphis Grizzlies,Milwaukee Bucks,,,,Home,,False,2025
+202411020PHI,"Sat, Nov 2, 2024",PHI,MEM,Philadelphia 76ers,Memphis Grizzlies,,,,Home,,False,2025
+202411040BRK,"Mon, Nov 4, 2024",BRK,MEM,Brooklyn Nets,Memphis Grizzlies,,,,Home,,False,2025
+202411060MEM,"Wed, Nov 6, 2024",MEM,LAL,Memphis Grizzlies,Los Angeles Lakers,,,,Home,,False,2025
+202411080MEM,"Fri, Nov 8, 2024",MEM,WAS,Memphis Grizzlies,Washington Wizards,,,,Home,,False,2025
+202411100POR,"Sun, Nov 10, 2024",POR,MEM,Portland Trail Blazers,Memphis Grizzlies,,,,Home,,False,2025
+202411130LAL,"Wed, Nov 13, 2024",LAL,MEM,Los Angeles Lakers,Memphis Grizzlies,,,,Home,,False,2025
+202411150GSW,"Fri, Nov 15, 2024",GSW,MEM,Golden State Warriors,Memphis Grizzlies,,,,Home,,False,2025
+202411170MEM,"Sun, Nov 17, 2024",MEM,DEN,Memphis Grizzlies,Denver Nuggets,,,,Home,,False,2025
+202411190MEM,"Tue, Nov 19, 2024",MEM,DEN,Memphis Grizzlies,Denver Nuggets,,,,Home,,False,2025
+202411200MEM,"Wed, Nov 20, 2024",MEM,PHI,Memphis Grizzlies,Philadelphia 76ers,,,,Home,,False,2025
+202411230CHI,"Sat, Nov 23, 2024",CHI,MEM,Chicago Bulls,Memphis Grizzlies,,,,Home,,False,2025
+202411250MEM,"Mon, Nov 25, 2024",MEM,POR,Memphis Grizzlies,Portland Trail Blazers,,,,Home,,False,2025
+202411270MEM,"Wed, Nov 27, 2024",MEM,DET,Memphis Grizzlies,Detroit Pistons,,,,Home,,False,2025
+202411290MEM,"Fri, Nov 29, 2024",MEM,NOP,Memphis Grizzlies,New Orleans Pelicans,,,,Home,,False,2025
+202412010MEM,"Sun, Dec 1, 2024",MEM,IND,Memphis Grizzlies,Indiana Pacers,,,,Home,,False,2025
+202412030DAL,"Tue, Dec 3, 2024",DAL,MEM,Dallas Mavericks,Memphis Grizzlies,,,,Home,,False,2025
+202412050MEM,"Thu, Dec 5, 2024",MEM,SAC,Memphis Grizzlies,Sacramento Kings,,,,Home,,False,2025
+202412070BOS,"Sat, Dec 7, 2024",BOS,MEM,Boston Celtics,Memphis Grizzlies,,,,Home,,False,2025
+202412080WAS,"Sun, Dec 8, 2024",WAS,MEM,Washington Wizards,Memphis Grizzlies,,,,Home,,False,2025
+202412190MEM,"Thu, Dec 19, 2024",MEM,GSW,Memphis Grizzlies,Golden State Warriors,,,,Home,,False,2025
+202412210ATL,"Sat, Dec 21, 2024",ATL,MEM,Atlanta Hawks,Memphis Grizzlies,,,,Home,,False,2025
+202412230MEM,"Mon, Dec 23, 2024",MEM,LAC,Memphis Grizzlies,Los Angeles Clippers,,,,Home,,False,2025
+202412260MEM,"Thu, Dec 26, 2024",MEM,TOR,Memphis Grizzlies,Toronto Raptors,,,,Home,,False,2025
+202412270NOP,"Fri, Dec 27, 2024",NOP,MEM,New Orleans Pelicans,Memphis Grizzlies,,,,Home,,False,2025
+202412290OKC,"Sun, Dec 29, 2024",OKC,MEM,Oklahoma City Thunder,Memphis Grizzlies,,,,Home,,False,2025
+202412310PHO,"Tue, Dec 31, 2024",PHO,MEM,Phoenix Suns,Memphis Grizzlies,,,,Home,,False,2025
+202501030SAC,"Fri, Jan 3, 2025",SAC,MEM,Sacramento Kings,Memphis Grizzlies,,,,Home,,False,2025
+202501040GSW,"Sat, Jan 4, 2025",GSW,MEM,Golden State Warriors,Memphis Grizzlies,,,,Home,,False,2025
+202501060MEM,"Mon, Jan 6, 2025",MEM,DAL,Memphis Grizzlies,Dallas Mavericks,,,,Home,,False,2025
+202501110MIN,"Sat, Jan 11, 2025",MIN,MEM,Minnesota Timberwolves,Memphis Grizzlies,,,,Home,,False,2025
+202501150SAS,"Wed, Jan 15, 2025",SAS,MEM,San Antonio Spurs,Memphis Grizzlies,,,,Home,,False,2025
+202501170SAS,"Fri, Jan 17, 2025",SAS,MEM,San Antonio Spurs,Memphis Grizzlies,,,,Home,,False,2025
+202501200MEM,"Mon, Jan 20, 2025",MEM,MIN,Memphis Grizzlies,Minnesota Timberwolves,,,,Home,,False,2025
+202501240MEM,"Fri, Jan 24, 2025",MEM,NOP,Memphis Grizzlies,New Orleans Pelicans,,,,Home,,False,2025
+202501250MEM,"Sat, Jan 25, 2025",MEM,UTA,Memphis Grizzlies,Utah Jazz,,,,Home,,False,2025
+202501270NYK,"Mon, Jan 27, 2025",NYK,MEM,New York Knicks,Memphis Grizzlies,,,,Home,,False,2025
+202502020MIL,"Sun, Feb 2, 2025",MIL,MEM,Milwaukee Bucks,Memphis Grizzlies,,,,Home,,False,2025
+202502030MEM,"Mon, Feb 3, 2025",MEM,SAS,Memphis Grizzlies,San Antonio Spurs,,,,Home,,False,2025
+202502050TOR,"Wed, Feb 5, 2025",TOR,MEM,Toronto Raptors,Memphis Grizzlies,,,,Home,,False,2025
+202502080MEM,"Sat, Feb 8, 2025",MEM,OKC,Memphis Grizzlies,Oklahoma City Thunder,,,,Home,,False,2025
+202502110PHO,"Tue, Feb 11, 2025",PHO,MEM,Phoenix Suns,Memphis Grizzlies,,,,Home,,False,2025
+202502120LAC,"Wed, Feb 12, 2025",LAC,MEM,Los Angeles Clippers,Memphis Grizzlies,,,,Home,,False,2025
+202502200IND,"Thu, Feb 20, 2025",IND,MEM,Indiana Pacers,Memphis Grizzlies,,,,Home,,False,2025
+202502210ORL,"Fri, Feb 21, 2025",ORL,MEM,Orlando Magic,Memphis Grizzlies,,,,Home,,False,2025
+202502230CLE,"Sun, Feb 23, 2025",CLE,MEM,Cleveland Cavaliers,Memphis Grizzlies,,,,Home,,False,2025
+202502250MEM,"Tue, Feb 25, 2025",MEM,PHO,Memphis Grizzlies,Phoenix Suns,,,,Home,,False,2025
+202502280MEM,"Fri, Feb 28, 2025",MEM,NYK,Memphis Grizzlies,New York Knicks,,,,Home,,False,2025
+202503010MEM,"Sat, Mar 1, 2025",MEM,SAS,Memphis Grizzlies,San Antonio Spurs,,,,Home,,False,2025
+202503030MEM,"Mon, Mar 3, 2025",MEM,ATL,Memphis Grizzlies,Atlanta Hawks,,,,Home,,False,2025
+202503050MEM,"Wed, Mar 5, 2025",MEM,OKC,Memphis Grizzlies,Oklahoma City Thunder,,,,Home,,False,2025
+202503070DAL,"Fri, Mar 7, 2025",DAL,MEM,Dallas Mavericks,Memphis Grizzlies,,,,Home,,False,2025
+202503090NOP,"Sun, Mar 9, 2025",NOP,MEM,New Orleans Pelicans,Memphis Grizzlies,,,,Home,,False,2025
+202503100MEM,"Mon, Mar 10, 2025",MEM,PHO,Memphis Grizzlies,Phoenix Suns,,,,Home,,False,2025
+202503120MEM,"Wed, Mar 12, 2025",MEM,UTA,Memphis Grizzlies,Utah Jazz,,,,Home,,False,2025
+202503140MEM,"Fri, Mar 14, 2025",MEM,CLE,Memphis Grizzlies,Cleveland Cavaliers,,,,Home,,False,2025
+202503150MEM,"Sat, Mar 15, 2025",MEM,MIA,Memphis Grizzlies,Miami Heat,,,,Home,,False,2025
+202503170SAC,"Mon, Mar 17, 2025",SAC,MEM,Sacramento Kings,Memphis Grizzlies,,,,Home,,False,2025
+202503190POR,"Wed, Mar 19, 2025",POR,MEM,Portland Trail Blazers,Memphis Grizzlies,,,,Home,,False,2025
+202503210LAC,"Fri, Mar 21, 2025",LAC,MEM,Los Angeles Clippers,Memphis Grizzlies,,,,Home,,False,2025
+202503250UTA,"Tue, Mar 25, 2025",UTA,MEM,Utah Jazz,Memphis Grizzlies,,,,Home,,False,2025
+202503270OKC,"Thu, Mar 27, 2025",OKC,MEM,Oklahoma City Thunder,Memphis Grizzlies,,,,Home,,False,2025
+202503290MEM,"Sat, Mar 29, 2025",MEM,LAL,Memphis Grizzlies,Los Angeles Lakers,,,,Home,,False,2025
+202503310MEM,"Mon, Mar 31, 2025",MEM,BOS,Memphis Grizzlies,Boston Celtics,,,,Home,,False,2025
+202504010MEM,"Tue, Apr 1, 2025",MEM,GSW,Memphis Grizzlies,Golden State Warriors,,,,Home,,False,2025
+202504030MIA,"Thu, Apr 3, 2025",MIA,MEM,Miami Heat,Memphis Grizzlies,,,,Home,,False,2025
+202504050DET,"Sat, Apr 5, 2025",DET,MEM,Detroit Pistons,Memphis Grizzlies,,,,Home,,False,2025
+202504100MEM,"Thu, Apr 10, 2025",MEM,MIN,Memphis Grizzlies,Minnesota Timberwolves,,,,Home,,False,2025
+202504110DEN,"Fri, Apr 11, 2025",DEN,MEM,Denver Nuggets,Memphis Grizzlies,,,,Home,,False,2025
+202504130MEM,"Sun, Apr 13, 2025",MEM,DAL,Memphis Grizzlies,Dallas Mavericks,,,,Home,,False,2025
+202410240DAL,"Thu, Oct 24, 2024",DAL,SAS,Dallas Mavericks,San Antonio Spurs,,,,Home,,False,2025
+202410300OKC,"Wed, Oct 30, 2024",OKC,SAS,Oklahoma City Thunder,San Antonio Spurs,,,,Home,,False,2025
+202410310UTA,"Thu, Oct 31, 2024",UTA,SAS,Utah Jazz,San Antonio Spurs,,,,Home,,False,2025
+202411020SAS,"Sat, Nov 2, 2024",SAS,MIN,San Antonio Spurs,Minnesota Timberwolves,,,,Home,,False,2025
+202411040LAC,"Mon, Nov 4, 2024",LAC,SAS,Los Angeles Clippers,San Antonio Spurs,,,,Home,,False,2025
+202411070SAS,"Thu, Nov 7, 2024",SAS,POR,San Antonio Spurs,Portland Trail Blazers,,,,Home,,False,2025
+202411090SAS,"Sat, Nov 9, 2024",SAS,UTA,San Antonio Spurs,Utah Jazz,,,,Home,,False,2025
+202411110SAS,"Mon, Nov 11, 2024",SAS,SAC,San Antonio Spurs,Sacramento Kings,,,,Home,,False,2025
+202411130SAS,"Wed, Nov 13, 2024",SAS,WAS,San Antonio Spurs,Washington Wizards,,,,Home,,False,2025
+202411150SAS,"Fri, Nov 15, 2024",SAS,LAL,San Antonio Spurs,Los Angeles Lakers,,,,Home,,False,2025
+202411160DAL,"Sat, Nov 16, 2024",DAL,SAS,Dallas Mavericks,San Antonio Spurs,,,,Home,,False,2025
+202411190SAS,"Tue, Nov 19, 2024",SAS,OKC,San Antonio Spurs,Oklahoma City Thunder,,,,Home,,False,2025
+202411210SAS,"Thu, Nov 21, 2024",SAS,UTA,San Antonio Spurs,Utah Jazz,,,,Home,,False,2025
+202411230SAS,"Sat, Nov 23, 2024",SAS,GSW,San Antonio Spurs,Golden State Warriors,,,,Home,,False,2025
+202411260UTA,"Tue, Nov 26, 2024",UTA,SAS,Utah Jazz,San Antonio Spurs,,,,Home,,False,2025
+202411270SAS,"Wed, Nov 27, 2024",SAS,LAL,San Antonio Spurs,Los Angeles Lakers,,,,Home,,False,2025
+202412010SAC,"Sun, Dec 1, 2024",SAC,SAS,Sacramento Kings,San Antonio Spurs,,,,Home,,False,2025
+202412030PHO,"Tue, Dec 3, 2024",PHO,SAS,Phoenix Suns,San Antonio Spurs,,,,Home,,False,2025
+202412050SAS,"Thu, Dec 5, 2024",SAS,CHI,San Antonio Spurs,Chicago Bulls,,,,Home,,False,2025
+202412060SAS,"Fri, Dec 6, 2024",SAS,SAC,San Antonio Spurs,Sacramento Kings,,,,Home,,False,2025
+202412080SAS,"Sun, Dec 8, 2024",SAS,NOP,San Antonio Spurs,New Orleans Pelicans,,,,Home,,False,2025
+202412190SAS,"Thu, Dec 19, 2024",SAS,ATL,San Antonio Spurs,Atlanta Hawks,,,,Home,,False,2025
+202412210SAS,"Sat, Dec 21, 2024",SAS,POR,San Antonio Spurs,Portland Trail Blazers,,,,Home,,False,2025
+202412230PHI,"Mon, Dec 23, 2024",PHI,SAS,Philadelphia 76ers,San Antonio Spurs,,,,Home,,False,2025
+202412250NYK,"Wed, Dec 25, 2024",NYK,SAS,New York Knicks,San Antonio Spurs,,,,Home,,False,2025
+202412270BRK,"Fri, Dec 27, 2024",BRK,SAS,Brooklyn Nets,San Antonio Spurs,,,,Home,,False,2025
+202412290MIN,"Sun, Dec 29, 2024",MIN,SAS,Minnesota Timberwolves,San Antonio Spurs,,,,Home,,False,2025
+202412310SAS,"Tue, Dec 31, 2024",SAS,LAC,San Antonio Spurs,Los Angeles Clippers,,,,Home,,False,2025
+202501030DEN,"Fri, Jan 3, 2025",DEN,SAS,Denver Nuggets,San Antonio Spurs,,,,Home,,False,2025
+202501040SAS,"Sat, Jan 4, 2025",SAS,DEN,San Antonio Spurs,Denver Nuggets,,,,Home,,False,2025
+202501060CHI,"Mon, Jan 6, 2025",CHI,SAS,Chicago Bulls,San Antonio Spurs,,,,Home,,False,2025
+202501080MIL,"Wed, Jan 8, 2025",MIL,SAS,Milwaukee Bucks,San Antonio Spurs,,,,Home,,False,2025
+202501110LAL,"Sat, Jan 11, 2025",LAL,SAS,Los Angeles Lakers,San Antonio Spurs,,,,Home,,False,2025
+202501130LAL,"Mon, Jan 13, 2025",LAL,SAS,Los Angeles Lakers,San Antonio Spurs,,,,Home,,False,2025
+202501190MIA,"Sun, Jan 19, 2025",MIA,SAS,Miami Heat,San Antonio Spurs,,,,Home,,False,2025
+202501230IND,"Thu, Jan 23, 2025",IND,SAS,Indiana Pacers,San Antonio Spurs,,,,Home,,False,2025
+202501250SAS,"Sat, Jan 25, 2025",SAS,IND,San Antonio Spurs,Indiana Pacers,,,,Home,,False,2025
+202501290SAS,"Wed, Jan 29, 2025",SAS,LAC,San Antonio Spurs,Los Angeles Clippers,,,,Home,,False,2025
+202501310SAS,"Fri, Jan 31, 2025",SAS,MIL,San Antonio Spurs,Milwaukee Bucks,,,,Home,,False,2025
+202502010SAS,"Sat, Feb 1, 2025",SAS,MIA,San Antonio Spurs,Miami Heat,,,,Home,,False,2025
+202502050ATL,"Wed, Feb 5, 2025",ATL,SAS,Atlanta Hawks,San Antonio Spurs,,,,Home,,False,2025
+202502080ORL,"Sat, Feb 8, 2025",ORL,SAS,Orlando Magic,San Antonio Spurs,,,,Home,,False,2025
+202502100WAS,"Mon, Feb 10, 2025",WAS,SAS,Washington Wizards,San Antonio Spurs,,,,Home,,False,2025
+202502120BOS,"Wed, Feb 12, 2025",BOS,SAS,Boston Celtics,San Antonio Spurs,,,,Home,,False,2025
+202502200SAS,"Thu, Feb 20, 2025",SAS,PHO,San Antonio Spurs,Phoenix Suns,,,,Home,,False,2025
+202502210SAS,"Fri, Feb 21, 2025",SAS,DET,San Antonio Spurs,Detroit Pistons,,,,Home,,False,2025
+202502230NOP,"Sun, Feb 23, 2025",NOP,SAS,New Orleans Pelicans,San Antonio Spurs,,,,Home,,False,2025
+202502250NOP,"Tue, Feb 25, 2025",NOP,SAS,New Orleans Pelicans,San Antonio Spurs,,,,Home,,False,2025
+202503020SAS,"Sun, Mar 2, 2025",SAS,OKC,San Antonio Spurs,Oklahoma City Thunder,,,,Home,,False,2025
+202503040SAS,"Tue, Mar 4, 2025",SAS,BRK,San Antonio Spurs,Brooklyn Nets,,,,Home,,False,2025
+202503070SAC,"Fri, Mar 7, 2025",SAC,SAS,Sacramento Kings,San Antonio Spurs,,,,Home,,False,2025
+202503090MIN,"Sun, Mar 9, 2025",MIN,SAS,Minnesota Timberwolves,San Antonio Spurs,,,,Home,,False,2025
+202503100SAS,"Mon, Mar 10, 2025",SAS,DAL,San Antonio Spurs,Dallas Mavericks,,,,Home,,False,2025
+202503120SAS,"Wed, Mar 12, 2025",SAS,DAL,San Antonio Spurs,Dallas Mavericks,,,,Home,,False,2025
+202503150SAS,"Sat, Mar 15, 2025",SAS,NOP,San Antonio Spurs,New Orleans Pelicans,,,,Home,,False,2025
+202503170SAS,"Mon, Mar 17, 2025",SAS,ORL,San Antonio Spurs,Orlando Magic,,,,Home,,False,2025
+202503190SAS,"Wed, Mar 19, 2025",SAS,NYK,San Antonio Spurs,New York Knicks,,,,Home,,False,2025
+202503210SAS,"Fri, Mar 21, 2025",SAS,PHI,San Antonio Spurs,Philadelphia 76ers,,,,Home,,False,2025
+202503230TOR,"Sun, Mar 23, 2025",TOR,SAS,Toronto Raptors,San Antonio Spurs,,,,Home,,False,2025
+202503250DET,"Tue, Mar 25, 2025",DET,SAS,Detroit Pistons,San Antonio Spurs,,,,Home,,False,2025
+202503270CLE,"Thu, Mar 27, 2025",CLE,SAS,Cleveland Cavaliers,San Antonio Spurs,,,,Home,,False,2025
+202503290SAS,"Sat, Mar 29, 2025",SAS,BOS,San Antonio Spurs,Boston Celtics,,,,Home,,False,2025
+202503300SAS,"Sun, Mar 30, 2025",SAS,GSW,San Antonio Spurs,Golden State Warriors,,,,Home,,False,2025
+202504020DEN,"Wed, Apr 2, 2025",DEN,SAS,Denver Nuggets,San Antonio Spurs,,,,Home,,False,2025
+202504040SAS,"Fri, Apr 4, 2025",SAS,CLE,San Antonio Spurs,Cleveland Cavaliers,,,,Home,,False,2025
+202504060POR,"Sun, Apr 6, 2025",POR,SAS,Portland Trail Blazers,San Antonio Spurs,,,,Home,,False,2025
+202504080LAC,"Tue, Apr 8, 2025",LAC,SAS,Los Angeles Clippers,San Antonio Spurs,,,,Home,,False,2025
+202504090GSW,"Wed, Apr 9, 2025",GSW,SAS,Golden State Warriors,San Antonio Spurs,,,,Home,,False,2025
+202504110PHO,"Fri, Apr 11, 2025",PHO,SAS,Phoenix Suns,San Antonio Spurs,,,,Home,,False,2025
+202504130SAS,"Sun, Apr 13, 2025",SAS,TOR,San Antonio Spurs,Toronto Raptors,,,,Home,,False,2025
+202410260PHO,"Sat, Oct 26, 2024",PHO,DAL,Phoenix Suns,Dallas Mavericks,,,,Home,,False,2025
+202410280DAL,"Mon, Oct 28, 2024",DAL,UTA,Dallas Mavericks,Utah Jazz,,,,Home,,False,2025
+202410290MIN,"Tue, Oct 29, 2024",MIN,DAL,Minnesota Timberwolves,Dallas Mavericks,,,,Home,,False,2025
+202411030DAL,"Sun, Nov 3, 2024",DAL,ORL,Dallas Mavericks,Orlando Magic,,,,Home,,False,2025
+202411040DAL,"Mon, Nov 4, 2024",DAL,IND,Dallas Mavericks,Indiana Pacers,,,,Home,,False,2025
+202411060DAL,"Wed, Nov 6, 2024",DAL,CHI,Dallas Mavericks,Chicago Bulls,,,,Home,,False,2025
+202411080DAL,"Fri, Nov 8, 2024",DAL,PHO,Dallas Mavericks,Phoenix Suns,,,,Home,,False,2025
+202411100DEN,"Sun, Nov 10, 2024",DEN,DAL,Denver Nuggets,Dallas Mavericks,,,,Home,,False,2025
+202411120GSW,"Tue, Nov 12, 2024",GSW,DAL,Golden State Warriors,Dallas Mavericks,,,,Home,,False,2025
+202411140UTA,"Thu, Nov 14, 2024",UTA,DAL,Utah Jazz,Dallas Mavericks,,,,Home,,False,2025
+202411170OKC,"Sun, Nov 17, 2024",OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,,,,Home,,False,2025
+202411190DAL,"Tue, Nov 19, 2024",DAL,NOP,Dallas Mavericks,New Orleans Pelicans,,,,Home,,False,2025
+202411220DEN,"Fri, Nov 22, 2024",DEN,DAL,Denver Nuggets,Dallas Mavericks,,,,Home,,False,2025
+202411240MIA,"Sun, Nov 24, 2024",MIA,DAL,Miami Heat,Dallas Mavericks,,,,Home,,False,2025
+202411250ATL,"Mon, Nov 25, 2024",ATL,DAL,Atlanta Hawks,Dallas Mavericks,,,,Home,,False,2025
+202411270DAL,"Wed, Nov 27, 2024",DAL,NYK,Dallas Mavericks,New York Knicks,,,,Home,,False,2025
+202411300UTA,"Sat, Nov 30, 2024",UTA,DAL,Utah Jazz,Dallas Mavericks,,,,Home,,False,2025
+202412010POR,"Sun, Dec 1, 2024",POR,DAL,Portland Trail Blazers,Dallas Mavericks,,,,Home,,False,2025
+202412050WAS,"Thu, Dec 5, 2024",WAS,DAL,Washington Wizards,Dallas Mavericks,,,,Home,,False,2025
+202412070TOR,"Sat, Dec 7, 2024",TOR,DAL,Toronto Raptors,Dallas Mavericks,,,,Home,,False,2025
+202412190DAL,"Thu, Dec 19, 2024",DAL,LAC,Dallas Mavericks,Los Angeles Clippers,,,,Home,,False,2025
+202412210DAL,"Sat, Dec 21, 2024",DAL,LAC,Dallas Mavericks,Los Angeles Clippers,,,,Home,,False,2025
+202412230DAL,"Mon, Dec 23, 2024",DAL,POR,Dallas Mavericks,Portland Trail Blazers,,,,Home,,False,2025
+202412250DAL,"Wed, Dec 25, 2024",DAL,MIN,Dallas Mavericks,Minnesota Timberwolves,,,,Home,,False,2025
+202412270PHO,"Fri, Dec 27, 2024",PHO,DAL,Phoenix Suns,Dallas Mavericks,,,,Home,,False,2025
+202412280POR,"Sat, Dec 28, 2024",POR,DAL,Portland Trail Blazers,Dallas Mavericks,,,,Home,,False,2025
+202412300SAC,"Mon, Dec 30, 2024",SAC,DAL,Sacramento Kings,Dallas Mavericks,,,,Home,,False,2025
+202501030DAL,"Fri, Jan 3, 2025",DAL,CLE,Dallas Mavericks,Cleveland Cavaliers,,,,Home,,False,2025
+202501070DAL,"Tue, Jan 7, 2025",DAL,LAL,Dallas Mavericks,Los Angeles Lakers,,,,Home,,False,2025
+202501090DAL,"Thu, Jan 9, 2025",DAL,POR,Dallas Mavericks,Portland Trail Blazers,,,,Home,,False,2025
+202501120DAL,"Sun, Jan 12, 2025",DAL,DEN,Dallas Mavericks,Denver Nuggets,,,,Home,,False,2025
+202501140DAL,"Tue, Jan 14, 2025",DAL,DEN,Dallas Mavericks,Denver Nuggets,,,,Home,,False,2025
+202501150NOP,"Wed, Jan 15, 2025",NOP,DAL,New Orleans Pelicans,Dallas Mavericks,,,,Home,,False,2025
+202501170DAL,"Fri, Jan 17, 2025",DAL,OKC,Dallas Mavericks,Oklahoma City Thunder,,,,Home,,False,2025
+202501220DAL,"Wed, Jan 22, 2025",DAL,MIN,Dallas Mavericks,Minnesota Timberwolves,,,,Home,,False,2025
+202501230OKC,"Thu, Jan 23, 2025",OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,,,,Home,,False,2025
+202501250DAL,"Sat, Jan 25, 2025",DAL,BOS,Dallas Mavericks,Boston Celtics,,,,Home,,False,2025
+202501270DAL,"Mon, Jan 27, 2025",DAL,WAS,Dallas Mavericks,Washington Wizards,,,,Home,,False,2025
+202501290NOP,"Wed, Jan 29, 2025",NOP,DAL,New Orleans Pelicans,Dallas Mavericks,,,,Home,,False,2025
+202501310DET,"Fri, Jan 31, 2025",DET,DAL,Detroit Pistons,Dallas Mavericks,,,,Home,,False,2025
+202502020CLE,"Sun, Feb 2, 2025",CLE,DAL,Cleveland Cavaliers,Dallas Mavericks,,,,Home,,False,2025
+202502040PHI,"Tue, Feb 4, 2025",PHI,DAL,Philadelphia 76ers,Dallas Mavericks,,,,Home,,False,2025
+202502060BOS,"Thu, Feb 6, 2025",BOS,DAL,Boston Celtics,Dallas Mavericks,,,,Home,,False,2025
+202502100DAL,"Mon, Feb 10, 2025",DAL,SAC,Dallas Mavericks,Sacramento Kings,,,,Home,,False,2025
+202502120DAL,"Wed, Feb 12, 2025",DAL,GSW,Dallas Mavericks,Golden State Warriors,,,,Home,,False,2025
+202502130DAL,"Thu, Feb 13, 2025",DAL,MIA,Dallas Mavericks,Miami Heat,,,,Home,,False,2025
+202502210DAL,"Fri, Feb 21, 2025",DAL,NOP,Dallas Mavericks,New Orleans Pelicans,,,,Home,,False,2025
+202502230GSW,"Sun, Feb 23, 2025",GSW,DAL,Golden State Warriors,Dallas Mavericks,,,,Home,,False,2025
+202502250LAL,"Tue, Feb 25, 2025",LAL,DAL,Los Angeles Lakers,Dallas Mavericks,,,,Home,,False,2025
+202503010DAL,"Sat, Mar 1, 2025",DAL,MIL,Dallas Mavericks,Milwaukee Bucks,,,,Home,,False,2025
+202503030DAL,"Mon, Mar 3, 2025",DAL,SAC,Dallas Mavericks,Sacramento Kings,,,,Home,,False,2025
+202503050MIL,"Wed, Mar 5, 2025",MIL,DAL,Milwaukee Bucks,Dallas Mavericks,,,,Home,,False,2025
+202503090DAL,"Sun, Mar 9, 2025",DAL,PHO,Dallas Mavericks,Phoenix Suns,,,,Home,,False,2025
+202503160DAL,"Sun, Mar 16, 2025",DAL,PHI,Dallas Mavericks,Philadelphia 76ers,,,,Home,,False,2025
+202503190IND,"Wed, Mar 19, 2025",IND,DAL,Indiana Pacers,Dallas Mavericks,,,,Home,,False,2025
+202503210DAL,"Fri, Mar 21, 2025",DAL,DET,Dallas Mavericks,Detroit Pistons,,,,Home,,False,2025
+202503240BRK,"Mon, Mar 24, 2025",BRK,DAL,Brooklyn Nets,Dallas Mavericks,,,,Home,,False,2025
+202503250NYK,"Tue, Mar 25, 2025",NYK,DAL,New York Knicks,Dallas Mavericks,,,,Home,,False,2025
+202503270ORL,"Thu, Mar 27, 2025",ORL,DAL,Orlando Magic,Dallas Mavericks,,,,Home,,False,2025
+202503290CHI,"Sat, Mar 29, 2025",CHI,DAL,Chicago Bulls,Dallas Mavericks,,,,Home,,False,2025
+202503310DAL,"Mon, Mar 31, 2025",DAL,BRK,Dallas Mavericks,Brooklyn Nets,,,,Home,,False,2025
+202504020DAL,"Wed, Apr 2, 2025",DAL,ATL,Dallas Mavericks,Atlanta Hawks,,,,Home,,False,2025
+202504040LAC,"Fri, Apr 4, 2025",LAC,DAL,Los Angeles Clippers,Dallas Mavericks,,,,Home,,False,2025
+202504050LAC,"Sat, Apr 5, 2025",LAC,DAL,Los Angeles Clippers,Dallas Mavericks,,,,Home,,False,2025
+202504090DAL,"Wed, Apr 9, 2025",DAL,LAL,Dallas Mavericks,Los Angeles Lakers,,,,Home,,False,2025
+202504110DAL,"Fri, Apr 11, 2025",DAL,TOR,Dallas Mavericks,Toronto Raptors,,,,Home,,False,2025
+202410230POR,"Wed, Oct 23, 2024",POR,GSW,Portland Trail Blazers,Golden State Warriors,,,,Home,,False,2025
+202410250UTA,"Fri, Oct 25, 2024",UTA,GSW,Utah Jazz,Golden State Warriors,,,,Home,,False,2025
+202410270GSW,"Sun, Oct 27, 2024",GSW,LAC,Golden State Warriors,Los Angeles Clippers,,,,Home,,False,2025
+202410290GSW,"Tue, Oct 29, 2024",GSW,NOP,Golden State Warriors,New Orleans Pelicans,,,,Home,,False,2025
+202410300GSW,"Wed, Oct 30, 2024",GSW,NOP,Golden State Warriors,New Orleans Pelicans,,,,Home,,False,2025
+202411040WAS,"Mon, Nov 4, 2024",WAS,GSW,Washington Wizards,Golden State Warriors,,,,Home,,False,2025
+202411060BOS,"Wed, Nov 6, 2024",BOS,GSW,Boston Celtics,Golden State Warriors,,,,Home,,False,2025
+202411080CLE,"Fri, Nov 8, 2024",CLE,GSW,Cleveland Cavaliers,Golden State Warriors,,,,Home,,False,2025
+202411100OKC,"Sun, Nov 10, 2024",OKC,GSW,Oklahoma City Thunder,Golden State Warriors,,,,Home,,False,2025
+202411180LAC,"Mon, Nov 18, 2024",LAC,GSW,Los Angeles Clippers,Golden State Warriors,,,,Home,,False,2025
+202411200GSW,"Wed, Nov 20, 2024",GSW,ATL,Golden State Warriors,Atlanta Hawks,,,,Home,,False,2025
+202411220NOP,"Fri, Nov 22, 2024",NOP,GSW,New Orleans Pelicans,Golden State Warriors,,,,Home,,False,2025
+202411250GSW,"Mon, Nov 25, 2024",GSW,BRK,Golden State Warriors,Brooklyn Nets,,,,Home,,False,2025
+202411270GSW,"Wed, Nov 27, 2024",GSW,OKC,Golden State Warriors,Oklahoma City Thunder,,,,Home,,False,2025
+202411300PHO,"Sat, Nov 30, 2024",PHO,GSW,Phoenix Suns,Golden State Warriors,,,,Home,,False,2025
+202412030DEN,"Tue, Dec 3, 2024",DEN,GSW,Denver Nuggets,Golden State Warriors,,,,Home,,False,2025
+202412060GSW,"Fri, Dec 6, 2024",GSW,MIN,Golden State Warriors,Minnesota Timberwolves,,,,Home,,False,2025
+202412080GSW,"Sun, Dec 8, 2024",GSW,MIN,Golden State Warriors,Minnesota Timberwolves,,,,Home,,False,2025
+202412210MIN,"Sat, Dec 21, 2024",MIN,GSW,Minnesota Timberwolves,Golden State Warriors,,,,Home,,False,2025
+202412230GSW,"Mon, Dec 23, 2024",GSW,IND,Golden State Warriors,Indiana Pacers,,,,Home,,False,2025
+202412250GSW,"Wed, Dec 25, 2024",GSW,LAL,Golden State Warriors,Los Angeles Lakers,,,,Home,,False,2025
+202412270LAC,"Fri, Dec 27, 2024",LAC,GSW,Los Angeles Clippers,Golden State Warriors,,,,Home,,False,2025
+202412280GSW,"Sat, Dec 28, 2024",GSW,PHO,Golden State Warriors,Phoenix Suns,,,,Home,,False,2025
+202412300GSW,"Mon, Dec 30, 2024",GSW,CLE,Golden State Warriors,Cleveland Cavaliers,,,,Home,,False,2025
+202501020GSW,"Thu, Jan 2, 2025",GSW,PHI,Golden State Warriors,Philadelphia 76ers,,,,Home,,False,2025
+202501050GSW,"Sun, Jan 5, 2025",GSW,SAC,Golden State Warriors,Sacramento Kings,,,,Home,,False,2025
+202501070GSW,"Tue, Jan 7, 2025",GSW,MIA,Golden State Warriors,Miami Heat,,,,Home,,False,2025
+202501090DET,"Thu, Jan 9, 2025",DET,GSW,Detroit Pistons,Golden State Warriors,,,,Home,,False,2025
+202501100IND,"Fri, Jan 10, 2025",IND,GSW,Indiana Pacers,Golden State Warriors,,,,Home,,False,2025
+202501130TOR,"Mon, Jan 13, 2025",TOR,GSW,Toronto Raptors,Golden State Warriors,,,,Home,,False,2025
+202501150MIN,"Wed, Jan 15, 2025",MIN,GSW,Minnesota Timberwolves,Golden State Warriors,,,,Home,,False,2025
+202501180GSW,"Sat, Jan 18, 2025",GSW,WAS,Golden State Warriors,Washington Wizards,,,,Home,,False,2025
+202501200GSW,"Mon, Jan 20, 2025",GSW,BOS,Golden State Warriors,Boston Celtics,,,,Home,,False,2025
+202501220SAC,"Wed, Jan 22, 2025",SAC,GSW,Sacramento Kings,Golden State Warriors,,,,Home,,False,2025
+202501230GSW,"Thu, Jan 23, 2025",GSW,CHI,Golden State Warriors,Chicago Bulls,,,,Home,,False,2025
+202501250GSW,"Sat, Jan 25, 2025",GSW,LAL,Golden State Warriors,Los Angeles Lakers,,,,Home,,False,2025
+202501280GSW,"Tue, Jan 28, 2025",GSW,UTA,Golden State Warriors,Utah Jazz,,,,Home,,False,2025
+202501290GSW,"Wed, Jan 29, 2025",GSW,OKC,Golden State Warriors,Oklahoma City Thunder,,,,Home,,False,2025
+202501310GSW,"Fri, Jan 31, 2025",GSW,PHO,Golden State Warriors,Phoenix Suns,,,,Home,,False,2025
+202502030GSW,"Mon, Feb 3, 2025",GSW,ORL,Golden State Warriors,Orlando Magic,,,,Home,,False,2025
+202502050UTA,"Wed, Feb 5, 2025",UTA,GSW,Utah Jazz,Golden State Warriors,,,,Home,,False,2025
+202502060LAL,"Thu, Feb 6, 2025",LAL,GSW,Los Angeles Lakers,Golden State Warriors,,,,Home,,False,2025
+202502080CHI,"Sat, Feb 8, 2025",CHI,GSW,Chicago Bulls,Golden State Warriors,,,,Home,,False,2025
+202502100MIL,"Mon, Feb 10, 2025",MIL,GSW,Milwaukee Bucks,Golden State Warriors,,,,Home,,False,2025
+202502210SAC,"Fri, Feb 21, 2025",SAC,GSW,Sacramento Kings,Golden State Warriors,,,,Home,,False,2025
+202502270ORL,"Thu, Feb 27, 2025",ORL,GSW,Orlando Magic,Golden State Warriors,,,,Home,,False,2025
+202503010PHI,"Sat, Mar 1, 2025",PHI,GSW,Philadelphia 76ers,Golden State Warriors,,,,Home,,False,2025
+202503040NYK,"Tue, Mar 4, 2025",NYK,GSW,New York Knicks,Golden State Warriors,,,,Home,,False,2025
+202503060BRK,"Thu, Mar 6, 2025",BRK,GSW,Brooklyn Nets,Golden State Warriors,,,,Home,,False,2025
+202503080GSW,"Sat, Mar 8, 2025",GSW,DET,Golden State Warriors,Detroit Pistons,,,,Home,,False,2025
+202503100GSW,"Mon, Mar 10, 2025",GSW,POR,Golden State Warriors,Portland Trail Blazers,,,,Home,,False,2025
+202503130GSW,"Thu, Mar 13, 2025",GSW,SAC,Golden State Warriors,Sacramento Kings,,,,Home,,False,2025
+202503150GSW,"Sat, Mar 15, 2025",GSW,NYK,Golden State Warriors,New York Knicks,,,,Home,,False,2025
+202503170GSW,"Mon, Mar 17, 2025",GSW,DEN,Golden State Warriors,Denver Nuggets,,,,Home,,False,2025
+202503190GSW,"Wed, Mar 19, 2025",GSW,TOR,Golden State Warriors,Toronto Raptors,,,,Home,,False,2025
+202503200GSW,"Thu, Mar 20, 2025",GSW,MIL,Golden State Warriors,Milwaukee Bucks,,,,Home,,False,2025
+202503220ATL,"Sat, Mar 22, 2025",ATL,GSW,Atlanta Hawks,Golden State Warriors,,,,Home,,False,2025
+202503250MIA,"Tue, Mar 25, 2025",MIA,GSW,Miami Heat,Golden State Warriors,,,,Home,,False,2025
+202503280NOP,"Fri, Mar 28, 2025",NOP,GSW,New Orleans Pelicans,Golden State Warriors,,,,Home,,False,2025
+202504030LAL,"Thu, Apr 3, 2025",LAL,GSW,Los Angeles Lakers,Golden State Warriors,,,,Home,,False,2025
+202504040GSW,"Fri, Apr 4, 2025",GSW,DEN,Golden State Warriors,Denver Nuggets,,,,Home,,False,2025
+202504080PHO,"Tue, Apr 8, 2025",PHO,GSW,Phoenix Suns,Golden State Warriors,,,,Home,,False,2025
+202504110POR,"Fri, Apr 11, 2025",POR,GSW,Portland Trail Blazers,Golden State Warriors,,,,Home,,False,2025
+202504130GSW,"Sun, Apr 13, 2025",GSW,LAC,Golden State Warriors,Los Angeles Clippers,,,,Home,,False,2025
+202410220BOS,"Tue, Oct 22, 2024",BOS,NYK,Boston Celtics,New York Knicks,,,,Home,,False,2025
+202410250NYK,"Fri, Oct 25, 2024",NYK,IND,New York Knicks,Indiana Pacers,,,,Home,,False,2025
+202410280NYK,"Mon, Oct 28, 2024",NYK,CLE,New York Knicks,Cleveland Cavaliers,,,,Home,,False,2025
+202410300MIA,"Wed, Oct 30, 2024",MIA,NYK,Miami Heat,New York Knicks,,,,Home,,False,2025
+202411010DET,"Fri, Nov 1, 2024",DET,NYK,Detroit Pistons,New York Knicks,,,,Home,,False,2025
+202411060ATL,"Wed, Nov 6, 2024",ATL,NYK,Atlanta Hawks,New York Knicks,,,,Home,,False,2025
+202411080NYK,"Fri, Nov 8, 2024",NYK,MIL,New York Knicks,Milwaukee Bucks,,,,Home,,False,2025
+202411100IND,"Sun, Nov 10, 2024",IND,NYK,Indiana Pacers,New York Knicks,,,,Home,,False,2025
+202411120PHI,"Tue, Nov 12, 2024",PHI,NYK,Philadelphia 76ers,New York Knicks,,,,Home,,False,2025
+202411130NYK,"Wed, Nov 13, 2024",NYK,CHI,New York Knicks,Chicago Bulls,,,,Home,,False,2025
+202411150NYK,"Fri, Nov 15, 2024",NYK,BRK,New York Knicks,Brooklyn Nets,,,,Home,,False,2025
+202411170NYK,"Sun, Nov 17, 2024",NYK,BRK,New York Knicks,Brooklyn Nets,,,,Home,,False,2025
+202411180NYK,"Mon, Nov 18, 2024",NYK,WAS,New York Knicks,Washington Wizards,,,,Home,,False,2025
+202411200PHO,"Wed, Nov 20, 2024",PHO,NYK,Phoenix Suns,New York Knicks,,,,Home,,False,2025
+202411230UTA,"Sat, Nov 23, 2024",UTA,NYK,Utah Jazz,New York Knicks,,,,Home,,False,2025
+202411250DEN,"Mon, Nov 25, 2024",DEN,NYK,Denver Nuggets,New York Knicks,,,,Home,,False,2025
+202412010NYK,"Sun, Dec 1, 2024",NYK,NOP,New York Knicks,New Orleans Pelicans,,,,Home,,False,2025
+202412030NYK,"Tue, Dec 3, 2024",NYK,ORL,New York Knicks,Orlando Magic,,,,Home,,False,2025
+202412070NYK,"Sat, Dec 7, 2024",NYK,DET,New York Knicks,Detroit Pistons,,,,Home,,False,2025
+202412090TOR,"Mon, Dec 9, 2024",TOR,NYK,Toronto Raptors,New York Knicks,,,,Home,,False,2025
+202412190MIN,"Thu, Dec 19, 2024",MIN,NYK,Minnesota Timberwolves,New York Knicks,,,,Home,,False,2025
+202412210NOP,"Sat, Dec 21, 2024",NOP,NYK,New Orleans Pelicans,New York Knicks,,,,Home,,False,2025
+202412230NYK,"Mon, Dec 23, 2024",NYK,TOR,New York Knicks,Toronto Raptors,,,,Home,,False,2025
+202412270ORL,"Fri, Dec 27, 2024",ORL,NYK,Orlando Magic,New York Knicks,,,,Home,,False,2025
+202412280WAS,"Sat, Dec 28, 2024",WAS,NYK,Washington Wizards,New York Knicks,,,,Home,,False,2025
+202412300WAS,"Mon, Dec 30, 2024",WAS,NYK,Washington Wizards,New York Knicks,,,,Home,,False,2025
+202501010NYK,"Wed, Jan 1, 2025",NYK,UTA,New York Knicks,Utah Jazz,,,,Home,,False,2025
+202501030OKC,"Fri, Jan 3, 2025",OKC,NYK,Oklahoma City Thunder,New York Knicks,,,,Home,,False,2025
+202501040CHI,"Sat, Jan 4, 2025",CHI,NYK,Chicago Bulls,New York Knicks,,,,Home,,False,2025
+202501060NYK,"Mon, Jan 6, 2025",NYK,ORL,New York Knicks,Orlando Magic,,,,Home,,False,2025
+202501080NYK,"Wed, Jan 8, 2025",NYK,TOR,New York Knicks,Toronto Raptors,,,,Home,,False,2025
+202501100NYK,"Fri, Jan 10, 2025",NYK,OKC,New York Knicks,Oklahoma City Thunder,,,,Home,,False,2025
+202501120NYK,"Sun, Jan 12, 2025",NYK,MIL,New York Knicks,Milwaukee Bucks,,,,Home,,False,2025
+202501130NYK,"Mon, Jan 13, 2025",NYK,DET,New York Knicks,Detroit Pistons,,,,Home,,False,2025
+202501150PHI,"Wed, Jan 15, 2025",PHI,NYK,Philadelphia 76ers,New York Knicks,,,,Home,,False,2025
+202501170NYK,"Fri, Jan 17, 2025",NYK,MIN,New York Knicks,Minnesota Timberwolves,,,,Home,,False,2025
+202501200NYK,"Mon, Jan 20, 2025",NYK,ATL,New York Knicks,Atlanta Hawks,,,,Home,,False,2025
+202501210BRK,"Tue, Jan 21, 2025",BRK,NYK,Brooklyn Nets,New York Knicks,,,,Home,,False,2025
+202501250NYK,"Sat, Jan 25, 2025",NYK,SAC,New York Knicks,Sacramento Kings,,,,Home,,False,2025
+202501290NYK,"Wed, Jan 29, 2025",NYK,DEN,New York Knicks,Denver Nuggets,,,,Home,,False,2025
+202502010NYK,"Sat, Feb 1, 2025",NYK,LAL,New York Knicks,Los Angeles Lakers,,,,Home,,False,2025
+202502040TOR,"Tue, Feb 4, 2025",TOR,NYK,Toronto Raptors,New York Knicks,,,,Home,,False,2025
+202502080NYK,"Sat, Feb 8, 2025",NYK,BOS,New York Knicks,Boston Celtics,,,,Home,,False,2025
+202502110IND,"Tue, Feb 11, 2025",IND,NYK,Indiana Pacers,New York Knicks,,,,Home,,False,2025
+202502120NYK,"Wed, Feb 12, 2025",NYK,ATL,New York Knicks,Atlanta Hawks,,,,Home,,False,2025
+202502200NYK,"Thu, Feb 20, 2025",NYK,CHI,New York Knicks,Chicago Bulls,,,,Home,,False,2025
+202502210CLE,"Fri, Feb 21, 2025",CLE,NYK,Cleveland Cavaliers,New York Knicks,,,,Home,,False,2025
+202502230BOS,"Sun, Feb 23, 2025",BOS,NYK,Boston Celtics,New York Knicks,,,,Home,,False,2025
+202502260NYK,"Wed, Feb 26, 2025",NYK,PHI,New York Knicks,Philadelphia 76ers,,,,Home,,False,2025
+202503020MIA,"Sun, Mar 2, 2025",MIA,NYK,Miami Heat,New York Knicks,,,,Home,,False,2025
+202503060LAL,"Thu, Mar 6, 2025",LAL,NYK,Los Angeles Lakers,New York Knicks,,,,Home,,False,2025
+202503070LAC,"Fri, Mar 7, 2025",LAC,NYK,Los Angeles Clippers,New York Knicks,,,,Home,,False,2025
+202503100SAC,"Mon, Mar 10, 2025",SAC,NYK,Sacramento Kings,New York Knicks,,,,Home,,False,2025
+202503120POR,"Wed, Mar 12, 2025",POR,NYK,Portland Trail Blazers,New York Knicks,,,,Home,,False,2025
+202503170NYK,"Mon, Mar 17, 2025",NYK,MIA,New York Knicks,Miami Heat,,,,Home,,False,2025
+202503220NYK,"Sat, Mar 22, 2025",NYK,WAS,New York Knicks,Washington Wizards,,,,Home,,False,2025
+202503260NYK,"Wed, Mar 26, 2025",NYK,LAC,New York Knicks,Los Angeles Clippers,,,,Home,,False,2025
+202503280MIL,"Fri, Mar 28, 2025",MIL,NYK,Milwaukee Bucks,New York Knicks,,,,Home,,False,2025
+202503300NYK,"Sun, Mar 30, 2025",NYK,POR,New York Knicks,Portland Trail Blazers,,,,Home,,False,2025
+202504010NYK,"Tue, Apr 1, 2025",NYK,PHI,New York Knicks,Philadelphia 76ers,,,,Home,,False,2025
+202504020CLE,"Wed, Apr 2, 2025",CLE,NYK,Cleveland Cavaliers,New York Knicks,,,,Home,,False,2025
+202504050ATL,"Sat, Apr 5, 2025",ATL,NYK,Atlanta Hawks,New York Knicks,,,,Home,,False,2025
+202504060NYK,"Sun, Apr 6, 2025",NYK,PHO,New York Knicks,Phoenix Suns,,,,Home,,False,2025
+202504080NYK,"Tue, Apr 8, 2025",NYK,BOS,New York Knicks,Boston Celtics,,,,Home,,False,2025
+202504100DET,"Thu, Apr 10, 2025",DET,NYK,Detroit Pistons,New York Knicks,,,,Home,,False,2025
+202504110NYK,"Fri, Apr 11, 2025",NYK,CLE,New York Knicks,Cleveland Cavaliers,,,,Home,,False,2025
+202504130BRK,"Sun, Apr 13, 2025",BRK,NYK,Brooklyn Nets,New York Knicks,,,,Home,,False,2025
+202410240DEN,"Thu, Oct 24, 2024",DEN,OKC,Denver Nuggets,Oklahoma City Thunder,,,,Home,,False,2025
+202410260CHI,"Sat, Oct 26, 2024",CHI,OKC,Chicago Bulls,Oklahoma City Thunder,,,,Home,,False,2025
+202410270OKC,"Sun, Oct 27, 2024",OKC,ATL,Oklahoma City Thunder,Atlanta Hawks,,,,Home,,False,2025
+202411010POR,"Fri, Nov 1, 2024",POR,OKC,Portland Trail Blazers,Oklahoma City Thunder,,,,Home,,False,2025
+202411020LAC,"Sat, Nov 2, 2024",LAC,OKC,Los Angeles Clippers,Oklahoma City Thunder,,,,Home,,False,2025
+202411040OKC,"Mon, Nov 4, 2024",OKC,ORL,Oklahoma City Thunder,Orlando Magic,,,,Home,,False,2025
+202411060DEN,"Wed, Nov 6, 2024",DEN,OKC,Denver Nuggets,Oklahoma City Thunder,,,,Home,,False,2025
+202411110OKC,"Mon, Nov 11, 2024",OKC,LAC,Oklahoma City Thunder,Los Angeles Clippers,,,,Home,,False,2025
+202411130OKC,"Wed, Nov 13, 2024",OKC,NOP,Oklahoma City Thunder,New Orleans Pelicans,,,,Home,,False,2025
+202411150OKC,"Fri, Nov 15, 2024",OKC,PHO,Oklahoma City Thunder,Phoenix Suns,,,,Home,,False,2025
+202411200OKC,"Wed, Nov 20, 2024",OKC,POR,Oklahoma City Thunder,Portland Trail Blazers,,,,Home,,False,2025
+202411250SAC,"Mon, Nov 25, 2024",SAC,OKC,Sacramento Kings,Oklahoma City Thunder,,,,Home,,False,2025
+202411290LAL,"Fri, Nov 29, 2024",LAL,OKC,Los Angeles Lakers,Oklahoma City Thunder,,,,Home,,False,2025
+202412030OKC,"Tue, Dec 3, 2024",OKC,UTA,Oklahoma City Thunder,Utah Jazz,,,,Home,,False,2025
+202412050TOR,"Thu, Dec 5, 2024",TOR,OKC,Toronto Raptors,Oklahoma City Thunder,,,,Home,,False,2025
+202412070NOP,"Sat, Dec 7, 2024",NOP,OKC,New Orleans Pelicans,Oklahoma City Thunder,,,,Home,,False,2025
+202412190ORL,"Thu, Dec 19, 2024",ORL,OKC,Orlando Magic,Oklahoma City Thunder,,,,Home,,False,2025
+202412200MIA,"Fri, Dec 20, 2024",MIA,OKC,Miami Heat,Oklahoma City Thunder,,,,Home,,False,2025
+202412230OKC,"Mon, Dec 23, 2024",OKC,WAS,Oklahoma City Thunder,Washington Wizards,,,,Home,,False,2025
+202412260IND,"Thu, Dec 26, 2024",IND,OKC,Indiana Pacers,Oklahoma City Thunder,,,,Home,,False,2025
+202412310OKC,"Tue, Dec 31, 2024",OKC,MIN,Oklahoma City Thunder,Minnesota Timberwolves,,,,Home,,False,2025
+202501020OKC,"Thu, Jan 2, 2025",OKC,LAC,Oklahoma City Thunder,Los Angeles Clippers,,,,Home,,False,2025
+202501050OKC,"Sun, Jan 5, 2025",OKC,BOS,Oklahoma City Thunder,Boston Celtics,,,,Home,,False,2025
+202501080CLE,"Wed, Jan 8, 2025",CLE,OKC,Cleveland Cavaliers,Oklahoma City Thunder,,,,Home,,False,2025
+202501120WAS,"Sun, Jan 12, 2025",WAS,OKC,Washington Wizards,Oklahoma City Thunder,,,,Home,,False,2025
+202501140PHI,"Tue, Jan 14, 2025",PHI,OKC,Philadelphia 76ers,Oklahoma City Thunder,,,,Home,,False,2025
+202501160OKC,"Thu, Jan 16, 2025",OKC,CLE,Oklahoma City Thunder,Cleveland Cavaliers,,,,Home,,False,2025
+202501190OKC,"Sun, Jan 19, 2025",OKC,BRK,Oklahoma City Thunder,Brooklyn Nets,,,,Home,,False,2025
+202501220OKC,"Wed, Jan 22, 2025",OKC,UTA,Oklahoma City Thunder,Utah Jazz,,,,Home,,False,2025
+202501260POR,"Sun, Jan 26, 2025",POR,OKC,Portland Trail Blazers,Oklahoma City Thunder,,,,Home,,False,2025
+202502010OKC,"Sat, Feb 1, 2025",OKC,SAC,Oklahoma City Thunder,Sacramento Kings,,,,Home,,False,2025
+202502030OKC,"Mon, Feb 3, 2025",OKC,MIL,Oklahoma City Thunder,Milwaukee Bucks,,,,Home,,False,2025
+202502050OKC,"Wed, Feb 5, 2025",OKC,PHO,Oklahoma City Thunder,Phoenix Suns,,,,Home,,False,2025
+202502070OKC,"Fri, Feb 7, 2025",OKC,TOR,Oklahoma City Thunder,Toronto Raptors,,,,Home,,False,2025
+202502100OKC,"Mon, Feb 10, 2025",OKC,NOP,Oklahoma City Thunder,New Orleans Pelicans,,,,Home,,False,2025
+202502120OKC,"Wed, Feb 12, 2025",OKC,MIA,Oklahoma City Thunder,Miami Heat,,,,Home,,False,2025
+202502130MIN,"Thu, Feb 13, 2025",MIN,OKC,Minnesota Timberwolves,Oklahoma City Thunder,,,,Home,,False,2025
+202502210UTA,"Fri, Feb 21, 2025",UTA,OKC,Utah Jazz,Oklahoma City Thunder,,,,Home,,False,2025
+202502230MIN,"Sun, Feb 23, 2025",MIN,OKC,Minnesota Timberwolves,Oklahoma City Thunder,,,,Home,,False,2025
+202502240OKC,"Mon, Feb 24, 2025",OKC,MIN,Oklahoma City Thunder,Minnesota Timberwolves,,,,Home,,False,2025
+202502260BRK,"Wed, Feb 26, 2025",BRK,OKC,Brooklyn Nets,Oklahoma City Thunder,,,,Home,,False,2025
+202502280ATL,"Fri, Feb 28, 2025",ATL,OKC,Atlanta Hawks,Oklahoma City Thunder,,,,Home,,False,2025
+202503070OKC,"Fri, Mar 7, 2025",OKC,POR,Oklahoma City Thunder,Portland Trail Blazers,,,,Home,,False,2025
+202503090OKC,"Sun, Mar 9, 2025",OKC,DEN,Oklahoma City Thunder,Denver Nuggets,,,,Home,,False,2025
+202503100OKC,"Mon, Mar 10, 2025",OKC,DEN,Oklahoma City Thunder,Denver Nuggets,,,,Home,,False,2025
+202503120BOS,"Wed, Mar 12, 2025",BOS,OKC,Boston Celtics,Oklahoma City Thunder,,,,Home,,False,2025
+202503150DET,"Sat, Mar 15, 2025",DET,OKC,Detroit Pistons,Oklahoma City Thunder,,,,Home,,False,2025
+202503160MIL,"Sun, Mar 16, 2025",MIL,OKC,Milwaukee Bucks,Oklahoma City Thunder,,,,Home,,False,2025
+202503190OKC,"Wed, Mar 19, 2025",OKC,PHI,Oklahoma City Thunder,Philadelphia 76ers,,,,Home,,False,2025
+202503230LAC,"Sun, Mar 23, 2025",LAC,OKC,Los Angeles Clippers,Oklahoma City Thunder,,,,Home,,False,2025
+202503250SAC,"Tue, Mar 25, 2025",SAC,OKC,Sacramento Kings,Oklahoma City Thunder,,,,Home,,False,2025
+202503290OKC,"Sat, Mar 29, 2025",OKC,IND,Oklahoma City Thunder,Indiana Pacers,,,,Home,,False,2025
+202503310OKC,"Mon, Mar 31, 2025",OKC,CHI,Oklahoma City Thunder,Chicago Bulls,,,,Home,,False,2025
+202504020OKC,"Wed, Apr 2, 2025",OKC,DET,Oklahoma City Thunder,Detroit Pistons,,,,Home,,False,2025
+202504060OKC,"Sun, Apr 6, 2025",OKC,LAL,Oklahoma City Thunder,Los Angeles Lakers,,,,Home,,False,2025
+202504080OKC,"Tue, Apr 8, 2025",OKC,LAL,Oklahoma City Thunder,Los Angeles Lakers,,,,Home,,False,2025
+202504090PHO,"Wed, Apr 9, 2025",PHO,OKC,Phoenix Suns,Oklahoma City Thunder,,,,Home,,False,2025
+202504110UTA,"Fri, Apr 11, 2025",UTA,OKC,Utah Jazz,Oklahoma City Thunder,,,,Home,,False,2025
+202504130NOP,"Sun, Apr 13, 2025",NOP,OKC,New Orleans Pelicans,Oklahoma City Thunder,,,,Home,,False,2025
+202410230DET,"Wed, Oct 23, 2024",DET,IND,Detroit Pistons,Indiana Pacers,,,,Home,,False,2025
+202410250CLE,"Fri, Oct 25, 2024",CLE,DET,Cleveland Cavaliers,Detroit Pistons,,,,Home,,False,2025
+202410260DET,"Sat, Oct 26, 2024",DET,BOS,Detroit Pistons,Boston Celtics,,,,Home,,False,2025
+202410280MIA,"Mon, Oct 28, 2024",MIA,DET,Miami Heat,Detroit Pistons,,,,Home,,False,2025
+202410300PHI,"Wed, Oct 30, 2024",PHI,DET,Philadelphia 76ers,Detroit Pistons,,,,Home,,False,2025
+202411030BRK,"Sun, Nov 3, 2024",BRK,DET,Brooklyn Nets,Detroit Pistons,,,,Home,,False,2025
+202411040DET,"Mon, Nov 4, 2024",DET,LAL,Detroit Pistons,Los Angeles Lakers,,,,Home,,False,2025
+202411080DET,"Fri, Nov 8, 2024",DET,ATL,Detroit Pistons,Atlanta Hawks,,,,Home,,False,2025
+202411120DET,"Tue, Nov 12, 2024",DET,MIA,Detroit Pistons,Miami Heat,,,,Home,,False,2025
+202411130MIL,"Wed, Nov 13, 2024",MIL,DET,Milwaukee Bucks,Detroit Pistons,,,,Home,,False,2025
+202411150TOR,"Fri, Nov 15, 2024",TOR,DET,Toronto Raptors,Detroit Pistons,,,,Home,,False,2025
+202411170WAS,"Sun, Nov 17, 2024",WAS,DET,Washington Wizards,Detroit Pistons,,,,Home,,False,2025
+202411180DET,"Mon, Nov 18, 2024",DET,CHI,Detroit Pistons,Chicago Bulls,,,,Home,,False,2025
+202411230ORL,"Sat, Nov 23, 2024",ORL,DET,Orlando Magic,Detroit Pistons,,,,Home,,False,2025
+202411250DET,"Mon, Nov 25, 2024",DET,TOR,Detroit Pistons,Toronto Raptors,,,,Home,,False,2025
+202411290IND,"Fri, Nov 29, 2024",IND,DET,Indiana Pacers,Detroit Pistons,,,,Home,,False,2025
+202411300DET,"Sat, Nov 30, 2024",DET,PHI,Detroit Pistons,Philadelphia 76ers,,,,Home,,False,2025
+202412030DET,"Tue, Dec 3, 2024",DET,MIL,Detroit Pistons,Milwaukee Bucks,,,,Home,,False,2025
+202412040BOS,"Wed, Dec 4, 2024",BOS,DET,Boston Celtics,Detroit Pistons,,,,Home,,False,2025
+202412190DET,"Thu, Dec 19, 2024",DET,UTA,Detroit Pistons,Utah Jazz,,,,Home,,False,2025
+202412210PHO,"Sat, Dec 21, 2024",PHO,DET,Phoenix Suns,Detroit Pistons,,,,Home,,False,2025
+202412230LAL,"Mon, Dec 23, 2024",LAL,DET,Los Angeles Lakers,Detroit Pistons,,,,Home,,False,2025
+202412260SAC,"Thu, Dec 26, 2024",SAC,DET,Sacramento Kings,Detroit Pistons,,,,Home,,False,2025
+202412280DEN,"Sat, Dec 28, 2024",DEN,DET,Denver Nuggets,Detroit Pistons,,,,Home,,False,2025
+202501010DET,"Wed, Jan 1, 2025",DET,ORL,Detroit Pistons,Orlando Magic,,,,Home,,False,2025
+202501040DET,"Sat, Jan 4, 2025",DET,MIN,Detroit Pistons,Minnesota Timberwolves,,,,Home,,False,2025
+202501060DET,"Mon, Jan 6, 2025",DET,POR,Detroit Pistons,Portland Trail Blazers,,,,Home,,False,2025
+202501080BRK,"Wed, Jan 8, 2025",BRK,DET,Brooklyn Nets,Detroit Pistons,,,,Home,,False,2025
+202501110DET,"Sat, Jan 11, 2025",DET,TOR,Detroit Pistons,Toronto Raptors,,,,Home,,False,2025
+202501160DET,"Thu, Jan 16, 2025",DET,IND,Detroit Pistons,Indiana Pacers,,,,Home,,False,2025
+202501180DET,"Sat, Jan 18, 2025",DET,PHO,Detroit Pistons,Phoenix Suns,,,,Home,,False,2025
+202501220ATL,"Wed, Jan 22, 2025",ATL,DET,Atlanta Hawks,Detroit Pistons,,,,Home,,False,2025
+202501250ORL,"Sat, Jan 25, 2025",ORL,DET,Orlando Magic,Detroit Pistons,,,,Home,,False,2025
+202501270CLE,"Mon, Jan 27, 2025",CLE,DET,Cleveland Cavaliers,Detroit Pistons,,,,Home,,False,2025
+202501290IND,"Wed, Jan 29, 2025",IND,DET,Indiana Pacers,Detroit Pistons,,,,Home,,False,2025
+202502020DET,"Sun, Feb 2, 2025",DET,CHI,Detroit Pistons,Chicago Bulls,,,,Home,,False,2025
+202502030DET,"Mon, Feb 3, 2025",DET,ATL,Detroit Pistons,Atlanta Hawks,,,,Home,,False,2025
+202502050DET,"Wed, Feb 5, 2025",DET,CLE,Detroit Pistons,Cleveland Cavaliers,,,,Home,,False,2025
+202502070DET,"Fri, Feb 7, 2025",DET,PHI,Detroit Pistons,Philadelphia 76ers,,,,Home,,False,2025
+202502110CHI,"Tue, Feb 11, 2025",CHI,DET,Chicago Bulls,Detroit Pistons,,,,Home,,False,2025
+202502120CHI,"Wed, Feb 12, 2025",CHI,DET,Chicago Bulls,Detroit Pistons,,,,Home,,False,2025
+202502230ATL,"Sun, Feb 23, 2025",ATL,DET,Atlanta Hawks,Detroit Pistons,,,,Home,,False,2025
+202502240DET,"Mon, Feb 24, 2025",DET,LAC,Detroit Pistons,Los Angeles Clippers,,,,Home,,False,2025
+202502260DET,"Wed, Feb 26, 2025",DET,BOS,Detroit Pistons,Boston Celtics,,,,Home,,False,2025
+202502280DET,"Fri, Feb 28, 2025",DET,DEN,Detroit Pistons,Denver Nuggets,,,,Home,,False,2025
+202503010DET,"Sat, Mar 1, 2025",DET,BRK,Detroit Pistons,Brooklyn Nets,,,,Home,,False,2025
+202503030UTA,"Mon, Mar 3, 2025",UTA,DET,Utah Jazz,Detroit Pistons,,,,Home,,False,2025
+202503050LAC,"Wed, Mar 5, 2025",LAC,DET,Los Angeles Clippers,Detroit Pistons,,,,Home,,False,2025
+202503090POR,"Sun, Mar 9, 2025",POR,DET,Portland Trail Blazers,Detroit Pistons,,,,Home,,False,2025
+202503110DET,"Tue, Mar 11, 2025",DET,WAS,Detroit Pistons,Washington Wizards,,,,Home,,False,2025
+202503130DET,"Thu, Mar 13, 2025",DET,WAS,Detroit Pistons,Washington Wizards,,,,Home,,False,2025
+202503170NOP,"Mon, Mar 17, 2025",NOP,DET,New Orleans Pelicans,Detroit Pistons,,,,Home,,False,2025
+202503190MIA,"Wed, Mar 19, 2025",MIA,DET,Miami Heat,Detroit Pistons,,,,Home,,False,2025
+202503230DET,"Sun, Mar 23, 2025",DET,NOP,Detroit Pistons,New Orleans Pelicans,,,,Home,,False,2025
+202503280DET,"Fri, Mar 28, 2025",DET,CLE,Detroit Pistons,Cleveland Cavaliers,,,,Home,,False,2025
+202503300MIN,"Sun, Mar 30, 2025",MIN,DET,Minnesota Timberwolves,Detroit Pistons,,,,Home,,False,2025
+202504040TOR,"Fri, Apr 4, 2025",TOR,DET,Toronto Raptors,Detroit Pistons,,,,Home,,False,2025
+202504070DET,"Mon, Apr 7, 2025",DET,SAC,Detroit Pistons,Sacramento Kings,,,,Home,,False,2025
+202504110DET,"Fri, Apr 11, 2025",DET,MIL,Detroit Pistons,Milwaukee Bucks,,,,Home,,False,2025
+202504130MIL,"Sun, Apr 13, 2025",MIL,DET,Milwaukee Bucks,Detroit Pistons,,,,Home,,False,2025
+202410240WAS,"Thu, Oct 24, 2024",WAS,BOS,Washington Wizards,Boston Celtics,,,,Home,,False,2025
+202410260WAS,"Sat, Oct 26, 2024",WAS,CLE,Washington Wizards,Cleveland Cavaliers,,,,Home,,False,2025
+202410280ATL,"Mon, Oct 28, 2024",ATL,WAS,Atlanta Hawks,Washington Wizards,,,,Home,,False,2025
+202410300WAS,"Wed, Oct 30, 2024",WAS,ATL,Washington Wizards,Atlanta Hawks,,,,Home,,False,2025
+202411020WAS,"Sat, Nov 2, 2024",WAS,MIA,Washington Wizards,Miami Heat,,,,Home,,False,2025
+202411100ORL,"Sun, Nov 10, 2024",ORL,WAS,Orlando Magic,Washington Wizards,,,,Home,,False,2025
+202411150ATL,"Fri, Nov 15, 2024",ATL,WAS,Atlanta Hawks,Washington Wizards,,,,Home,,False,2025
+202411220WAS,"Fri, Nov 22, 2024",WAS,BOS,Washington Wizards,Boston Celtics,,,,Home,,False,2025
+202411240IND,"Sun, Nov 24, 2024",IND,WAS,Indiana Pacers,Washington Wizards,,,,Home,,False,2025
+202411260WAS,"Tue, Nov 26, 2024",WAS,CHI,Washington Wizards,Chicago Bulls,,,,Home,,False,2025
+202411270WAS,"Wed, Nov 27, 2024",WAS,LAC,Washington Wizards,Los Angeles Clippers,,,,Home,,False,2025
+202411300MIL,"Sat, Nov 30, 2024",MIL,WAS,Milwaukee Bucks,Washington Wizards,,,,Home,,False,2025
+202412030CLE,"Tue, Dec 3, 2024",CLE,WAS,Cleveland Cavaliers,Washington Wizards,,,,Home,,False,2025
+202412070WAS,"Sat, Dec 7, 2024",WAS,DEN,Washington Wizards,Denver Nuggets,,,,Home,,False,2025
+202412210MIL,"Sat, Dec 21, 2024",MIL,WAS,Milwaukee Bucks,Washington Wizards,,,,Home,,False,2025
+202501010WAS,"Wed, Jan 1, 2025",WAS,CHI,Washington Wizards,Chicago Bulls,,,,Home,,False,2025
+202501030NOP,"Fri, Jan 3, 2025",NOP,WAS,New Orleans Pelicans,Washington Wizards,,,,Home,,False,2025
+202501050WAS,"Sun, Jan 5, 2025",WAS,NOP,Washington Wizards,New Orleans Pelicans,,,,Home,,False,2025
+202501080PHI,"Wed, Jan 8, 2025",PHI,WAS,Philadelphia 76ers,Washington Wizards,,,,Home,,False,2025
+202501100CHI,"Fri, Jan 10, 2025",CHI,WAS,Chicago Bulls,Washington Wizards,,,,Home,,False,2025
+202501130WAS,"Mon, Jan 13, 2025",WAS,MIN,Washington Wizards,Minnesota Timberwolves,,,,Home,,False,2025
+202501160WAS,"Thu, Jan 16, 2025",WAS,PHO,Washington Wizards,Phoenix Suns,,,,Home,,False,2025
+202501190SAC,"Sun, Jan 19, 2025",SAC,WAS,Sacramento Kings,Washington Wizards,,,,Home,,False,2025
+202501210LAL,"Tue, Jan 21, 2025",LAL,WAS,Los Angeles Lakers,Washington Wizards,,,,Home,,False,2025
+202501230UTA,"Thu, Jan 23, 2025",UTA,WAS,Utah Jazz,Washington Wizards,,,,Home,,False,2025
+202501250PHO,"Sat, Jan 25, 2025",PHO,WAS,Phoenix Suns,Washington Wizards,,,,Home,,False,2025
+202501290WAS,"Wed, Jan 29, 2025",WAS,TOR,Washington Wizards,Toronto Raptors,,,,Home,,False,2025
+202501300WAS,"Thu, Jan 30, 2025",WAS,LAL,Washington Wizards,Los Angeles Lakers,,,,Home,,False,2025
+202502010MIN,"Sat, Feb 1, 2025",MIN,WAS,Minnesota Timberwolves,Washington Wizards,,,,Home,,False,2025
+202502050BRK,"Wed, Feb 5, 2025",BRK,WAS,Brooklyn Nets,Washington Wizards,,,,Home,,False,2025
+202502070WAS,"Fri, Feb 7, 2025",WAS,CLE,Washington Wizards,Cleveland Cavaliers,,,,Home,,False,2025
+202502080WAS,"Sat, Feb 8, 2025",WAS,ATL,Washington Wizards,Atlanta Hawks,,,,Home,,False,2025
+202502120WAS,"Wed, Feb 12, 2025",WAS,IND,Washington Wizards,Indiana Pacers,,,,Home,,False,2025
+202502210WAS,"Fri, Feb 21, 2025",WAS,MIL,Washington Wizards,Milwaukee Bucks,,,,Home,,False,2025
+202502230ORL,"Sun, Feb 23, 2025",ORL,WAS,Orlando Magic,Washington Wizards,,,,Home,,False,2025
+202502240WAS,"Mon, Feb 24, 2025",WAS,BRK,Washington Wizards,Brooklyn Nets,,,,Home,,False,2025
+202502260WAS,"Wed, Feb 26, 2025",WAS,POR,Washington Wizards,Portland Trail Blazers,,,,Home,,False,2025
+202503030MIA,"Mon, Mar 3, 2025",MIA,WAS,Miami Heat,Washington Wizards,,,,Home,,False,2025
+202503050WAS,"Wed, Mar 5, 2025",WAS,UTA,Washington Wizards,Utah Jazz,,,,Home,,False,2025
+202503080TOR,"Sat, Mar 8, 2025",TOR,WAS,Toronto Raptors,Washington Wizards,,,,Home,,False,2025
+202503100TOR,"Mon, Mar 10, 2025",TOR,WAS,Toronto Raptors,Washington Wizards,,,,Home,,False,2025
+202503150DEN,"Sat, Mar 15, 2025",DEN,WAS,Denver Nuggets,Washington Wizards,,,,Home,,False,2025
+202503160LAC,"Sun, Mar 16, 2025",LAC,WAS,Los Angeles Clippers,Washington Wizards,,,,Home,,False,2025
+202503180POR,"Tue, Mar 18, 2025",POR,WAS,Portland Trail Blazers,Washington Wizards,,,,Home,,False,2025
+202503210WAS,"Fri, Mar 21, 2025",WAS,ORL,Washington Wizards,Orlando Magic,,,,Home,,False,2025
+202503240WAS,"Mon, Mar 24, 2025",WAS,TOR,Washington Wizards,Toronto Raptors,,,,Home,,False,2025
+202503260PHI,"Wed, Mar 26, 2025",PHI,WAS,Philadelphia 76ers,Washington Wizards,,,,Home,,False,2025
+202503270WAS,"Thu, Mar 27, 2025",WAS,IND,Washington Wizards,Indiana Pacers,,,,Home,,False,2025
+202503290WAS,"Sat, Mar 29, 2025",WAS,BRK,Washington Wizards,Brooklyn Nets,,,,Home,,False,2025
+202503310WAS,"Mon, Mar 31, 2025",WAS,MIA,Washington Wizards,Miami Heat,,,,Home,,False,2025
+202504020WAS,"Wed, Apr 2, 2025",WAS,SAC,Washington Wizards,Sacramento Kings,,,,Home,,False,2025
+202504030WAS,"Thu, Apr 3, 2025",WAS,ORL,Washington Wizards,Orlando Magic,,,,Home,,False,2025
+202504060BOS,"Sun, Apr 6, 2025",BOS,WAS,Boston Celtics,Washington Wizards,,,,Home,,False,2025
+202504080IND,"Tue, Apr 8, 2025",IND,WAS,Indiana Pacers,Washington Wizards,,,,Home,,False,2025
+202504090WAS,"Wed, Apr 9, 2025",WAS,PHI,Washington Wizards,Philadelphia 76ers,,,,Home,,False,2025
+202504110CHI,"Fri, Apr 11, 2025",CHI,WAS,Chicago Bulls,Washington Wizards,,,,Home,,False,2025
+202504130MIA,"Sun, Apr 13, 2025",MIA,WAS,Miami Heat,Washington Wizards,,,,Home,,False,2025
+202410230LAC,"Wed, Oct 23, 2024",LAC,PHO,Los Angeles Clippers,Phoenix Suns,,,,Home,,False,2025
+202410260DEN,"Sat, Oct 26, 2024",DEN,LAC,Denver Nuggets,Los Angeles Clippers,,,,Home,,False,2025
+202410300LAC,"Wed, Oct 30, 2024",LAC,POR,Los Angeles Clippers,Portland Trail Blazers,,,,Home,,False,2025
+202410310LAC,"Thu, Oct 31, 2024",LAC,PHO,Los Angeles Clippers,Phoenix Suns,,,,Home,,False,2025
+202411060LAC,"Wed, Nov 6, 2024",LAC,PHI,Los Angeles Clippers,Philadelphia 76ers,,,,Home,,False,2025
+202411080SAC,"Fri, Nov 8, 2024",SAC,LAC,Sacramento Kings,Los Angeles Clippers,,,,Home,,False,2025
+202411090LAC,"Sat, Nov 9, 2024",LAC,TOR,Los Angeles Clippers,Toronto Raptors,,,,Home,,False,2025
+202411170LAC,"Sun, Nov 17, 2024",LAC,UTA,Los Angeles Clippers,Utah Jazz,,,,Home,,False,2025
+202411200LAC,"Wed, Nov 20, 2024",LAC,ORL,Los Angeles Clippers,Orlando Magic,,,,Home,,False,2025
+202411220LAC,"Fri, Nov 22, 2024",LAC,SAC,Los Angeles Clippers,Sacramento Kings,,,,Home,,False,2025
+202411240PHI,"Sun, Nov 24, 2024",PHI,LAC,Philadelphia 76ers,Los Angeles Clippers,,,,Home,,False,2025
+202411250BOS,"Mon, Nov 25, 2024",BOS,LAC,Boston Celtics,Los Angeles Clippers,,,,Home,,False,2025
+202411290MIN,"Fri, Nov 29, 2024",MIN,LAC,Minnesota Timberwolves,Los Angeles Clippers,,,,Home,,False,2025
+202412010LAC,"Sun, Dec 1, 2024",LAC,DEN,Los Angeles Clippers,Denver Nuggets,,,,Home,,False,2025
+202412030LAC,"Tue, Dec 3, 2024",LAC,POR,Los Angeles Clippers,Portland Trail Blazers,,,,Home,,False,2025
+202412040LAC,"Wed, Dec 4, 2024",LAC,MIN,Los Angeles Clippers,Minnesota Timberwolves,,,,Home,,False,2025
+202412300NOP,"Mon, Dec 30, 2024",NOP,LAC,New Orleans Pelicans,Los Angeles Clippers,,,,Home,,False,2025
+202501040LAC,"Sat, Jan 4, 2025",LAC,ATL,Los Angeles Clippers,Atlanta Hawks,,,,Home,,False,2025
+202501060MIN,"Mon, Jan 6, 2025",MIN,LAC,Minnesota Timberwolves,Los Angeles Clippers,,,,Home,,False,2025
+202501080DEN,"Wed, Jan 8, 2025",DEN,LAC,Denver Nuggets,Los Angeles Clippers,,,,Home,,False,2025
+202501130LAC,"Mon, Jan 13, 2025",LAC,MIA,Los Angeles Clippers,Miami Heat,,,,Home,,False,2025
+202501150LAC,"Wed, Jan 15, 2025",LAC,BRK,Los Angeles Clippers,Brooklyn Nets,,,,Home,,False,2025
+202501160POR,"Thu, Jan 16, 2025",POR,LAC,Portland Trail Blazers,Los Angeles Clippers,,,,Home,,False,2025
+202501190LAC,"Sun, Jan 19, 2025",LAC,LAL,Los Angeles Clippers,Los Angeles Lakers,,,,Home,,False,2025
+202501210LAC,"Tue, Jan 21, 2025",LAC,CHI,Los Angeles Clippers,Chicago Bulls,,,,Home,,False,2025
+202501220LAC,"Wed, Jan 22, 2025",LAC,BOS,Los Angeles Clippers,Boston Celtics,,,,Home,,False,2025
+202501250LAC,"Sat, Jan 25, 2025",LAC,MIL,Los Angeles Clippers,Milwaukee Bucks,,,,Home,,False,2025
+202501270PHO,"Mon, Jan 27, 2025",PHO,LAC,Phoenix Suns,Los Angeles Clippers,,,,Home,,False,2025
+202502020TOR,"Sun, Feb 2, 2025",TOR,LAC,Toronto Raptors,Los Angeles Clippers,,,,Home,,False,2025
+202502040LAC,"Tue, Feb 4, 2025",LAC,LAL,Los Angeles Clippers,Los Angeles Lakers,,,,Home,,False,2025
+202502060LAC,"Thu, Feb 6, 2025",LAC,IND,Los Angeles Clippers,Indiana Pacers,,,,Home,,False,2025
+202502080LAC,"Sat, Feb 8, 2025",LAC,UTA,Los Angeles Clippers,Utah Jazz,,,,Home,,False,2025
+202502200MIL,"Thu, Feb 20, 2025",MIL,LAC,Milwaukee Bucks,Los Angeles Clippers,,,,Home,,False,2025
+202502230IND,"Sun, Feb 23, 2025",IND,LAC,Indiana Pacers,Los Angeles Clippers,,,,Home,,False,2025
+202502260CHI,"Wed, Feb 26, 2025",CHI,LAC,Chicago Bulls,Los Angeles Clippers,,,,Home,,False,2025
+202502280LAL,"Fri, Feb 28, 2025",LAL,LAC,Los Angeles Lakers,Los Angeles Clippers,,,,Home,,False,2025
+202503020LAL,"Sun, Mar 2, 2025",LAL,LAC,Los Angeles Lakers,Los Angeles Clippers,,,,Home,,False,2025
+202503040PHO,"Tue, Mar 4, 2025",PHO,LAC,Phoenix Suns,Los Angeles Clippers,,,,Home,,False,2025
+202503090LAC,"Sun, Mar 9, 2025",LAC,SAC,Los Angeles Clippers,Sacramento Kings,,,,Home,,False,2025
+202503110NOP,"Tue, Mar 11, 2025",NOP,LAC,New Orleans Pelicans,Los Angeles Clippers,,,,Home,,False,2025
+202503120MIA,"Wed, Mar 12, 2025",MIA,LAC,Miami Heat,Los Angeles Clippers,,,,Home,,False,2025
+202503140ATL,"Fri, Mar 14, 2025",ATL,LAC,Atlanta Hawks,Los Angeles Clippers,,,,Home,,False,2025
+202503180LAC,"Tue, Mar 18, 2025",LAC,CLE,Los Angeles Clippers,Cleveland Cavaliers,,,,Home,,False,2025
+202503190UTA,"Wed, Mar 19, 2025",UTA,LAC,Utah Jazz,Los Angeles Clippers,,,,Home,,False,2025
+202503280BRK,"Fri, Mar 28, 2025",BRK,LAC,Brooklyn Nets,Los Angeles Clippers,,,,Home,,False,2025
+202503300CLE,"Sun, Mar 30, 2025",CLE,LAC,Cleveland Cavaliers,Los Angeles Clippers,,,,Home,,False,2025
+202503310ORL,"Mon, Mar 31, 2025",ORL,LAC,Orlando Magic,Los Angeles Clippers,,,,Home,,False,2025
+202504020LAC,"Wed, Apr 2, 2025",LAC,NOP,Los Angeles Clippers,New Orleans Pelicans,,,,Home,,False,2025
+202504110SAC,"Fri, Apr 11, 2025",SAC,LAC,Sacramento Kings,Los Angeles Clippers,,,,Home,,False,2025
+202410230NOP,"Wed, Oct 23, 2024",NOP,CHI,New Orleans Pelicans,Chicago Bulls,,,,Home,,False,2025
+202410250MIL,"Fri, Oct 25, 2024",MIL,CHI,Milwaukee Bucks,Chicago Bulls,,,,Home,,False,2025
+202410300CHI,"Wed, Oct 30, 2024",CHI,ORL,Chicago Bulls,Orlando Magic,,,,Home,,False,2025
+202411010BRK,"Fri, Nov 1, 2024",BRK,CHI,Brooklyn Nets,Chicago Bulls,,,,Home,,False,2025
+202411040CHI,"Mon, Nov 4, 2024",CHI,UTA,Chicago Bulls,Utah Jazz,,,,Home,,False,2025
+202411070CHI,"Thu, Nov 7, 2024",CHI,MIN,Chicago Bulls,Minnesota Timberwolves,,,,Home,,False,2025
+202411090ATL,"Sat, Nov 9, 2024",ATL,CHI,Atlanta Hawks,Chicago Bulls,,,,Home,,False,2025
+202411110CHI,"Mon, Nov 11, 2024",CHI,CLE,Chicago Bulls,Cleveland Cavaliers,,,,Home,,False,2025
+202411150CLE,"Fri, Nov 15, 2024",CLE,CHI,Cleveland Cavaliers,Chicago Bulls,,,,Home,,False,2025
+202411200MIL,"Wed, Nov 20, 2024",MIL,CHI,Milwaukee Bucks,Chicago Bulls,,,,Home,,False,2025
+202411220CHI,"Fri, Nov 22, 2024",CHI,ATL,Chicago Bulls,Atlanta Hawks,,,,Home,,False,2025
+202411270ORL,"Wed, Nov 27, 2024",ORL,CHI,Orlando Magic,Chicago Bulls,,,,Home,,False,2025
+202411290CHI,"Fri, Nov 29, 2024",CHI,BOS,Chicago Bulls,Boston Celtics,,,,Home,,False,2025
+202412020CHI,"Mon, Dec 2, 2024",CHI,BRK,Chicago Bulls,Brooklyn Nets,,,,Home,,False,2025
+202412060CHI,"Fri, Dec 6, 2024",CHI,IND,Chicago Bulls,Indiana Pacers,,,,Home,,False,2025
+202412080CHI,"Sun, Dec 8, 2024",CHI,PHI,Chicago Bulls,Philadelphia 76ers,,,,Home,,False,2025
+202412190BOS,"Thu, Dec 19, 2024",BOS,CHI,Boston Celtics,Chicago Bulls,,,,Home,,False,2025
+202412210CHI,"Sat, Dec 21, 2024",CHI,BOS,Chicago Bulls,Boston Celtics,,,,Home,,False,2025
+202412230CHI,"Mon, Dec 23, 2024",CHI,MIL,Chicago Bulls,Milwaukee Bucks,,,,Home,,False,2025
+202412260ATL,"Thu, Dec 26, 2024",ATL,CHI,Atlanta Hawks,Chicago Bulls,,,,Home,,False,2025
+202412280CHI,"Sat, Dec 28, 2024",CHI,MIL,Chicago Bulls,Milwaukee Bucks,,,,Home,,False,2025
+202501080IND,"Wed, Jan 8, 2025",IND,CHI,Indiana Pacers,Chicago Bulls,,,,Home,,False,2025
+202501120CHI,"Sun, Jan 12, 2025",CHI,SAC,Chicago Bulls,Sacramento Kings,,,,Home,,False,2025
+202501140CHI,"Tue, Jan 14, 2025",CHI,NOP,Chicago Bulls,New Orleans Pelicans,,,,Home,,False,2025
+202501150CHI,"Wed, Jan 15, 2025",CHI,ATL,Chicago Bulls,Atlanta Hawks,,,,Home,,False,2025
+202501190POR,"Sun, Jan 19, 2025",POR,CHI,Portland Trail Blazers,Chicago Bulls,,,,Home,,False,2025
+202501250CHI,"Sat, Jan 25, 2025",CHI,PHI,Chicago Bulls,Philadelphia 76ers,,,,Home,,False,2025
+202501270CHI,"Mon, Jan 27, 2025",CHI,DEN,Chicago Bulls,Denver Nuggets,,,,Home,,False,2025
+202501290BOS,"Wed, Jan 29, 2025",BOS,CHI,Boston Celtics,Chicago Bulls,,,,Home,,False,2025
+202501310TOR,"Fri, Jan 31, 2025",TOR,CHI,Toronto Raptors,Chicago Bulls,,,,Home,,False,2025
+202502040CHI,"Tue, Feb 4, 2025",CHI,MIA,Chicago Bulls,Miami Heat,,,,Home,,False,2025
+202502050MIN,"Wed, Feb 5, 2025",MIN,CHI,Minnesota Timberwolves,Chicago Bulls,,,,Home,,False,2025
+202502220CHI,"Sat, Feb 22, 2025",CHI,PHO,Chicago Bulls,Phoenix Suns,,,,Home,,False,2025
+202502240PHI,"Mon, Feb 24, 2025",PHI,CHI,Philadelphia 76ers,Chicago Bulls,,,,Home,,False,2025
+202502280CHI,"Fri, Feb 28, 2025",CHI,TOR,Chicago Bulls,Toronto Raptors,,,,Home,,False,2025
+202503020IND,"Sun, Mar 2, 2025",IND,CHI,Indiana Pacers,Chicago Bulls,,,,Home,,False,2025
+202503040CHI,"Tue, Mar 4, 2025",CHI,CLE,Chicago Bulls,Cleveland Cavaliers,,,,Home,,False,2025
+202503080MIA,"Sat, Mar 8, 2025",MIA,CHI,Miami Heat,Chicago Bulls,,,,Home,,False,2025
+202503100CHI,"Mon, Mar 10, 2025",CHI,IND,Chicago Bulls,Indiana Pacers,,,,Home,,False,2025
+202503120ORL,"Wed, Mar 12, 2025",ORL,CHI,Orlando Magic,Chicago Bulls,,,,Home,,False,2025
+202503130CHI,"Thu, Mar 13, 2025",CHI,BRK,Chicago Bulls,Brooklyn Nets,,,,Home,,False,2025
+202503170UTA,"Mon, Mar 17, 2025",UTA,CHI,Utah Jazz,Chicago Bulls,,,,Home,,False,2025
+202503190PHO,"Wed, Mar 19, 2025",PHO,CHI,Phoenix Suns,Chicago Bulls,,,,Home,,False,2025
+202503200SAC,"Thu, Mar 20, 2025",SAC,CHI,Sacramento Kings,Chicago Bulls,,,,Home,,False,2025
+202503220LAL,"Sat, Mar 22, 2025",LAL,CHI,Los Angeles Lakers,Chicago Bulls,,,,Home,,False,2025
+202503240DEN,"Mon, Mar 24, 2025",DEN,CHI,Denver Nuggets,Chicago Bulls,,,,Home,,False,2025
+202503270CHI,"Thu, Mar 27, 2025",CHI,LAL,Chicago Bulls,Los Angeles Lakers,,,,Home,,False,2025
+202504010CHI,"Tue, Apr 1, 2025",CHI,TOR,Chicago Bulls,Toronto Raptors,,,,Home,,False,2025
+202504040CHI,"Fri, Apr 4, 2025",CHI,POR,Chicago Bulls,Portland Trail Blazers,,,,Home,,False,2025
+202504080CLE,"Tue, Apr 8, 2025",CLE,CHI,Cleveland Cavaliers,Chicago Bulls,,,,Home,,False,2025
+202504090CHI,"Wed, Apr 9, 2025",CHI,MIA,Chicago Bulls,Miami Heat,,,,Home,,False,2025
+202504130PHI,"Sun, Apr 13, 2025",PHI,CHI,Philadelphia 76ers,Chicago Bulls,,,,Home,,False,2025
+202410230PHI,"Wed, Oct 23, 2024",PHI,MIL,Philadelphia 76ers,Milwaukee Bucks,,,,Home,,False,2025
+202410270BRK,"Sun, Oct 27, 2024",BRK,MIL,Brooklyn Nets,Milwaukee Bucks,,,,Home,,False,2025
+202410280BOS,"Mon, Oct 28, 2024",BOS,MIL,Boston Celtics,Milwaukee Bucks,,,,Home,,False,2025
+202411020MIL,"Sat, Nov 2, 2024",MIL,CLE,Milwaukee Bucks,Cleveland Cavaliers,,,,Home,,False,2025
+202411040CLE,"Mon, Nov 4, 2024",CLE,MIL,Cleveland Cavaliers,Milwaukee Bucks,,,,Home,,False,2025
+202411070MIL,"Thu, Nov 7, 2024",MIL,UTA,Milwaukee Bucks,Utah Jazz,,,,Home,,False,2025
+202411100MIL,"Sun, Nov 10, 2024",MIL,BOS,Milwaukee Bucks,Boston Celtics,,,,Home,,False,2025
+202411120MIL,"Tue, Nov 12, 2024",MIL,TOR,Milwaukee Bucks,Toronto Raptors,,,,Home,,False,2025
+202411220MIL,"Fri, Nov 22, 2024",MIL,IND,Milwaukee Bucks,Indiana Pacers,,,,Home,,False,2025
+202411260MIA,"Tue, Nov 26, 2024",MIA,MIL,Miami Heat,Milwaukee Bucks,,,,Home,,False,2025
+202412040MIL,"Wed, Dec 4, 2024",MIL,ATL,Milwaukee Bucks,Atlanta Hawks,,,,Home,,False,2025
+202412060BOS,"Fri, Dec 6, 2024",BOS,MIL,Boston Celtics,Milwaukee Bucks,,,,Home,,False,2025
+202412080BRK,"Sun, Dec 8, 2024",BRK,MIL,Brooklyn Nets,Milwaukee Bucks,,,,Home,,False,2025
+202412200CLE,"Fri, Dec 20, 2024",CLE,MIL,Cleveland Cavaliers,Milwaukee Bucks,,,,Home,,False,2025
+202412260MIL,"Thu, Dec 26, 2024",MIL,BRK,Milwaukee Bucks,Brooklyn Nets,,,,Home,,False,2025
+202412310IND,"Tue, Dec 31, 2024",IND,MIL,Indiana Pacers,Milwaukee Bucks,,,,Home,,False,2025
+202501020MIL,"Thu, Jan 2, 2025",MIL,BRK,Milwaukee Bucks,Brooklyn Nets,,,,Home,,False,2025
+202501040MIL,"Sat, Jan 4, 2025",MIL,POR,Milwaukee Bucks,Portland Trail Blazers,,,,Home,,False,2025
+202501060TOR,"Mon, Jan 6, 2025",TOR,MIL,Toronto Raptors,Milwaukee Bucks,,,,Home,,False,2025
+202501100ORL,"Fri, Jan 10, 2025",ORL,MIL,Orlando Magic,Milwaukee Bucks,,,,Home,,False,2025
+202501140MIL,"Tue, Jan 14, 2025",MIL,SAC,Milwaukee Bucks,Sacramento Kings,,,,Home,,False,2025
+202501150MIL,"Wed, Jan 15, 2025",MIL,ORL,Milwaukee Bucks,Orlando Magic,,,,Home,,False,2025
+202501170MIL,"Fri, Jan 17, 2025",MIL,TOR,Milwaukee Bucks,Toronto Raptors,,,,Home,,False,2025
+202501190MIL,"Sun, Jan 19, 2025",MIL,PHI,Milwaukee Bucks,Philadelphia 76ers,,,,Home,,False,2025
+202501220NOP,"Wed, Jan 22, 2025",NOP,MIL,New Orleans Pelicans,Milwaukee Bucks,,,,Home,,False,2025
+202501230MIL,"Thu, Jan 23, 2025",MIL,MIA,Milwaukee Bucks,Miami Heat,,,,Home,,False,2025
+202501270UTA,"Mon, Jan 27, 2025",UTA,MIL,Utah Jazz,Milwaukee Bucks,,,,Home,,False,2025
+202501280POR,"Tue, Jan 28, 2025",POR,MIL,Portland Trail Blazers,Milwaukee Bucks,,,,Home,,False,2025
+202502070ATL,"Fri, Feb 7, 2025",ATL,MIL,Atlanta Hawks,Milwaukee Bucks,,,,Home,,False,2025
+202502090MIL,"Sun, Feb 9, 2025",MIL,PHI,Milwaukee Bucks,Philadelphia 76ers,,,,Home,,False,2025
+202502120MIN,"Wed, Feb 12, 2025",MIN,MIL,Minnesota Timberwolves,Milwaukee Bucks,,,,Home,,False,2025
+202502230MIL,"Sun, Feb 23, 2025",MIL,MIA,Milwaukee Bucks,Miami Heat,,,,Home,,False,2025
+202502270MIL,"Thu, Feb 27, 2025",MIL,DEN,Milwaukee Bucks,Denver Nuggets,,,,Home,,False,2025
+202503040ATL,"Tue, Mar 4, 2025",ATL,MIL,Atlanta Hawks,Milwaukee Bucks,,,,Home,,False,2025
+202503080MIL,"Sat, Mar 8, 2025",MIL,ORL,Milwaukee Bucks,Orlando Magic,,,,Home,,False,2025
+202503090MIL,"Sun, Mar 9, 2025",MIL,CLE,Milwaukee Bucks,Cleveland Cavaliers,,,,Home,,False,2025
+202503110IND,"Tue, Mar 11, 2025",IND,MIL,Indiana Pacers,Milwaukee Bucks,,,,Home,,False,2025
+202503130MIL,"Thu, Mar 13, 2025",MIL,LAL,Milwaukee Bucks,Los Angeles Lakers,,,,Home,,False,2025
+202503150MIL,"Sat, Mar 15, 2025",MIL,IND,Milwaukee Bucks,Indiana Pacers,,,,Home,,False,2025
+202503180LAL,"Tue, Mar 18, 2025",LAL,MIL,Los Angeles Lakers,Milwaukee Bucks,,,,Home,,False,2025
+202503220SAC,"Sat, Mar 22, 2025",SAC,MIL,Sacramento Kings,Milwaukee Bucks,,,,Home,,False,2025
+202503240PHO,"Mon, Mar 24, 2025",PHO,MIL,Phoenix Suns,Milwaukee Bucks,,,,Home,,False,2025
+202503260DEN,"Wed, Mar 26, 2025",DEN,MIL,Denver Nuggets,Milwaukee Bucks,,,,Home,,False,2025
+202503300MIL,"Sun, Mar 30, 2025",MIL,ATL,Milwaukee Bucks,Atlanta Hawks,,,,Home,,False,2025
+202504010MIL,"Tue, Apr 1, 2025",MIL,PHO,Milwaukee Bucks,Phoenix Suns,,,,Home,,False,2025
+202504030PHI,"Thu, Apr 3, 2025",PHI,MIL,Philadelphia 76ers,Milwaukee Bucks,,,,Home,,False,2025
+202504050MIA,"Sat, Apr 5, 2025",MIA,MIL,Miami Heat,Milwaukee Bucks,,,,Home,,False,2025
+202504080MIL,"Tue, Apr 8, 2025",MIL,MIN,Milwaukee Bucks,Minnesota Timberwolves,,,,Home,,False,2025
+202504090MIL,"Wed, Apr 9, 2025",MIL,NOP,Milwaukee Bucks,New Orleans Pelicans,,,,Home,,False,2025
+202410270IND,"Sun, Oct 27, 2024",IND,PHI,Indiana Pacers,Philadelphia 76ers,,,,Home,,False,2025
+202410280ORL,"Mon, Oct 28, 2024",ORL,IND,Orlando Magic,Indiana Pacers,,,,Home,,False,2025
+202410300IND,"Wed, Oct 30, 2024",IND,BOS,Indiana Pacers,Boston Celtics,,,,Home,,False,2025
+202411010NOP,"Fri, Nov 1, 2024",NOP,IND,New Orleans Pelicans,Indiana Pacers,,,,Home,,False,2025
+202411060IND,"Wed, Nov 6, 2024",IND,ORL,Indiana Pacers,Orlando Magic,,,,Home,,False,2025
+202411130ORL,"Wed, Nov 13, 2024",ORL,IND,Orlando Magic,Indiana Pacers,,,,Home,,False,2025
+202411150IND,"Fri, Nov 15, 2024",IND,MIA,Indiana Pacers,Miami Heat,,,,Home,,False,2025
+202411170IND,"Sun, Nov 17, 2024",IND,MIA,Indiana Pacers,Miami Heat,,,,Home,,False,2025
+202411180TOR,"Mon, Nov 18, 2024",TOR,IND,Toronto Raptors,Indiana Pacers,,,,Home,,False,2025
+202411250IND,"Mon, Nov 25, 2024",IND,NOP,Indiana Pacers,New Orleans Pelicans,,,,Home,,False,2025
+202411270IND,"Wed, Nov 27, 2024",IND,POR,Indiana Pacers,Portland Trail Blazers,,,,Home,,False,2025
+202412030TOR,"Tue, Dec 3, 2024",TOR,IND,Toronto Raptors,Indiana Pacers,,,,Home,,False,2025
+202412040BRK,"Wed, Dec 4, 2024",BRK,IND,Brooklyn Nets,Indiana Pacers,,,,Home,,False,2025
+202412190PHO,"Thu, Dec 19, 2024",PHO,IND,Phoenix Suns,Indiana Pacers,,,,Home,,False,2025
+202412220SAC,"Sun, Dec 22, 2024",SAC,IND,Sacramento Kings,Indiana Pacers,,,,Home,,False,2025
+202412270BOS,"Fri, Dec 27, 2024",BOS,IND,Boston Celtics,Indiana Pacers,,,,Home,,False,2025
+202412290BOS,"Sun, Dec 29, 2024",BOS,IND,Boston Celtics,Indiana Pacers,,,,Home,,False,2025
+202501020MIA,"Thu, Jan 2, 2025",MIA,IND,Miami Heat,Indiana Pacers,,,,Home,,False,2025
+202501040IND,"Sat, Jan 4, 2025",IND,PHO,Indiana Pacers,Phoenix Suns,,,,Home,,False,2025
+202501060BRK,"Mon, Jan 6, 2025",BRK,IND,Brooklyn Nets,Indiana Pacers,,,,Home,,False,2025
+202501120CLE,"Sun, Jan 12, 2025",CLE,IND,Cleveland Cavaliers,Indiana Pacers,,,,Home,,False,2025
+202501140IND,"Tue, Jan 14, 2025",IND,CLE,Indiana Pacers,Cleveland Cavaliers,,,,Home,,False,2025
+202501180IND,"Sat, Jan 18, 2025",IND,PHI,Indiana Pacers,Philadelphia 76ers,,,,Home,,False,2025
+202502010IND,"Sat, Feb 1, 2025",IND,ATL,Indiana Pacers,Atlanta Hawks,,,,Home,,False,2025
+202502030UTA,"Mon, Feb 3, 2025",UTA,IND,Utah Jazz,Indiana Pacers,,,,Home,,False,2025
+202502040POR,"Tue, Feb 4, 2025",POR,IND,Portland Trail Blazers,Indiana Pacers,,,,Home,,False,2025
+202502080LAL,"Sat, Feb 8, 2025",LAL,IND,Los Angeles Lakers,Indiana Pacers,,,,Home,,False,2025
+202502240IND,"Mon, Feb 24, 2025",IND,DEN,Indiana Pacers,Denver Nuggets,,,,Home,,False,2025
+202502260IND,"Wed, Feb 26, 2025",IND,TOR,Indiana Pacers,Toronto Raptors,,,,Home,,False,2025
+202502280MIA,"Fri, Feb 28, 2025",MIA,IND,Miami Heat,Indiana Pacers,,,,Home,,False,2025
+202503060ATL,"Thu, Mar 6, 2025",ATL,IND,Atlanta Hawks,Indiana Pacers,,,,Home,,False,2025
+202503080ATL,"Sat, Mar 8, 2025",ATL,IND,Atlanta Hawks,Indiana Pacers,,,,Home,,False,2025
+202503140PHI,"Fri, Mar 14, 2025",PHI,IND,Philadelphia 76ers,Indiana Pacers,,,,Home,,False,2025
+202503170MIN,"Mon, Mar 17, 2025",MIN,IND,Minnesota Timberwolves,Indiana Pacers,,,,Home,,False,2025
+202503200IND,"Thu, Mar 20, 2025",IND,BRK,Indiana Pacers,Brooklyn Nets,,,,Home,,False,2025
+202503220IND,"Sat, Mar 22, 2025",IND,BRK,Indiana Pacers,Brooklyn Nets,,,,Home,,False,2025
+202503240IND,"Mon, Mar 24, 2025",IND,MIN,Indiana Pacers,Minnesota Timberwolves,,,,Home,,False,2025
+202503260IND,"Wed, Mar 26, 2025",IND,LAL,Indiana Pacers,Los Angeles Lakers,,,,Home,,False,2025
+202503310IND,"Mon, Mar 31, 2025",IND,SAC,Indiana Pacers,Sacramento Kings,,,,Home,,False,2025
+202504040IND,"Fri, Apr 4, 2025",IND,UTA,Indiana Pacers,Utah Jazz,,,,Home,,False,2025
+202504060DEN,"Sun, Apr 6, 2025",DEN,IND,Denver Nuggets,Indiana Pacers,,,,Home,,False,2025
+202504100IND,"Thu, Apr 10, 2025",IND,CLE,Indiana Pacers,Cleveland Cavaliers,,,,Home,,False,2025
+202504110IND,"Fri, Apr 11, 2025",IND,ORL,Indiana Pacers,Orlando Magic,,,,Home,,False,2025
+202504130CLE,"Sun, Apr 13, 2025",CLE,IND,Cleveland Cavaliers,Indiana Pacers,,,,Home,,False,2025
+202410250POR,"Fri, Oct 25, 2024",POR,NOP,Portland Trail Blazers,New Orleans Pelicans,,,,Home,,False,2025
+202410270POR,"Sun, Oct 27, 2024",POR,NOP,Portland Trail Blazers,New Orleans Pelicans,,,,Home,,False,2025
+202410280SAC,"Mon, Oct 28, 2024",SAC,POR,Sacramento Kings,Portland Trail Blazers,,,,Home,,False,2025
+202411020PHO,"Sat, Nov 2, 2024",PHO,POR,Phoenix Suns,Portland Trail Blazers,,,,Home,,False,2025
+202411040NOP,"Mon, Nov 4, 2024",NOP,POR,New Orleans Pelicans,Portland Trail Blazers,,,,Home,,False,2025
+202411080MIN,"Fri, Nov 8, 2024",MIN,POR,Minnesota Timberwolves,Portland Trail Blazers,,,,Home,,False,2025
+202411120POR,"Tue, Nov 12, 2024",POR,MIN,Portland Trail Blazers,Minnesota Timberwolves,,,,Home,,False,2025
+202411130POR,"Wed, Nov 13, 2024",POR,MIN,Portland Trail Blazers,Minnesota Timberwolves,,,,Home,,False,2025
+202411170POR,"Sun, Nov 17, 2024",POR,ATL,Portland Trail Blazers,Atlanta Hawks,,,,Home,,False,2025
+202411290POR,"Fri, Nov 29, 2024",POR,SAC,Portland Trail Blazers,Sacramento Kings,,,,Home,,False,2025
+202412060POR,"Fri, Dec 6, 2024",POR,UTA,Portland Trail Blazers,Utah Jazz,,,,Home,,False,2025
+202412080LAL,"Sun, Dec 8, 2024",LAL,POR,Los Angeles Lakers,Portland Trail Blazers,,,,Home,,False,2025
+202412190POR,"Thu, Dec 19, 2024",POR,DEN,Portland Trail Blazers,Denver Nuggets,,,,Home,,False,2025
+202412260POR,"Thu, Dec 26, 2024",POR,UTA,Portland Trail Blazers,Utah Jazz,,,,Home,,False,2025
+202412300POR,"Mon, Dec 30, 2024",POR,PHI,Portland Trail Blazers,Philadelphia 76ers,,,,Home,,False,2025
+202501020LAL,"Thu, Jan 2, 2025",LAL,POR,Los Angeles Lakers,Portland Trail Blazers,,,,Home,,False,2025
+202501080NOP,"Wed, Jan 8, 2025",NOP,POR,New Orleans Pelicans,Portland Trail Blazers,,,,Home,,False,2025
+202501110POR,"Sat, Jan 11, 2025",POR,MIA,Portland Trail Blazers,Miami Heat,,,,Home,,False,2025
+202501140POR,"Tue, Jan 14, 2025",POR,BRK,Portland Trail Blazers,Brooklyn Nets,,,,Home,,False,2025
+202501210MIA,"Tue, Jan 21, 2025",MIA,POR,Miami Heat,Portland Trail Blazers,,,,Home,,False,2025
+202501230ORL,"Thu, Jan 23, 2025",ORL,POR,Orlando Magic,Portland Trail Blazers,,,,Home,,False,2025
+202501300POR,"Thu, Jan 30, 2025",POR,ORL,Portland Trail Blazers,Orlando Magic,,,,Home,,False,2025
+202502010POR,"Sat, Feb 1, 2025",POR,PHO,Portland Trail Blazers,Phoenix Suns,,,,Home,,False,2025
+202502030POR,"Mon, Feb 3, 2025",POR,PHO,Portland Trail Blazers,Phoenix Suns,,,,Home,,False,2025
+202502060POR,"Thu, Feb 6, 2025",POR,SAC,Portland Trail Blazers,Sacramento Kings,,,,Home,,False,2025
+202502080MIN,"Sat, Feb 8, 2025",MIN,POR,Minnesota Timberwolves,Portland Trail Blazers,,,,Home,,False,2025
+202502100DEN,"Mon, Feb 10, 2025",DEN,POR,Denver Nuggets,Portland Trail Blazers,,,,Home,,False,2025
+202502120DEN,"Wed, Feb 12, 2025",DEN,POR,Denver Nuggets,Portland Trail Blazers,,,,Home,,False,2025
+202502200POR,"Thu, Feb 20, 2025",POR,LAL,Portland Trail Blazers,Los Angeles Lakers,,,,Home,,False,2025
+202502240UTA,"Mon, Feb 24, 2025",UTA,POR,Utah Jazz,Portland Trail Blazers,,,,Home,,False,2025
+202502280BRK,"Fri, Feb 28, 2025",BRK,POR,Brooklyn Nets,Portland Trail Blazers,,,,Home,,False,2025
+202503020CLE,"Sun, Mar 2, 2025",CLE,POR,Cleveland Cavaliers,Portland Trail Blazers,,,,Home,,False,2025
+202503030PHI,"Mon, Mar 3, 2025",PHI,POR,Philadelphia 76ers,Portland Trail Blazers,,,,Home,,False,2025
+202503050BOS,"Wed, Mar 5, 2025",BOS,POR,Boston Celtics,Portland Trail Blazers,,,,Home,,False,2025
+202503160POR,"Sun, Mar 16, 2025",POR,TOR,Portland Trail Blazers,Toronto Raptors,,,,Home,,False,2025
+202503210POR,"Fri, Mar 21, 2025",POR,DEN,Portland Trail Blazers,Denver Nuggets,,,,Home,,False,2025
+202503230POR,"Sun, Mar 23, 2025",POR,BOS,Portland Trail Blazers,Boston Celtics,,,,Home,,False,2025
+202503250POR,"Tue, Mar 25, 2025",POR,CLE,Portland Trail Blazers,Cleveland Cavaliers,,,,Home,,False,2025
+202503270SAC,"Thu, Mar 27, 2025",SAC,POR,Sacramento Kings,Portland Trail Blazers,,,,Home,,False,2025
+202504010ATL,"Tue, Apr 1, 2025",ATL,POR,Atlanta Hawks,Portland Trail Blazers,,,,Home,,False,2025
+202504030TOR,"Thu, Apr 3, 2025",TOR,POR,Toronto Raptors,Portland Trail Blazers,,,,Home,,False,2025
+202504090UTA,"Wed, Apr 9, 2025",UTA,POR,Utah Jazz,Portland Trail Blazers,,,,Home,,False,2025
+202504130POR,"Sun, Apr 13, 2025",POR,LAL,Portland Trail Blazers,Los Angeles Lakers,,,,Home,,False,2025
+202410220LAL,"Tue, Oct 22, 2024",LAL,MIN,Los Angeles Lakers,Minnesota Timberwolves,,,,Home,,False,2025
+202410240SAC,"Thu, Oct 24, 2024",SAC,MIN,Sacramento Kings,Minnesota Timberwolves,,,,Home,,False,2025
+202410260MIN,"Sat, Oct 26, 2024",MIN,TOR,Minnesota Timberwolves,Toronto Raptors,,,,Home,,False,2025
+202411010MIN,"Fri, Nov 1, 2024",MIN,DEN,Minnesota Timberwolves,Denver Nuggets,,,,Home,,False,2025
+202411100MIN,"Sun, Nov 10, 2024",MIN,MIA,Minnesota Timberwolves,Miami Heat,,,,Home,,False,2025
+202411150SAC,"Fri, Nov 15, 2024",SAC,MIN,Sacramento Kings,Minnesota Timberwolves,,,,Home,,False,2025
+202411170MIN,"Sun, Nov 17, 2024",MIN,PHO,Minnesota Timberwolves,Phoenix Suns,,,,Home,,False,2025
+202411210TOR,"Thu, Nov 21, 2024",TOR,MIN,Toronto Raptors,Minnesota Timberwolves,,,,Home,,False,2025
+202411240BOS,"Sun, Nov 24, 2024",BOS,MIN,Boston Celtics,Minnesota Timberwolves,,,,Home,,False,2025
+202411270MIN,"Wed, Nov 27, 2024",MIN,SAC,Minnesota Timberwolves,Sacramento Kings,,,,Home,,False,2025
+202412020MIN,"Mon, Dec 2, 2024",MIN,LAL,Minnesota Timberwolves,Los Angeles Lakers,,,,Home,,False,2025
+202412230ATL,"Mon, Dec 23, 2024",ATL,MIN,Atlanta Hawks,Minnesota Timberwolves,,,,Home,,False,2025
+202501020MIN,"Thu, Jan 2, 2025",MIN,BOS,Minnesota Timberwolves,Boston Celtics,,,,Home,,False,2025
+202501070NOP,"Tue, Jan 7, 2025",NOP,MIN,New Orleans Pelicans,Minnesota Timberwolves,,,,Home,,False,2025
+202501090ORL,"Thu, Jan 9, 2025",ORL,MIN,Orlando Magic,Minnesota Timberwolves,,,,Home,,False,2025
+202501180MIN,"Sat, Jan 18, 2025",MIN,CLE,Minnesota Timberwolves,Cleveland Cavaliers,,,,Home,,False,2025
+202501250MIN,"Sat, Jan 25, 2025",MIN,DEN,Minnesota Timberwolves,Denver Nuggets,,,,Home,,False,2025
+202501270MIN,"Mon, Jan 27, 2025",MIN,ATL,Minnesota Timberwolves,Atlanta Hawks,,,,Home,,False,2025
+202501290PHO,"Wed, Jan 29, 2025",PHO,MIN,Phoenix Suns,Minnesota Timberwolves,,,,Home,,False,2025
+202501300UTA,"Thu, Jan 30, 2025",UTA,MIN,Utah Jazz,Minnesota Timberwolves,,,,Home,,False,2025
+202502030MIN,"Mon, Feb 3, 2025",MIN,SAC,Minnesota Timberwolves,Sacramento Kings,,,,Home,,False,2025
+202502100CLE,"Mon, Feb 10, 2025",CLE,MIN,Cleveland Cavaliers,Minnesota Timberwolves,,,,Home,,False,2025
+202502270LAL,"Thu, Feb 27, 2025",LAL,MIN,Los Angeles Lakers,Minnesota Timberwolves,,,,Home,,False,2025
+202502280UTA,"Fri, Feb 28, 2025",UTA,MIN,Utah Jazz,Minnesota Timberwolves,,,,Home,,False,2025
+202503020PHO,"Sun, Mar 2, 2025",PHO,MIN,Phoenix Suns,Minnesota Timberwolves,,,,Home,,False,2025
+202503040MIN,"Tue, Mar 4, 2025",MIN,PHI,Minnesota Timberwolves,Philadelphia 76ers,,,,Home,,False,2025
+202503070MIA,"Fri, Mar 7, 2025",MIA,MIN,Miami Heat,Minnesota Timberwolves,,,,Home,,False,2025
+202503120DEN,"Wed, Mar 12, 2025",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,,,,Home,,False,2025
+202503140MIN,"Fri, Mar 14, 2025",MIN,ORL,Minnesota Timberwolves,Orlando Magic,,,,Home,,False,2025
+202503160MIN,"Sun, Mar 16, 2025",MIN,UTA,Minnesota Timberwolves,Utah Jazz,,,,Home,,False,2025
+202503190MIN,"Wed, Mar 19, 2025",MIN,NOP,Minnesota Timberwolves,New Orleans Pelicans,,,,Home,,False,2025
+202503210MIN,"Fri, Mar 21, 2025",MIN,NOP,Minnesota Timberwolves,New Orleans Pelicans,,,,Home,,False,2025
+202503280MIN,"Fri, Mar 28, 2025",MIN,PHO,Minnesota Timberwolves,Phoenix Suns,,,,Home,,False,2025
+202504010DEN,"Tue, Apr 1, 2025",DEN,MIN,Denver Nuggets,Minnesota Timberwolves,,,,Home,,False,2025
+202504030BRK,"Thu, Apr 3, 2025",BRK,MIN,Brooklyn Nets,Minnesota Timberwolves,,,,Home,,False,2025
+202504050PHI,"Sat, Apr 5, 2025",PHI,MIN,Philadelphia 76ers,Minnesota Timberwolves,,,,Home,,False,2025
+202504110MIN,"Fri, Apr 11, 2025",MIN,BRK,Minnesota Timberwolves,Brooklyn Nets,,,,Home,,False,2025
+202504130MIN,"Sun, Apr 13, 2025",MIN,UTA,Minnesota Timberwolves,Utah Jazz,,,,Home,,False,2025
+202410250TOR,"Fri, Oct 25, 2024",TOR,PHI,Toronto Raptors,Philadelphia 76ers,,,,Home,,False,2025
+202411040PHO,"Mon, Nov 4, 2024",PHO,PHI,Phoenix Suns,Philadelphia 76ers,,,,Home,,False,2025
+202411080LAL,"Fri, Nov 8, 2024",LAL,PHI,Los Angeles Lakers,Philadelphia 76ers,,,,Home,,False,2025
+202411130PHI,"Wed, Nov 13, 2024",PHI,CLE,Philadelphia 76ers,Cleveland Cavaliers,,,,Home,,False,2025
+202411150ORL,"Fri, Nov 15, 2024",ORL,PHI,Orlando Magic,Philadelphia 76ers,,,,Home,,False,2025
+202411180MIA,"Mon, Nov 18, 2024",MIA,PHI,Miami Heat,Philadelphia 76ers,,,,Home,,False,2025
+202411220PHI,"Fri, Nov 22, 2024",PHI,BRK,Philadelphia 76ers,Brooklyn Nets,,,,Home,,False,2025
+202412040PHI,"Wed, Dec 4, 2024",PHI,ORL,Philadelphia 76ers,Orlando Magic,,,,Home,,False,2025
+202412060PHI,"Fri, Dec 6, 2024",PHI,ORL,Philadelphia 76ers,Orlando Magic,,,,Home,,False,2025
+202412210CLE,"Sat, Dec 21, 2024",CLE,PHI,Cleveland Cavaliers,Philadelphia 76ers,,,,Home,,False,2025
+202412250BOS,"Wed, Dec 25, 2024",BOS,PHI,Boston Celtics,Philadelphia 76ers,,,,Home,,False,2025
+202412280UTA,"Sat, Dec 28, 2024",UTA,PHI,Utah Jazz,Philadelphia 76ers,,,,Home,,False,2025
+202501010SAC,"Wed, Jan 1, 2025",SAC,PHI,Sacramento Kings,Philadelphia 76ers,,,,Home,,False,2025
+202501040BRK,"Sat, Jan 4, 2025",BRK,PHI,Brooklyn Nets,Philadelphia 76ers,,,,Home,,False,2025
+202501060PHI,"Mon, Jan 6, 2025",PHI,PHO,Philadelphia 76ers,Phoenix Suns,,,,Home,,False,2025
+202501100PHI,"Fri, Jan 10, 2025",PHI,NOP,Philadelphia 76ers,New Orleans Pelicans,,,,Home,,False,2025
+202501120ORL,"Sun, Jan 12, 2025",ORL,PHI,Orlando Magic,Philadelphia 76ers,,,,Home,,False,2025
+202501210DEN,"Tue, Jan 21, 2025",DEN,PHI,Denver Nuggets,Philadelphia 76ers,,,,Home,,False,2025
+202501240PHI,"Fri, Jan 24, 2025",PHI,CLE,Philadelphia 76ers,Cleveland Cavaliers,,,,Home,,False,2025
+202501280PHI,"Tue, Jan 28, 2025",PHI,LAL,Philadelphia 76ers,Los Angeles Lakers,,,,Home,,False,2025
+202501290PHI,"Wed, Jan 29, 2025",PHI,SAC,Philadelphia 76ers,Sacramento Kings,,,,Home,,False,2025
+202501310PHI,"Fri, Jan 31, 2025",PHI,DEN,Philadelphia 76ers,Denver Nuggets,,,,Home,,False,2025
+202502020PHI,"Sun, Feb 2, 2025",PHI,BOS,Philadelphia 76ers,Boston Celtics,,,,Home,,False,2025
+202502050PHI,"Wed, Feb 5, 2025",PHI,MIA,Philadelphia 76ers,Miami Heat,,,,Home,,False,2025
+202502110PHI,"Tue, Feb 11, 2025",PHI,TOR,Philadelphia 76ers,Toronto Raptors,,,,Home,,False,2025
+202502120BRK,"Wed, Feb 12, 2025",BRK,PHI,Brooklyn Nets,Philadelphia 76ers,,,,Home,,False,2025
+202502200PHI,"Thu, Feb 20, 2025",PHI,BOS,Philadelphia 76ers,Boston Celtics,,,,Home,,False,2025
+202502220PHI,"Sat, Feb 22, 2025",PHI,BRK,Philadelphia 76ers,Brooklyn Nets,,,,Home,,False,2025
+202503060BOS,"Thu, Mar 6, 2025",BOS,PHI,Boston Celtics,Philadelphia 76ers,,,,Home,,False,2025
+202503090PHI,"Sun, Mar 9, 2025",PHI,UTA,Philadelphia 76ers,Utah Jazz,,,,Home,,False,2025
+202503100ATL,"Mon, Mar 10, 2025",ATL,PHI,Atlanta Hawks,Philadelphia 76ers,,,,Home,,False,2025
+202503120TOR,"Wed, Mar 12, 2025",TOR,PHI,Toronto Raptors,Philadelphia 76ers,,,,Home,,False,2025
+202503230ATL,"Sun, Mar 23, 2025",ATL,PHI,Atlanta Hawks,Philadelphia 76ers,,,,Home,,False,2025
+202503240NOP,"Mon, Mar 24, 2025",NOP,PHI,New Orleans Pelicans,Philadelphia 76ers,,,,Home,,False,2025
+202503290PHI,"Sat, Mar 29, 2025",PHI,MIA,Philadelphia 76ers,Miami Heat,,,,Home,,False,2025
+202503300PHI,"Sun, Mar 30, 2025",PHI,TOR,Philadelphia 76ers,Toronto Raptors,,,,Home,,False,2025
+202504070MIA,"Mon, Apr 7, 2025",MIA,PHI,Miami Heat,Philadelphia 76ers,,,,Home,,False,2025
+202504110PHI,"Fri, Apr 11, 2025",PHI,ATL,Philadelphia 76ers,Atlanta Hawks,,,,Home,,False,2025
+202410260LAL,"Sat, Oct 26, 2024",LAL,SAC,Los Angeles Lakers,Sacramento Kings,,,,Home,,False,2025
+202410290UTA,"Tue, Oct 29, 2024",UTA,SAC,Utah Jazz,Sacramento Kings,,,,Home,,False,2025
+202411010ATL,"Fri, Nov 1, 2024",ATL,SAC,Atlanta Hawks,Sacramento Kings,,,,Home,,False,2025
+202411020TOR,"Sat, Nov 2, 2024",TOR,SAC,Toronto Raptors,Sacramento Kings,,,,Home,,False,2025
+202411040MIA,"Mon, Nov 4, 2024",MIA,SAC,Miami Heat,Sacramento Kings,,,,Home,,False,2025
+202411060SAC,"Wed, Nov 6, 2024",SAC,TOR,Sacramento Kings,Toronto Raptors,,,,Home,,False,2025
+202411100PHO,"Sun, Nov 10, 2024",PHO,SAC,Phoenix Suns,Sacramento Kings,,,,Home,,False,2025
+202411130SAC,"Wed, Nov 13, 2024",SAC,PHO,Sacramento Kings,Phoenix Suns,,,,Home,,False,2025
+202411160SAC,"Sat, Nov 16, 2024",SAC,UTA,Sacramento Kings,Utah Jazz,,,,Home,,False,2025
+202411180SAC,"Mon, Nov 18, 2024",SAC,ATL,Sacramento Kings,Atlanta Hawks,,,,Home,,False,2025
+202411240SAC,"Sun, Nov 24, 2024",SAC,BRK,Sacramento Kings,Brooklyn Nets,,,,Home,,False,2025
+202412080SAC,"Sun, Dec 8, 2024",SAC,UTA,Sacramento Kings,Utah Jazz,,,,Home,,False,2025
+202412190SAC,"Thu, Dec 19, 2024",SAC,LAL,Sacramento Kings,Los Angeles Lakers,,,,Home,,False,2025
+202412210SAC,"Sat, Dec 21, 2024",SAC,LAL,Sacramento Kings,Los Angeles Lakers,,,,Home,,False,2025
+202412280LAL,"Sat, Dec 28, 2024",LAL,SAC,Los Angeles Lakers,Sacramento Kings,,,,Home,,False,2025
+202501060SAC,"Mon, Jan 6, 2025",SAC,MIA,Sacramento Kings,Miami Heat,,,,Home,,False,2025
+202501100BOS,"Fri, Jan 10, 2025",BOS,SAC,Boston Celtics,Sacramento Kings,,,,Home,,False,2025
+202501230DEN,"Thu, Jan 23, 2025",DEN,SAC,Denver Nuggets,Sacramento Kings,,,,Home,,False,2025
+202501270BRK,"Mon, Jan 27, 2025",BRK,SAC,Brooklyn Nets,Sacramento Kings,,,,Home,,False,2025
+202502050SAC,"Wed, Feb 5, 2025",SAC,ORL,Sacramento Kings,Orlando Magic,,,,Home,,False,2025
+202502080SAC,"Sat, Feb 8, 2025",SAC,NOP,Sacramento Kings,New Orleans Pelicans,,,,Home,,False,2025
+202502120NOP,"Wed, Feb 12, 2025",NOP,SAC,New Orleans Pelicans,Sacramento Kings,,,,Home,,False,2025
+202502130NOP,"Thu, Feb 13, 2025",NOP,SAC,New Orleans Pelicans,Sacramento Kings,,,,Home,,False,2025
+202502260UTA,"Wed, Feb 26, 2025",UTA,SAC,Utah Jazz,Sacramento Kings,,,,Home,,False,2025
+202503050DEN,"Wed, Mar 5, 2025",DEN,SAC,Denver Nuggets,Sacramento Kings,,,,Home,,False,2025
+202503140PHO,"Fri, Mar 14, 2025",PHO,SAC,Phoenix Suns,Sacramento Kings,,,,Home,,False,2025
+202503190SAC,"Wed, Mar 19, 2025",SAC,CLE,Sacramento Kings,Cleveland Cavaliers,,,,Home,,False,2025
+202503240SAC,"Mon, Mar 24, 2025",SAC,BOS,Sacramento Kings,Boston Celtics,,,,Home,,False,2025
+202503290ORL,"Sat, Mar 29, 2025",ORL,SAC,Orlando Magic,Sacramento Kings,,,,Home,,False,2025
+202504060CLE,"Sun, Apr 6, 2025",CLE,SAC,Cleveland Cavaliers,Sacramento Kings,,,,Home,,False,2025
+202504090SAC,"Wed, Apr 9, 2025",SAC,DEN,Sacramento Kings,Denver Nuggets,,,,Home,,False,2025
+202504130SAC,"Sun, Apr 13, 2025",SAC,PHO,Sacramento Kings,Phoenix Suns,,,,Home,,False,2025
+202411030NOP,"Sun, Nov 3, 2024",NOP,ATL,New Orleans Pelicans,Atlanta Hawks,,,,Home,,False,2025
+202411060NOP,"Wed, Nov 6, 2024",NOP,CLE,New Orleans Pelicans,Cleveland Cavaliers,,,,Home,,False,2025
+202411080ORL,"Fri, Nov 8, 2024",ORL,NOP,Orlando Magic,New Orleans Pelicans,,,,Home,,False,2025
+202411110NOP,"Mon, Nov 11, 2024",NOP,BRK,New Orleans Pelicans,Brooklyn Nets,,,,Home,,False,2025
+202411150NOP,"Fri, Nov 15, 2024",NOP,DEN,New Orleans Pelicans,Denver Nuggets,,,,Home,,False,2025
+202411160NOP,"Sat, Nov 16, 2024",NOP,LAL,New Orleans Pelicans,Los Angeles Lakers,,,,Home,,False,2025
+202411200CLE,"Wed, Nov 20, 2024",CLE,NOP,Cleveland Cavaliers,New Orleans Pelicans,,,,Home,,False,2025
+202411270NOP,"Wed, Nov 27, 2024",NOP,TOR,New Orleans Pelicans,Toronto Raptors,,,,Home,,False,2025
+202412020ATL,"Mon, Dec 2, 2024",ATL,NOP,Atlanta Hawks,New Orleans Pelicans,,,,Home,,False,2025
+202412050NOP,"Thu, Dec 5, 2024",NOP,PHO,New Orleans Pelicans,Phoenix Suns,,,,Home,,False,2025
+202412220NOP,"Sun, Dec 22, 2024",NOP,DEN,New Orleans Pelicans,Denver Nuggets,,,,Home,,False,2025
+202501010MIA,"Wed, Jan 1, 2025",MIA,NOP,Miami Heat,New Orleans Pelicans,,,,Home,,False,2025
+202501120BOS,"Sun, Jan 12, 2025",BOS,NOP,Boston Celtics,New Orleans Pelicans,,,,Home,,False,2025
+202501170NOP,"Fri, Jan 17, 2025",NOP,UTA,New Orleans Pelicans,Utah Jazz,,,,Home,,False,2025
+202501200NOP,"Mon, Jan 20, 2025",NOP,UTA,New Orleans Pelicans,Utah Jazz,,,,Home,,False,2025
+202501270TOR,"Mon, Jan 27, 2025",TOR,NOP,Toronto Raptors,New Orleans Pelicans,,,,Home,,False,2025
+202501310NOP,"Fri, Jan 31, 2025",NOP,BOS,New Orleans Pelicans,Boston Celtics,,,,Home,,False,2025
+202502030DEN,"Mon, Feb 3, 2025",DEN,NOP,Denver Nuggets,New Orleans Pelicans,,,,Home,,False,2025
+202502050DEN,"Wed, Feb 5, 2025",DEN,NOP,Denver Nuggets,New Orleans Pelicans,,,,Home,,False,2025
+202502270PHO,"Thu, Feb 27, 2025",PHO,NOP,Phoenix Suns,New Orleans Pelicans,,,,Home,,False,2025
+202502280PHO,"Fri, Feb 28, 2025",PHO,NOP,Phoenix Suns,New Orleans Pelicans,,,,Home,,False,2025
+202503020UTA,"Sun, Mar 2, 2025",UTA,NOP,Utah Jazz,New Orleans Pelicans,,,,Home,,False,2025
+202503040LAL,"Tue, Mar 4, 2025",LAL,NOP,Los Angeles Lakers,New Orleans Pelicans,,,,Home,,False,2025
+202504040LAL,"Fri, Apr 4, 2025",LAL,NOP,Los Angeles Lakers,New Orleans Pelicans,,,,Home,,False,2025
+202504060NOP,"Sun, Apr 6, 2025",NOP,ORL,New Orleans Pelicans,Orlando Magic,,,,Home,,False,2025
+202504080BRK,"Tue, Apr 8, 2025",BRK,NOP,Brooklyn Nets,New Orleans Pelicans,,,,Home,,False,2025
+202504110NOP,"Fri, Apr 11, 2025",NOP,MIA,New Orleans Pelicans,Miami Heat,,,,Home,,False,2025
+202410230TOR,"Wed, Oct 23, 2024",TOR,CLE,Toronto Raptors,Cleveland Cavaliers,,,,Home,,False,2025
+202410280TOR,"Mon, Oct 28, 2024",TOR,DEN,Toronto Raptors,Denver Nuggets,,,,Home,,False,2025
+202411010TOR,"Fri, Nov 1, 2024",TOR,LAL,Toronto Raptors,Los Angeles Lakers,,,,Home,,False,2025
+202411040DEN,"Mon, Nov 4, 2024",DEN,TOR,Denver Nuggets,Toronto Raptors,,,,Home,,False,2025
+202411100LAL,"Sun, Nov 10, 2024",LAL,TOR,Los Angeles Lakers,Toronto Raptors,,,,Home,,False,2025
+202411160BOS,"Sat, Nov 16, 2024",BOS,TOR,Boston Celtics,Toronto Raptors,,,,Home,,False,2025
+202411240CLE,"Sun, Nov 24, 2024",CLE,TOR,Cleveland Cavaliers,Toronto Raptors,,,,Home,,False,2025
+202411290MIA,"Fri, Nov 29, 2024",MIA,TOR,Miami Heat,Toronto Raptors,,,,Home,,False,2025
+202412010TOR,"Sun, Dec 1, 2024",TOR,MIA,Toronto Raptors,Miami Heat,,,,Home,,False,2025
+202412190TOR,"Thu, Dec 19, 2024",TOR,BRK,Toronto Raptors,Brooklyn Nets,,,,Home,,False,2025
+202412290TOR,"Sun, Dec 29, 2024",TOR,ATL,Toronto Raptors,Atlanta Hawks,,,,Home,,False,2025
+202412310BOS,"Tue, Dec 31, 2024",BOS,TOR,Boston Celtics,Toronto Raptors,,,,Home,,False,2025
+202501010TOR,"Wed, Jan 1, 2025",TOR,BRK,Toronto Raptors,Brooklyn Nets,,,,Home,,False,2025
+202501030TOR,"Fri, Jan 3, 2025",TOR,ORL,Toronto Raptors,Orlando Magic,,,,Home,,False,2025
+202501090CLE,"Thu, Jan 9, 2025",CLE,TOR,Cleveland Cavaliers,Toronto Raptors,,,,Home,,False,2025
+202501150TOR,"Wed, Jan 15, 2025",TOR,BOS,Toronto Raptors,Boston Celtics,,,,Home,,False,2025
+202501210TOR,"Tue, Jan 21, 2025",TOR,ORL,Toronto Raptors,Orlando Magic,,,,Home,,False,2025
+202501230ATL,"Thu, Jan 23, 2025",ATL,TOR,Atlanta Hawks,Toronto Raptors,,,,Home,,False,2025
+202501250ATL,"Sat, Jan 25, 2025",ATL,TOR,Atlanta Hawks,Toronto Raptors,,,,Home,,False,2025
+202502120TOR,"Wed, Feb 12, 2025",TOR,CLE,Toronto Raptors,Cleveland Cavaliers,,,,Home,,False,2025
+202502210TOR,"Fri, Feb 21, 2025",TOR,MIA,Toronto Raptors,Miami Heat,,,,Home,,False,2025
+202502230TOR,"Sun, Feb 23, 2025",TOR,PHO,Toronto Raptors,Phoenix Suns,,,,Home,,False,2025
+202502250TOR,"Tue, Feb 25, 2025",TOR,BOS,Toronto Raptors,Boston Celtics,,,,Home,,False,2025
+202503020ORL,"Sun, Mar 2, 2025",ORL,TOR,Orlando Magic,Toronto Raptors,,,,Home,,False,2025
+202503040ORL,"Tue, Mar 4, 2025",ORL,TOR,Orlando Magic,Toronto Raptors,,,,Home,,False,2025
+202503070TOR,"Fri, Mar 7, 2025",TOR,UTA,Toronto Raptors,Utah Jazz,,,,Home,,False,2025
+202503140UTA,"Fri, Mar 14, 2025",UTA,TOR,Utah Jazz,Toronto Raptors,,,,Home,,False,2025
+202503170PHO,"Mon, Mar 17, 2025",PHO,TOR,Phoenix Suns,Toronto Raptors,,,,Home,,False,2025
+202503260BRK,"Wed, Mar 26, 2025",BRK,TOR,Brooklyn Nets,Toronto Raptors,,,,Home,,False,2025
+202504060BRK,"Sun, Apr 6, 2025",BRK,TOR,Brooklyn Nets,Toronto Raptors,,,,Home,,False,2025
+202410230MIA,"Wed, Oct 23, 2024",MIA,ORL,Miami Heat,Orlando Magic,,,,Home,,False,2025
+202411060PHO,"Wed, Nov 6, 2024",PHO,MIA,Phoenix Suns,Miami Heat,,,,Home,,False,2025
+202411080DEN,"Fri, Nov 8, 2024",DEN,MIA,Denver Nuggets,Miami Heat,,,,Home,,False,2025
+202412020BOS,"Mon, Dec 2, 2024",BOS,MIA,Boston Celtics,Miami Heat,,,,Home,,False,2025
+202412040MIA,"Wed, Dec 4, 2024",MIA,LAL,Miami Heat,Los Angeles Lakers,,,,Home,,False,2025
+202412070MIA,"Sat, Dec 7, 2024",MIA,PHO,Miami Heat,Phoenix Suns,,,,Home,,False,2025
+202412080MIA,"Sun, Dec 8, 2024",MIA,CLE,Miami Heat,Cleveland Cavaliers,,,,Home,,False,2025
+202412210ORL,"Sat, Dec 21, 2024",ORL,MIA,Orlando Magic,Miami Heat,,,,Home,,False,2025
+202412230MIA,"Mon, Dec 23, 2024",MIA,BRK,Miami Heat,Brooklyn Nets,,,,Home,,False,2025
+202412260ORL,"Thu, Dec 26, 2024",ORL,MIA,Orlando Magic,Miami Heat,,,,Home,,False,2025
+202412280ATL,"Sat, Dec 28, 2024",ATL,MIA,Atlanta Hawks,Miami Heat,,,,Home,,False,2025
+202501040MIA,"Sat, Jan 4, 2025",MIA,UTA,Miami Heat,Utah Jazz,,,,Home,,False,2025
+202501090UTA,"Thu, Jan 9, 2025",UTA,MIA,Utah Jazz,Miami Heat,,,,Home,,False,2025
+202501150LAL,"Wed, Jan 15, 2025",LAL,MIA,Los Angeles Lakers,Miami Heat,,,,Home,,False,2025
+202501170MIA,"Fri, Jan 17, 2025",MIA,DEN,Miami Heat,Denver Nuggets,,,,Home,,False,2025
+202501250BRK,"Sat, Jan 25, 2025",BRK,MIA,Brooklyn Nets,Miami Heat,,,,Home,,False,2025
+202501270MIA,"Mon, Jan 27, 2025",MIA,ORL,Miami Heat,Orlando Magic,,,,Home,,False,2025
+202501290MIA,"Wed, Jan 29, 2025",MIA,CLE,Miami Heat,Cleveland Cavaliers,,,,Home,,False,2025
+202502070BRK,"Fri, Feb 7, 2025",BRK,MIA,Brooklyn Nets,Miami Heat,,,,Home,,False,2025
+202502100MIA,"Mon, Feb 10, 2025",MIA,BOS,Miami Heat,Boston Celtics,,,,Home,,False,2025
+202502240ATL,"Mon, Feb 24, 2025",ATL,MIA,Atlanta Hawks,Miami Heat,,,,Home,,False,2025
+202502260MIA,"Wed, Feb 26, 2025",MIA,ATL,Miami Heat,Atlanta Hawks,,,,Home,,False,2025
+202503050CLE,"Wed, Mar 5, 2025",CLE,MIA,Cleveland Cavaliers,Miami Heat,,,,Home,,False,2025
+202503140MIA,"Fri, Mar 14, 2025",MIA,BOS,Miami Heat,Boston Celtics,,,,Home,,False,2025
+202503270MIA,"Thu, Mar 27, 2025",MIA,ATL,Miami Heat,Atlanta Hawks,,,,Home,,False,2025
+202504020BOS,"Wed, Apr 2, 2025",BOS,MIA,Boston Celtics,Miami Heat,,,,Home,,False,2025
+202411040ATL,"Mon, Nov 4, 2024",ATL,BOS,Atlanta Hawks,Boston Celtics,,,,Home,,False,2025
+202411080BOS,"Fri, Nov 8, 2024",BOS,BRK,Boston Celtics,Brooklyn Nets,,,,Home,,False,2025
+202411120BOS,"Tue, Nov 12, 2024",BOS,ATL,Boston Celtics,Atlanta Hawks,,,,Home,,False,2025
+202411130BRK,"Wed, Nov 13, 2024",BRK,BOS,Brooklyn Nets,Boston Celtics,,,,Home,,False,2025
+202411190BOS,"Tue, Nov 19, 2024",BOS,CLE,Boston Celtics,Cleveland Cavaliers,,,,Home,,False,2025
+202412010CLE,"Sun, Dec 1, 2024",CLE,BOS,Cleveland Cavaliers,Boston Celtics,,,,Home,,False,2025
+202412230ORL,"Mon, Dec 23, 2024",ORL,BOS,Orlando Magic,Boston Celtics,,,,Home,,False,2025
+202501070DEN,"Tue, Jan 7, 2025",DEN,BOS,Denver Nuggets,Boston Celtics,,,,Home,,False,2025
+202501170BOS,"Fri, Jan 17, 2025",BOS,ORL,Boston Celtics,Orlando Magic,,,,Home,,False,2025
+202501180BOS,"Sat, Jan 18, 2025",BOS,ATL,Boston Celtics,Atlanta Hawks,,,,Home,,False,2025
+202501230LAL,"Thu, Jan 23, 2025",LAL,BOS,Los Angeles Lakers,Boston Celtics,,,,Home,,False,2025
+202502040CLE,"Tue, Feb 4, 2025",CLE,BOS,Cleveland Cavaliers,Boston Celtics,,,,Home,,False,2025
+202502280BOS,"Fri, Feb 28, 2025",BOS,CLE,Boston Celtics,Cleveland Cavaliers,,,,Home,,False,2025
+202503020BOS,"Sun, Mar 2, 2025",BOS,DEN,Boston Celtics,Denver Nuggets,,,,Home,,False,2025
+202503080BOS,"Sat, Mar 8, 2025",BOS,LAL,Boston Celtics,Los Angeles Lakers,,,,Home,,False,2025
+202503100BOS,"Mon, Mar 10, 2025",BOS,UTA,Boston Celtics,Utah Jazz,,,,Home,,False,2025
+202503150BRK,"Sat, Mar 15, 2025",BRK,BOS,Brooklyn Nets,Boston Celtics,,,,Home,,False,2025
+202503180BOS,"Tue, Mar 18, 2025",BOS,BRK,Boston Celtics,Brooklyn Nets,,,,Home,,False,2025
+202503210UTA,"Fri, Mar 21, 2025",UTA,BOS,Utah Jazz,Boston Celtics,,,,Home,,False,2025
+202503260PHO,"Wed, Mar 26, 2025",PHO,BOS,Phoenix Suns,Boston Celtics,,,,Home,,False,2025
+202504040BOS,"Fri, Apr 4, 2025",BOS,PHO,Boston Celtics,Phoenix Suns,,,,Home,,False,2025
+202504090ORL,"Wed, Apr 9, 2025",ORL,BOS,Orlando Magic,Boston Celtics,,,,Home,,False,2025
+202410250LAL,"Fri, Oct 25, 2024",LAL,PHO,Los Angeles Lakers,Phoenix Suns,,,,Home,,False,2025
+202410280PHO,"Mon, Oct 28, 2024",PHO,LAL,Phoenix Suns,Los Angeles Lakers,,,,Home,,False,2025
+202410300CLE,"Wed, Oct 30, 2024",CLE,LAL,Cleveland Cavaliers,Los Angeles Lakers,,,,Home,,False,2025
+202411190LAL,"Tue, Nov 19, 2024",LAL,UTA,Los Angeles Lakers,Utah Jazz,,,,Home,,False,2025
+202411210LAL,"Thu, Nov 21, 2024",LAL,ORL,Los Angeles Lakers,Orlando Magic,,,,Home,,False,2025
+202411230LAL,"Sat, Nov 23, 2024",LAL,DEN,Los Angeles Lakers,Denver Nuggets,,,,Home,,False,2025
+202411260PHO,"Tue, Nov 26, 2024",PHO,LAL,Phoenix Suns,Los Angeles Lakers,,,,Home,,False,2025
+202412010UTA,"Sun, Dec 1, 2024",UTA,LAL,Utah Jazz,Los Angeles Lakers,,,,Home,,False,2025
+202412060ATL,"Fri, Dec 6, 2024",ATL,LAL,Atlanta Hawks,Los Angeles Lakers,,,,Home,,False,2025
+202412310LAL,"Tue, Dec 31, 2024",LAL,CLE,Los Angeles Lakers,Cleveland Cavaliers,,,,Home,,False,2025
+202501030LAL,"Fri, Jan 3, 2025",LAL,ATL,Los Angeles Lakers,Atlanta Hawks,,,,Home,,False,2025
+202501170LAL,"Fri, Jan 17, 2025",LAL,BRK,Los Angeles Lakers,Brooklyn Nets,,,,Home,,False,2025
+202502110LAL,"Tue, Feb 11, 2025",LAL,UTA,Los Angeles Lakers,Utah Jazz,,,,Home,,False,2025
+202502120UTA,"Wed, Feb 12, 2025",UTA,LAL,Utah Jazz,Los Angeles Lakers,,,,Home,,False,2025
+202502220DEN,"Sat, Feb 22, 2025",DEN,LAL,Denver Nuggets,Los Angeles Lakers,,,,Home,,False,2025
+202503100BRK,"Mon, Mar 10, 2025",BRK,LAL,Brooklyn Nets,Los Angeles Lakers,,,,Home,,False,2025
+202503140DEN,"Fri, Mar 14, 2025",DEN,LAL,Denver Nuggets,Los Angeles Lakers,,,,Home,,False,2025
+202503160LAL,"Sun, Mar 16, 2025",LAL,PHO,Los Angeles Lakers,Phoenix Suns,,,,Home,,False,2025
+202503190LAL,"Wed, Mar 19, 2025",LAL,DEN,Los Angeles Lakers,Denver Nuggets,,,,Home,,False,2025
+202503240ORL,"Mon, Mar 24, 2025",ORL,LAL,Orlando Magic,Los Angeles Lakers,,,,Home,,False,2025
+202410230ATL,"Wed, Oct 23, 2024",ATL,BRK,Atlanta Hawks,Brooklyn Nets,,,,Home,,False,2025
+202411270CLE,"Wed, Nov 27, 2024",CLE,ATL,Cleveland Cavaliers,Atlanta Hawks,,,,Home,,False,2025
+202411290ATL,"Fri, Nov 29, 2024",ATL,CLE,Atlanta Hawks,Cleveland Cavaliers,,,,Home,,False,2025
+202412080ATL,"Sun, Dec 8, 2024",ATL,DEN,Atlanta Hawks,Denver Nuggets,,,,Home,,False,2025
+202501010DEN,"Wed, Jan 1, 2025",DEN,ATL,Denver Nuggets,Atlanta Hawks,,,,Home,,False,2025
+202501070UTA,"Tue, Jan 7, 2025",UTA,ATL,Utah Jazz,Atlanta Hawks,,,,Home,,False,2025
+202501090PHO,"Thu, Jan 9, 2025",PHO,ATL,Phoenix Suns,Atlanta Hawks,,,,Home,,False,2025
+202501140ATL,"Tue, Jan 14, 2025",ATL,PHO,Atlanta Hawks,Phoenix Suns,,,,Home,,False,2025
+202501300CLE,"Thu, Jan 30, 2025",CLE,ATL,Cleveland Cavaliers,Atlanta Hawks,,,,Home,,False,2025
+202502100ORL,"Mon, Feb 10, 2025",ORL,ATL,Orlando Magic,Atlanta Hawks,,,,Home,,False,2025
+202502200ATL,"Thu, Feb 20, 2025",ATL,ORL,Atlanta Hawks,Orlando Magic,,,,Home,,False,2025
+202503160BRK,"Sun, Mar 16, 2025",BRK,ATL,Brooklyn Nets,Atlanta Hawks,,,,Home,,False,2025
+202504060ATL,"Sun, Apr 6, 2025",ATL,UTA,Atlanta Hawks,Utah Jazz,,,,Home,,False,2025
+202504080ORL,"Tue, Apr 8, 2025",ORL,ATL,Orlando Magic,Atlanta Hawks,,,,Home,,False,2025
+202504100BRK,"Thu, Apr 10, 2025",BRK,ATL,Brooklyn Nets,Atlanta Hawks,,,,Home,,False,2025
+202504130ATL,"Sun, Apr 13, 2025",ATL,ORL,Atlanta Hawks,Orlando Magic,,,,Home,,False,2025
+202410290BRK,"Tue, Oct 29, 2024",BRK,DEN,Brooklyn Nets,Denver Nuggets,,,,Home,,False,2025
+202411020DEN,"Sat, Nov 2, 2024",DEN,UTA,Denver Nuggets,Utah Jazz,,,,Home,,False,2025
+202411270UTA,"Wed, Nov 27, 2024",UTA,DEN,Utah Jazz,Denver Nuggets,,,,Home,,False,2025
+202412050CLE,"Thu, Dec 5, 2024",CLE,DEN,Cleveland Cavaliers,Denver Nuggets,,,,Home,,False,2025
+202412230DEN,"Mon, Dec 23, 2024",DEN,PHO,Denver Nuggets,Phoenix Suns,,,,Home,,False,2025
+202412250PHO,"Wed, Dec 25, 2024",PHO,DEN,Phoenix Suns,Denver Nuggets,,,,Home,,False,2025
+202412270DEN,"Fri, Dec 27, 2024",DEN,CLE,Denver Nuggets,Cleveland Cavaliers,,,,Home,,False,2025
+202412300UTA,"Mon, Dec 30, 2024",UTA,DEN,Utah Jazz,Denver Nuggets,,,,Home,,False,2025
+202501100DEN,"Fri, Jan 10, 2025",DEN,BRK,Denver Nuggets,Brooklyn Nets,,,,Home,,False,2025
+202501190ORL,"Sun, Jan 19, 2025",ORL,DEN,Orlando Magic,Denver Nuggets,,,,Home,,False,2025
+202502060DEN,"Thu, Feb 6, 2025",DEN,ORL,Denver Nuggets,Orlando Magic,,,,Home,,False,2025
+202502080PHO,"Sat, Feb 8, 2025",PHO,DEN,Phoenix Suns,Denver Nuggets,,,,Home,,False,2025
+202503070DEN,"Fri, Mar 7, 2025",DEN,PHO,Denver Nuggets,Phoenix Suns,,,,Home,,False,2025
+202503280DEN,"Fri, Mar 28, 2025",DEN,UTA,Denver Nuggets,Utah Jazz,,,,Home,,False,2025
+202411010CLE,"Fri, Nov 1, 2024",CLE,ORL,Cleveland Cavaliers,Orlando Magic,,,,Home,,False,2025
+202411090CLE,"Sat, Nov 9, 2024",CLE,BRK,Cleveland Cavaliers,Brooklyn Nets,,,,Home,,False,2025
+202412230CLE,"Mon, Dec 23, 2024",CLE,UTA,Cleveland Cavaliers,Utah Jazz,,,,Home,,False,2025
+202501200CLE,"Mon, Jan 20, 2025",CLE,PHO,Cleveland Cavaliers,Phoenix Suns,,,,Home,,False,2025
+202502200BRK,"Thu, Feb 20, 2025",BRK,CLE,Brooklyn Nets,Cleveland Cavaliers,,,,Home,,False,2025
+202502250ORL,"Tue, Feb 25, 2025",ORL,CLE,Orlando Magic,Cleveland Cavaliers,,,,Home,,False,2025
+202503110CLE,"Tue, Mar 11, 2025",CLE,BRK,Cleveland Cavaliers,Brooklyn Nets,,,,Home,,False,2025
+202503160CLE,"Sun, Mar 16, 2025",CLE,ORL,Cleveland Cavaliers,Orlando Magic,,,,Home,,False,2025
+202503210PHO,"Fri, Mar 21, 2025",PHO,CLE,Phoenix Suns,Cleveland Cavaliers,,,,Home,,False,2025
+202503230UTA,"Sun, Mar 23, 2025",UTA,CLE,Utah Jazz,Cleveland Cavaliers,,,,Home,,False,2025
+202410250ORL,"Fri, Oct 25, 2024",ORL,BRK,Orlando Magic,Brooklyn Nets,,,,Home,,False,2025
+202411270PHO,"Wed, Nov 27, 2024",PHO,BRK,Phoenix Suns,Brooklyn Nets,,,,Home,,False,2025
+202411290BRK,"Fri, Nov 29, 2024",BRK,ORL,Brooklyn Nets,Orlando Magic,,,,Home,,False,2025
+202412010BRK,"Sun, Dec 1, 2024",BRK,ORL,Brooklyn Nets,Orlando Magic,,,,Home,,False,2025
+202412210BRK,"Sat, Dec 21, 2024",BRK,UTA,Brooklyn Nets,Utah Jazz,,,,Home,,False,2025
+202412290ORL,"Sun, Dec 29, 2024",ORL,BRK,Orlando Magic,Brooklyn Nets,,,,Home,,False,2025
+202501120UTA,"Sun, Jan 12, 2025",UTA,BRK,Utah Jazz,Brooklyn Nets,,,,Home,,False,2025
+202501220BRK,"Wed, Jan 22, 2025",BRK,PHO,Brooklyn Nets,Phoenix Suns,,,,Home,,False,2025
+202411120UTA,"Tue, Nov 12, 2024",UTA,PHO,Utah Jazz,Phoenix Suns,,,,Home,,False,2025
+202411180PHO,"Mon, Nov 18, 2024",PHO,ORL,Phoenix Suns,Orlando Magic,,,,Home,,False,2025
+202412080ORL,"Sun, Dec 8, 2024",ORL,PHO,Orlando Magic,Phoenix Suns,,,,Home,,False,2025
+202501110PHO,"Sat, Jan 11, 2025",PHO,UTA,Phoenix Suns,Utah Jazz,,,,Home,,False,2025
+202502070PHO,"Fri, Feb 7, 2025",PHO,UTA,Phoenix Suns,Utah Jazz,,,,Home,,False,2025
+202501050ORL,"Sun, Jan 5, 2025",ORL,UTA,Orlando Magic,Utah Jazz,,,,Home,,False,2025
+202502010UTA,"Sat, Feb 1, 2025",UTA,ORL,Utah Jazz,Orlando Magic,,,,Home,,False,2025

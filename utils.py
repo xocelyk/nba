@@ -37,7 +37,7 @@ def get_em_ratings(df, cap=20, names=None, num_epochs=100):
         teams_dict = {team: i for i, team in enumerate(names)}
   
     if len(df) == 0:
-        return ratings
+        return {team: 0 for team in teams_dict.keys()}
     
     games = df[['team', 'opponent', 'margin']]
     margin_fn = lambda margin: np.clip(margin, -cap, cap)

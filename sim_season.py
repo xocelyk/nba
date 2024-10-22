@@ -118,7 +118,7 @@ class Season:
         return sorted(list(set(self.completed_games['team'].unique().tolist() + self.future_games['team'].unique().tolist())))
 
     def simulate_season(self):
-        season_stop_date = datetime.date(2024, 4, 14)
+        season_stop_date = datetime.date(2025, 4, 14)
         date_increment = self.sim_date_increment
         min_date = self.future_games['date'].min()
         # max_date = self.future_games['date'].max()
@@ -348,8 +348,8 @@ class Season:
         assert len(set(west_alive + east_alive)) == len(west_alive + east_alive)
         playoff_results['playoffs'] = east_alive + west_alive
 
-        # playoff start date is 4/20/2024
-        playoff_start_date = datetime.date(2024, 4, 20)
+        # playoff start date is 4/20/2025
+        playoff_start_date = datetime.date(2025, 4, 20)
         cur_playoff_results = self.get_cur_playoff_results(playoff_start_date)
         # clear all future games - we create them ourselves
         self.future_games = self.future_games[self.future_games['date'] < playoff_start_date]
@@ -399,7 +399,7 @@ class Season:
         team1_home_map = {0: True, 1: True, 2: False, 3: False, 4: True, 5: False, 6: True}
         rem_games = {}
         num_games_added = 0
-        playoff_games_completed = self.get_playoff_games_completed(datetime.date(2024, 4, 20))
+        playoff_games_completed = self.get_playoff_games_completed(datetime.date(2025, 4, 20))
         for label, (team1, team2) in matchups.items():
             # print()
             # print(label, team1, team2)
@@ -477,7 +477,7 @@ class Season:
         team1_home_map = {0: True, 1: True, 2: False, 3: False, 4: True, 5: False, 6: True}
         rem_games = {}
         num_games_added = 0
-        playoff_games_completed = self.get_playoff_games_completed(datetime.date(2024, 4, 20))
+        playoff_games_completed = self.get_playoff_games_completed(datetime.date(2025, 4, 20))
         # assert False
         for label, (team1, team2) in matchups.items():
             # TODO: add each played playoff game to completed_games
@@ -539,7 +539,7 @@ class Season:
         team1_home_map = {0: True, 1: True, 2: False, 3: False, 4: True, 5: False, 6: True}
         rem_games = {}
         num_games_added = 0
-        playoff_games_completed = self.get_playoff_games_completed(datetime.date(2024, 4, 20))
+        playoff_games_completed = self.get_playoff_games_completed(datetime.date(2025, 4, 20))
         # assert False
         for label, (team1, team2) in matchups.items():
             # TODO: add each played playoff game to completed_games
@@ -601,7 +601,7 @@ class Season:
         team1_home_map = {0: True, 1: True, 2: False, 3: False, 4: True, 5: False, 6: True}
         rem_games = {}
         num_games_added = 0
-        playoff_games_completed = self.get_playoff_games_completed(datetime.date(2024, 4, 20))
+        playoff_games_completed = self.get_playoff_games_completed(datetime.date(2025, 4, 20))
         # print('Playoff games completed')
         # print(playoff_games_completed.head(50))
         # assert False
@@ -956,7 +956,7 @@ def get_sim_report(season_results_over_sims, playoff_results_over_sims, num_sims
     return sim_report_df
 
 def run_single_simulation(completed_year_games, future_year_games, margin_model, mean_pace, std_pace):
-    season = Season(2024, completed_year_games, future_year_games, margin_model, mean_pace, std_pace)
+    season = Season(2025, completed_year_games, future_year_games, margin_model, mean_pace, std_pace)
     season.simulate_season()
     # assert False
     # print(season.future_games)

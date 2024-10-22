@@ -8,11 +8,11 @@ import utils
 import csv
 
 
-def get_team_names(year=2024):
+def get_team_names(year=2025):
     '''
     Returns a dictionary of team names to abbreviations
     '''
-    year = 2024
+    year = 2025
     names_to_abbr = {}
     names_to_abbr['Houston Rockets'] = 'HOU'
     schedule = Schedule('HOU', year=year)
@@ -23,7 +23,7 @@ def get_team_names(year=2024):
             names_to_abbr[opponent_name] = game['opponent_abbr'].iloc[0]
     return names_to_abbr
 
-def load_year_data(year=2024):
+def load_year_data(year=2025):
     '''
     pre-loader for update_data function
     '''
@@ -38,7 +38,7 @@ def load_year_data(year=2024):
         data.append([row['boxscore_id'], row['date'], row['team'], row['opponent'], row['team_score'], row['opponent_score'], 'Home', row['pace'], row['completed'], year])
     return data
 
-def update_data(names_to_abbr, year=2024, preload=True):
+def update_data(names_to_abbr, year=2025, preload=True):
     '''
     Returns a dataframe of all the data for the given year
     '''
@@ -113,7 +113,7 @@ def load_regular_season_win_totals_futures():
                 res[team][header[i]] = float(row[i]) if row[i] != '' else np.nan
     return res
 
-def load_training_data(names, update=True, reset=False, start_year=2010, stop_year=2024, this_year_games=None):
+def load_training_data(names, update=True, reset=False, start_year=2010, stop_year=2025, this_year_games=None):
     '''
     Loads the data from start_year to stop_year and returns a dataframe with the data
     Data includes each game with data, team rating, opp rating, team last year rating, opp last year rating, and num games into season

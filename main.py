@@ -9,22 +9,39 @@ import forecast
 import stats
 import time
 from sim_season import sim_season
+import sys
 
 # ignore warnings
 warnings.filterwarnings('ignore')
 
 def main(update=True, save_names=False):
     import pickle
-    YEAR = 2024
+    YEAR = 2025
     if update:
-        # names_to_abbr = data_loader.get_team_names(year=YEAR)
+        try:
+            names_to_abbr = data_loader.get_team_names(year=YEAR)
+        except Exception as e:
+            print(f"Error fetching team abbreviations: {e}")
+            sys.exit(1)
+        
         if save_names:
-            # save to pickle
-            import pickle
-            with open('data/names_to_abbr_{}.pkl'.format(YEAR), 'wb') as f:
-                pickle.dump(names_to_abbr, f)
-        with open('data/names_to_abbr_{}.pkl'.format(YEAR), 'rb') as f:
-            names_to_abbr = pickle.load(f)
+            try:
+                with open('data/names_to_abbr_{}.pkl'.format(YEAR), 'wb') as f:
+                    pickle.dump(names_to_abbr, f)
+            except Exception as e:
+                print(f"Error saving team abbreviations: {e}")
+                sys.exit(1)
+        else:
+            try:
+                with open('data/names_to_abbr_{}.pkl'.format(YEAR), 'rb') as f:
+                    names_to_abbr = pickle.load(f)
+            except FileNotFoundError:
+                print("Pickle file not found. Consider running with save_names=True first.")
+                sys.exit(1)
+            except Exception as e:
+                print(f"Error loading team abbreviations: {e}")
+                sys.exit(1)
+        
         abbrs = list(names_to_abbr.values())
         games = data_loader.update_data(names_to_abbr, preload=True)
     else:
@@ -72,16 +89,14 @@ def main(update=True, save_names=False):
     wins, losses = stats.get_wins_losses(completed_games)
 
     # PUT IT ALL TOGETHER
-    df_final['wins'] = df_final.apply(lambda x: wins.get(x['team'], 0), axis=1)
-    df_final['losses'] = df_final.apply(lambda x: losses.get(x['team'], 0), axis=1)
+    df_final['wins'] = df_final['team'].map(wins).fillna(0).astype(int)
+    df_final['losses'] = df_final['team'].map(losses).fillna(0).astype(int)
     df_final['win_pct'] = df_final['wins'] / (df_final['wins'] + df_final['losses'])
-    df_final['pace'] = df_final.apply(lambda x: paces.get(x['team'], 0), axis=1)
-    df_final['off_eff'] = df_final.apply(lambda x: off_eff.get(x['team'], 0), axis=1)
-    df_final['def_eff'] = df_final.apply(lambda x: def_eff.get(x['team'], 0), axis=1)
-    df_final['off_eff'] = 100 * df_final['off_eff']
-    df_final['def_eff'] = 100 * df_final['def_eff']
-    df_final['adj_off_eff'] = df_final.apply(lambda x: adj_off_eff.get(x['team'], 0), axis=1)
-    df_final['adj_def_eff'] = df_final.apply(lambda x: adj_def_eff.get(x['team'], 0), axis=1)
+    df_final['pace'] = df_final['team'].map(paces).fillna(0)
+    df_final['off_eff'] = df_final['team'].map(off_eff).fillna(0) * 100
+    df_final['def_eff'] = df_final['team'].map(def_eff).fillna(0) * 100
+    df_final['adj_off_eff'] = df_final['team'].map(adj_off_eff).fillna(0)
+    df_final['adj_def_eff'] = df_final['team'].map(adj_def_eff).fillna(0)
     df_final = df_final[['rank', 'team', 'team_name', 'em_rating', 'wins', 'losses', 'win_pct', 'off_eff', 'def_eff', 'adj_off_eff', 'adj_def_eff', 'pace']]
     print(df_final.head(30))
     
@@ -93,7 +108,7 @@ def main(update=True, save_names=False):
     forecast.predict_margin_this_week_games(training_data, win_margin_model)
 
     # SIMULATE SEASON
-    sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, num_games_to_std_margin_model_resid, mean_pace, std_pace, year=YEAR, num_sims=1000, parallel=False)
+    sim_report = sim_season(training_data, win_margin_model, mean_margin_model_resid, std_margin_model_resid, num_games_to_std_margin_model_resid, mean_pace, std_pace, year=YEAR, num_sims=100, parallel=False)
     date_string = datetime.datetime.today().strftime('%Y-%m-%d')
     sim_report.to_csv('data/sim_results/sim_report' + date_string + '.csv')
 
@@ -107,7 +122,7 @@ def main(update=True, save_names=False):
     df_final['rank'] = [i + 1 for i in range(len(abbrs))]
     df_final['expected_wins'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'wins'])
     df_final['expected_losses'] = df_final['team'].apply(lambda x: sim_report.loc[x, 'losses'])
-    # 2024 correction for midseason tournament
+    # correction for midseason tournament
     df_final['expected_wins_temp'] = df_final.apply(lambda row: row['expected_wins'], axis=1)
     df_final['expected_losses_temp'] = df_final.apply(lambda row: row['expected_losses'], axis=1)
     df_final['expected_wins'] = df_final['expected_wins_temp']
@@ -143,4 +158,3 @@ def main(update=True, save_names=False):
 
 if __name__ == '__main__':
     main(update=True)
-
