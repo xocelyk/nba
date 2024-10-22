@@ -1,6 +1,7 @@
 import datetime
-import pandas as pd
+
 import numpy as np
+import pandas as pd
 
 
 def predict_margin_today_games(games, win_margin_model):
