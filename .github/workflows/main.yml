@@ -1,7 +1,7 @@
 name: Daily Update
 on:
   schedule:
-    - cron: '0 10 * * *' # runs every day at 10:00 UTC
+    - cron: '0 */1 * * *' # cron job every 4 hours test
 
 jobs:
   run_my_code:
@@ -23,12 +23,12 @@ jobs:
     
         # Main workflow
         - name: Run main
-          run: python main.py
+          run: python main.py --update --num-sims 1
 
-        - name: Commit and push if there are changes
-          run: |
-            git config --global user.email "kylecox2000@gmail.com"
-            git config --global user.name "xocelyk"
-            git add .
-            git commit -m "Automated data update" || exit 0   # This exits with 0 if there's nothing to commit
-            git push --force
+        # - name: Commit and push if there are changes
+        #   run: |
+        #     git config --global user.email "kylecox2000@gmail.com"
+        #     git config --global user.name "xocelyk"
+        #     git add .
+        #     git commit -m "Automated data update" || exit 0   # This exits with 0 if there's nothing to commit
+        #     git push --force
