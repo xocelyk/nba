@@ -73,6 +73,7 @@ def load_game_data(year: int, update: bool, names_to_abbr: Dict[str, str]) -> pd
         try:
             games = pd.read_csv(f'data/games/year_data_{year}.csv')
             games.rename(columns={'team_abbr': 'team', 'opponent_abbr': 'opponent'}, inplace=True)
+            games['date'] = pd.to_datetime(games['date'], format='mixed')
         except Exception as e:
             logging.error(f"Error loading game data: {e}")
             sys.exit(1)

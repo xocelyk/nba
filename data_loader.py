@@ -87,6 +87,7 @@ def update_data(names_to_abbr, year=2025, preload=True):
 
     # create dataframe
     data = pd.DataFrame(data, columns=['boxscore_id', 'date', 'team', 'opponent', 'team_score', 'opponent_score', 'location', 'pace', 'completed', 'year'])
+    data['date'] = pd.to_datetime(data['date'], format='mixed')
     data['team_name'] = data['team'].apply(lambda x: abbr_to_name[x])
     data['opponent_name'] = data['opponent'].apply(lambda x: abbr_to_name[x])
     data['margin'] = data['team_score'] - data['opponent_score']
@@ -148,7 +149,6 @@ def load_training_data(names, update=True, reset=False, start_year=2010, stop_ye
                 year_data['date'] = pd.to_datetime(year_data['date'], format='mixed')
             else:
                 year_data = pd.read_csv(f'data/games/year_data_{year}.csv')
-            print(year_data['date'].dtype)
             year_data = year_data.sort_values('date')
             if 'team_abbr' in year_data.columns and 'team' not in year_data.columns:
                 year_data['team'] = year_data['team_abbr']
@@ -170,7 +170,7 @@ def load_training_data(names, update=True, reset=False, start_year=2010, stop_ye
             last_date = completed_year_data['date'].max()
             
             if year == 2020:
-                year_ratings = utils.get_em_ratings(completed_year_data, names=year_names, day_cap=200)
+                year_ratings = utils.get_em_ratings(completed_year_data, names=year_names, day_cap=300)
             else:
                 year_ratings = utils.get_em_ratings(completed_year_data, names=year_names, day_cap=100)
             print(year)
@@ -183,7 +183,7 @@ def load_training_data(names, update=True, reset=False, start_year=2010, stop_ye
                 first_year = False
                 continue
             else:
-                if (reset or year == stop_year) and year > 2019:
+                if reset or year == stop_year:
                     for team in abbrs:
                         if team not in end_year_ratings_dct[year - 1].keys():
                             # Some teams have changed names over the seasons--hard coding the changes for now

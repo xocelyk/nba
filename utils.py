@@ -27,7 +27,10 @@ def sgd_ratings(games, teams_dict, margin_fn=lambda x:x, lr=.1, epochs=100):
             diff[away].append(-err)
         mean_diff = []
         for i in range(30):
-            mean_diff.append(np.mean(diff[i]))
+            if len(diff[i]) == 0:
+                mean_diff.append(0)
+            else:
+                mean_diff.append(np.mean(diff[i]))
             ratings[i] += lr * mean_diff[i]
     return ratings
 
