@@ -33,13 +33,18 @@ def parse_arguments() -> argparse.Namespace:
     return parser.parse_args()
 
 def load_team_data(year: int, update: bool, save_names: bool) -> Tuple[List[str], Dict[str, str], Dict[str, str]]:
+    # TODO: should just hard code this
     if update:
         try:
             names_to_abbr = data_loader.get_team_names(year=year)
         except Exception as e:
             logging.error(f"Error fetching team abbreviations: {e}")
-            sys.exit(1)
-        
+            # sys.exit(1)
+
+            # Temp fix
+            with open(f'data/names_to_abbr_{year}.pkl', 'rb') as f:
+                names_to_abbr = pickle.load(f)
+
         if save_names:
             try:
                 with open(f'data/names_to_abbr_{year}.pkl', 'wb') as f:
