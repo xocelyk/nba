@@ -317,7 +317,13 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202412030CLE,2024-12-03,CLE,WAS,Cleveland Cavaliers,Washington Wizards,118.0,87.0,31.0,Home,101.3,True,2025
 202412030LAC,2024-12-03,LAC,POR,Los Angeles Clippers,Portland Trail Blazers,127.0,105.0,22.0,Home,90.8,True,2025
 202412030TOR,2024-12-03,TOR,IND,Toronto Raptors,Indiana Pacers,122.0,111.0,11.0,Home,106.1,True,2025
-202412050GSW,2024-12-05,GSW,HOU,Golden State Warriors,Houston Rockets,,,,Home,,False,2025
+202412040BOS,2024-12-04,BOS,DET,Boston Celtics,Detroit Pistons,130.0,120.0,10.0,Home,101.2,True,2025
+202412040LAC,2024-12-04,LAC,MIN,Los Angeles Clippers,Minnesota Timberwolves,80.0,108.0,-28.0,Home,99.9,True,2025
+202412040MIL,2024-12-04,MIL,ATL,Milwaukee Bucks,Atlanta Hawks,104.0,119.0,-15.0,Home,103.5,True,2025
+202412040BRK,2024-12-04,BRK,IND,Brooklyn Nets,Indiana Pacers,99.0,90.0,9.0,Home,96.5,True,2025
+202412040PHI,2024-12-04,PHI,ORL,Philadelphia 76ers,Orlando Magic,102.0,106.0,-4.0,Home,89.8,True,2025
+202412040MIA,2024-12-04,MIA,LAL,Miami Heat,Los Angeles Lakers,134.0,93.0,41.0,Home,95.5,True,2025
+202412050GSW,2024-12-05,GSW,HOU,Golden State Warriors,Houston Rockets,99.0,93.0,6.0,Home,94.4,True,2025
 202412080LAC,2024-12-08,LAC,HOU,Los Angeles Clippers,Houston Rockets,,,,Home,,False,2025
 202412110HOU,2024-12-11,HOU,GSW,Houston Rockets,Golden State Warriors,,,,Home,,False,2025
 202412190HOU,2024-12-19,HOU,NOP,Houston Rockets,New Orleans Pelicans,,,,Home,,False,2025
@@ -376,7 +382,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202504090LAC,2025-04-09,LAC,HOU,Los Angeles Clippers,Houston Rockets,,,,Home,,False,2025
 202504110LAL,2025-04-11,LAL,HOU,Los Angeles Lakers,Houston Rockets,,,,Home,,False,2025
 202504130HOU,2025-04-13,HOU,DEN,Houston Rockets,Denver Nuggets,,,,Home,,False,2025
-202412050NYK,2024-12-05,NYK,CHO,New York Knicks,Charlotte Hornets,,,,Home,,False,2025
+202412050NYK,2024-12-05,NYK,CHO,New York Knicks,Charlotte Hornets,125.0,101.0,24.0,Home,92.2,True,2025
 202412070CHO,2024-12-07,CHO,CLE,Charlotte Hornets,Cleveland Cavaliers,,,,Home,,False,2025
 202412080IND,2024-12-08,IND,CHO,Indiana Pacers,Charlotte Hornets,,,,Home,,False,2025
 202412130CHI,2024-12-13,CHI,CHO,Chicago Bulls,Charlotte Hornets,,,,Home,,False,2025
@@ -436,7 +442,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202504090TOR,2025-04-09,TOR,CHO,Toronto Raptors,Charlotte Hornets,,,,Home,,False,2025
 202504110BOS,2025-04-11,BOS,CHO,Boston Celtics,Charlotte Hornets,,,,Home,,False,2025
 202504130BOS,2025-04-13,BOS,CHO,Boston Celtics,Charlotte Hornets,,,,Home,,False,2025
-202412050MEM,2024-12-05,MEM,SAC,Memphis Grizzlies,Sacramento Kings,,,,Home,,False,2025
+202412050MEM,2024-12-05,MEM,SAC,Memphis Grizzlies,Sacramento Kings,115.0,110.0,5.0,Home,105.4,True,2025
 202412070BOS,2024-12-07,BOS,MEM,Boston Celtics,Memphis Grizzlies,,,,Home,,False,2025
 202412080WAS,2024-12-08,WAS,MEM,Washington Wizards,Memphis Grizzlies,,,,Home,,False,2025
 202412130MEM,2024-12-13,MEM,BRK,Memphis Grizzlies,Brooklyn Nets,,,,Home,,False,2025
@@ -491,7 +497,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202504100MEM,2025-04-10,MEM,MIN,Memphis Grizzlies,Minnesota Timberwolves,,,,Home,,False,2025
 202504110DEN,2025-04-11,DEN,MEM,Denver Nuggets,Memphis Grizzlies,,,,Home,,False,2025
 202504130MEM,2025-04-13,MEM,DAL,Memphis Grizzlies,Dallas Mavericks,,,,Home,,False,2025
-202412050SAS,2024-12-05,SAS,CHI,San Antonio Spurs,Chicago Bulls,,,,Home,,False,2025
+202412050SAS,2024-12-05,SAS,CHI,San Antonio Spurs,Chicago Bulls,124.0,139.0,-15.0,Home,105.8,True,2025
 202412060SAS,2024-12-06,SAS,SAC,San Antonio Spurs,Sacramento Kings,,,,Home,,False,2025
 202412080SAS,2024-12-08,SAS,NOP,San Antonio Spurs,New Orleans Pelicans,,,,Home,,False,2025
 202412130POR,2024-12-13,POR,SAS,Portland Trail Blazers,San Antonio Spurs,,,,Home,,False,2025
@@ -545,7 +551,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202504090GSW,2025-04-09,GSW,SAS,Golden State Warriors,San Antonio Spurs,,,,Home,,False,2025
 202504110PHO,2025-04-11,PHO,SAS,Phoenix Suns,San Antonio Spurs,,,,Home,,False,2025
 202504130SAS,2025-04-13,SAS,TOR,San Antonio Spurs,Toronto Raptors,,,,Home,,False,2025
-202412050WAS,2024-12-05,WAS,DAL,Washington Wizards,Dallas Mavericks,,,,Home,,False,2025
+202412050WAS,2024-12-05,WAS,DAL,Washington Wizards,Dallas Mavericks,101.0,137.0,-36.0,Home,102.5,True,2025
 202412070TOR,2024-12-07,TOR,DAL,Toronto Raptors,Dallas Mavericks,,,,Home,,False,2025
 202412100OKC,2024-12-10,OKC,DAL,Oklahoma City Thunder,Dallas Mavericks,,,,Home,,False,2025
 202412190DAL,2024-12-19,DAL,LAC,Dallas Mavericks,Los Angeles Clippers,,,,Home,,False,2025
@@ -692,7 +698,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202504100DET,2025-04-10,DET,NYK,Detroit Pistons,New York Knicks,,,,Home,,False,2025
 202504110NYK,2025-04-11,NYK,CLE,New York Knicks,Cleveland Cavaliers,,,,Home,,False,2025
 202504130BRK,2025-04-13,BRK,NYK,Brooklyn Nets,New York Knicks,,,,Home,,False,2025
-202412050TOR,2024-12-05,TOR,OKC,Toronto Raptors,Oklahoma City Thunder,,,,Home,,False,2025
+202412050TOR,2024-12-05,TOR,OKC,Toronto Raptors,Oklahoma City Thunder,92.0,129.0,-37.0,Home,102.4,True,2025
 202412070NOP,2024-12-07,NOP,OKC,New Orleans Pelicans,Oklahoma City Thunder,,,,Home,,False,2025
 202412190ORL,2024-12-19,ORL,OKC,Orlando Magic,Oklahoma City Thunder,,,,Home,,False,2025
 202412200MIA,2024-12-20,MIA,OKC,Miami Heat,Oklahoma City Thunder,,,,Home,,False,2025
@@ -737,7 +743,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202504090PHO,2025-04-09,PHO,OKC,Phoenix Suns,Oklahoma City Thunder,,,,Home,,False,2025
 202504110UTA,2025-04-11,UTA,OKC,Utah Jazz,Oklahoma City Thunder,,,,Home,,False,2025
 202504130NOP,2025-04-13,NOP,OKC,New Orleans Pelicans,Oklahoma City Thunder,,,,Home,,False,2025
-202412040BOS,2024-12-04,BOS,DET,Boston Celtics,Detroit Pistons,130.0,120.0,10.0,Home,101.2,True,2025
 202412120BOS,2024-12-12,BOS,DET,Boston Celtics,Detroit Pistons,,,,Home,,False,2025
 202412160DET,2024-12-16,DET,MIA,Detroit Pistons,Miami Heat,,,,Home,,False,2025
 202412190DET,2024-12-19,DET,UTA,Detroit Pistons,Utah Jazz,,,,Home,,False,2025
@@ -827,7 +832,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202504090WAS,2025-04-09,WAS,PHI,Washington Wizards,Philadelphia 76ers,,,,Home,,False,2025
 202504110CHI,2025-04-11,CHI,WAS,Chicago Bulls,Washington Wizards,,,,Home,,False,2025
 202504130MIA,2025-04-13,MIA,WAS,Miami Heat,Washington Wizards,,,,Home,,False,2025
-202412040LAC,2024-12-04,LAC,MIN,Los Angeles Clippers,Minnesota Timberwolves,80.0,108.0,-28.0,Home,99.9,True,2025
 202412130DEN,2024-12-13,DEN,LAC,Denver Nuggets,Los Angeles Clippers,,,,Home,,False,2025
 202412160LAC,2024-12-16,LAC,UTA,Los Angeles Clippers,Utah Jazz,,,,Home,,False,2025
 202412300NOP,2024-12-30,NOP,LAC,New Orleans Pelicans,Los Angeles Clippers,,,,Home,,False,2025
@@ -902,7 +906,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202504080CLE,2025-04-08,CLE,CHI,Cleveland Cavaliers,Chicago Bulls,,,,Home,,False,2025
 202504090CHI,2025-04-09,CHI,MIA,Chicago Bulls,Miami Heat,,,,Home,,False,2025
 202504130PHI,2025-04-13,PHI,CHI,Philadelphia 76ers,Chicago Bulls,,,,Home,,False,2025
-202412040MIL,2024-12-04,MIL,ATL,Milwaukee Bucks,Atlanta Hawks,104.0,119.0,-15.0,Home,103.5,True,2025
 202412060BOS,2024-12-06,BOS,MIL,Boston Celtics,Milwaukee Bucks,,,,Home,,False,2025
 202412080BRK,2024-12-08,BRK,MIL,Brooklyn Nets,Milwaukee Bucks,,,,Home,,False,2025
 202412100MIL,2024-12-10,MIL,ORL,Milwaukee Bucks,Orlando Magic,,,,Home,,False,2025
@@ -942,7 +945,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202504050MIA,2025-04-05,MIA,MIL,Miami Heat,Milwaukee Bucks,,,,Home,,False,2025
 202504080MIL,2025-04-08,MIL,MIN,Milwaukee Bucks,Minnesota Timberwolves,,,,Home,,False,2025
 202504090MIL,2025-04-09,MIL,NOP,Milwaukee Bucks,New Orleans Pelicans,,,,Home,,False,2025
-202412040BRK,2024-12-04,BRK,IND,Brooklyn Nets,Indiana Pacers,99.0,90.0,9.0,Home,96.5,True,2025
 202412130PHI,2024-12-13,PHI,IND,Philadelphia 76ers,Indiana Pacers,,,,Home,,False,2025
 202412150IND,2024-12-15,IND,NOP,Indiana Pacers,New Orleans Pelicans,,,,Home,,False,2025
 202412190PHO,2024-12-19,PHO,IND,Phoenix Suns,Indiana Pacers,,,,Home,,False,2025
@@ -1038,7 +1040,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202504050PHI,2025-04-05,PHI,MIN,Philadelphia 76ers,Minnesota Timberwolves,,,,Home,,False,2025
 202504110MIN,2025-04-11,MIN,BRK,Minnesota Timberwolves,Brooklyn Nets,,,,Home,,False,2025
 202504130MIN,2025-04-13,MIN,UTA,Minnesota Timberwolves,Utah Jazz,,,,Home,,False,2025
-202412040PHI,2024-12-04,PHI,ORL,Philadelphia 76ers,Orlando Magic,102.0,106.0,-4.0,Home,89.8,True,2025
 202412060PHI,2024-12-06,PHI,ORL,Philadelphia 76ers,Orlando Magic,,,,Home,,False,2025
 202412210CLE,2024-12-21,CLE,PHI,Cleveland Cavaliers,Philadelphia 76ers,,,,Home,,False,2025
 202412250BOS,2024-12-25,BOS,PHI,Boston Celtics,Philadelphia 76ers,,,,Home,,False,2025
@@ -1092,7 +1093,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202504060CLE,2025-04-06,CLE,SAC,Cleveland Cavaliers,Sacramento Kings,,,,Home,,False,2025
 202504090SAC,2025-04-09,SAC,DEN,Sacramento Kings,Denver Nuggets,,,,Home,,False,2025
 202504130SAC,2025-04-13,SAC,PHO,Sacramento Kings,Phoenix Suns,,,,Home,,False,2025
-202412050NOP,2024-12-05,NOP,PHO,New Orleans Pelicans,Phoenix Suns,,,,Home,,False,2025
+202412050NOP,2024-12-05,NOP,PHO,New Orleans Pelicans,Phoenix Suns,126.0,124.0,2.0,Home,103.4,True,2025
 202412220NOP,2024-12-22,NOP,DEN,New Orleans Pelicans,Denver Nuggets,,,,Home,,False,2025
 202501010MIA,2025-01-01,MIA,NOP,Miami Heat,New Orleans Pelicans,,,,Home,,False,2025
 202501120BOS,2025-01-12,BOS,NOP,Boston Celtics,New Orleans Pelicans,,,,Home,,False,2025
@@ -1132,7 +1133,6 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202503170PHO,2025-03-17,PHO,TOR,Phoenix Suns,Toronto Raptors,,,,Home,,False,2025
 202503260BRK,2025-03-26,BRK,TOR,Brooklyn Nets,Toronto Raptors,,,,Home,,False,2025
 202504060BRK,2025-04-06,BRK,TOR,Brooklyn Nets,Toronto Raptors,,,,Home,,False,2025
-202412040MIA,2024-12-04,MIA,LAL,Miami Heat,Los Angeles Lakers,134.0,93.0,41.0,Home,95.5,True,2025
 202412070MIA,2024-12-07,MIA,PHO,Miami Heat,Phoenix Suns,,,,Home,,False,2025
 202412080MIA,2024-12-08,MIA,CLE,Miami Heat,Cleveland Cavaliers,,,,Home,,False,2025
 202412210ORL,2024-12-21,ORL,MIA,Orlando Magic,Miami Heat,,,,Home,,False,2025
@@ -1195,7 +1195,7 @@ boxscore_id,date,team,opponent,team_name,opponent_name,team_score,opponent_score
 202504080ORL,2025-04-08,ORL,ATL,Orlando Magic,Atlanta Hawks,,,,Home,,False,2025
 202504100BRK,2025-04-10,BRK,ATL,Brooklyn Nets,Atlanta Hawks,,,,Home,,False,2025
 202504130ATL,2025-04-13,ATL,ORL,Atlanta Hawks,Orlando Magic,,,,Home,,False,2025
-202412050CLE,2024-12-05,CLE,DEN,Cleveland Cavaliers,Denver Nuggets,,,,Home,,False,2025
+202412050CLE,2024-12-05,CLE,DEN,Cleveland Cavaliers,Denver Nuggets,126.0,114.0,12.0,Home,109.4,True,2025
 202412230DEN,2024-12-23,DEN,PHO,Denver Nuggets,Phoenix Suns,,,,Home,,False,2025
 202412250PHO,2024-12-25,PHO,DEN,Phoenix Suns,Denver Nuggets,,,,Home,,False,2025
 202412270DEN,2024-12-27,DEN,CLE,Denver Nuggets,Cleveland Cavaliers,,,,Home,,False,2025
